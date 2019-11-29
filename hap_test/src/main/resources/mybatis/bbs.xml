@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="spring.model.mapper.BbsMapper">
+
+	<insert id="reply_create" parameterType="BbsDTO">
+		insert into bbs(bbsno,
+		wname, title, content, passwd, wdate,
+		grpno, indent,ansnum, refnum
+		)
+		values(
+		(select nvl(max(bbsno),0)+1 from bbs),
+		#{wname},#{title},#{content},#{passwd},sysdate,
+		#{grpno},#{indent}+1,#{ansnum}+1,#{bbsno}
+		)
+	</insert>
+
+	<update id="reply_ansnum" parameterType="Map">
+		update bbs
+		set
+		ansnum = ansnum+1
+		where
+		grpno = #{grpno}
+		and
+		ansnum > #{ansnum}
+	</update>
+
+	<select id="reply_read" parameterType="int" resultType="BbsDTO">
+		select
+		bbsno, grpno, indent, ansnum, title
+		from bbs
+		where bbsno=#{bbsno}
+	</select>
+
+	<select id="checkRefnum" parameterType="int" resultType="int">
+		select
+		count(refnum) from bbs
+		where refnum = #{bbsno}
+	</select>
+
+	<delete id="delete" parameterType="int">
+		delete from bbs
+		where bbsno =
+		#{bbsno}
+	</delete>
+
+	<select id="passCheck" parameterType="Map" resultType="int">
+		select
+		count(bbsno) as cnt
+		from bbs
+		where bbsno=#{bbsno}
+		and passwd=#{passwd}
+	</select>
+
+	<update id="update" parameterType="BbsDTO">
+		update bbs set
+			wname=#{wname}, title=#{title}, content=#{content}
+		where bbsno = #{bbsno}
+	</update>
+
+	<insert id="create" parameterType="BbsDTO">
+		<selectKey keyProperty="bbsno" order="AFTER"
+			resultType="int">
+			select nvl(max(bbsno),0) from bbs
+		</selectKey>
+		insert into bbs(bbsno, wname, title, content, passwd, wdate,
+		grpno)
+		values(
+		(select nvl(max(bbsno),0)+1 from bbs),
+		#{wname}, #{title}, #{content},
+		#{passwd},
+		sysdate,(select
+		nvl(max(grpno),0)+1 from bbs)
+		)
+	</insert>
+
+	<update id="upViewcnt" parameterType="int">
+		update bbs set viewcnt =
+		viewcnt + 1 where bbsno = #{bbsno}
+	</update>
+
+	<select id="read" parameterType="int" resultType="BbsDTO">
+		SELECT bbsno,
+		wname, title, content, viewcnt, wdate
+		FROM bbs
+		where bbsno = #{bbsno}
+	</select>
+
+	<select id="total" parameterType="Map" resultType="int">
+		select count(*) from bbs
+		<where>
+			<choose>
+				<when test="col=='wname'">
+					wname like '%'||#{word}||'%'
+				</when>
+				<when test="col=='title'">
+					title like '%'||#{word}||'%'
+				</when>
+				<when test="col=='content'">
+					content like '%'||#{word}||'%'
+				</when>
+				<when test="col=='title_content'">
+					title like '%'||#{word}||'%'
+					or
+					content like
+					'%'||#{word}||'%'
+				</when>
+			</choose>
+		</where>
+	</select>
+
+	<select id="list" parameterType="Map" resultType="BbsDTO">
+		SELECT bbsno, wname, title, viewcnt, to_char(wdate,'yyyy-mm-dd')
+		wdate, grpno, indent, ansnum, r
+		FROM(
+		SELECT bbsno, wname,
+		title, viewcnt, wdate,
+		grpno, indent, ansnum, rownum r
+		FROM(
+		SELECT bbsno, wname, title, viewcnt, wdate
+		,grpno,indent,ansnum
+		FROM bbs
+		<where>
+			<choose>
+				<when test="col=='wname'">
+					wname like '%'||#{word}||'%'
+				</when>
+				<when test="col=='title'">
+					title like '%'||#{word}||'%'
+				</when>
+				<when test="col=='content'">
+					content like '%'||#{word}||'%'
+				</when>
+				<when test="col=='title_content'">
+					title like '%'||#{word}||'%'
+					or
+					content like
+					'%'||#{word}||'%'
+				</when>
+			</choose>
+		</where>
+		ORDER BY grpno desc, ansnum
+		)
+		)            
+     	<![CDATA[                      
+	 	where r>=#{sno} and r<=#{eno}                      
+ 		]]>
+	</select>
+</mapper>

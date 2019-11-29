@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:aop="http://www.springframework.org/schema/aop"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+   xmlns:p="http://www.springframework.org/schema/p"
+   xmlns:tx="http://www.springframework.org/schema/tx"
+   xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring 
+                  http://mybatis.org/schema/mybatis-spring-1.2.xsd
+                  http://www.springframework.org/schema/beans 
+                  https://www.springframework.org/schema/beans/spring-beans.xsd
+                  http://www.springframework.org/schema/context 
+                  http://www.springframework.org/schema/context/spring-context-4.3.xsd
+                  http://www.springframework.org/schema/aop 
+                  http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+                  http://www.springframework.org/schema/tx 
+                  http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+               
+   <!-- Root Context: defines shared resources visible to all other web components -->
+      
+   <bean id="multipartResolver"
+      class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+   </bean>   
+      
+   <!-- Root Context: defines shared resources visible to all other web components -->
+   <bean id="tilesconfigurer"
+      class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+      <property name="definitions">
+         <list>
+            <value>/WEB-INF/spring/member.xml</value>
+            <value>/WEB-INF/spring/memo.xml</value>
+            <value>/WEB-INF/spring/bbs.xml</value>
+            <value>/WEB-INF/spring/res_hap.xml</value>
+         </list>
+      </property>
+   </bean>
+
+   <bean id="viewResolver"
+      class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+      <property name="order">
+         <value>1</value>
+      </property>
+
+      <property name="viewClass">
+         <value>org.springframework.web.servlet.view.tiles2.TilesView</value>
+      </property>
+
+   </bean>
+
+   <!-- 데이터베이스 접속 설정 -->
+   <bean id="dataSource" destroy-method="close"
+      class="org.apache.commons.dbcp.BasicDataSource"
+      p:driverClassName="oracle.jdbc.driver.OracleDriver"
+      p:url="jdbc:oracle:thin:@172.16.81.1:1521:XE" p:username="HAP"
+      p:password="1234">
+   </bean>
+
+   <!-- MyBatis SQL 실행 클래스 -->
+   <bean id="sqlSessionFactory"
+      class="org.mybatis.spring.SqlSessionFactoryBean">
+      <property name="dataSource" ref="dataSource" />
+
+      <!-- 아래부분은 매핑할 xml파일이 있는 패키지경로를 설정한다. -->
+      <property name="typeAliasesPackage" value="spring.model" />  <!-- 패키지명을 안쓰고 얄리야스명만써도 인식하겠다 -->
+      <property name="mapperLocations"
+         value="classpath:mybatis/*.xml" />  <!-- 09회에서 이야히한 설정파일이 여기 프로퍼티로 지정하면서 3줄로 끝남 -->
+   </bean>
+
+   <bean id="sqlSession"
+      class="org.mybatis.spring.SqlSessionTemplate">
+      <constructor-arg name="sqlSessionFactory"
+         ref="sqlSessionFactory" />
+   </bean>
+
+   <mybatis-spring:scan
+      base-package="spring.model.mapper" />
+      
+   <!-- Transaction Manager =>AOP하명서 필요했던 것-->  
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+ 
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+       <tx:attributes>
+          <tx:method name="delete" rollback-for="Exception"/>
+          <tx:method name="reply" rollback-for="Exception"/>
+       </tx:attributes>
+    </tx:advice>
+ 
+    <aop:config>
+        <aop:pointcut id="transactionPointcut" expression="execution(* spring.model.hap.*Service.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="transactionPointcut" />
+    </aop:config>
+ 
+   <context:component-scan base-package="spring.model.*" use-default-filters="false"> 
+      <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+      <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+   </context:component-scan>    
+
+</beans>

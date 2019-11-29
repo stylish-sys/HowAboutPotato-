@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="spring.model.mapper.MemoMapper">
+	<delete id="delete" parameterType="int">
+	delete from memo 
+	where memono = #{memono} 
+	</delete>
+	
+	<insert id="create" parameterType="MemoDTO">
+	insert into memo(memono, title, content, wdate) 
+	values(memo_seq.nextval,#{title},#{content},sysdate)      
+	</insert>
+	
+	<update id="update" parameterType="MemoDTO">
+		update memo
+		set
+		title = #{title} ,
+		content = #{content}
+		where
+		memono = #{memono}
+	</update>
+	
+	<update id="upViewcnt" parameterType="int">
+		update memo
+		set viewcnt =
+		viewcnt + 1
+		where memono = #{memono}
+	</update>
+	
+	<select id="read" parameterType="int" resultType="MemoDTO">
+		select * from
+		memo
+		where memono = #{memono}
+	</select>
+
+	<select id="total" parameterType="Map" resultType="int">
+		select count(*) from memo
+		<where>
+			<choose>
+				<when test="col=='wname'">
+					wname like '%'||#{word}||'%'
+				</when>
+				<when test="col=='title'">
+					title like '%'||#{word}||'%'
+				</when>
+				<when test="col=='content'">
+					content like '%'||#{word}||'%'
+				</when>
+				<when test="col=='title_content'">
+					title like '%'||#{word}||'%'
+					or
+					content like
+					'%'||#{word}||'%'
+				</when>
+			</choose>
+		</where>
+	</select>
+
+	<select id="list" parameterType="Map" resultType="MemoDTO">
+		SELECT memono, wdate, viewcnt, title, r
+		FROM(
+		select memono, wdate,
+		viewcnt, title, rownum r
+		from(
+		select memono, wdate,
+		viewcnt, title
+		from
+		memo
+
+		<where>
+			<choose>
+				<when test="col=='wname'">
+					wname like '%'||#{word}||'%'
+				</when>
+				<when test="col=='title'">
+					title like '%'||#{word}||'%'
+				</when>
+				<when test="col=='content'">
+					content like '%'||#{word}||'%'
+				</when>
+				<when test="col=='title_content'">
+					title like '%'||#{word}||'%'
+					or
+					content like
+					'%'||#{word}||'%'
+				</when>
+			</choose>
+		</where>
+		ORDER BY memono desc
+		)
+		)            
+     	<![CDATA[                      
+	 	where r>=#{sno} and r<=#{eno}                      
+ 		]]>
+
+	</select>
+</mapper>

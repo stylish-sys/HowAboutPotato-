@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE  tiles-definitions PUBLIC 
+    "-//Aapche Software Foundation//DTD Tiles Configuration 2.0//EN" 
+    "http://tiles.apache.org/dtds/tiles-config_2_0.dtd"> 
+ 
+<tiles-definitions> 
+	<definition name="/bbs/list" extends="main"> 
+        <put-attribute name="title" value="회원  목록" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/bbs/list.jsp" /> 
+    </definition>
+    
+    <definition name="/bbs/create" extends="main"> 
+        <put-attribute name="title" value="회원  생성" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/bbs/CreateForm.jsp" /> 
+    </definition>
+    
+    <definition name="/bbs/read" extends="main"> 
+        <put-attribute name="title" value="회원  생성" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/bbs/read.jsp" /> 
+    </definition>
+    
+    <definition name="/bbs/update" extends="main"> 
+        <put-attribute name="title" value="회원  생성" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/bbs/UpdateForm.jsp" /> 
+    </definition>
+    
+    <definition name="/bbs/delete" extends="main"> 
+        <put-attribute name="title" value="회원  생성" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/bbs/DeleteForm.jsp" /> 
+    </definition>
+    
+	<definition name="/bbs/preProc" extends="main"> 
+        <put-attribute name="title" value="회원  생성" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/bbs/preProc.jsp" /> 
+    </definition>
+    
+	<definition name="/bbs/reply" extends="main"> 
+        <put-attribute name="title" value="회원  생성" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/bbs/ReplyForm.jsp" /> 
+    </definition>
+    
+</tiles-definitions>

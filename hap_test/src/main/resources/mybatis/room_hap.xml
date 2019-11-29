@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="spring.model.mapper.RoomMapper">	
+	<select id = "list" parameterType="Map" resultType="Room_hapDTO">
+	select room_num, room_max, room_name, room_content,
+	room_filename, room_price from room_hap   
+	</select>
+</mapper>

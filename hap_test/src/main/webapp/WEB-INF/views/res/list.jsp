@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>member</title>
+<title>예약 목록</title>
 <meta charset="utf-8">
 <script type="text/javascript">
 	function read(res_num) {
@@ -73,11 +73,10 @@
 				<c:when test="${empty list}">
 					<tr>
 						<td colspan="4">등록된 예약이 없습니다. 예약하세요.</td>
+						</tr>
 				</c:when>
-				<c:otherwise>
+				<c:when test="${sessionScope.member_grade=='H'}">
 					<c:forEach var="dto" items="${list}">
-					<%-- var = "dto_b" items="${board_hap}"
-					var="dto_r" items="${room_hap}"> --%>
 						<tr>
 							<td>
 								<p>예약번호 : ${dto.res_rannum}</p>
@@ -96,10 +95,32 @@
 									수정하기</a></td>
 						</tr>
 					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<c:forEach var="dto" items="${list}">
+						<c:if test="${dto.member_id == sessionScope.member_id}">
+							<tr>
+								<td>
+									<p>예약번호 : ${dto.res_rannum}</p>
+									<p>예약자명 : ${dto.res_name}</p>
+									<p>사용인원 : ${dto.res_people}</p>
+									<p>입실일시 : ${dto.res_res1}</p>
+									<p>퇴실입실 : ${dto.res_res2}</p>
+									<p>
+										<a href="javascript:read('${dto.res_num}')">[예약정보 상세보기]</a>
+									</p>
+								</td>
+								<td class="order_state_col"><a
+									href="javascript:deletem('${dto.res_num}')">예약 취소 요청</a></td>
+								<td>${dto.res_res1 }</td>
+								<td><a href="javascript:update('${dto.res_num}')">예약
+										수정하기</a></td>
+							</tr>
+						</c:if>
+					</c:forEach>
 				</c:otherwise>
 			</c:choose>
 		</table>
-
 		<div class="container">${paging}</div>
 	</div>
 </body>

@@ -15,7 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import spring.model.mapper.Member_hapMapper;
 import spring.model.mapper.ResMapper;
 import spring.model.res.Res_hapDTO;
 import spring.utility.webtest.Utility;
@@ -24,6 +26,7 @@ import spring.utility.webtest.Utility;
 public class ResController {
 	@Autowired
 	private ResMapper mapper;
+	
 //	private RoomMapper r_mapper;
 //	private BoardMapper b_mapper;
 //	private MemberMapper m_mapper;
@@ -32,17 +35,18 @@ public class ResController {
 	private static final Logger logger = LoggerFactory.getLogger(ResController.class);
 
 	@RequestMapping("/res/list")
-	public String list(HttpServletRequest request, Model model) {
+	public String list(HttpServletRequest request, Model model,
+			HttpSession session) {
 
 		logger.info("list()가 호출되었음");
-
-		String word = Utility.checkNull(request.getParameter("word"));
-		String col = Utility.checkNull(request.getParameter("col"));
 		
 		Map map = new HashMap();
 		
-		if (col.equals("total")) { word = ""; }
+		String word = Utility.checkNull(request.getParameter("word"));
+		String col = Utility.checkNull(request.getParameter("col"));
 		
+		
+		if (col.equals("total")) { word = ""; }
 		
 		int nowPage = 1;
 		if (request.getParameter("nowPage") != null) {
@@ -50,44 +54,45 @@ public class ResController {
 		}
 
 		int recordPerPage = 4;
-
 		int sno = ((nowPage - 1) * recordPerPage) + 1;
 		int eno = nowPage * recordPerPage;
 
-
+		
+		
 		map.put("col", col);
 		map.put("word", word);
 		map.put("sno", sno);
 		map.put("eno", eno);
-
+		
+		int total = mapper.total(map);
+		
+		String paging = Utility.paging(total, nowPage, recordPerPage, col, word);
 		
 		List<Res_hapDTO> list = mapper.list(map);
 		
-		int total = mapper.total(map);
-		String paging = Utility.paging(total, nowPage, recordPerPage, col, word);
+		Res_hapDTO dto = mapper.list_m((String)session.getAttribute("member_id"));
 		
+		model.addAttribute("dto", dto);
 		request.setAttribute("col", col);
 		request.setAttribute("word", word);
 		request.setAttribute("paging", paging);
-		request.setAttribute("list", list);
 		request.setAttribute("nowPage", nowPage);
-
+		request.setAttribute("list",list);
+		
 		return "/res/list";
 	}
 
 	@GetMapping("/res/create")
 	public String create(Model model, int board_num, HttpServletRequest request, HttpSession session){
 		Map map = new HashMap();
-		
 		List<Res_hapDTO> room_hap = mapper.room_hap(board_num);
+		Res_hapDTO dto = mapper.list_m((String)session.getAttribute("member_id"));
 		
 		Res_hapDTO dto_b = mapper.board_hap(board_num);
-		//Res_hapDTO dto_m = mapper.member_hap(dto_b.getMember_id());
 		
-		model.addAttribute("dto_b", dto_b);
-		//model.addAttribute("dto_m", dto_m);
-
 		request.setAttribute("room_hap", room_hap);
+		model.addAttribute("dto_b", dto_b);
+		model.addAttribute("dto", dto);
 		
 		return "/res/create";
 	}
@@ -114,25 +119,47 @@ public class ResController {
 		model.addAttribute("dto_m", dto_m);
 		model.addAttribute("dto", dto);
 
-		/*
-		 * int nPage = 1; if (request.getParameter("nPage") != null) { nPage =
-		 * Integer.parseInt(request.getParameter("nPage")); } int recordPerPage = 3;
-		 * 
-		 * int sno = ((nPage - 1) * recordPerPage) + 1; int eno = nPage * recordPerPage;
-		 * 
-		 * Map map = new HashMap(); map.put("res_num", res_num); map.put("sno", sno);
-		 * map.put("eno", eno); map.put("nPage", nPage); map.put("nowPage", nowPage);
-		 * map.put("col", col); map.put("word", word);
-		 * 
-		 * model.addAllAttributes(map);
-		 */
 		return "/res/read";
 	}
+	@PostMapping("/res/res_find")
+	public String res_find(int res_rannum, Model model, HttpServletRequest request) {
+		
+		Res_hapDTO dto = mapper.res_find(res_rannum);
+		
+		if (dto != null) {
+			Res_hapDTO dto_r = mapper.room_r_hap(dto.getRoom_num());
+			Res_hapDTO dto_m = mapper.member_hap(dto.getMember_id());
+			Res_hapDTO dto_b = mapper.board_hap(dto.getBoard_num());
+			
+			model.addAttribute("dto_r", dto_r);
+			model.addAttribute("dto_b", dto_b);
+			model.addAttribute("dto_m", dto_m);
+			model.addAttribute("dto", dto);
+			
+			return "/res/res_findproc";
+		}else {
+			return "/res/res_finderror";
+		}
+		
+	}
+
+	@GetMapping("/res/res_find")
+	public String res_find() {
+
+		return "/res/res_find";
+	}
+
 
 	@GetMapping("/res/update")
 	public String update(int res_num, Model model) {
 		Res_hapDTO dto = mapper.read(res_num);
+		Res_hapDTO dto_r = mapper.room_r_hap(dto.getRoom_num());
+		Res_hapDTO dto_m = mapper.member_hap(dto.getMember_id());
+		Res_hapDTO dto_b = mapper.board_hap(dto.getBoard_num());
 		
+		model.addAttribute("dto_r", dto_r);
+		model.addAttribute("dto_b", dto_b);
+		model.addAttribute("dto_m", dto_m);
 		model.addAttribute("dto", dto);
 
 		return "/res/update";

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>member</title>
+<title>예약 수정 요청</title>
 <meta charset="utf-8">
 <script type="text/javascript">
 </script>
@@ -29,22 +29,22 @@
 				<tr>
 				<tr>
 					<th>아이디</th>
-					<td>test1</td>
+					<td>${dto.member_id }</td>
 				</tr>
 				<!-- 수정 불가능 -->
 				<tr>
 					<th>성명</th>
-					<td>이선용</td>
+					<td>${dto_m.member_name }</td>
 				</tr>
 				<!-- 수정 불가능 -->
 				<tr>
 					<th>이메일</th>
-					<td>test@test.test</td>
+					<td>${dto_m.member_email }</td>
 				</tr>
 				<!-- 수정 불가능 -->
 				<tr>
 					<th>휴대전화번호</th>
-					<td>010-1234-1234</td>
+					<td>${dto_m.member_phone }</td>
 				</tr>
 				<!-- 수정요청가능 -->
 				<tr>
@@ -62,16 +62,16 @@
 				<!-- 수정요청가능 -->
 				<tr>
 					<th>예약접수날짜</th>
-					<td>2019.16.16</td>
+					<td>${dto.res_res1 }</td>
 				</tr>
 				<!-- 수정 불가능 -->
 				<tr>
 					<th style="width: 263px;">숙박 상호</th>
-					<td>H호텔</td>
+					<td>${dto_b.board_name}</td>
 				</tr>
 				<tr>
 					<th>숙박명</th>
-					<td>디럭스 룸</td>
+					<td>${dto_r.room_name }</td>
 				</tr>
 				<!-- 수정요청가능 -->
 				<tr>
@@ -95,19 +95,19 @@
 				</tr>
 				<tr>
 					<th>입금계좌정보</th>
-					<td>351-1234-1234</td>
+					<td>${dto_b.board_account}</td>
 				</tr>
 				<tr>
 					<th>입금자명(실사용자랑 동일해야함)</th>
-					<td>이선용</td>
+					<td>${dto.res_name}</td>
 				</tr>
 				<tr>
 					<th>입금액</th>
-					<td>80000원</td>
+					<td>${dto_r.room_price}</td>
 				</tr>
 				<tr>
 					<th>현금영수증신청여부</th>
-					<td>미신청</td>
+					<td>${dto.res_phone }</td>
 				</tr>
 			</table>
 			<span>3일 이내의 예약은 수정이 불가능합니다.<br> 팬션 사이트에 직접 연락하여 수정하시길

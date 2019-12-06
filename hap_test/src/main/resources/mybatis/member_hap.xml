@@ -1,11 +1,136 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+				 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="spring.model.mapper.MemberMapper">	
-	<select id = "list" parameterType="Map" resultType="Member_hapDTO">
-	select member_id, member_name, member_email, member_phone
-	from member_hap
-	</select>
+<mapper namespace="spring.model.mapper.Member_hapMapper">
+  
+<!-- 	int create(Member_hapDTO dto); -->
+<insert id="member_create" parameterType="Member_hapDTO">
+	insert into member_hap(member_num, member_id, member_name, member_passwd, 
+                       member_phone, member_email, member_birth, member_fname, member_grade)
+            	values(
+            		   (SELECT NVL(MAX(member_num),0)+1 FROM member_hap), #{member_id}, #{member_name}, #{member_passwd}, 
+            		   #{member_phone}, #{member_email}, #{member_birth}, #{member_fname, jdbcType=VARCHAR}, 'A')        
+</insert>
+
+<!-- 	int duplicatedId(String member_id);  -->
+<select id="duplicatedId" parameterType="String" resultType="int">
+	select count(member_id) 
+	from member_hap 
+	where member_id=#{member_id}
+</select>
+
+<!--	int duplicateEmail(String member_email); -->
+<select id="duplicatedEmail" parameterType="String" resultType="int">
+	select count(member_email) 
+	from member_hap 
+	where member_email=#{member_email}
+</select>
+
+
+<!-- 	String getMember_fname(String member_id); --> 
+<!-- <select id="getMember_fname" parameterType="String" resultType="String"> -->
+<!-- 	SELECT member_fname -->
+<!-- 	FROM member_hap  -->
+<!-- 	where member_fname=#{member_fname} -->
+<!-- </select> -->
+
+<!-- 	String getMember_grade(String member_id); -->
+<select id="getMember_grade" parameterType="String" resultType="String">
+	SELECT member_grade 
+	FROM member_hap 
+	where member_id=#{member_id}
+</select>
+
+
+<!-- 	int loginCheck(Map<String, String> map); -->
+<select id="loginCheck" parameterType="Map" resultType="int">                
+	 SELECT COUNT(member_id) AS cnt 
+	 FROM member_hap    
+	 WHERE member_id=#{member_id} AND member_passwd=#{member_passwd}  
+</select>
+
+<!-- 	String findId(Map map); -->
+<select id="findId" parameterType="Map" resultType="String">
+	SELECT member_id 
+	FROM member_hap 
+	where member_name=#{member_name} and member_email=#{member_email} 
+</select>
+
+<!-- 	String findPasswd(Map map); -->
+<select id="findPasswd" parameterType="Map" resultType="String">
+	SELECT member_passwd
+	FROM member_hap 
+	where member_name=#{member_name} and member_id=#{member_id} and member_email=#{member_email} 
+</select>
+
+<!-- 	List<Member_hapDTO> list(Map map); -->
+<select id="member_list" parameterType="Map" resultType="Member_hapDTO">      
+	SELECT member_id, member_name, member_phone, member_email, member_birth, member_fname, r
+	FROM(
+		SELECT member_id, member_name, member_phone, member_email, member_birth, member_fname, rownum r
+		FROM(
+			SELECT member_id, member_name, member_phone, member_email, member_birth, member_fname
+			FROM member_hap
+		    <where>
+		     	<choose>
+		     		<when test="col=='member_name'">
+		     		member_name like '%'||#{word}||'%'	     		
+		     		</when>
+		     		<when test="col=='member_id'">
+		     		member_id like '%'||#{word}||'%'	     		
+		     		</when>
+		     		<when test="col=='member_email'">
+		     		member_email like '%'||#{word}||'%'	     		
+		     		</when>
+		     	</choose>
+		     </where>                                                                  
+		        order by member_num desc                                                
+		    )                                                                      
+		) 
+	<![CDATA[
+	where r>=#{sno} and r<=#{eno}              
+	]]>  
+</select>
+
+<!-- 	int total(Map map); -->
+<select id="member_total" parameterType="Map" resultType="int">
+	select count(*) from member_hap
+	<where>
+     	<choose>
+     		<when test="col=='member_name'">
+     		member_name like '%'||#{word}||'%'	     		
+     		</when>
+     		<when test="col=='member_id'">
+     		member_id like '%'||#{word}||'%'	     		
+     		</when>
+     		<when test="col=='member_email'">
+     		member_email like '%'||#{word}||'%'	     		
+     		</when>
+     	</choose>
+     </where> 
+</select>
+
+<!-- 	MemberDTO read(String id); -->
+<select id="member_read" parameterType="String" resultType="Member_hapDTO">
+SELECT member_id, member_name, member_phone, member_email, member_birth, member_fname 
+FROM member_hap 
+WHERE member_id=#{member_id}                                                  
+</select>
+
+<!-- 	int delete(String id); -->
+<delete id="member_delete" parameterType="String">
+	delete from member_hap 
+	where member_id =#{member_id}
+</delete>
+
+<!-- 	int update(MemberDTO dto); -->
+<update id="member_update" parameterType="Member_hapDTO">
+	update member_hap  
+	set member_phone=#{member_phone}, member_email=#{member_email}  
+	where member_id = #{member_id}  
+</update>
+
+
 </mapper>

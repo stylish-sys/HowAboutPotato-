@@ -28,7 +28,7 @@
       class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
       <property name="definitions">
          <list>
-            <value>/WEB-INF/spring/member.xml</value>
+            <value>/WEB-INF/spring/member_hap.xml</value>
             <value>/WEB-INF/spring/memo.xml</value>
             <value>/WEB-INF/spring/bbs.xml</value>
             <value>/WEB-INF/spring/res_hap.xml</value>

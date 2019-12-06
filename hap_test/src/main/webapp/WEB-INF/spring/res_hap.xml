@@ -4,6 +4,7 @@
     "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
+
 	<definition name="/res/update" extends="main">
 		<put-attribute name="title" value="예약 수정"></put-attribute>
 		<put-attribute name="body"
@@ -15,17 +16,35 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/res/deleteForm.jsp" />
 	</definition>
-	
+
 	<definition name="/res/create" extends="main">
 		<put-attribute name="title" value="예약 생성"></put-attribute>
 		<put-attribute name="body"
 			value="/WEB-INF/views/res/createForm.jsp" />
 	</definition>
-		
+
 	<definition name="/res/read" extends="main">
 		<put-attribute name="title" value="내용 확인"></put-attribute>
 		<put-attribute name="body"
 			value="/WEB-INF/views/res/read.jsp" />
+	</definition>
+
+	<definition name="/res/res_find" extends="main">
+		<put-attribute name="title" value="내용 확인"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/res/res_find.jsp" />
+	</definition>
+
+	<definition name="/res/res_finderror" extends="main">
+		<put-attribute name="title" value="내용 확인"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/res/res_finderror.jsp" />
+	</definition>
+
+	<definition name="/res/res_findproc" extends="main">
+		<put-attribute name="title" value="내용 확인"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/res/res_findproc.jsp" />
 	</definition>
 
 	<definition name="/res/list" extends="main">
@@ -33,5 +52,5 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/res/list.jsp" />
 	</definition>
-	
+
 </tiles-definitions>

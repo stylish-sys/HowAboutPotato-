@@ -1,18 +1,23 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file="/ssi/ssi.jsp"%>
 
-<c:set var="root" value="${pageContext.request.contextPath }" />
+<c:set var="root" value="${pageContext.request.contextPath }"></c:set>
+
 <c:choose>
-	<c:when test="${not empty sessionScope.id && sessionScope.grade=='A'}">
-		<c:set var="str">Admin Page</c:set>
+	<c:when
+		test="${not empty sessionScope.member_id && sessionScope.member_grade== 'H'}">
+		<c:set var="str">관리자페이지입니다.</c:set>
 	</c:when>
-	<c:when test="${not empty sessionScope.id && sessionScope.grade!='A'}">
-		<c:set var="str">Hello ${sessionScope.id } !!</c:set>
+	<c:when
+		test="${not empty sessionScope.member_id && sessionScope.member_grade!= 'H'}">
+		<c:set var="str">안녕하세요. ${sessionScope.member_id }님!</c:set>
 	</c:when>
 	<c:otherwise>
-		<c:set var="str">How About Potato?</c:set>
+		<c:set var="str">기본페이지</c:set>
 	</c:otherwise>
+
 </c:choose>
+
 
 <!DOCTYPE html>
 <html>
@@ -34,32 +39,37 @@
 </head>
 
 <body class="landing">
+	<a href="#menu" class="navPanelToggle"> <span class="fa fa-bars"></span></a>
 	<header id="header" class="alt">
 		<nav id="nav">
 			<ul>
 				<li><a href="${root}">Home</a></li>
 				<li><a href="${root}/memo/list">Notice</a></li>
-				<li><a href="${root}/res/list">RESLIST</a></li>
-				<li><a href="${root}/res/create?board_num=1">RESCREATE</a></li>
-				
+				<li><a href="${root}/res/res_find">예약 검색</a></li>
+
 				<c:choose>
-					<c:when test="${empty sessionScope.id }">
-						<li><a href="${root}/member/agree">Join</a></li>
-						<li class="dropdown"><a href="${root}/member/login">Log-in</a></li>
+					<c:when test="${empty sessionScope.member_id }">
+						<li><a href="${root}/member_hap/login">Sign-in</a></li>
+						<li><a href="${root}/member_hap/agree">Join</a></li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="${root}/member/read">MyInfo</a></li>
-						<li><a href="${root}/member/update">MyPage</a></li>
-						<li><a href="${root}/member/logout">Logout</a></li>
+						<li><a href="${root}/res/list">RESLIST</a></li>
+						<li><a href="${root}/res/create?board_num=1">RESCREATE</a></li>
+						<li><a href="${root}/member_hap/member_read">Profile</a></li>
+						<li><a href="${root}/member_hap/member_update">Update</a></li>
+						<li><a href="${root}/member_hap/logout">Sign-out</a></li>
 					</c:otherwise>
 				</c:choose>
-				<c:if test="${not empty sessionScope.id && sessionScope.grade=='A'}">
-					<li><a href="${root}/admin/list">Room List</a></li>
+
+				<c:if
+					test="${not empty sessionScope.member_id && sessionScope.member_grade=='H'}">
+					<li><a href="${root}/res/list">RESLIST</a></li>
+					<li><a href="${root}/admin/list">회원 목록</a></li>
 				</c:if>
 			</ul>
 		</nav>
 	</header>
-	<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
 
 	<section id="banner">
 		<h2>Logo</h2>

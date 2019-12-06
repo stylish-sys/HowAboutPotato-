@@ -26,11 +26,13 @@
 	<div class="container">
 		<form class="form-horizontal" action="create" method="post"
 			onsubmit="return inCheck(this)" name="frm">
-			<input type="hidden" name="member_id" value="user1">
 			<%
 				int res_rannum = (int) (Math.random() * 100000000);
 			%>
+			
 			<input type="hidden" name="res_rannum" value="<%=res_rannum%>">
+			<input type="hidden" name="board_num" value="${param.board_num}">
+			<input type="hidden" name="member_id" value="${dto.member_id}">
 			<div class="form_group">
 				<div class="form-group">
 					<div>
@@ -119,8 +121,9 @@
 									<c:otherwise>
 										<c:forEach var="dto" items="${room_hap}">
 											<tr>
-												<td><input type="radio" name="room_num" id="${dto.room_num}"
-													value="${dto.room_num }" checked="checked"><label for="${dto.room_num }">선택</label></td>
+												<td><input type="radio" name="room_num"
+													id="${dto.room_num}" value="${dto.room_num }"
+													checked="checked"><label for="${dto.room_num }">선택</label></td>
 												<td>${dto.room_name}</td>
 												<td>2명</td>
 												<td>${dto.room_max }명</td>
@@ -132,206 +135,100 @@
 						</table>
 					</div>
 				</div>
-				<!-- 
-			<div id="order_pension" class="main_wrap">
-				<input type="hidden" name="device" value="pc"> <input
-					type="hidden" name="item_uid" value="80"> <input
-					type="hidden" name="reservation_kind_name"
-					value="Null호[기준인원:4,최대인원:7]" id="">
-				<div>
-					<p>선택객실목록</p>
-					<div id="order_form_item_btn">객실 추가</div>
-					<table class="order_form_product_table">
-						<colgroup>
-							<col style="">
-							<col style="width: 100px">
-							<col style="width: 100px">
-							<col style="width: 350px">
-							<col style="width: 150px">
-							<col style="width: 80px">
-						</colgroup>
-						<thead>
-							<tr>
-								<th>객실명</th>
-								<th>기준인원</th>
-								<th>최대인원</th>
-								<th>인원</th>
-								<th>수량</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody id="order_form_product_select_row">
-							<tr class="order_form_product_table_row">
-								<td class="order_form_product_table_td js_order_form_item_name"
-									data-value="Null호">Null호</td>
-								<td
-									class="order_form_product_table_td js_order_form_item_basic_person"
-									data-value="4">4명</td>
-								<td
-									class="order_form_product_table_td js_order_form_item_max_person"
-									data-value="7">7명</td>
-								<td
-									class="order_form_product_table_td order_form_product_table_td_sub">
-									인원 초이스 <label class="order_form_product_label">성인</label>
-									<select required="" data-old_value="0"
-									class="order_form_select js_order_form_lineup" data-label="성인"
-									data-max="7">
-										<option value="0">0명</option>
-										<option value="1">1명</option>
-										<option value="2">2명</option>
-										<option value="3">3명</option>
-										<option value="4">4명</option>
-										<option value="5">5명</option>
-										<option value="6">6명</option>
-										<option value="7">7명</option>
-								</select> 인원 초이스 <label class="order_form_product_label">아동</label>
-									<select required="" data-old_value="0"
-									class="order_form_select js_order_form_lineup" data-label="아동"
-									data-max="7">
-										<option value="0">0명</option>
-										<option value="1">1명</option>
-										<option value="2">2명</option>
-										<option value="3">3명</option>
-										<option value="4">4명</option>
-										<option value="5">5명</option>
-										<option value="6">6명</option>
-										<option value="7">7명</option>
-								</select> 인원 초이스 <label class="order_form_product_label">유아</label>
-									<select required="" data-old_value="0"
-									class="order_form_select js_order_form_lineup" data-label="유아"
-									data-max="7">
-										<option value="0">0명</option>
-										<option value="1">1명</option>
-										<option value="2">2명</option>
-										<option value="3">3명</option>
-										<option value="4">4명</option>
-										<option value="5">5명</option>
-										<option value="6">6명</option>
-										<option value="7">7명</option>
-								</select>
-								</td>
-								<td>
-									<div class="form-group">
-										<div class="order_form_product_minus order_form_product_qty">
-											<img src="#" class="order_form_product_qty_minus"> --버튼
-										</div>
-										<div class="#">
-											<input type="text"
-												class="order_form_input qty js_order_form_qty" value="1"
-												readonly="">
-										</div>
-										<div class="order_form_product_plus order_form_product_qty">
-											<img src="#" class="order_form_product_qty_plus"> ++버튼
-										</div>
-									</div>
-								</td>
-								<td><img src="#" class="order_form_product_delete" alt="삭제"
-									style="cursor: pointer"> 삭제버튼</td>
-							</tr>
-						</tbody>
-					</table>
-				</div> -->
-				<!-- 약관 부분 -->
 
 				<div class="form-group">
-					<p>예약정보입력</p>
-					<div>
-						<table>
-							<tbody>
-								<tr>
-									<th>성명(예약자)</th>
-									<td><input type="text" name="" id="" value="${dto_m.member_name } " disabled></td>
-								</tr>
-								<tr>
-									<th>전화번호</th>
-									<td><input type="text" name="" value="#" id=""disabled></td>
-								</tr>
-								<tr>
-									<th>휴대전화 <span>*(red)</span></th>
-									<td><input type="text" name="" value="#" id=""disabled></td>
-								</tr>
-								<tr>
-									<th>E-MAIL</th>
-									<td><input type="text" name="" value="#" id=""disabled></td>
-								</tr> 
-								<tr>
-									<th>성명(실사용자) <span id="need">*</span></th>
-									<td><input type="text" name="res_name" id="res_name"
-										required>
-										<p>
-											<span id="need"> ※ 회원명으로 예약되며, 모든 연락은 실사용자로 진행됩니다. </span>
-										</p></td>
-								</tr>
-								<tr>
-									<th>휴대전화(실사용자) <span id="need">*</span></th>
-									<td><input type="text" name="res_phone" id="res_phone"
-										required></td>
-								</tr>
-								<tr>
-									<th>남기실말</th>
-									<td><textarea name="res_content" id="res_content"
-											style="width: 265px; height: 81px;"></textarea></td>
-								</tr>
-								<tr>
-									<td>입실일<span id="need">*</span></td>
-									<td><input class="col-sm-4" type="date" name="res_res1"
-										id="res_res1" required></td>
-								</tr>
-								<tr>
-									<td>퇴실일<span id="need">*</span></td>
-									<td><input class="col-sm-4" type="date" name="res_res2"
-										id="res_res2" required></td>
-								</tr>
-								<tr>
-									<td>총인원<span id="need">*</span></td>
-									<td><input type="text" name="res_people" id="res_people"
-										placeholder="2" class="form-control" required="required">
-										<span id="need"> ※ 기준인원 초과 시 인원추가비용 발생<br>※ 영유아 or
-											방문객 포함 최대인원 초과 시 예약 불가합니다.
-									</span></td>
-								</tr>
-								<tr>
-									<th>결제방식</th>
-									<td>무통장입금
-										<p>
-											<span id="need"> ※ 반드시 고객센터에서 안내 받으신 후 진행 해주십시오.<br>
-												※ 결제금액은 유선안내드립니다.
-											</span>
-										</p>
-									</td>
-								</tr>
-								<tr>
-									<th>입금계좌정보</th>
-									<td>${dto_b.board_account}</td>
-								</tr>
-								<tr>
-									<th>입금자명 <span id="need">*</span></th>
-									<td><input type="text" class="form-control" required
-										name="account_name" id="account_name"></td>
-								</tr>
-								<tr>
-									<th>현금영수증 신청하기</th>
-									<td><label> <input type="checkbox" name=""
-											value="신청" id="">현금영수증 신청(핸드폰 &amp; 사업자번호)
-									</label></td>
-								</tr>
-								<tr>
-									<th>현금영수증 번호</th>
-									<td><input type="text" name="" id="" disabled="disabled"
-										required="required">
-										<p>예시: 000-0000-0000, 000-00-00000</p>
-										<p class="">※ 숙박종료 후 국세청 홈텍스에서 확인하세요.</p></td>
-								</tr>
-
-							</tbody>
-						</table>
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-8">
-								<button type="submit" class="btn">상담 접수</button>
-								<button type="reset" class="btn">다시 작성</button>
-							</div>
-						</div>
-					</div>
+								<p>예약정보입력</p>
+								<div>
+									<table>
+										<tbody>
+											<tr>
+												<th>성명(예약자)</th>
+												<td><input type="text" name="" id=""
+													value="${dto.member_name }" disabled></td>
+											</tr>
+											<tr>
+												<th>전화번호</th>
+												<td><input type="text" name=""
+													value="${dto.member_phone }" id="" disabled></td>
+											</tr>
+											<tr>
+												<th>E-MAIL</th>
+												<td><input type="text" name=""
+													value="${dto.member_email }" id="" disabled></td>
+											</tr>
+											<tr>
+												<th>성명(실사용자) <span id="need">*</span></th>
+												<td><input type="text" name="res_name" id="res_name"
+													required>
+													<p>
+														<span id="need"> ※ 회원명으로 예약되며, 모든 연락은 실사용자로 진행됩니다.
+														</span>
+													</p></td>
+											</tr>
+											<tr>
+												<th>휴대전화(실사용자) <span id="need">*</span></th>
+												<td><input type="text" name="res_phone" id="res_phone"
+													required></td>
+											</tr>
+											<tr>
+												<th>남기실말</th>
+												<td><textarea name="res_content" id="res_content"
+														style="width: 265px; height: 81px;"></textarea></td>
+											</tr>
+											<tr>
+												<td>입실일<span id="need">*</span></td>
+												<td><input class="col-sm-4" type="date" name="res_res1"
+													id="res_res1" required></td>
+											</tr>
+											<tr>
+												<td>퇴실일<span id="need">*</span></td>
+												<td><input class="col-sm-4" type="date" name="res_res2"
+													id="res_res2" required></td>
+											</tr>
+											<tr>
+												<td>총인원<span id="need">*</span></td>
+												<td><input type="text" name="res_people"
+													id="res_people" placeholder="2" class="form-control"
+													required="required"> <span id="need"> ※ 기준인원
+														초과 시 인원추가비용 발생<br>※ 영유아 or 방문객 포함 최대인원 초과 시 예약 불가합니다.
+												</span></td>
+											</tr>
+											<tr>
+												<th>결제방식</th>
+												<td>무통장입금
+													<p>
+														<span id="need"> ※ 반드시 고객센터에서 안내 받으신 후 진행 해주십시오.<br>
+															※ 결제금액은 유선안내드립니다.
+														</span>
+													</p>
+												</td>
+											</tr>
+											<tr>
+												<th>입금계좌정보</th>
+												<td>${dto_b.board_account}</td>
+											</tr>
+											<tr>
+												<th>입금자명 <span id="need">*</span></th>
+												<td><input type="text" class="form-control" name=""
+													id=""></td>
+											</tr>
+											<tr>
+												<th>현금영수증<br> 123
+												</th>
+												<td><input id="agree1" type="checkbox" name=""
+													value="1"><label for="agree1"><span
+														id="need"> 등록된 핸드폰 번호로 처리되며, 변경 시 해당 업소에 연락하시길
+															바랍니다. </span> </label></td>
+											</tr>
+										</tbody>
+									</table>
+									<div class="form-group">
+										<div class="col-sm-offset-2 col-sm-8">
+											<button type="submit" class="btn">상담 접수</button>
+											<button type="reset" class="btn">다시 작성</button>
+										</div>
+									</div>
+								</div>
 				</div>
 			</div>
 		</form>

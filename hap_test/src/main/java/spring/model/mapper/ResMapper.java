@@ -13,7 +13,9 @@ public interface ResMapper {
 	Res_hapDTO board_hap(int board_num);
 	
 	int total(Map map);
+	Res_hapDTO list_m(String member_id);
 	Res_hapDTO read(int res_num);
+	Res_hapDTO res_find(int res_rannum);
 	int create(Res_hapDTO dto);
 	int update(Res_hapDTO dto);
 	int delete(int res_num);

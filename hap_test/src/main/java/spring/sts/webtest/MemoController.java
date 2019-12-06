@@ -91,6 +91,7 @@ public class MemoController {
 		mapper.upViewcnt(memono);
 		MemoDTO dto = mapper.read(memono);
 		String content = dto.getContent().replaceAll("\r\n", "<br>");
+		dto.setContent(content);
 		model.addAttribute("dto", dto);
 		return "/memo/read";
 	}

@@ -19,16 +19,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		res_people, room_num, board_num, member_id)
 		values((SELECT
 		NVL(MAX(res_num), 0) + 1 as res_num FROM res_hap),
-		#{res_rannum},#{res_name},#{res_phone},#{res_content},
-		#{res_res1},#{res_res2},#{res_people}, #{room_num}, #{board_num},
-		#{member_id})
+		#{res_rannum},#{res_name},#{res_phone}, #{res_content},
+		#{res_res1},#{res_res2}, #{res_people}, #{room_num},
+		#{board_num}, #{member_id})
 	</insert>
 
 	<update id="update" parameterType="Res_hapDTO">
 		update res_hap
 		set
-		res_name =
-		#{res_name},
+		res_name = #{res_name},
 		res_phone = #{res_phone},
 		res_content = #{res_content},
 		res_res1= #{res_res1},
@@ -37,15 +36,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		res_num = #{res_num}
 	</update>
 
-	<select id="read" parameterType="int" resultType="Res_hapDTO">
+	<select id="list_m" parameterType="String" resultType="Res_hapDTO">
+		select member_grade, member_id, member_name, member_phone, member_email
+		from member_hap
+		where member_id = #{member_id}
+	</select>
+	
+	<select id="read" parameterType="String" resultType="Res_hapDTO">
 		select res_num,
 		res_rannum, res_name, res_phone, res_content, res_people,
 		to_char(res_res1,'yyyy-mm-dd')res_res1,
-		to_char(res_res2,'yyyy-mm-dd')res_res2,
+		to_char(res_res2,'yyyy-mm-dd')res_res2, res_acc,
 		room_num, board_num, member_id
 		from res_hap
-		where res_num =
-		#{res_num}
+		where res_num = #{res_num}
 	</select>
 
 	<select id="total" resultType="int" parameterType="Map">
@@ -59,21 +63,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</choose>
 		</where>
 	</select>
-	<!-- <resultMap type="Board_hapDTO" id="ResMap"> <result property="board_num" 
-		column="board_num" /> <result property="board_name" column="board_name" /> 
-		<result property="board_account" column="board_account" /> <collection property="room_num" 
-		column="board_num" javaType="List" ofType="room_hapDTO" resultMap="res_hap.room_Map" 
-		/> </resultMap> <resultMap type="Room_hapDTO" id="room_Map"> <result property="room_num" 
-		column="room_num" /> <result property="room_name" column="room_name" /> <result 
-		property="room_content" column="room_content" /> <result property="room_max" 
-		column="room_max" /> </resultMap> -->
 
 	<select id="list" parameterType="Map" resultType="Res_hapDTO">
-		SELECT res_num, res_name, res_rannum, res_people, to_char(res_res1,'yyyy-mm-dd') res_res1, to_char(res_res2,'yyyy-mm-dd') res_res2, r 
+		SELECT res_num, res_name, res_rannum, res_people, to_char(res_res1,'yyyy-mm-dd') res_res1, to_char(res_res2,'yyyy-mm-dd') res_res2, res_acc, member_id, r 
 		FROM( 
-		    SELECT res_num, res_name, res_rannum, res_people, res_res1, res_res2, rownum r 
+		    SELECT res_num, res_name, res_rannum, res_people, res_res1, res_res2, res_acc, member_id, rownum r 
 		    FROM ( 
-		        SELECT res_num, res_name, res_rannum, res_people, res_res1, res_res2
+		        SELECT res_num, res_name, res_rannum, res_people, res_res1, res_res2, res_acc, member_id
 		        FROM res_hap 
 		<where>
 			<choose>
@@ -111,5 +107,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id = "member_hap" parameterType="String" resultType="Res_hapDTO">
 	select member_id, member_name, member_email, member_phone
 	from member_hap where member_id = #{member_id}
+	</select>
+	
+	<select id = "res_find" parameterType="int" resultType="Res_hapDTO">
+	select res_num,
+		res_rannum res_name, res_phone, res_content, res_people, res_acc,
+		to_char(res_res1,'yyyy-mm-dd')res_res1,
+		to_char(res_res2,'yyyy-mm-dd')res_res2,
+		room_num, board_num, member_id
+		from res_hap
+		where res_rannum =  #{res_rannum}
 	</select>
 </mapper>

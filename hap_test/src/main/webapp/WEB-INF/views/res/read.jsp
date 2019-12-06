@@ -106,14 +106,14 @@ function update(res_num){
 				</tr>
 				<tr>
 					<th>현금영수증</th>
-					<td>신청은 전화로 연결합니다.</td>
+					<td>${dto.res_phone }</td>
 				</tr>
 			</table>
 		</form>
 		<div class="container" align="center">
 			<a href="javascript:update('${dto.res_num}')">수정 및 취소 요청</a>
 				&nbsp; &nbsp;&nbsp; &nbsp;
-			<a href="javascript:history.back()">목록으로 돌아가기</a>
+			<a href="javascript:history.back()">뒤로 가기</a>
 		</div>
 	</div>
 </body>

@@ -64,11 +64,11 @@
 		<div>
 		${paging }
 		</div>
-		
+		<br><br><br>
 		<form class="form-inline" action="./listNotice">
+		<div align="center">
 			<div class="form-group">
 				<select class="form-control" name="col" id="notice_select">
-					<option value="member_id" <c:if test="${col=='member_id' }">selected</c:if>>성명</option>
 					<option value="title" <c:if test="${col=='notice_title' }">selected</c:if>>제목</option>
 					<option value="content" <c:if test="${col=='notice_content' }">selected</c:if>>내용</option>
 					<option value="title_content" <c:if test="${col=='notice_title_content' }">selected</c:if>>제목+내용</option>
@@ -83,8 +83,8 @@
 			<c:if test="${not empty sessionScope.member_id && sessionScope.member_grade=='H' }">
 				<button type="button" class="btn" onclick="location.href='./createNotice'">등록</button>
 			</c:if>
+		</div>
 		</form>
-
 	</div>
 </body>
 </html>

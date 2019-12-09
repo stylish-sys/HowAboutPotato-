@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -68,7 +69,10 @@ public class NoticeController {
 	}
 	
 	@GetMapping("/notice/createNotice")
-	public String create() {
+	public String create(HttpSession session, Model model) {
+		String member_id = (String) session.getAttribute("member_id");
+		
+		model.addAttribute("member_id",member_id);
 		
 		return "/notice/createNotice";
 	}

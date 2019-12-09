@@ -28,15 +28,29 @@
 </head>
 <body>
 	<div class="container">
+		<form class="form-inline" action="./listQna">
+			<div class="form-group">
+				<select class="form-control" name="col" id="qna_select">
+					<option value="member_id" <c:if test="${col=='member_id' }">selected</c:if>>성명</option>
+					<option value="title" <c:if test="${col=='qna_title' }">selected</c:if>>제목</option>
+					<option value="content" <c:if test="${col=='qna_content' }">selected</c:if>>내용</option>
+					<option value="title_content" <c:if test="${col=='qna_title_content' }">selected</c:if>>제목+내용</option>
+					<option value="total" <c:if test="${col=='total' }">selected</c:if>>전체검색</option>
+					</select>
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="검색어 입력" name="word" value="${word}" id="qna_input">
+			</div>
+			<button type="submit" class="btn">검색</button>
+			<button type="button" class="btn" onclick="location.href='./createQna'">등록</button>
+		</form>
 		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
 					<th>작성자</th>
-					<th>indent</th>
-					<th>ref</th>
-					<th>ansnum</th>
+					<th>조회수</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -60,9 +74,7 @@
 									</c:if>
 								</td>
 								<td>${dto.member_id}</td>
-								<td>${dto.qna_indent }</td>
-								<td>${dto.qna_ref }</td>
-								<td>${dto.qna_ansnum }</td>
+								<td>${dto.qna_viewcnt }</td>
 							</tr>
 						</c:forEach>				
 					</c:otherwise>
@@ -96,22 +108,6 @@
 		${paging }
 		</div>
 		
-		<form class="form-inline" action="./listQna">
-			<div class="form-group">
-				<select class="form-control" name="col" id="qna_select">
-					<option value="member_id" <c:if test="${col=='member_id' }">selected</c:if>>성명</option>
-					<option value="title" <c:if test="${col=='qna_title' }">selected</c:if>>제목</option>
-					<option value="content" <c:if test="${col=='qna_content' }">selected</c:if>>내용</option>
-					<option value="title_content" <c:if test="${col=='qna_title_content' }">selected</c:if>>제목+내용</option>
-					<option value="total" <c:if test="${col=='total' }">selected</c:if>>전체검색</option>
-					</select>
-			</div>
-			<div class="form-group">
-				<input type="text" class="form-control" placeholder="검색어 입력" name="word" value="${word}" id="qna_input">
-			</div>
-			<button type="submit" class="btn">검색</button>
-			<button type="button" class="btn" onclick="location.href='./createQna'">등록</button>
-		</form>
 
 <!-- 		<form class="form-inline" method="get" > -->
 <!-- 			<input type="hidden" name="page" value="1"> -->

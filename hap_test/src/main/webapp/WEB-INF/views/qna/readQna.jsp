@@ -10,7 +10,7 @@
 function listQna(){
 	var url="listQna";
 	url+="?col=${param.col}";
-	url+="&word=${param.word}";f
+	url+="&word=${param.word}";
 	url+="&nowPage=${param.nowPage}";
 	location.href=url;
 }
@@ -68,11 +68,11 @@ function replqQna(){
 	</div>
 	<c:if test="${dto.member_id == sessionScope.member_id || sessionScope.member_grade=='H' }">
 		<button class="btn" onclick="location.href='./createQna'">등록</button>
-		<button class="btn" onclick="javascript:updateQna()">수정</button>
-		<button class="btn" onclick="javascript:deleteQna()">삭제</button>
-		<button class="btn" onclick="javascript:replqQna()">답변</button>
+		<button class="btn" onclick="updateQna()">수정</button>
+		<button class="btn" onclick="jdeleteQna()">삭제</button>
+		<button class="btn" onclick="replqQna()">답변</button>
 	</c:if>
-	<button class="btn" onclick="javascript:listQna()">목록</button>
+	<button class="btn" onclick="listQna()">목록</button>
 
 	
 </div><!-- container -->

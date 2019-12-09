@@ -54,7 +54,7 @@ public class QnaController {
 		List<QnaDTO> list = qna_mapper.list(map);
 		
 		int total=qna_mapper.total(map);
-		String paging=Utility.paging(total, nowPage, recordPerPage, col, word);
+		String paging=Utility.paging_qna(total, nowPage, recordPerPage, col, word);
 		
 		request.setAttribute("list", list);
 		request.setAttribute("col", col);

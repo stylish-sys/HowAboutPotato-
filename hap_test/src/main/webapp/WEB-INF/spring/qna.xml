@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE  tiles-definitions PUBLIC 
+    "-//Aapche Software Foundation//DTD Tiles Configuration 2.0//EN"
+    "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+ 
+<tiles-definitions> 
+    <definition name="/qna/listQna" extends="main"> 
+        <put-attribute name="title" value="Spring4.3.14 Example qna 목록" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/qna/listQna.jsp" />
+    </definition>  
+    <definition name="/qna/createQna" extends="main"> 
+        <put-attribute name="title" value="Spring4.3.14 Example qna 생성" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/qna/createQna.jsp" /> 
+    </definition>  
+    <definition name="/qna/readQna" extends="main"> 
+        <put-attribute name="title" value="Spring4.3.14 Example qna 읽기" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/qna/readQna.jsp" />
+    </definition>
+    <definition name="/qna/updateQna" extends="main"> 
+        <put-attribute name="title" value="Spring4.3.14 Example qna 수정" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/qna/updateQna.jsp" /> 
+    </definition>     
+    <definition name="/qna/deleteQna" extends="main"> 
+        <put-attribute name="title" value="Spring4.3.14 Example qna 삭제" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/qna/deleteQna.jsp" /> 
+    </definition> 
+    <definition name="/qna/preProcQna" extends="main"> 
+        <put-attribute name="title" value="Spring4.3.14 Example qna 오류" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/qna/preProcQna.jsp" />
+    </definition> 
+    <definition name="/qna/replyQna" extends="main"> 
+        <put-attribute name="title" value="Spring4.3.14 Example qna 답변" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/qna/replyQna.jsp" />
+    </definition> 
+
+</tiles-definitions>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE  tiles-definitions PUBLIC 
+    "-//Aapche Software Foundation//DTD Tiles Configuration 2.0//EN"
+    "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+ 
+<tiles-definitions> 
+    <definition name="/home" extends="main"> 
+        <put-attribute name="title" value="기본 페이지" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/home.jsp" />
+    </definition>
+    <definition name="/notice/createNotice" extends="main"> 
+        <put-attribute name="title" value="공지사항 생성" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/notice/createNotice.jsp" /> 
+    </definition>  
+    <definition name="/notice/readNotice" extends="main"> 
+        <put-attribute name="title" value="공지사항 읽기" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/notice/readNotice.jsp" />
+    </definition>  
+    <definition name="/notice/updateNotice" extends="main"> 
+        <put-attribute name="title" value="공지사항 수정" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/notice/updateNotice.jsp" /> 
+    </definition> 
+    <definition name="/notice/deleteNotice" extends="main"> 
+        <put-attribute name="title" value="공지사항 삭제" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/notice/deleteNotice.jsp" /> 
+    </definition> 
+	<definition name="/notice/listNotice" extends="main"> 
+        <put-attribute name="title" value="공지사항 목록" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/notice/listNotice.jsp" />
+    </definition>  
+    <definition name="/notice/preProcNotice" extends="main"> 
+        <put-attribute name="title" value="공지사항 비밀번호 오류" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/notice/preProcNotice.jsp" />
+    </definition> 
+
+</tiles-definitions>

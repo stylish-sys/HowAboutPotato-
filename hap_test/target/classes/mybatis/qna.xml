@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="spring.model.mapper.QnaMapper">
+<!-- mapper를 root-context.xml에 지정을 해주면 경로를 바꿔줘야함  -->
+
+	<select id="list" parameterType="Map" resultType="QnaDTO">
+		select qna_num, member_id, qna_title, qna_content, qna_viewcnt, to_char(qna_wdate, 'yyyy-mm-dd'), qna_filename, qna_filesize, qna_ref, qna_ansnum, qna_indent, r from(
+			select qna_num, member_id, qna_title, qna_content, qna_viewcnt, qna_wdate, qna_filename, qna_filesize,  qna_ref, qna_ansnum, qna_indent, rownum r from(
+				select qna_num, member_id, qna_title, qna_content, qna_viewcnt, qna_wdate, qna_filename, qna_filesize, qna_ref, qna_ansnum, qna_indent from qna_hap
+				<where>
+					<choose>
+						<when test="col=='member_id'">member_id like '%'||#{word}||'%'</when>
+						<when test="col=='title'">qna_title like '%'||#{word}||'%'</when>
+						<when test="col=='title_content'">qna_title like '%'||#{word}||'%' or qna_content like '%'||#{word}||'%'</when>
+						<when test="col=='qna_content'">qna_content like '%'||#{word}||'%'</when>
+					</choose>
+				</where>
+				order by qna_num desc))
+				
+				<![CDATA[where r>=#{sno} and r<=#{eno}]]> 
+	</select>
+	
+	<select id="total" parameterType="Map" resultType="int">
+		select count(*) from qna_hap
+		<where>
+			<choose>
+				<when test="col=='member_id'">member_id like '%'||#{word}||'%'</when>
+				<when test="col=='qna_title'">qna_title like '%'||#{word}||'%'</when>
+				<when test="col=='qna_title_content'">qna_title like '%'||#{word}||'%' or qna_content like '%'||#{word}||'%'</when>
+				<when test="col=='qna_content'">qna_content like '%'||#{word}||'%'</when>
+			</choose>
+		</where>
+	</select>
+	
+	<insert id="create" parameterType="QnaDTO" >
+		insert into qna_hap(qna_num, member_id, qna_title, qna_content, qna_viewcnt, qna_wdate, qna_passwd, qna_filename, qna_filesize, qna_ref)
+		values((select nvl(max(qna_num),0)+1 from qna_hap), #{member_id}, #{qna_title}, #{qna_content}, #{qna_viewcnt}, sysdate, #{qna_passwd}, #{qna_filename, jdbcType=VARCHAR}, #{qna_filesize, jdbcType=INTEGER}, (select nvl(max(qna_ref),0)+1 from qna_hap))
+	</insert>
+	
+	<select id="read" parameterType="int" resultType="QnaDTO">
+		 select qna_num, member_id, qna_title, qna_content, qna_wdate, qna_viewcnt, qna_filename from qna_hap where qna_num=#{qna_num}
+	</select>
+	
+	<update id="upViewcnt" parameterType="int">
+		update qna_hap set qna_viewcnt=qna_viewcnt+1 where qna_num=#{qna_num}
+	</update>
+	
+	<update id="update" parameterType="QnaDTO">
+		update qna_hap 
+		<set>
+			member_id=#{member_id}, qna_title=#{qna_title}, qna_content=#{qna_content},
+				<if test="qna_filesize>0">
+					qna_filename=#{qna_filename}, qna_filesize=#{qna_filesize}
+				</if>
+		</set><!--  set 태그를 써서 ','를 때에따라 쓰고 없앰 -->
+		where qna_num=#{qna_num}
+	</update>
+	
+	<select id="passCheck" parameterType="Map" resultType="int">
+		select count(qna_num) as cnt from qna_hap where qna_num=#{qna_num} and qna_passwd=#{qna_passwd}
+	</select>
+	
+	<select id="checkRef" parameterType="int" resultType="int">
+		select count(*) from qna_hap where qna_refnum=#{qna_num}
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		delete from qna_hap where qna_num=#{qna_num}
+	</delete>
+	
+	<insert id="reply_create" parameterType="QnaDTO">
+		insert into qna_hap(qna_num, member_id, qna_title, qna_content, qna_passwd, qna_wdate, 
+		qna_ref, qna_indent, qna_ansnum, qna_refnum, qna_filename, qna_filesize)
+		values((select nvl(max(qna_num),0)+1 from qna_hap), #{member_id},#{qna_title},#{qna_content},#{qna_passwd},sysdate, 
+		#{qna_ref},#{qna_indent}+1,#{qna_ansnum}+1,#{qna_num}, #{qna_filename, jdbcType=VARCHAR}, #{qna_filesize, jdbcType=INTEGER})
+	</insert>
+
+	<update id="reply_ansnum" parameterType="Map">
+		update qna_hap set qna_ansnum = qna_ansnum+1 where qna_ref = #{qna_ref} and qna_ansnum > #{qna_ansnum}
+	</update>
+
+	<select id="reply_read" parameterType="int" resultType="QnaDTO">
+		select qna_num, qna_ref, qna_indent, qna_ansnum, qna_title from qna_hap where qna_num=#{qna_num}
+	</select>
+
+	<select id="checkRefnum" parameterType="int" resultType="int">
+		select count(qna_refnum) from qna_hap where qna_refnum = #{qna_num}
+	</select>
+	
+</mapper>
+
+
+    

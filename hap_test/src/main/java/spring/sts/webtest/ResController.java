@@ -97,7 +97,7 @@ public class ResController {
 			nowPage = Integer.parseInt(request.getParameter("nowPage"));
 		}
 
-		int recordPerPage = 10;
+		int recordPerPage = 3;
 		int sno = ((nowPage - 1) * recordPerPage) + 1;
 		int eno = nowPage * recordPerPage;
 
@@ -108,7 +108,7 @@ public class ResController {
 
 		int total = mapper.total_acc(map);
 
-		String paging = Utility.paging_acc(total, nowPage, recordPerPage, col, word);
+		String paging_acc = Utility.paging_acc(total, nowPage, recordPerPage, col, word);
 
 		List<Res_hapDTO> list = mapper.list_acc(map);
 
@@ -117,7 +117,7 @@ public class ResController {
 		model.addAttribute("dto", dto);
 		request.setAttribute("col", col);
 		request.setAttribute("word", word);
-		request.setAttribute("paging", paging);
+		request.setAttribute("paging_acc", paging_acc);
 		request.setAttribute("nowPage", nowPage);
 		request.setAttribute("list", list);
 

@@ -12,7 +12,6 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import spring.model.mapper.ReplyMapper;
 
 public class Utility {
 
@@ -23,10 +22,6 @@ public class Utility {
 		return str;
 	}
 	
-	public static int rcount(int bbsno,ReplyMapper mapper){
-        return mapper.rcount(bbsno);
-   }
-
 	/**
 	 * 
 	 * @param totalRecord   전체 레코드수
@@ -87,7 +82,7 @@ public class Utility {
 		
 		StringBuffer str = new StringBuffer();
 		str.append("<div style='text-align:center'>");
-		str.append("<ul> ");
+		str.append("<ul class='pagination'> ");
 		int _nowPage = (nowGrp - 1) * pagePerBlock; // 10개 이전 페이지로 이동
 		if (nowGrp >= 2) {
 			str.append(
@@ -102,7 +97,7 @@ public class Utility {
 			if (nowPage == i) {
 				str.append("<li><a href=#>" + i + "</a></li>"); // 현재위치를 나타낼때 li의 클래스에 active
 			} else {
-				str.append("<li><a href='./list.do?col=" + col + "&word=" + word + "&nowPage=" + i + "'>" + i
+				str.append("<li><a href='./res_acc.do?col=" + col + "&word=" + word + "&nowPage=" + i + "'>" + i
 						+ "</A></li>");
 			}
 		}
@@ -110,7 +105,7 @@ public class Utility {
 		_nowPage = (nowGrp * pagePerBlock) + 1; // 10개 다음 페이지로 이동
 		if (nowGrp < totalGrp) {
 			str.append(
-					"<li><A href='./list.do?col=" + col + "&word=" + word + "&nowPage=" + _nowPage + "'>다음</A></li>");
+					"<li><A href='./res_acc.do?col=" + col + "&word=" + word + "&nowPage=" + _nowPage + "'>다음</A></li>");
 		}
 		str.append("</ul>");
 		str.append("</div>");

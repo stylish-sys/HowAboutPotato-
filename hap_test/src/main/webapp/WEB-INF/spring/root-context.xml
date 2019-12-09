@@ -29,9 +29,9 @@
       <property name="definitions">
          <list>
             <value>/WEB-INF/spring/member_hap.xml</value>
-            <value>/WEB-INF/spring/memo.xml</value>
-            <value>/WEB-INF/spring/bbs.xml</value>
             <value>/WEB-INF/spring/res_hap.xml</value>
+            <value>/WEB-INF/spring/notice.xml</value>
+            <value>/WEB-INF/spring/qna.xml</value>
          </list>
       </property>
    </bean>

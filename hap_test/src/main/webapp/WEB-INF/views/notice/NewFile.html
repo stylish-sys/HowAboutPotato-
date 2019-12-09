@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Notice List</title>
+<meta charset="utf-8">
+<style type="text/css">
+#notice_select{
+	width=50px;
+}
+#notice_input{
+	width=200px;
+}
+</style>
+<script type="text/javascript">
+	function read(notice_num) {
+		var url = "readNotice";
+		url += "?notice_num="+notice_num;
+		url +="&col=${col}";
+		url +="&word=${word}";
+		url+="&nowPage=${nowPage}";
+		location.href = url;
+	}
+</script>
+</head>
+<body>
+	<div class="container">
+
+
+		<div class="notice">
+			<div class="tab" style="display:inline;min-width:1200px;">
+				<span style="display:inline;float:left;width:600px">공지사항</span>
+				<span style="display:inline;float:light;width:600px">Q n A</span>
+			</div>
+			<div class="tab_each">
+				<ul id="notices" class="show_list open_list">
+				<c:forEach var="dto" items="${list }">
+					<li>
+						<a href="#">
+							<p>${dto.notice_title }</p>
+							<span>${dto.notice_wdate }</span>
+						</a>
+					</li>
+				</c:forEach>
+				</ul>
+				
+			</div>
+		</div>
+
+
+
+		<div>
+		${paging }
+		</div>
+		
+		<form class="form-inline" action="./list">
+			<div class="form-group">
+				<select class="form-control" name="col" id="notice_select">
+
+				</select><input type="text" class="form-control" placeholder="검색어 입력" name="word" value="${word}" id="notice_input"><button type="submit" class="btn">검색</button><button type="button" class="btn" onclick="location.href='./createNotice'">등록</button>
+			</div>
+
+			
+			
+		</form>
+
+	</div>
+</body>
+</html>

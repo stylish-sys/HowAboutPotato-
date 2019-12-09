@@ -26,10 +26,10 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="notice_title" required>제목
+				<label class="control-label col-sm-2" for="notice_title">제목
 					 </label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="notice_title">
+					<input type="text" class="form-control" name="notice_title" required>
 				</div>
 			</div>
 			<div class="form-group">
@@ -53,7 +53,7 @@
 				<label class="control-label col-sm-2" for="notice_passwd">비밀번호
 				</label>
 				<div class="col-sm-6">
-					<input type="password" class="form-control" name="notice_passwd">
+					<input type="password" class="form-control" name="notice_passwd" required>
 				</div>
 			</div>
 

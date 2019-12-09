@@ -110,10 +110,9 @@ function update(res_num){
 				</tr>
 			</table>
 		</form>
-		<div class="container" align="center">
-			<a href="javascript:update('${dto.res_num}')">수정 및 취소 요청</a>
+		<div class="container" align="right">
 				&nbsp; &nbsp;&nbsp; &nbsp;
-			<a href="javascript:history.back()">뒤로 가기</a>
+			<button type="btn" onclick="history.back()">뒤로가기</button>
 		</div>
 	</div>
 </body>

@@ -8,17 +8,13 @@
 
 </head>
 <body>
+<br><br><br>
 	<div class="container">
 		<div class="well well-lg">
-			<br> 
-			
-			<label class="col-sm-offset-2 col-sm-10">
-			${str }
-			</label>
+			<br> <label class="col-sm-offset-2 col-sm-10"> ${str } </label>
 		</div>
 
 		<button onclick="history.back()" class="btn">다시시도</button>
-
 	</div>
 
 </body>

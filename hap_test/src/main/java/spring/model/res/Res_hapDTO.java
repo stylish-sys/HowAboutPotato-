@@ -23,6 +23,18 @@ public class Res_hapDTO {
 	private int room_price;
 	private String room_name;
 	private String room_content;
+	private String res_acc;
+	
+	public String getRes_acc() {
+		return res_acc;
+	}
+
+	public void setRes_acc(String res_acc) {
+		this.res_acc = res_acc;
+	}
+
+
+
 	private int room_max;
 	
 	public int getRes_num() {

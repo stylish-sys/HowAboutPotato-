@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <script type="text/javascript">
 	function list() {
-	var url = "list";
+	var url = "res_acc";
 	url	+= "?col=${param.col}";
 	url += "&word=${param.word}";
 	url += "&nowPage=${param.nowPage}";
@@ -18,12 +18,11 @@
 <body>
 	<div class="container">
 	<br><br><br>
-		<form method="post" class="form-horizontal" action="delete">
+		<form method="post" class="form-horizontal" action="delete_admin">
 			<input type="hidden" name="res_num" value="${param.res_num}">
 			<input type="hidden" name="col" value="${param.col }">
 			<input type="hidden" name="word" value="${param.word}">
 			<input type="hidden" name="nowPage" value="${param.nowPage }">
-			
 			<div class="jumbotron">
 				<h3>예약을 취소하시겠습니까?</h3>
 

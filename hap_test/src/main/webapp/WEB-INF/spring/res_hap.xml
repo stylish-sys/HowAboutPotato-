@@ -12,9 +12,15 @@
 	</definition>
 
 	<definition name="/res/delete" extends="main">
-		<put-attribute name="title" value="예약 삭제"></put-attribute>
+		<put-attribute name="title" value="예약 요청"></put-attribute>
 		<put-attribute name="body"
 			value="/WEB-INF/views/res/deleteForm.jsp" />
+	</definition>
+	
+	<definition name="/res/delete_admin" extends="main">
+		<put-attribute name="title" value="예약 요청"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/res/deleteForm_admin.jsp" />
 	</definition>
 
 	<definition name="/res/create" extends="main">
@@ -51,6 +57,17 @@
 		<put-attribute name="title" value="res 목록"></put-attribute>
 		<put-attribute name="body"
 			value="/WEB-INF/views/res/list.jsp" />
+	</definition>
+	
+	<definition name="/res/res_acc" extends="main">
+		<put-attribute name="title" value="에약 관리"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/res/res_acc.jsp" />
+	</definition>
+	<definition name="/res/read_acc" extends="main">
+		<put-attribute name="title" value="에약 승인"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/res/read_acc.jsp" />
 	</definition>
 
 </tiles-definitions>

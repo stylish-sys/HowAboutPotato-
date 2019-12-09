@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{res_res1},#{res_res2}, #{res_people}, #{room_num},
 		#{board_num}, #{member_id})
 	</insert>
-
+	
 	<update id="update" parameterType="Res_hapDTO">
 		update res_hap
 		set
@@ -31,11 +31,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		res_phone = #{res_phone},
 		res_content = #{res_content},
 		res_res1= #{res_res1},
-		res_res2= #{res_res2}
+		res_res2= #{res_res2},
+		res_acc = #{res_acc}
 		where
 		res_num = #{res_num}
 	</update>
-
+	
+	<update id="create_acc" parameterType="Res_hapDTO">
+		update res_hap
+		set
+		res_acc = #{res_acc}
+		where
+		res_num = #{res_num}
+	</update>
+	
+	<update id="delete_acc" parameterType="Res_hapDTO">
+		update res_hap
+		set
+		res_acc = 'D'
+		where
+		res_num = #{res_num}
+	</update>
+	
 	<select id="list_m" parameterType="String" resultType="Res_hapDTO">
 		select member_grade, member_id, member_name, member_phone, member_email
 		from member_hap
@@ -60,6 +77,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				<when test="col=='res_name'">
 					res_name like '%'||#{word}||'%'
 				</when>
+				<when test="col=='res_acc'">
+					res_acc like '%'||#{word}||'%'
+				</when>
 			</choose>
 		</where>
 	</select>
@@ -75,6 +95,56 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<choose>
 				<when test="col=='res_name'">
 					res_name like '%'||#{word}||'%'
+				</when>
+				<when test="col=='res_acc'">
+					res_acc like '%'||#{word}||'%'
+				</when>
+			</choose>
+		</where>
+		ORDER
+		BY res_num desc
+		)
+		) 
+		 <![CDATA[
+		 where r >= #{sno} and r<= #{eno} 
+		 ]]>
+	</select>
+	
+	<select id="total_acc" resultType="int" parameterType="Map">
+		select
+		count(*) from res_hap
+		<where>
+			<choose>
+				<when test="col=='res_acc'">
+					res_acc like '%'||#{word}||'%'
+				</when>
+				<when test="col=='res_name'">
+					res_name like '%'||#{word}||'%'
+				</when>
+				<when test="col=='res_res1'">
+					res_res1 like '%'||#{word}||'%'
+				</when>
+			</choose>
+		</where>
+	</select>
+
+	<select id="list_acc" parameterType="Map" resultType="Res_hapDTO">
+		SELECT res_num, res_name, res_rannum, res_people, to_char(res_res1,'yyyy-mm-dd') res_res1, to_char(res_res2,'yyyy-mm-dd') res_res2, res_acc, member_id, r 
+		FROM( 
+		    SELECT res_num, res_name, res_rannum, res_people, res_res1, res_res2, res_acc, member_id, rownum r 
+		    FROM ( 
+		        SELECT res_num, res_name, res_rannum, res_people, res_res1, res_res2, res_acc, member_id
+		        FROM res_hap 
+		<where>
+			<choose>
+				<when test="col=='res_acc'">
+					res_acc like '%'||#{word}||'%'
+				</when>
+				<when test="col=='res_name'">
+					res_name like '%'||#{word}||'%'
+				</when>
+				<when test="col=='res_res1'">
+					res_res1 like '%'||#{word}||'%'
 				</when>
 			</choose>
 		</where>
@@ -111,7 +181,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id = "res_find" parameterType="int" resultType="Res_hapDTO">
 	select res_num,
-		res_rannum res_name, res_phone, res_content, res_people, res_acc,
+		res_rannum, res_name, res_phone, res_content, res_people, res_acc,
 		to_char(res_res1,'yyyy-mm-dd')res_res1,
 		to_char(res_res2,'yyyy-mm-dd')res_res2,
 		room_num, board_num, member_id

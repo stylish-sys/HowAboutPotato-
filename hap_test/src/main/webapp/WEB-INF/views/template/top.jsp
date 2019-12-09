@@ -49,14 +49,13 @@
 
 				<c:choose>
 					<c:when test="${empty sessionScope.member_id }">
-						<li><a href="${root}/member_hap/login">Sign-in</a></li>
 						<li><a href="${root}/member_hap/agree">Join</a></li>
+						<li><a href="${root}/member_hap/login">Sign-in</a></li>
 					</c:when>
 					<c:otherwise>
 						<li><a href="${root}/res/list">RESLIST</a></li>
 						<li><a href="${root}/res/create?board_num=1">RESCREATE</a></li>
 						<li><a href="${root}/member_hap/member_read">Profile</a></li>
-						<li><a href="${root}/member_hap/member_update">Update</a></li>
 						<li><a href="${root}/member_hap/logout">Sign-out</a></li>
 					</c:otherwise>
 				</c:choose>
@@ -64,7 +63,7 @@
 				<c:if
 					test="${not empty sessionScope.member_id && sessionScope.member_grade=='H'}">
 					<li><a href="${root}/res/list">RESLIST</a></li>
-					<li><a href="${root}/admin/list">회원 목록</a></li>
+					<li><a href="${root}/res/res_acc">승인 대기</a></li>
 				</c:if>
 			</ul>
 		</nav>

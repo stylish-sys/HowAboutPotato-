@@ -96,9 +96,6 @@
 				<button class="btn"
 					onclick="location.href='${pageContext.request.contextPath}/admin/member_list'">회원목록</button>
 			</c:if>
-
-
-
 			<br>
 			<br>
 			<br>

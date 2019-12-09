@@ -48,6 +48,9 @@
 				<select name="col" class="form-control">
 					<option value="res_name"
 						<c:if test="${col=='res_name'}">selected</c:if>>예약자명</option>
+					<option value="res_acc"
+						<c:if test="${col=='res_acc'}">selected</c:if>>
+						예약 상태</option>
 				</select>
 				<div class="form-group">
 					<input type="text" class="form-control" name="word"
@@ -65,15 +68,15 @@
 			<col width="100px">
 			<tr>
 				<th>예약내역</th>
-				<th>예약상태</th>
-				<th>예약일</th>
+				<th>예약취소</th>
 				<th>예약수정</th>
+				<th>예약상태</th>
 			</tr>
 			<c:choose>
 				<c:when test="${empty list}">
 					<tr>
 						<td colspan="4">등록된 예약이 없습니다. 예약하세요.</td>
-						</tr>
+					</tr>
 				</c:when>
 				<c:when test="${sessionScope.member_grade=='H'}">
 					<c:forEach var="dto" items="${list}">
@@ -88,11 +91,15 @@
 									<a href="javascript:read('${dto.res_num}')">[예약정보 상세보기]</a>
 								</p>
 							</td>
-							<td class="order_state_col"><a
-								href="javascript:deletem('${dto.res_num}')">예약 취소 요청</a></td>
-							<td>${dto.res_res1 }</td>
+							<td><a href="javascript:deletem('${dto.res_num}')">예약 취소
+									요청</a></td>
 							<td><a href="javascript:update('${dto.res_num}')">예약
 									수정하기</a></td>
+							<td><c:if test="${dto.res_acc == 'Y' }">예약 승인	</c:if> <c:if
+										test="${dto.res_acc == 'R' }">예약 요청 중</c:if>
+										<c:if test="${dto.res_acc == 'U' }">수정 요청 중</c:if>
+										<c:if test="${dto.res_acc == 'D' }">취소 요청 중</c:if>
+										<c:if test="${dto.res_acc == 'X' }">거절 처리	</c:if></td>
 						</tr>
 					</c:forEach>
 				</c:when>
@@ -110,11 +117,16 @@
 										<a href="javascript:read('${dto.res_num}')">[예약정보 상세보기]</a>
 									</p>
 								</td>
-								<td class="order_state_col"><a
-									href="javascript:deletem('${dto.res_num}')">예약 취소 요청</a></td>
-								<td>${dto.res_res1 }</td>
+								<td><a href="javascript:deletem('${dto.res_num}')">예약
+										취소 요청</a></td>
 								<td><a href="javascript:update('${dto.res_num}')">예약
 										수정하기</a></td>
+								<td><c:if test="${dto.res_acc == 'Y' }">예약 승인	</c:if> <c:if
+										test="${dto.res_acc == 'R' }">예약 요청 중</c:if>
+										<c:if test="${dto.res_acc == 'U' }">수정 요청 중</c:if>
+										<c:if test="${dto.res_acc == 'D' }">취소 요청 중</c:if>
+										<c:if test="${dto.res_acc == 'X' }">거절 처리	</c:if>
+										</td>
 							</tr>
 						</c:if>
 					</c:forEach>

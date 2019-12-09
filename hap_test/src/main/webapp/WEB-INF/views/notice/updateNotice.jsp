@@ -40,7 +40,8 @@ window.onload=function(){
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="notice_content">내용</label>
 		<div class="col-sm-6">
-			<input type="text" class="form-control" id="notice_content" value="${dto.notice_content}" name="notice_content">
+		<textarea rows="10" cols="10" id="notice_content"
+						name="notice_content" class="form-control" value="${dto.notice_content }">${dto.notice_content }</textarea>
 		</div>	
 	</div>
 	<div class="form-group">

@@ -7,9 +7,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- mapper를 root-context.xml에 지정을 해주면 경로를 바꿔줘야함  -->
 
 	<select id="list" parameterType="Map" resultType="QnaDTO">
-		select qna_num, member_id, qna_title, qna_content, qna_viewcnt, to_char(qna_wdate, 'yyyy-mm-dd'), qna_filename, qna_filesize, qna_ref, qna_ansnum, qna_indent, r from(
-			select qna_num, member_id, qna_title, qna_content, qna_viewcnt, qna_wdate, qna_filename, qna_filesize,  qna_ref, qna_ansnum, qna_indent, rownum r from(
-				select qna_num, member_id, qna_title, qna_content, qna_viewcnt, qna_wdate, qna_filename, qna_filesize, qna_ref, qna_ansnum, qna_indent from qna_hap
+		select qna_num, member_id, qna_title, qna_content, qna_viewcnt, to_char(qna_wdate, 'yyyy-mm-dd'), qna_filename, qna_filesize, qna_ref, qna_ansnum, qna_indent, r
+		from(
+			select qna_num, member_id, qna_title, qna_content, qna_viewcnt, qna_wdate, qna_filename, qna_filesize,  qna_ref, qna_ansnum, qna_indent, rownum r
+			from(
+				select qna_num, member_id, qna_title, qna_content, qna_viewcnt, qna_wdate, qna_filename, qna_filesize, qna_ref, qna_ansnum, qna_indent
+				from qna_hap
 				<where>
 					<choose>
 						<when test="col=='member_id'">member_id like '%'||#{word}||'%'</when>
@@ -18,7 +21,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 						<when test="col=='qna_content'">qna_content like '%'||#{word}||'%'</when>
 					</choose>
 				</where>
-				order by qna_num desc))
+				order by qna_ref desc, qna_num
+				)
+				)
 				
 				<![CDATA[where r>=#{sno} and r<=#{eno}]]> 
 	</select>

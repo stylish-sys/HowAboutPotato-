@@ -119,6 +119,12 @@ FROM member_hap
 WHERE member_id=#{member_id}                                                  
 </select>
 
+<select id="member_pread" parameterType="String" resultType="Member_hapDTO">
+SELECT member_id, member_passwd
+FROM member_hap 
+WHERE member_id=#{member_id}                                                  
+</select>
+
 <!-- 	int delete(String id); -->
 <delete id="member_delete" parameterType="String">
 	delete from member_hap 

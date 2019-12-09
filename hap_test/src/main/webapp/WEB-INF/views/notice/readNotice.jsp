@@ -63,7 +63,6 @@ function deleteNotice(){
 		<button class="btn" onclick="javascript:updateNotice()">수정</button>
 		<button class="btn" onclick="javascript:deleteNotice()">삭제</button>
 	</c:if>
-	<button class="btn" onclick="javascript:listNotice()">목록</button>
 
 	
 </div><!-- container -->

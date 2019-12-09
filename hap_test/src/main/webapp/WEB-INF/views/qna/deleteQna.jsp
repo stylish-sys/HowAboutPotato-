@@ -24,9 +24,10 @@
 						<input type="hidden" name="word" value="${param.word}"> 
 						<input type="hidden" name="nowPage" value="${param.nowPage}"> 
 						<input type="hidden" name="qna_oldfile" value="${param.qna_oldfile}">
+						<input type="hidden" name="member_grade" value="${dto_m.member_grade}">
 
 						<div class="form-group">
-							<label class="control-label col-sm-2" for="qna_passwd">비밀번호 :</label>
+							<label class="control-label col-sm-2" for="qna_passwd">비밀번호</label>
 							<div class="col-sm-6">
 								<input type="password" class="form-control" id="qna_passwd"
 									placeholder="Enter password" name="qna_passwd" required="required">

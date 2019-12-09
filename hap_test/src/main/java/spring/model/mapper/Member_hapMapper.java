@@ -29,6 +29,8 @@ public interface Member_hapMapper {
 	
 	Member_hapDTO member_read(String member_id);
 	
+	Member_hapDTO member_pread(String member_id);
+	
 	int member_delete(String member_id);
 	
 	int member_update(Member_hapDTO dto);

@@ -26,19 +26,19 @@ window.onload=function(){
 	<input type="hidden" name="notice_oldfile" value="${param.notice_oldfile}"> 
 	
 	<div class="form-group">
-		<label class="control-label col-sm-2" for="member_id">작성자 : </label>
+		<label class="control-label col-sm-2" for="member_id">작성자</label>
 		<div class="col-sm-6">
 			<input type="text" class="form-control" value="${dto.member_id}" name="member_id">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-2" for="notice_title">제목 : </label>
+		<label class="control-label col-sm-2" for="notice_title">제목</label>
 		<div class="col-sm-6">
 			<input type="text" class="form-control" id="notice_title" value="${dto.notice_title}" name="notice_title">
 		</div>	
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-2" for="notice_content">내용 : </label>
+		<label class="control-label col-sm-2" for="notice_content">내용</label>
 		<div class="col-sm-6">
 			<input type="text" class="form-control" id="notice_content" value="${dto.notice_content}" name="notice_content">
 		</div>	
@@ -59,7 +59,7 @@ window.onload=function(){
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-8">
 			<button type="submit" class="btn">수정</button>
-			<button type="reset" class="btn" onclick="location.href='./list'">취소</button>
+			<button type="reset" class="btn" onclick="history.back()">취소</button>
 		</div>
 	
 	</div>

@@ -143,14 +143,12 @@ public class QnaController {
 				Utility.deleteFile(basePath, qna_oldfile);
 				dto.setQna_filename(Utility.saveFileSpring(dto.getQna_filenameMF(), basePath));
 			}
-		}
-		int flag = qna_mapper.update(dto);
-		if (flag == 1) {
+			int flag = qna_mapper.update(dto);
 			model.addAttribute("pflag", pflag);
 			model.addAttribute("flag", flag);
 			return "redirect:/qna/listQna";
 		} else {
-			model.addAttribute("str", "error");
+			model.addAttribute("str", "비밀번호 오류 입니다.");
 			return "/qna/preProcQna";
 		}
 	}
@@ -197,7 +195,7 @@ public class QnaController {
 	@GetMapping("/qna/deleteQna")
 	public String delete(int qna_num, Model model) {
 		int flag = qna_mapper.checkRef(qna_num);
-		
+
 		/*
 		 * QnaDTO dto = qna_mapper.read(qna_num);
 		 * 

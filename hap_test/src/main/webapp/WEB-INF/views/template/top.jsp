@@ -46,6 +46,7 @@
 				<li><a href="${root}">Home</a></li>
 				<li><a href="${root}/notice/listNotice">Notice</a></li>
 				<li><a href="${root}/qna/listQna">QnA</a></li>
+				<li><a href="${root}/board_hap/list">방</a></li>
 				<li><a href="${root}/res/res_find">예약 검색</a></li>
 
 				<c:choose>

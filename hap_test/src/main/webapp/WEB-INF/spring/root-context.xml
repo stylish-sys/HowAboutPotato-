@@ -30,6 +30,8 @@
          <list>
             <value>/WEB-INF/spring/member_hap.xml</value>
             <value>/WEB-INF/spring/res_hap.xml</value>
+            <value>/WEB-INF/spring/board_hap.xml</value>
+            <value>/WEB-INF/spring/room_hap.xml</value>
             <value>/WEB-INF/spring/notice.xml</value>
             <value>/WEB-INF/spring/qna.xml</value>
          </list>
@@ -52,8 +54,8 @@
    <bean id="dataSource" destroy-method="close"
       class="org.apache.commons.dbcp.BasicDataSource"
       p:driverClassName="oracle.jdbc.driver.OracleDriver"
-      p:url="jdbc:oracle:thin:@172.16.81.1:1521:XE" p:username="HAP"
-      p:password="1234">
+      p:url="jdbc:oracle:thin:@172.16.81.186:1521:XE" p:username="HALLA"
+      p:password="1253">
    </bean>
 
    <!-- MyBatis SQL 실행 클래스 -->

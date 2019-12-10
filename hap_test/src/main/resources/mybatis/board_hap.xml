@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="spring.model.mapper.Board_hapMapper">
+
+	<update id="upcnt" parameterType="int">
+	
+		update board_hap set board_cnt = board_cnt + 1 where board_num = #{board_num}
+	
+	</update>
+
+	<update id="updateFile" parameterType="Map">
+	
+		update board_hap set board_filename = #{board_filename} where board_num = #{board_num}
+	
+	</update>
+
+	<update id="update" parameterType="Board_hapDTO">
+	
+		update board_hap
+		set 
+		board_name = #{board_name},
+		board_address1 = #{board_address1},
+		board_address2 = #{board_address2},
+		board_account = #{board_account},
+		board_content = #{board_content},
+		board_zipcode = #{board_zipcode}
+		where board_num = #{board_num}
+	
+	</update>
+
+	<delete id="delete" parameterType="int">
+	
+		delete from board_hap
+		where board_num = #{board_num}
+	
+	</delete>
+
+
+	<select id="read" parameterType="int" resultType="Board_hapDTO">
+	
+		select * from board_hap
+		where board_num = #{board_num}
+	
+	
+	</select>
+
+	<select id="list" parameterType="Map" resultType="Board_hapDTO">
+
+SELECT board_num, board_name, board_cnt, board_address1, board_address2, board_map, board_filename, r 
+FROM( 
+    SELECT board_num, board_name, board_cnt, board_address1, board_address2, board_map, board_filename, rownum r 
+    FROM ( 
+        SELECT board_num, board_name, board_cnt, board_address1, board_address2, board_map, board_filename
+        FROM board_hap 
+        
+        <where>
+         <choose>
+            <when test="col=='board_name'">
+               board_name like '%'||#{word}||'%'
+            </when>
+         </choose>
+      </where>
+        ORDER BY board_num DESC  
+    						) 
+						) 
+		
+		<![CDATA[
+					WHERE r >= #{sno} and r <=#{eno}
+		]]>
+	</select>
+
+	<select id="total" parameterType="Map" resultType="int">
+      select count(*) from board_hap
+      <where>
+         <choose>
+            <when test="col=='wname'">
+               wname like '%'||#{word}||'%'
+            </when>
+            <when test="col=='title'">
+               title like '%'||#{word}||'%'
+            </when>
+            <when test="col=='content'">
+               content like '%'||#{word}||'%'
+            </when>
+            <when test="col=='title_content'">
+               title like '%'||#{word}||'%'
+               or
+               content like
+               '%'||#{word}||'%'
+            </when>
+         </choose>
+      </where>
+   </select>
+   
+   <insert id="create" parameterType="Board_hapDTO">
+   	
+   insert into board_hap
+   (board_num,
+   board_name,
+   board_address1,
+   board_address2, board_filename, board_account, board_content,  board_zipcode, board_map)
+	values((SELECT NVL(MAX(board_num), 0) + 1 FROM board_hap), #{board_name}
+	, #{board_address1}, #{board_address2}, #{board_filename}, #{board_account},#{board_content}, #{board_zipcode}, #{board_map})
+   
+   </insert>
+
+	
+
+
+</mapper>

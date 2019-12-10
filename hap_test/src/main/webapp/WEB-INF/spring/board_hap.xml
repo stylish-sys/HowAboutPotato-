@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE  tiles-definitions PUBLIC 
+    "-//Aapche Software Foundation//DTD Tiles Configuration 2.0//EN" 
+    "http://tiles.apache.org/dtds/tiles-config_2_0.dtd"> 
+ 
+<tiles-definitions>
+    <definition name="/board_hap/list" extends="main"> 
+        <put-attribute name="title" value="업소 목록" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/board_hap/list.jsp" /> 
+    </definition>
+    
+    <definition name="/board_hap/create" extends="main"> 
+        <put-attribute name="title" value="업소등록" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/board_hap/createForm.jsp" /> 
+    </definition> 
+    
+    <definition name="/room_hap/create" extends="main"> 
+        <put-attribute name="title" value="업소등록" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/room_hap/createForm.jsp" /> 
+    </definition>
+    
+    <definition name="/board_hap/read" extends="main"> 
+        <put-attribute name="title" value="숙소정보 보기" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/board_hap/read.jsp" /> 
+    </definition>
+    
+    <definition name="/board_hap/delete" extends="main"> 
+        <put-attribute name="title" value="업소 삭제" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/board_hap/deleteForm.jsp" /> 
+    </definition>
+    
+    <definition name="/board_hap/update" extends="main"> 
+        <put-attribute name="title" value="업소 삭제" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/board_hap/updateForm.jsp" /> 
+    </definition>
+    
+    <definition name="/board_hap/updateFile" extends="main"> 
+        <put-attribute name="title" value="업소 삭제" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/board_hap/updateFileForm.jsp" /> 
+    </definition>
+    
+    <definition name="/board_hap/preProc" extends="main"> 
+        <put-attribute name="title" value="아이디 이메일 중복확인" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/board_hap/preProc.jsp" /> 
+    </definition>
+   
+</tiles-definitions>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="spring.model.mapper.Room_hapMapper">
+
+	<update id="updateFile" parameterType="Map">
+		update room_hap set room_filename = #{room_filename} where room_num = #{room_num}
+	</update>
+
+	<update id="update" parameterType="Room_hapDTO">
+	
+	update room_hap
+	set 
+	room_name = #{room_name},
+	room_content = #{room_content},
+	room_price = #{room_price},
+	room_max = #{room_max}
+	where room_num = #{room_num}
+	
+	</update>
+
+	<select id="read" parameterType="int" resultType="Room_hapDTO">
+	
+	select * from room_hap where room_num = #{room_num}
+	
+	
+	</select>
+
+	<insert id="create" parameterType="Room_hapDTO">
+		insert into room_hap(room_num, room_filename, room_price, room_max,
+		room_name, room_content, board_num)
+		values((SELECT NVL(MAX(room_num),
+		0) + 1 FROM room_hap), #{room_filename}, #{room_price}, #{room_max} ,
+		#{room_name}, #{room_content}, #{board_num})
+	</insert>
+
+	<select id="list" parameterType="int" resultType="Room_hapDTO">
+
+		SELECT room_num, room_filename, room_price, room_name, room_content, room_max, r
+		FROM(
+			 SELECT room_num, room_filename, room_price, room_name, room_content, room_max, rownum r
+			 FROM (
+			 	   SELECT room_num, room_filename, room_price, room_name, room_content, room_max
+			  	   FROM room_hap
+			  	   where board_num = #{board_num}
+			  	   ORDER BY room_num
+				  )
+			)
+	</select>
+	
+	<delete id="delete" parameterType="int">
+	
+	delete from room_hap where room_num = #{room_num}
+	
+	</delete>
+
+</mapper>

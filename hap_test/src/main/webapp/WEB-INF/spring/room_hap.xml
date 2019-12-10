@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE  tiles-definitions PUBLIC 
+    "-//Aapche Software Foundation//DTD Tiles Configuration 2.0//EN" 
+    "http://tiles.apache.org/dtds/tiles-config_2_0.dtd"> 
+ 
+<tiles-definitions>
+    <definition name="/room_hap/create" extends="main"> 
+        <put-attribute name="title" value="업소등록" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/room_hap/createForm.jsp" /> 
+    </definition> 
+    
+    <definition name="/room_hap/list" extends="main"> 
+        <put-attribute name="title" value="업소등록" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/board_hap/read.jsp" /> 
+    </definition>
+    
+	<definition name="/room_hap/delete" extends="main"> 
+        <put-attribute name="title" value="업소등록" ></put-attribute> 
+		<put-attribute name="body" value="/WEB-INF/views/room_hap/deleteForm.jsp" /> 
+    </definition>    
+    
+    <definition name="/room_hap/update" extends="main"> 
+        <put-attribute name="title" value="업소등록" ></put-attribute> 
+		<put-attribute name="body" value="/WEB-INF/views/room_hap/updateForm.jsp" /> 
+    </definition>
+    
+    <definition name="/room_hap/updateFile" extends="main"> 
+        <put-attribute name="title" value="업소등록" ></put-attribute> 
+		<put-attribute name="body" value="/WEB-INF/views/room_hap/updateFileForm.jsp" /> 
+    </definition>
+    
+    
+</tiles-definitions>

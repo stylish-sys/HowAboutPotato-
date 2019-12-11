@@ -54,30 +54,15 @@ content {
 				<td colspan="2" style="text-align: center">
 					<div id="myCarousel" class="carousel slide" data-ride="carousel"
 						style="height: 100%; width: 100%;" align="center">
-						<!-- Indicators -->
-						<ol class="carousel-indicators">
-							<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-							<li data-target="#myCarousel" data-slide-to="1"></li>
-							<li data-target="#myCarousel" data-slide-to="2"></li>
-						</ol>
-
 						<!-- Wrapper for slides -->
 
 						<div class="carousel-inner">
-							<div class="item active">
-								<img src="/images/motel1.jpg" alt="motel1" height="100%"
-									width="100%">
+						<c:forEach var="dto" items="${rlist}" varStatus="index">
+							<div class="item <c:if test="${index.first}">active</c:if>">
+								<img src="${pageContext.request.contextPath}/storage/${dto.room_filename}"
+						class="img-rounded " width="800px" height="800px" alt="image${index.count}">
 							</div>
-
-							<div class="item">
-								<img src="/images/motel2.jpg" alt="motel2" height="100%"
-									width="100%">
-							</div>
-
-							<div class="item">
-								<img src="/images/motel3.jpg" alt="motel3" height="100%"
-									width="100%">
-							</div>
+						</c:forEach>
 						</div>
 
 						<!-- Left and right controls -->

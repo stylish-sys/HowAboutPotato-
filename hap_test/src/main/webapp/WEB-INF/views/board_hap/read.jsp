@@ -21,25 +21,30 @@
 
 	}
 </script>
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=dnlcnqixxo"></script>
-<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=dnlcnqixxo&callback=CALLBACK_FUNCTION"></script>
+<link
+	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
+	rel="stylesheet" />
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script
+	src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=dnlcnqixxo"></script>
+<script type="text/javascript"
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=dnlcnqixxo&callback=CALLBACK_FUNCTION"></script>
 
 <style>
 star {
-  color: #FF0000;;
-} 
-nickname{
-	color : #0000FF;
-}
-content{
-	colot : #6E6E6E;
+	color: #FF0000;;
 }
 
+nickname {
+	color: #0000FF;
+}
 
-
+content {
+	colot: #6E6E6E;
+}
 </style>
 
 </head>
@@ -65,7 +70,7 @@ content{
 
 						<div class="carousel-inner">
 							<div class="item active">
-								<img src="/hap/images/motel1.jpg" alt="motel1" height="100%"
+								< <img src="/hap/images/motel1.jpg" alt="motel1" height="100%"
 									width="100%">
 							</div>
 
@@ -104,17 +109,17 @@ content{
 			등록</button>
 		<table class="table table-bordered">
 			<c:forEach var="dto" items="${rlist }">
-					<th>방 사진</th>
-					<th>방 이름</th>
-					<th>방 가격</th>
-					<th>최대 숙박인원</th>
-					<th>방 정보</th>
-					<!-- admin만 -->
-					<th>수정/삭제</th>
-					<!-- admin만 -->
+				<th>방 사진</th>
+				<th>방 이름</th>
+				<th>방 가격</th>
+				<th>최대 숙박인원</th>
+				<th>방 정보</th>
+				<!-- admin만 -->
+				<th>수정/삭제</th>
+				<!-- admin만 -->
 				<tr>
-					<td>
-					<img src="${pageContext.request.contextPath}/storage/${dto.room_filename}"
+					<td><img
+						src="${pageContext.request.contextPath}/storage/${dto.room_filename}"
 						class="img-rounded " width="200px" height="200px"></td>
 					<td>${dto.room_name }</td>
 					<td>${dto.room_price }원</td>
@@ -122,10 +127,13 @@ content{
 					<td>${dto.room_content }</td>
 					<td>
 						<!-- admin만 -->
-						<button class="btn" onclick="location.href='../room_hap/update?room_num=${dto.room_num}&board_num=${param.board_num }'">방정보수정</button>
-						<button class="btn"	onclick="location.href='../room_hap/updateFile?room_num=${dto.room_num}&board_num=${param.board_num }&oldfile=${dto.room_filename }'">방사진수정</button>
-						<button class="btn"	onclick="location.href='../room_hap/delete?room_num=${dto.room_num}&board_num=${param.board_num }'">방삭제</button>
-						 <!-- admin만 -->
+						<button class="btn"
+							onclick="location.href='../room_hap/update?room_num=${dto.room_num}&board_num=${param.board_num }'">방정보수정</button>
+						<button class="btn"
+							onclick="location.href='../room_hap/updateFile?room_num=${dto.room_num}&board_num=${param.board_num }&oldfile=${dto.room_filename }'">방사진수정</button>
+						<button class="btn"
+							onclick="location.href='../room_hap/delete?room_num=${dto.room_num}&board_num=${param.board_num }'">방삭제</button>
+						<!-- admin만 -->
 					</td>
 				</tr>
 
@@ -135,58 +143,93 @@ content{
 		<hr>
 
 
-			<div class="container">
+		<div class="container">
 			<table cellpadding="0" cellspacing="0" width="462">
-			  <tr>
-			  지도
-			    <td style="border:1px solid #cecece;">
-			    <a href="https://v4.map.naver.com/?searchCoord=0ab48c7e75af1855e33dd58e25a2303becc4d514bb23086638e4585ac93dc6e4&query=7IaU642w7Iqk7YGs&menu=location&tab=1&lng=4d3fff340ef578cacbc29f5d6390f980&__fromRestorer=true&mapMode=0&mpx=f440d166ab8fccf209a536f4e12561bb1e9e16be5c4c6d5dd75731d3a375716263bbce83afc37eae9852cae5f58a418b&lat=9fb7bb36e64d3551cc3d1e2b44cce92a&dlevel=12&enc=b64" target="_blank"><img src="http://prt.map.naver.com/mashupmap/print?key=p1574646517458_-69050510" width="460" height="340" alt="지도 크게 보기" title="지도 크게 보기" border="0" style="vertical-align:top;"/></a></td> </tr> <tr> <td> <table cellpadding="0" cellspacing="0" width="100%"> <tr> <td height="30" bgcolor="#f9f9f9" align="left" style="padding-left:9px; border-left:1px solid #cecece; border-bottom:1px solid #cecece;"> <span style="font-family: tahoma; font-size: 11px; color:#666;">2019.11.25</span>&nbsp;<span style="font-size: 11px; color:#e5e5e5;">|</span>&nbsp;<a style="font-family: dotum,sans-serif; font-size: 11px; color:#666; text-decoration: none; letter-spacing: -1px;" href="https://v4.map.naver.com/?searchCoord=0ab48c7e75af1855e33dd58e25a2303becc4d514bb23086638e4585ac93dc6e4&query=7IaU642w7Iqk7YGs&menu=location&tab=1&lng=4d3fff340ef578cacbc29f5d6390f980&__fromRestorer=true&mapMode=0&mpx=f440d166ab8fccf209a536f4e12561bb1e9e16be5c4c6d5dd75731d3a375716263bbce83afc37eae9852cae5f58a418b&lat=9fb7bb36e64d3551cc3d1e2b44cce92a&dlevel=12&enc=b64" target="_blank">지도 크게 보기</a> </td> <td width="98" bgcolor="#f9f9f9" align="right" style="text-align:right; padding-right:9px; border-right:1px solid #cecece; border-bottom:1px solid #cecece;"> <span style="float:right;"><span style="font-size:9px; font-family:Verdana, sans-serif; color:#444;">&copy;&nbsp;</span>&nbsp;<a style="font-family:tahoma; font-size:9px; font-weight:bold; color:#2db400; text-decoration:none;" href="https://www.navercorp.com" target="_blank">NAVER Corp.</a></span> </td> </tr> </table> </td> </tr> </table>
+				<tr>
+					지도
+					<td style="border: 1px solid #cecece;"><a
+						href="https://v4.map.naver.com/?searchCoord=0ab48c7e75af1855e33dd58e25a2303becc4d514bb23086638e4585ac93dc6e4&query=7IaU642w7Iqk7YGs&menu=location&tab=1&lng=4d3fff340ef578cacbc29f5d6390f980&__fromRestorer=true&mapMode=0&mpx=f440d166ab8fccf209a536f4e12561bb1e9e16be5c4c6d5dd75731d3a375716263bbce83afc37eae9852cae5f58a418b&lat=9fb7bb36e64d3551cc3d1e2b44cce92a&dlevel=12&enc=b64"
+						target="_blank"><img
+							src="http://prt.map.naver.com/mashupmap/print?key=p1574646517458_-69050510"
+							width="460" height="340" alt="지도 크게 보기" title="지도 크게 보기"
+							border="0" style="vertical-align: top;" /></a></td>
+				</tr>
+				<tr>
+					<td>
+						<table cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td height="30" bgcolor="#f9f9f9" align="left"
+									style="padding-left: 9px; border-left: 1px solid #cecece; border-bottom: 1px solid #cecece;">
+									<span
+									style="font-family: tahoma; font-size: 11px; color: #666;">2019.11.25</span>&nbsp;<span
+									style="font-size: 11px; color: #e5e5e5;">|</span>&nbsp;<a
+									style="font-family: dotum, sans-serif; font-size: 11px; color: #666; text-decoration: none; letter-spacing: -1px;"
+									href="https://v4.map.naver.com/?searchCoord=0ab48c7e75af1855e33dd58e25a2303becc4d514bb23086638e4585ac93dc6e4&query=7IaU642w7Iqk7YGs&menu=location&tab=1&lng=4d3fff340ef578cacbc29f5d6390f980&__fromRestorer=true&mapMode=0&mpx=f440d166ab8fccf209a536f4e12561bb1e9e16be5c4c6d5dd75731d3a375716263bbce83afc37eae9852cae5f58a418b&lat=9fb7bb36e64d3551cc3d1e2b44cce92a&dlevel=12&enc=b64"
+									target="_blank">지도 크게 보기</a>
+								</td>
+								<td width="98" bgcolor="#f9f9f9" align="right"
+									style="text-align: right; padding-right: 9px; border-right: 1px solid #cecece; border-bottom: 1px solid #cecece;">
+									<span style="float: right;"><span
+										style="font-size: 9px; font-family: Verdana, sans-serif; color: #444;">&copy;&nbsp;</span>&nbsp;<a
+										style="font-family: tahoma; font-size: 9px; font-weight: bold; color: #2db400; text-decoration: none;"
+										href="https://www.navercorp.com" target="_blank">NAVER
+											Corp.</a></span>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
 
 			<div class='row'>
-			<div class="col-lg-12">
-				<div class="panel panel-default">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
 
 
-					<div class="panel-heading">
-						<i class="fa fa-comments fa-fw" ></i>리뷰<button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>New Reply</button>
-					
-					<br><br>
-					</div>
+						<div class="panel-heading">
+							<i class="fa fa-comments fa-fw"></i>리뷰
+							<button id='addReplyBtn'
+								class='btn btn-primary btn-xs pull-right'>New Reply</button>
+
+							<br>
+							<br>
+						</div>
 
 
-					<!-- panel-heading -->
-					<div class="panel-body">
-						<ul class="chat list-group">
-							<li class="left clearfix" data-rno="12">
-								<div>
-									<div class="header">
-										<div>
-										<img src="${root }/images/pic04.jpg" alt="이미지의 묘사 내용" height="100px" width="100px"/>
-										</div>	
-										<strong class="primary-font">무플 방지 위원회</strong> <small
-											class="pull-right text-muted">20XX-XX-XX</small>
+						<!-- panel-heading -->
+						<div class="panel-body">
+							<ul class="chat list-group">
+								<li class="left clearfix" data-rno="12">
+									<div>
+										<div class="header">
+											<div>
+												<img src="${root }/images/pic04.jpg" alt="이미지의 묘사 내용"
+													height="100px" width="100px" />
+											</div>
+											<strong class="primary-font">무플 방지 위원회</strong> <small
+												class="pull-right text-muted">20XX-XX-XX</small>
+										</div>
+										<p>ㅎㅇ</p>
 									</div>
-									<p>ㅎㅇ</p>
-								</div>
-							</li>
-						</ul>
-						<!-- ./ end ul -->
+								</li>
+							</ul>
+							<!-- ./ end ul -->
+						</div>
+
+
+						<div class="panel-footer"></div>
 					</div>
-
-
-					<div class="panel-footer"></div>
+					<!-- /.panel -->
 				</div>
-				<!-- /.panel -->
+				<!-- col-lg-12 end -->
 			</div>
-			<!-- col-lg-12 end -->
+			<!-- row end -->
+
 		</div>
-		<!-- row end -->
+		<!-- container div-->
+
 
 	</div>
-	<!-- container div-->
-
-
-</div>
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
@@ -200,21 +243,22 @@ content{
 				<div class="modal-body">
 					<div class="form-group">
 						<label><strong>내용</strong></label>
-						<textarea cols="10" rows="3" class="form-control" name='rw_content'>reply !</textarea>
+						<textarea cols="10" rows="3" class="form-control"
+							name='rw_content'>reply !</textarea>
 					</div>
 					<div class="form-group">
-					<label><strong>별점</strong> ( 아래 를 클릭 해주세요 !! )</label>
-					<select id="StarSelect" name="StarSelect"  class="form-control">
-						<option value="star1">★ ☆ ☆ ☆ ☆</option>
-						<option value="star2">★ ★ ☆ ☆ ☆</option>
-						<option value="star3" selected>★ ★ ★ ☆ ☆  </option>
-						<option value="star4">★ ★ ★ ★ ☆  </option>
-						<option value="star5">★ ★ ★ ★ ★ </option>
-					</select>
-					
+						<label><strong>별점</strong> ( 아래 를 클릭 해주세요 !! )</label> <select
+							id="StarSelect" name="StarSelect" class="form-control">
+							<option value="star1">★ ☆ ☆ ☆ ☆</option>
+							<option value="star2">★ ★ ☆ ☆ ☆</option>
+							<option value="star3" selected>★ ★ ★ ☆ ☆</option>
+							<option value="star4">★ ★ ★ ★ ☆</option>
+							<option value="star5">★ ★ ★ ★ ★</option>
+						</select>
+
 					</div>
 				</div>
-					
+
 				<div class="modal-footer">
 					<button id='modalModBtn' type="button" class="btn btn-warning">수정</button>
 					<button id='modalRemoveBtn' type="button" class="btn btn-danger">삭제</button>
@@ -227,12 +271,13 @@ content{
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- /.modal -->
-	<script type="text/javascript" src="${root}/js/breply.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/js/breply.js"></script>
 	<script>
 	$(document).ready(function(){
-			var board_num = "${board_num}";
-			var sno = "${sno}";
-			var eno = "${eno}";
+			var board_num = "${param.board_num}";
+			var sno = "${param.sno}";
+			var eno = "${param.eno}";
 			var replyUL = $(".chat");
 			
 			showList();
@@ -264,10 +309,10 @@ content{
 			}
 			// 2019-10-30 수요일
 
-			var nPage = '<c:out value="${nPage}"/>';
-			var nowPage = '<c:out value="${nowPage}"/>';
-			var colx = '<c:out value="${col}"/>';
-			var wordx = '<c:out value="${word}"/>';
+			var nPage = '<c:out value="${param.nPage}"/>';
+			var nowPage = '<c:out value="${param.nowPage}"/>';
+			var colx = '<c:out value="${param.col}"/>';
+			var wordx = '<c:out value="${param.word}"/>';
 			var replyPageFooter = $(".panel-footer");
 			var param = "nPage=" + nPage;
 
@@ -312,8 +357,9 @@ content{
 										location.href = url;
 									}
 								} else {
-					alert(board_num);
-					alert(member_id);
+					${param.eno}
+					${param.sno}
+					
 					modalInputContent.val("");
 					modal.find("button[id !='modalCloseBtn']").hide();
 					modalRegisterBtn.show();
@@ -331,11 +377,10 @@ content{
 				var reply = {
 					rw_content : modalInputContent.val(),
 					member_id : '<c:out value="${sessionScope.member_id}"/>',
-					board_num : '<c:out value="${board_num}"/>',
+					board_num : '<c:out value="${param.board_num}"/>',
 					rw_star : $("#StarSelect option:selected").text()
 				};
 				console.log(reply);
-				//alert(reply.content);
 				replyService.add(reply, function(result) {
 
 					alert(result);
@@ -401,67 +446,66 @@ content{
 		}); //end $(document).ready
 	</script>
 
-		<div class="container">
-			<section>
-				<h2>편의 시설</h2>
-				<img src="/hap/images/motel4.png">
-				<ul type="disc">
-					<li>1일 생수 2병, 웰컴 드링크2병(웰치스,립튼) 무료제공, 투숙객 무료주차, 객실 내 무선인터넷 가능</li>
-					<li>Guest Lounge, 카페테리아, 비지니스센터, 레스토랑(2F), 고객주차장</li>
-					<li>개인PC, 무료 와이파이, 커피포트</li>
-				</ul>
-			</section>
-			<hr>
-			
-<%-- 			<div>${dto.board_content }</div> --%>
+	<div class="container">
+		<section>
+			<h2>편의 시설</h2>
+			<img src="/hap/images/motel4.png">
+			<ul type="disc">
+				<li>1일 생수 2병, 웰컴 드링크2병(웰치스,립튼) 무료제공, 투숙객 무료주차, 객실 내 무선인터넷 가능</li>
+				<li>Guest Lounge, 카페테리아, 비지니스센터, 레스토랑(2F), 고객주차장</li>
+				<li>개인PC, 무료 와이파이, 커피포트</li>
+			</ul>
+		</section>
+		<hr>
+
+		<%-- 			<div>${dto.board_content }</div> --%>
 
 
 
-			<section>
-				<h2>이용 안내</h2>
-				<img src="/hap/images/motel4.png">
-				<ul type="disc">
-					<h1>공지사항</h1>
-					<li>리치웰 호텔 파티룸 오픈파티 가능한 객실을 준비해 두었습니다</li>
-					<li>객실당 차량 1대 가능</li>
-				</ul>
+		<section>
+			<h2>이용 안내</h2>
+			<img src="/hap/images/motel4.png">
+			<ul type="disc">
+				<h1>공지사항</h1>
+				<li>리치웰 호텔 파티룸 오픈파티 가능한 객실을 준비해 두었습니다</li>
+				<li>객실당 차량 1대 가능</li>
+			</ul>
 
-				<ul type="disc">
-					<h1>기본규정</h1>
-					<li>객실은 부티크 호텔 특성상 이미지와 다른 객실이 배정될 수 있습니다</li>
-					<li>객실 지정은 불가 합니다(체크인시 랜덤 배정)</li>
-					<li>전 객실 2인기준 (인원추가 1인당 2만원)</li>
-					<li>연박 불가(연박시 추가요금 발생)</li>
-					<li>자세한 문의는 프런트 부탁드리겠습니다</li>
-					<li>회원혜택은 제휴점 내규에 따라 적용됩니다</li>
-				</ul>
-			</section>
+			<ul type="disc">
+				<h1>기본규정</h1>
+				<li>객실은 부티크 호텔 특성상 이미지와 다른 객실이 배정될 수 있습니다</li>
+				<li>객실 지정은 불가 합니다(체크인시 랜덤 배정)</li>
+				<li>전 객실 2인기준 (인원추가 1인당 2만원)</li>
+				<li>연박 불가(연박시 추가요금 발생)</li>
+				<li>자세한 문의는 프런트 부탁드리겠습니다</li>
+				<li>회원혜택은 제휴점 내규에 따라 적용됩니다</li>
+			</ul>
+		</section>
 
-			<hr>
-			<section>
-				<h2>찾아 오시는 길</h2>
+		<hr>
+		<section>
+			<h2>찾아 오시는 길</h2>
 
-				<div id="map" style="width: 959px; height: 400px;"></div>
+			<div id="map" style="width: 959px; height: 400px;"></div>
 
-			</section>
+		</section>
 
-<!-- 	<div id="map" style="width:100%;height:400px;"></div> -->
+		<!-- 	<div id="map" style="width:100%;height:400px;"></div> -->
 
-<!-- 	<script> -->
-<!-- // 		var mapOptions = { -->
-<!-- // 	    center: new naver.maps.LatLng(37.3595704, 127.105399), -->
-<!-- // 	    zoom: 10 -->
-<!-- // 					}; -->
+		<!-- 	<script> -->
+		<!-- // 		var mapOptions = { -->
+		<!-- // 	    center: new naver.maps.LatLng(37.3595704, 127.105399), -->
+		<!-- // 	    zoom: 10 -->
+		<!-- // 					}; -->
 
-<!-- // 		var map = new naver.maps.Map('map', mapOptions); -->
-<!-- 	</script> -->
-
+		<!-- // 		var map = new naver.maps.Map('map', mapOptions); -->
+		<!-- 	</script> -->
 
 			<div style="text-align: center">
-				<button class="btn" onclick="">결제하기</button>
+				<button type="submit" class="btn"
+					onclick="location.href='../res/create?board_num=${dto.board_num}'">결제하기</button>
 			</div>
 
-
-		</div>
+	</div>
 </body>
 </html>

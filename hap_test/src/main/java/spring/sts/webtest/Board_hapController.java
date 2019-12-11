@@ -53,7 +53,7 @@ public class Board_hapController {
 	    List<Room_hapDTO> rlist = rmapper.list(board_num);
 		
 		request.setAttribute("rlist", rlist);
-		/* 댓글 관련 시작 */
+		/* 댓글 관련 시작  << 리뷰 >> */
 		int nPage = 1; // 시작 페이지 번호는 1부터
 
 		if (request.getParameter("nPage") != null) {

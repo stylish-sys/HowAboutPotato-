@@ -142,94 +142,58 @@ content {
 		</table>
 		<hr>
 
-
-		<div class="container">
+<div class="container">
 			<table cellpadding="0" cellspacing="0" width="462">
-				<tr>
-					지도
-					<td style="border: 1px solid #cecece;"><a
-						href="https://v4.map.naver.com/?searchCoord=0ab48c7e75af1855e33dd58e25a2303becc4d514bb23086638e4585ac93dc6e4&query=7IaU642w7Iqk7YGs&menu=location&tab=1&lng=4d3fff340ef578cacbc29f5d6390f980&__fromRestorer=true&mapMode=0&mpx=f440d166ab8fccf209a536f4e12561bb1e9e16be5c4c6d5dd75731d3a375716263bbce83afc37eae9852cae5f58a418b&lat=9fb7bb36e64d3551cc3d1e2b44cce92a&dlevel=12&enc=b64"
-						target="_blank"><img
-							src="http://prt.map.naver.com/mashupmap/print?key=p1574646517458_-69050510"
-							width="460" height="340" alt="지도 크게 보기" title="지도 크게 보기"
-							border="0" style="vertical-align: top;" /></a></td>
-				</tr>
-				<tr>
-					<td>
-						<table cellpadding="0" cellspacing="0" width="100%">
-							<tr>
-								<td height="30" bgcolor="#f9f9f9" align="left"
-									style="padding-left: 9px; border-left: 1px solid #cecece; border-bottom: 1px solid #cecece;">
-									<span
-									style="font-family: tahoma; font-size: 11px; color: #666;">2019.11.25</span>&nbsp;<span
-									style="font-size: 11px; color: #e5e5e5;">|</span>&nbsp;<a
-									style="font-family: dotum, sans-serif; font-size: 11px; color: #666; text-decoration: none; letter-spacing: -1px;"
-									href="https://v4.map.naver.com/?searchCoord=0ab48c7e75af1855e33dd58e25a2303becc4d514bb23086638e4585ac93dc6e4&query=7IaU642w7Iqk7YGs&menu=location&tab=1&lng=4d3fff340ef578cacbc29f5d6390f980&__fromRestorer=true&mapMode=0&mpx=f440d166ab8fccf209a536f4e12561bb1e9e16be5c4c6d5dd75731d3a375716263bbce83afc37eae9852cae5f58a418b&lat=9fb7bb36e64d3551cc3d1e2b44cce92a&dlevel=12&enc=b64"
-									target="_blank">지도 크게 보기</a>
-								</td>
-								<td width="98" bgcolor="#f9f9f9" align="right"
-									style="text-align: right; padding-right: 9px; border-right: 1px solid #cecece; border-bottom: 1px solid #cecece;">
-									<span style="float: right;"><span
-										style="font-size: 9px; font-family: Verdana, sans-serif; color: #444;">&copy;&nbsp;</span>&nbsp;<a
-										style="font-family: tahoma; font-size: 9px; font-weight: bold; color: #2db400; text-decoration: none;"
-										href="https://www.navercorp.com" target="_blank">NAVER
-											Corp.</a></span>
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</table>
+			  <tr>
+			  지도
+			    <td style="border:1px solid #cecece;">
+			    <a href="https://v4.map.naver.com/?searchCoord=0ab48c7e75af1855e33dd58e25a2303becc4d514bb23086638e4585ac93dc6e4&query=7IaU642w7Iqk7YGs&menu=location&tab=1&lng=4d3fff340ef578cacbc29f5d6390f980&__fromRestorer=true&mapMode=0&mpx=f440d166ab8fccf209a536f4e12561bb1e9e16be5c4c6d5dd75731d3a375716263bbce83afc37eae9852cae5f58a418b&lat=9fb7bb36e64d3551cc3d1e2b44cce92a&dlevel=12&enc=b64" target="_blank"><img src="http://prt.map.naver.com/mashupmap/print?key=p1574646517458_-69050510" width="460" height="340" alt="지도 크게 보기" title="지도 크게 보기" border="0" style="vertical-align:top;"/></a></td> </tr> <tr> <td> <table cellpadding="0" cellspacing="0" width="100%"> <tr> <td height="30" bgcolor="#f9f9f9" align="left" style="padding-left:9px; border-left:1px solid #cecece; border-bottom:1px solid #cecece;"> <span style="font-family: tahoma; font-size: 11px; color:#666;">2019.11.25</span>&nbsp;<span style="font-size: 11px; color:#e5e5e5;">|</span>&nbsp;<a style="font-family: dotum,sans-serif; font-size: 11px; color:#666; text-decoration: none; letter-spacing: -1px;" href="https://v4.map.naver.com/?searchCoord=0ab48c7e75af1855e33dd58e25a2303becc4d514bb23086638e4585ac93dc6e4&query=7IaU642w7Iqk7YGs&menu=location&tab=1&lng=4d3fff340ef578cacbc29f5d6390f980&__fromRestorer=true&mapMode=0&mpx=f440d166ab8fccf209a536f4e12561bb1e9e16be5c4c6d5dd75731d3a375716263bbce83afc37eae9852cae5f58a418b&lat=9fb7bb36e64d3551cc3d1e2b44cce92a&dlevel=12&enc=b64" target="_blank">지도 크게 보기</a> </td> <td width="98" bgcolor="#f9f9f9" align="right" style="text-align:right; padding-right:9px; border-right:1px solid #cecece; border-bottom:1px solid #cecece;"> <span style="float:right;"><span style="font-size:9px; font-family:Verdana, sans-serif; color:#444;">&copy;&nbsp;</span>&nbsp;<a style="font-family:tahoma; font-size:9px; font-weight:bold; color:#2db400; text-decoration:none;" href="https://www.navercorp.com" target="_blank">NAVER Corp.</a></span> </td> </tr> </table> </td> </tr> </table>
 
 			<div class='row'>
-				<div class="col-lg-12">
-					<div class="panel panel-default">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
 
 
-						<div class="panel-heading">
-							<i class="fa fa-comments fa-fw"></i>리뷰
-							<button id='addReplyBtn'
-								class='btn btn-primary btn-xs pull-right'>New Reply</button>
-
-							<br>
-							<br>
-						</div>
-
-
-						<!-- panel-heading -->
-						<div class="panel-body">
-							<ul class="chat list-group">
-								<li class="left clearfix" data-rno="12">
-									<div>
-										<div class="header">
-											<div>
-												<img src="${root }/images/pic04.jpg" alt="이미지의 묘사 내용"
-													height="100px" width="100px" />
-											</div>
-											<strong class="primary-font">무플 방지 위원회</strong> <small
-												class="pull-right text-muted">20XX-XX-XX</small>
-										</div>
-										<p>ㅎㅇ</p>
-									</div>
-								</li>
-							</ul>
-							<!-- ./ end ul -->
-						</div>
-
-
-						<div class="panel-footer"></div>
+					<div class="panel-heading">
+						<i class="fa fa-comments fa-fw" ></i>리뷰<button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>New Reply</button>
+					
+					<br><br>
 					</div>
-					<!-- /.panel -->
+
+
+					<!-- panel-heading -->
+					<div class="panel-body">
+						<ul class="chat list-group">
+							<li class="left clearfix" data-rno="12">
+								<div>
+									<div class="header">
+										<div>
+										<img src="${root }/images/pic04.jpg" alt="이미지의 묘사 내용" height="100px" width="100px"/>
+										</div>	
+										<strong class="primary-font">무플 방지 위원회</strong> <small
+											class="pull-right text-muted">20XX-XX-XX</small>
+									</div>
+									<p>ㅎㅇ</p>
+								</div>
+							</li>
+						</ul>
+						<!-- ./ end ul -->
+					</div>
+
+
+					<div class="panel-footer"></div>
 				</div>
-				<!-- col-lg-12 end -->
+				<!-- /.panel -->
 			</div>
-			<!-- row end -->
-
+			<!-- col-lg-12 end -->
 		</div>
-		<!-- container div-->
-
+		<!-- row end -->
 
 	</div>
+	<!-- container div-->
+
+
+</div>
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
@@ -243,22 +207,21 @@ content {
 				<div class="modal-body">
 					<div class="form-group">
 						<label><strong>내용</strong></label>
-						<textarea cols="10" rows="3" class="form-control"
-							name='rw_content'>reply !</textarea>
+						<textarea cols="10" rows="3" class="form-control" name='rw_content'>reply !</textarea>
 					</div>
 					<div class="form-group">
-						<label><strong>별점</strong> ( 아래 를 클릭 해주세요 !! )</label> <select
-							id="StarSelect" name="StarSelect" class="form-control">
-							<option value="star1">★ ☆ ☆ ☆ ☆</option>
-							<option value="star2">★ ★ ☆ ☆ ☆</option>
-							<option value="star3" selected>★ ★ ★ ☆ ☆</option>
-							<option value="star4">★ ★ ★ ★ ☆</option>
-							<option value="star5">★ ★ ★ ★ ★</option>
-						</select>
-
+					<label><strong>별점</strong> ( 아래 를 클릭 해주세요 !! )</label>
+					<select id="StarSelect" name="StarSelect"  class="form-control">
+						<option value="star1">★ ☆ ☆ ☆ ☆</option>
+						<option value="star2">★ ★ ☆ ☆ ☆</option>
+						<option value="star3" selected>★ ★ ★ ☆ ☆  </option>
+						<option value="star4">★ ★ ★ ★ ☆  </option>
+						<option value="star5">★ ★ ★ ★ ★ </option>
+					</select>
+					
 					</div>
 				</div>
-
+					
 				<div class="modal-footer">
 					<button id='modalModBtn' type="button" class="btn btn-warning">수정</button>
 					<button id='modalRemoveBtn' type="button" class="btn btn-danger">삭제</button>
@@ -271,13 +234,13 @@ content {
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- /.modal -->
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/js/breply.js"></script>
+</div>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/breply.js"></script>
 	<script>
 	$(document).ready(function(){
-			var board_num = "${param.board_num}";
-			var sno = "${param.sno}";
-			var eno = "${param.eno}";
+			var board_num = "${board_num}";
+			var sno = "${sno}";
+			var eno = "${eno}";
 			var replyUL = $(".chat");
 			
 			showList();
@@ -309,10 +272,10 @@ content {
 			}
 			// 2019-10-30 수요일
 
-			var nPage = '<c:out value="${param.nPage}"/>';
-			var nowPage = '<c:out value="${param.nowPage}"/>';
-			var colx = '<c:out value="${param.col}"/>';
-			var wordx = '<c:out value="${param.word}"/>';
+			var nPage = '<c:out value="${nPage}"/>';
+			var nowPage = '<c:out value="${nowPage}"/>';
+			var colx = '<c:out value="${col}"/>';
+			var wordx = '<c:out value="${word}"/>';
 			var replyPageFooter = $(".panel-footer");
 			var param = "nPage=" + nPage;
 
@@ -350,16 +313,14 @@ content {
 					.on(
 							"click",
 							function(e) {
-									
+
 								if ('${sessionScope.member_id}' == '') {
 									if (confirm("로그인을 해야 리뷰를 쓸수 있습니다.")) {
 										var url = "../member_hap/login";
 										location.href = url;
 									}
 								} else {
-					${param.eno}
-					${param.sno}
-					
+
 					modalInputContent.val("");
 					modal.find("button[id !='modalCloseBtn']").hide();
 					modalRegisterBtn.show();
@@ -377,10 +338,11 @@ content {
 				var reply = {
 					rw_content : modalInputContent.val(),
 					member_id : '<c:out value="${sessionScope.member_id}"/>',
-					board_num : '<c:out value="${param.board_num}"/>',
+					board_num : '<c:out value="${board_num}"/>',
 					rw_star : $("#StarSelect option:selected").text()
 				};
 				console.log(reply);
+				//alert(reply.content);
 				replyService.add(reply, function(result) {
 
 					alert(result);

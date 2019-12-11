@@ -183,7 +183,7 @@ public class Utility {
 				str.append("<li class='active'><a href=#>" + i + "</a></li>");
 			} else {
 				str.append("<li><a href='" + url + "?col=" + col + "&word=" + word + "&nowPage=" + nowPage + "&board_num="
-						+ board_num  + "&nPage=" + i + "'>" + i + "</A></li>");
+						+ board_num + "&nPage=" + i + "'>" + i + "</A></li>");
 			}
 		}
 

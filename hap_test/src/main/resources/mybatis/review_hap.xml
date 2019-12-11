@@ -34,10 +34,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<insert id="create" parameterType="review_hapDTO">
-		insert into review_hap(rw_num,
-		rw_content, rw_date, member_id, board_num,rw_star)
-		values((select nvl(max(rw_num),0)+1 from
-		review_hap), #{rw_content}, sysdate, #{member_id}, #{board_num},#{rw_star})
+		insert into review_hap
+			(rw_num, rw_content, rw_date, member_id, board_num, rw_star)
+				values((select nvl(max(rw_num),0)+1 from review_hap),
+				#{rw_content}, sysdate, #{member_id}, #{board_num},#{rw_star})
 	</insert>
 
 	<select id="total" parameterType="int" resultType="int">
@@ -48,20 +48,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="list" parameterType="Map" resultType="review_hapDTO">
-		select rw_num, rw_content, rw_date, board_num, member_id,rw_star, member_fname, r
+		select rw_num, rw_content, rw_date, board_num, member_id, rw_star, member_fname, r
 		from(
-		select rw_num, rw_content, rw_date, board_num, member_id,rw_star,
-		member_fname, rownum r
-		from(
-		select rw_num, rw_content, rw_date, board_num, b.member_id, rw_star, member_fname
-		from review_hap a, member_hap b
-		where board_num=#{board_num} and a.member_id = b.member_id
-		order by
-		rw_num desc
-		)
-	<![CDATA[
-	 )where r >= #{sno} and r <= #{eno} 
-	 ]]>
+			select rw_num, rw_content, rw_date, board_num, member_id, rw_star, member_fname, rownum r
+			from(
+				select rw_num, rw_content, rw_date, board_num, b.member_id, rw_star, member_fname
+				from review_hap a, member_hap b
+				where board_num=#{board_num} and a.member_id = b.member_id
+				order by
+				rw_num desc
+				)
+	 		)
+	<!-- <![CDATA[
+	 where r >= #{sno} and r <= #{eno} 
+	 ]]> -->
 	</select>
 
 

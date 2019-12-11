@@ -4,11 +4,11 @@ var replyService = (function() {
 
 	function getList(param, callback, error) {
 		// json
-		var bbsno = param.bbsno;
+		var board_num = param.board_num;
 		var sno = param.sno;
 		var eno = param.eno;
-		// alert(param.bbsno);
-		$.getJSON("./reply/list/" + bbsno + "/" + sno + "/" + eno + ".json",
+		// alert(param.board_num);
+		$.getJSON("./reply/list/" + board_num+ "/" + sno + "/" + eno + ".json",
 				function(data) {
 					// alert(data);
 					if (callback) { // callback이 있다면

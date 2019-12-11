@@ -56,7 +56,6 @@
 					</c:when>
 					<c:otherwise>
 						<li><a href="${root}/res/list">RESLIST</a></li>
-						<li><a href="${root}/res/create?board_num=1">RESCREATE</a></li>
 						<li><a href="${root}/member_hap/member_read">Profile</a></li>
 						<li><a href="${root}/member_hap/logout">Sign-out</a></li>
 					</c:otherwise>

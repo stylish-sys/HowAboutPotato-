@@ -25,49 +25,45 @@ import spring.utility.webtest.Utility;
 @RestController
 public class ReplyController {
 	private static final Logger log = LoggerFactory.getLogger(ReplyController.class);
-	
+
 	@Autowired
 	private ReplyMapper mapper;
 
 	@PutMapping("/board_hap/reply/{rw_num}")
 	public ResponseEntity<String> modify(
-	@RequestBody review_hapDTO dto, 
-	@PathVariable("rw_num") int rw_num) {
-	 
-	log.info("rw_num: " + rw_num);
-	log.info("modify: " + dto);
-	 
-	return mapper.update(dto) == 1
-	? new ResponseEntity<String>("success", HttpStatus.OK)
-	: new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
-	 
+			@RequestBody review_hapDTO dto, @PathVariable("rw_num") int rw_num) {
+
+		log.info("rw_num: " + rw_num);
+		log.info("modify: " + dto);
+
+		return mapper.update(dto) == 1 ? new ResponseEntity<String>("success", HttpStatus.OK)
+				: new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+
 	}
-	 
-	@DeleteMapping(value="/board_hap/reply/{rw_num}/{board_num}/{nPage}",produces="application/json;charset=utf-8")
-	public ResponseEntity<Map>delete(
-									@PathVariable("rw_num") int rw_num,
-									@PathVariable("board_num") int board_num,
-									@PathVariable("nPage") int nPage
-									){
-	 int total=mapper.total(board_num);
-	 int totalPage=(int)(Math.ceil((double)total/3));
-	 
-	 int cnt =mapper.delete(rw_num);
-	 
-	 ResponseEntity<Map>entity = null;
-	 
-	 if(cnt ==1) {
-		 if(nPage!=1 && nPage==totalPage&& total%3==1)nPage=nPage-1;
-		 Map map =new HashMap();
-		 map.put("msg","success");
-		 map.put("nPage",nPage);
-		 entity=new ResponseEntity<Map>(map,HttpStatus.OK);
-	 }else {
-		 entity = new ResponseEntity<Map>(HttpStatus.INTERNAL_SERVER_ERROR);
-	 }
-	 return entity;
+
+	@DeleteMapping(value = "/board_hap/reply/{rw_num}/{board_num}/{nPage}", produces = "application/json;charset=utf-8")
+	public ResponseEntity<Map> delete(@PathVariable("rw_num") int rw_num, @PathVariable("board_num") int board_num,
+			@PathVariable("nPage") int nPage) {
+		int total = mapper.total(board_num);
+		int totalPage = (int) (Math.ceil((double) total / 3));
+
+		int cnt = mapper.delete(rw_num);
+
+		ResponseEntity<Map> entity = null;
+
+		if (cnt == 1) {
+			if (nPage != 1 && nPage == totalPage && total % 3 == 1)
+				nPage = nPage - 1;
+			Map map = new HashMap();
+			map.put("msg", "success");
+			map.put("nPage", nPage);
+			entity = new ResponseEntity<Map>(map, HttpStatus.OK);
+		} else {
+			entity = new ResponseEntity<Map>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return entity;
 	}
-	
+
 	@GetMapping("/board_hap/reply/{rw_num}")
 	public ResponseEntity<review_hapDTO> get(@PathVariable("rw_num") int rw_num) {
 
@@ -91,13 +87,18 @@ public class ReplyController {
 		return flag == 1 ? new ResponseEntity<String>("success!", HttpStatus.OK)
 				: new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-	
+
 	@GetMapping("/board_hap/reply/list/{board_num}/{sno}/{eno}")
-	public ResponseEntity<List<review_hapDTO>> getList(@PathVariable("board_num") int board_num, @PathVariable("sno") int sno,
-			@PathVariable("eno") int eno) {
+	public ResponseEntity<List<review_hapDTO>> getList(@PathVariable("board_num") int board_num,
+			@PathVariable("sno") int sno, @PathVariable("eno") int eno) {
 		Map map = new HashMap();
+
+		log.info("sno=" + sno);
+		log.info("eno=" + eno);
+
 		map.put("sno", sno);
 		map.put("eno", eno);
+
 		map.put("board_num", board_num);
 
 		return new ResponseEntity<List<review_hapDTO>>(mapper.list(map), HttpStatus.OK);
@@ -105,15 +106,16 @@ public class ReplyController {
 
 	@GetMapping("/board_hap/reply/page")
 	public ResponseEntity<String> getPage(@RequestParam("nPage") int nPage, @RequestParam("nowPage") int nowPage,
-			@RequestParam("board_num") int board_num, @RequestParam("col") String col, @RequestParam("word") String word) {
+			@RequestParam("board_num") int board_num, @RequestParam("col") String col,
+			@RequestParam("word") String word) {
 
 		int total = mapper.total(board_num);
+
 		String url = "read";
 
-		int recordPerPage = 3; // 한페이지당 출력할 레코드 갯수
+		int recordPerPage = 5; // 한페이지당 출력할 레코드 갯수
 
 		String paging = Utility.rpaging(total, nowPage, recordPerPage, col, word, url, nPage, board_num);
-
 		return new ResponseEntity<String>(paging, HttpStatus.OK);
 
 	}

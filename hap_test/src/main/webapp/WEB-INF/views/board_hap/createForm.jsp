@@ -118,7 +118,7 @@
 					<input type="text" class="form-control" id="board_name" placeholder="숙소 이름을 입력하세요" name="board_name">
 					<!-- id->board_name -->
 				</div>
-				<button type="button" class="btn btn-default col-sm-2" onclick="board_nameCheck(document.frm.board_name.value)">중복체크</button>
+				<button type="button" class="btn col-sm-2" onclick="board_nameCheck(document.frm.board_name.value)">중복체크</button>
 				<div id="idcheck"></div>
 			</div>
 			
@@ -127,7 +127,7 @@
 				<div class="col-sm-3">
 					<input type="text" class="form-control" name="board_zipcode" id="board_zipcode" placeholder="우편번호">
 				</div>
-				<button type="button" class="btn btn-default col-sm-2" onclick="sample6_execDaumPostcode()">주소검색</button>
+				<button type="button" class="btn col-sm-2" onclick="sample6_execDaumPostcode()">주소검색</button>
 			</div>
 
 			<div class="form-group">
@@ -135,13 +135,6 @@
 				<div class="col-sm-6">
 					<input type="text" class="form-control" id="board_address1" placeholder="주소" name="board_address1">
 					<input type="text" class="form-control" id="board_address2" placeholder="상세주소" name="board_address2">
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="board_map">약도</label>
-				<div class="col-sm-6">
-					<input type="file" class="form-control" id="board_map" name="board_mapMF" accept=".jpg,.gif,.png">
 				</div>
 			</div>
 
@@ -163,8 +156,8 @@
 
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-8">
-					<button type="submit" class="btn btn-default">등록</button>
-					<button type="reset" class="btn btn-default">취소</button>
+					<button type="submit" class="btn">등록</button>
+					<button type="reset" class="btn">취소</button>
 				</div>
 			</div>
 		</form>

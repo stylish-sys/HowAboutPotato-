@@ -24,8 +24,8 @@
 
 	<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-8">
-					<button type="submit" class="btn btn-default">삭제</button>
-					<button type="reset" class="btn btn-default" onclick="history.back()">취소</button>
+					<button type="submit" class="btn">삭제</button>
+					<button type="reset" class="btn" onclick="history.back()">취소</button>
 				</div>
 			</div>
 

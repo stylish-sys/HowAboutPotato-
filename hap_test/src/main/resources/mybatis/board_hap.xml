@@ -49,11 +49,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="list" parameterType="Map" resultType="Board_hapDTO">
 
-SELECT board_num, board_name, board_cnt, board_address1, board_address2, board_map, board_filename, r 
+SELECT board_num, board_name, board_cnt, board_address1, board_address2, board_filename, r 
 FROM( 
-    SELECT board_num, board_name, board_cnt, board_address1, board_address2, board_map, board_filename, rownum r 
+    SELECT board_num, board_name, board_cnt, board_address1, board_address2, board_filename, rownum r 
     FROM ( 
-        SELECT board_num, board_name, board_cnt, board_address1, board_address2, board_map, board_filename
+        SELECT board_num, board_name, board_cnt, board_address1, board_address2, board_filename
         FROM board_hap 
         
         <where>
@@ -97,13 +97,9 @@ FROM(
    
    <insert id="create" parameterType="Board_hapDTO">
    	
-   insert into board_hap
-   (board_num,
-   board_name,
-   board_address1,
-   board_address2, board_filename, board_account, board_content,  board_zipcode, board_map)
+   insert into board_hap  (board_num,  board_name, board_address1, board_address2, board_filename, board_account, board_content,  board_zipcode)
 	values((SELECT NVL(MAX(board_num), 0) + 1 FROM board_hap), #{board_name}
-	, #{board_address1}, #{board_address2}, #{board_filename}, #{board_account},#{board_content}, #{board_zipcode}, #{board_map})
+	, #{board_address1}, #{board_address2}, #{board_filename}, #{board_account},#{board_content}, #{board_zipcode})
    
    </insert>
 

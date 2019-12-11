@@ -113,7 +113,7 @@
 						placeholder="${dto.board_name }" name="board_name" >
 					<!-- id->board_name -->
 				</div>
-				<button type="button" class="btn btn-default col-sm-2"
+				<button type="button" class="btn col-sm-2"
 					onclick="board_nameCheck(document.frm.board_name.value)">중복체크</button>
 				<div id="idcheck"></div>
 			</div>
@@ -123,7 +123,7 @@
 				<div class="col-sm-3">
 					<input type="text" class="form-control" name="board_zipcode" id="board_zipcode" placeholder="우편번호">
 				</div>
-				<button type="button" class="btn btn-default col-sm-2" onclick="sample6_execDaumPostcode()">주소검색</button>
+				<button type="button" class="btn col-sm-2" onclick="sample6_execDaumPostcode()">주소검색</button>
 			</div>
 
 			<div class="form-group">
@@ -152,8 +152,8 @@
 
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-8">
-					<button type="submit" class="btn btn-default">수정</button>
-					<button type="reset" class="btn btn-default">취소</button>
+					<button type="submit" class="btn">수정</button>
+					<button type="reset" class="btn">취소</button>
 				</div>
 			</div>
 		</form>

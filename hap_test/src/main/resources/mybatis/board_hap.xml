@@ -58,9 +58,18 @@ FROM(
         
         <where>
          <choose>
-            <when test="col=='board_name'">
-               board_name like '%'||#{word}||'%'
+            <when test="word=='경기'">
+               board_address1 like '%'||'경기'||'%'
             </when>
+            
+            <when test="word=='강원'">
+               board_address1 like '%'||'강원'||'%'
+            </when>
+            
+            <when test="word=='제주'">
+               board_address1 like '%'||'제주'||'%'
+            </when>
+            
          </choose>
       </where>
         ORDER BY board_num DESC  

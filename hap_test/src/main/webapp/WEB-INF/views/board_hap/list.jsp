@@ -38,20 +38,21 @@
 <div class="container">
  <h2 class = "col-sm-offset-2 col-sm-10">업소목록</h2>
  <br>
-  <form class = "form" method = "post" action ="list">
+  <form class = "form-inline" method = "post" action ="list">
+  	<div class = "form-group">
+  		<h2>실시간 빈 방 검색</h2>
+  	</div>
   
-  
-   <div class = "form-control">
-   	<select name = "col" class = "form-control">
-   	 <option value = "board_name"
-   	 <c:if test="${col==board_name}">selected</c:if>
-   	 >업소명</option>
-   	 
+   <div class = "form-group">
+   	<select name = "word" class = "form-control" name = "word" required = "required">
+   	 <option value = "경기" <c:if test="${word==board_address1}">selected</c:if>>경기</option>
+   	 <option value = "강원" <c:if test="${word==board_address1}">selected</c:if>>강원</option>
+   	 <option value = "제주" <c:if test="${word==board_address1}">selected</c:if>>제주</option>
    	</select>
    </div>
    
-   <div class = "form-inline">
-   <input type = "text" class = "form-control" name = "word" required = "required" value = "${word }">
+   <div class = "form-group">
+   <input type = "hidden" class = "form-control" name = "word" required = "required" value = "${word }">
    </div>
    
    <button class = "btn">검색</button>
@@ -67,39 +68,33 @@
 
 <c:forEach var="dto" items="${list }">
 
-	<table>
-			<th>사진</th><!-- 여러장 넣기-->
+		<table>
+			<th>사진</th>
 			<th>업소명</th>
-			<th>업소번호</th>
-			<th>조회수</th>
-			<th>주소</th>
-	 <tr>
-	 	<td rowspan = "2" class = col-sm-2>
-	   <img src = "${pageContext.request.contextPath}/storage/${dto.board_filename}" class = "img-rounded "width = "100px" height = "100px"
-	   onclick = "javascript:read('${dto.board_num}')">
-	 </td>
-	 	 <!-- 세로 가운데정렬 -->
+<!-- 		<th>업소번호</th> 	-->
+<!-- 		<th>조회수</th> 	-->
+<!-- 		<th>주소</th> 	-->
+
+	 	<tr>
+	 	 <td rowspan = "2" class = col-sm-2>
+	      <img src = "${pageContext.request.contextPath}/storage/${dto.board_filename}" class = "img-rounded "width = "100px" height = "100px" onclick = "javascript:read('${dto.board_num}')">
+	 	 </td>
 	  	 <td class = "col-sm-4">${dto.board_name}</td>
-	  	 <td class = "col-sm-4">${dto.board_num}</td>
-	  	 <td class = "col-sm-4">${dto.board_cnt}</td>
-	  	 <td class = "col-sm-4">${dto.board_address1 }   ${dto.board_address2 }</td>
-	 </tr>
+<%-- 	  	 <td class = "col-sm-4">${dto.board_num}</td> --%>
+<%-- 	  	 <td class = "col-sm-4">${dto.board_cnt}</td> --%>
+<%-- 	  	 <td class = "col-sm-4">${dto.board_address1 }   ${dto.board_address2 }</td> --%>
+	 	</tr>
 	 
-	 
-	 
-	 <!-- admin만 -->
 	 <c:if test="${not empty sessionScope.member_id &&sessionScope.member_grade =='H' }">
-	 <button class = "btn" onclick = "location.href='${pageContext.request.contextPath}/board_hap/delete?board_num=${dto.board_num }'">업소 삭제</button>
-	 <button class = "btn" onclick = "location.href='${pageContext.request.contextPath}/board_hap/update?board_num=${dto.board_num }'">업소 정보수정</button>
-	 <button class = "btn" onclick = "location.href='${pageContext.request.contextPath}/board_hap/updateFile?board_num=${dto.board_num }&oldfile=${dto.board_filename }'">업소 사진수정</button>
-	 <br>
+	 	<button class = "btn" onclick = "location.href='${pageContext.request.contextPath}/board_hap/delete?board_num=${dto.board_num }'">업소 삭제</button>
+	 	<button class = "btn" onclick = "location.href='${pageContext.request.contextPath}/board_hap/update?board_num=${dto.board_num }'">업소 정보수정</button>
+	 	<button class = "btn" onclick = "location.href='${pageContext.request.contextPath}/board_hap/updateFile?board_num=${dto.board_num }&oldfile=${dto.board_filename }'">업소 사진수정</button>
+	 	<br>
 	 </c:if>
-	  <!-- admin만 -->
- 
 
 	   </table>
 	   
-	   </c:forEach>
+</c:forEach>
 
 ${paging }
 

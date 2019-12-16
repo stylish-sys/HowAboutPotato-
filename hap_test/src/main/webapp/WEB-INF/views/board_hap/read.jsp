@@ -98,7 +98,7 @@ content {
 				<th>방 정보</th>
 					<c:if test="${not empty sessionScope.member_id &&sessionScope.member_grade =='H' }">
 				<th>수정/삭제</th>
-					</c:if>
+					</c:if>ㅋ
 				
 				<tr>
 					<td><img

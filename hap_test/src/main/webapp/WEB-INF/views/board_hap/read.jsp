@@ -96,9 +96,10 @@ content {
 				<th>방 가격</th>
 				<th>최대 숙박인원</th>
 				<th>방 정보</th>
-				<!-- admin만 -->
+					<c:if test="${not empty sessionScope.member_id &&sessionScope.member_grade =='H' }">
 				<th>수정/삭제</th>
-				<!-- admin만 -->
+					</c:if>
+				
 				<tr>
 					<td><img
 						src="${pageContext.request.contextPath}/storage/${dto.room_filename}"
@@ -107,6 +108,8 @@ content {
 					<td>${dto.room_price }원</td>
 					<td>${dto.room_max }명</td>
 					<td>${dto.room_content }</td>
+					<c:if test="${not empty sessionScope.member_id &&sessionScope.member_grade =='H' }">
+   
 					<td>
 						<!-- admin만 -->
 						<button class="btn"
@@ -117,6 +120,7 @@ content {
 							onclick="location.href='../room_hap/delete?room_num=${dto.room_num}&board_num=${param.board_num }'">방삭제</button>
 						<!-- admin만 -->
 					</td>
+					</c:if>
 				</tr>
 
 			</c:forEach>

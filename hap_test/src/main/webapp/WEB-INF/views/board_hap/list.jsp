@@ -41,7 +41,7 @@
   <form class = "form" method = "post" action ="list">
   
   
-   <div class = "form-group">
+   <div class = "form-control">
    	<select name = "col" class = "form-control">
    	 <option value = "board_name"
    	 <c:if test="${col==board_name}">selected</c:if>
@@ -56,9 +56,9 @@
    
    <button class = "btn">검색</button>
    
-<%-- 	<c:if test="${not empty sessionScope.member_id &&sessionScope.member_grade =='H' }">  --%>
+	<c:if test="${not empty sessionScope.member_id &&sessionScope.member_grade =='H' }"> 
    		<button class = "btn" type ="button" onclick = "location.href='${pageContext.request.contextPath}/board_hap/create'">업소등록</button>
-<%--    </c:if> --%>
+   </c:if>
    
    
   
@@ -88,12 +88,12 @@
 	 
 	 
 	 <!-- admin만 -->
-<%-- 	 <c:if test="${not empty sessionScope.member_id &&sessionScope.member_grade =='H' }"> --%>
+	 <c:if test="${not empty sessionScope.member_id &&sessionScope.member_grade =='H' }">
 	 <button class = "btn" onclick = "location.href='${pageContext.request.contextPath}/board_hap/delete?board_num=${dto.board_num }'">업소 삭제</button>
 	 <button class = "btn" onclick = "location.href='${pageContext.request.contextPath}/board_hap/update?board_num=${dto.board_num }'">업소 정보수정</button>
 	 <button class = "btn" onclick = "location.href='${pageContext.request.contextPath}/board_hap/updateFile?board_num=${dto.board_num }&oldfile=${dto.board_filename }'">업소 사진수정</button>
 	 <br>
-<%-- 	 </c:if> --%>
+	 </c:if>
 	  <!-- admin만 -->
  
 

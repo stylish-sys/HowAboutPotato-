@@ -35,6 +35,8 @@
 					<th>번호</th>
 					<th>제목</th>
 					<th>작성자</th>
+					<th>날짜</th>
+					<th>조회수</th>
 					
 				</tr>
 			</thead>
@@ -48,11 +50,13 @@
 							<tr><td>${dto.notice_num}</td>
 							<td>
 							<a href="javascript:read('${dto.notice_num}')">${dto.notice_title}</a>
-							<c:if test="${util:newImg(dto.notice_wdate) }">
+							<c:if test="${util:newImg(dto.notice_wdate)}">
 								<img src="${pageContext.request.contextPath }/images/new.gif">
 							</c:if>
 							</td>
-							<td>${dto.member_id}</td>
+							<td>관리자</td>
+							<td>${dto.notice_wdate }</td>
+							<td>${dto.notice_viewcnt }</td>
 							
 							</tr>
 						</c:forEach>				

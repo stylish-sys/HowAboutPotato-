@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- mapper를 root-context.xml에 지정을 해주면 경로를 바꿔줘야함  -->
 
 	<select id="list" parameterType="Map" resultType="NoticeDTO">
-		select notice_num, member_id, notice_title, notice_content, notice_viewcnt, to_char(notice_wdate,'yyyy-mm-dd'), r from(
+		select notice_num, member_id, notice_title, notice_content, notice_viewcnt, to_char(notice_wdate,'yyyy-mm-dd') notice_wdate, r from(
 			select notice_num, member_id, notice_title, notice_content, notice_viewcnt, notice_wdate, rownum r from(
 				select notice_num, member_id, notice_title, notice_content, notice_viewcnt, notice_wdate from notice_hap 
 		<where>

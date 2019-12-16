@@ -10,10 +10,10 @@
 	</c:when>
 	<c:when
 		test="${not empty sessionScope.member_id && sessionScope.member_grade!= 'H'}">
-		<c:set var="str">안녕하세요. ${sessionScope.member_id }님!</c:set>
+		<c:set var="str"></c:set>
 	</c:when>
 	<c:otherwise>
-		<c:set var="str">기본페이지</c:set>
+		<c:set var="str"></c:set>
 	</c:otherwise>
 
 </c:choose>
@@ -112,11 +112,9 @@
 
 
 	<section id="banner">
-		<p>
-			${str} <br /> 메인 페이지
-		</p>
+		<p>${str}</p>
 		<ul class="actions">
-			<li><a href="" class="button big">방 검색</a></li>
+			<li><a href="${pageContext.request.contextPath }/board_hap/list" class="button big">방 검색</a></li>
 		</ul>
 	</section>
 </body>

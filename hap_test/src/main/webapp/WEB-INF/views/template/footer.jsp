@@ -22,9 +22,9 @@
 				<li><a href="#" class="icon fa-instagram"></a></li>
 			</ul>
 			<ul class="copyright">
-				<li>&copy; Team Project</li>
-				<li><a href="www.naver.com">Naver</a></li>
-				<li>Images: <a href="http://unsplash.com">Unsplash</a></li>
+				<li>&copy; HAP Team Project</li>
+				<li><a href="https://www.mangoboard.net/">Design: MangoBoard</a></li>
+				<li>email: <a href="">jorney1015@gmail.com</a></li>
 			</ul>
 		</div>
 	</footer>

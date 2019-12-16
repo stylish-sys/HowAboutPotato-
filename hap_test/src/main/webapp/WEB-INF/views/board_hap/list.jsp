@@ -36,7 +36,6 @@
 </head>
 <body>
 <div class="container">
- <h2 class = "col-sm-offset-2 col-sm-10">업소목록</h2>
  <br>
   <form class = "form-inline" method = "post" action ="list">
   	<div class = "form-group">

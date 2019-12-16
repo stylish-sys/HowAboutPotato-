@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +19,6 @@ import spring.model.mapper.Member_hapMapper;
 import spring.model.mapper.QnaMapper;
 import spring.model.member_hap.Member_hapDTO;
 import spring.model.qna.QnaDTO;
-import spring.model.res.Res_hapDTO;
 import spring.utility.webtest.Utility;
 
 @Controller
@@ -28,6 +26,7 @@ public class QnaController {
 
 	@Autowired
 	private QnaMapper qna_mapper;
+	@Autowired
 	private Member_hapMapper member_mapper;
 
 	@RequestMapping("/qna/listQna")
@@ -56,12 +55,12 @@ public class QnaController {
 
 		map.put("sno", sno);
 		map.put("eno", eno);
-
+		
 		List<QnaDTO> list = qna_mapper.list(map);
 
 		int total = qna_mapper.total(map);
 		String paging = Utility.paging_qna(total, nowPage, recordPerPage, col, word);
-
+		
 		request.setAttribute("list", list);
 		request.setAttribute("col", col);
 		request.setAttribute("word", word);

@@ -164,7 +164,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
  	<select id = "board_hap" parameterType="int" resultType="Res_hapDTO">
-	select board_account, board_name, board_map
+	select board_account, board_name, board_address1, board_address2
 	from board_hap where board_num = #{board_num}
 	</select>
  

@@ -57,12 +57,14 @@ content {
 						<!-- Wrapper for slides -->
 
 						<div class="carousel-inner">
-						<c:forEach var="dto" items="${rlist}" varStatus="index">
-							<div class="item <c:if test="${index.first}">active</c:if>">
-								<img src="${pageContext.request.contextPath}/storage/${dto.room_filename}"
-						class="img-rounded " width="800px" height="800px" alt="image${index.count}">
-							</div>
-						</c:forEach>
+							<c:forEach var="dto" items="${rlist}" varStatus="index">
+								<div class="item <c:if test="${index.first}">active</c:if>">
+									<img
+										src="${pageContext.request.contextPath}/storage/${dto.room_filename}"
+										class="img-rounded " width="800px" height="800px"
+										alt="image${index.count}">
+								</div>
+							</c:forEach>
 						</div>
 
 						<!-- Left and right controls -->
@@ -123,11 +125,12 @@ content {
 		<hr>
 
 		<div class="container">
-		
-			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a3cb1a887ea201052c452feb4c0f8edb&libraries=services,clusterer,drawing"></script>
+
+			<script type="text/javascript"
+				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a3cb1a887ea201052c452feb4c0f8edb&libraries=services,clusterer,drawing"></script>
 			<h1>숙소 약도</h1>
 			<p>주소 : ${dto.board_address1 } ${dto.board_address2 }
-			<div id="map" style="width:100%;height:350px;"></div>
+			<div id="map" style="width: 100%; height: 350px;"></div>
 			<script>
 				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 				mapOption = {
@@ -184,8 +187,7 @@ content {
 							<button id='addReplyBtn'
 								class='btn btn-primary btn-xs pull-right'>New Reply</button>
 
-							<br>
-							<br>
+							<br> <br>
 						</div>
 
 
@@ -195,7 +197,7 @@ content {
 								<li class="left clearfix" data-rno="12">
 									<div>
 										<div class="header">
-											<div>
+											<div class="image rounded">
 												<img src="${root }/images/pic04.jpg" alt="이미지의 묘사 내용"
 													height="100px" width="100px" />
 											</div>
@@ -546,8 +548,13 @@ content {
 
 		<hr>
 		<div style="text-align: center">
-			<button type="submit" class="btn"
-				onclick="location.href='../res/create?board_num=${dto.board_num}'">결제하기</button>
+			<c:if test="${not empty sessionScope.member_id}">
+				<button type="submit" class="btn"
+					onclick="location.href='../res/create?board_num=${dto.board_num}'">예약하기</button>
+			</c:if>
+			<c:if test="${empty sessionScope.member_id }">
+				<button type="submit" class="btn" onclick="location.href='../member_hap/login'">로그인 후 예약</button>
+			</c:if>
 		</div>
 
 	</div>

@@ -129,7 +129,7 @@ public class ResController {
 		Map map = new HashMap();
 		List<Res_hapDTO> room_hap = mapper.room_hap(board_num);
 		Res_hapDTO dto = mapper.list_m((String) session.getAttribute("member_id"));
-
+		
 		Res_hapDTO dto_b = mapper.board_hap(board_num);
 
 		request.setAttribute("room_hap", room_hap);

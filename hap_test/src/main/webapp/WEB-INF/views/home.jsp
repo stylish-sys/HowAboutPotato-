@@ -10,27 +10,38 @@
 	<section id="one" class="wrapper style1 special">
 		<div class="container">
 			<header class="major">
-				<h2>추천 여행지</h2>
+				<h2>추천 호텔</h2>
 				<p>어디로 갈 지 고민중이니?</p>
 			</header>
 			<div class="row 150%">
 				<!-- 사진 누르면 게시글로 바로 가게 -->
 				<div class="6u 12u$(xsmall)">
 					<div class="image fit captioned">
-						<img src="images/pic02.jpg" alt="" />
-						<h3>1번 여행지</h3>
+						<img src="images/1번 호텔.jpg" alt="" />
+						<h3>롯데 호텔 제주</h3>
 					</div>
 				</div>
 				<div class="6u$ 12u$(xsmall)">
 					<div class="image fit captioned">
-						<img src="images/pic03.jpg" alt="" />
+						<img src="images/2번 호텔.jpg" alt="" />
+						<h3>2번 여행지</h3>
+					</div>
+				</div>
+				<div class="6u 12u$(xsmall)">
+					<div class="image fit captioned">
+						<img src="images/1번 호텔.jpg" alt="" />
+						<h3>롯데 호텔 제주</h3>
+					</div>
+				</div>
+				<div class="6u$ 12u$(xsmall)">
+					<div class="image fit captioned">
+						<img src="images/2번 호텔.jpg" alt="" />
 						<h3>2번 여행지</h3>
 					</div>
 				</div>
 			</div>
 			<ul class="actions">
-				<li><a href="#" class="button special big">Nulla luctus</a></li>
-				<li><a href="#" class="button big">Sed vulputate</a></li>
+				<li><a href="#" class="button special big">방 예약하러 가기</a></li>
 			</ul>
 		</div>
 	</section>

@@ -31,6 +31,45 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${root }/js/ajaxError.js"></script>
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+				$('#favorite').on(
+						'click',
+						function(e) {
+							var bookmarkURL = window.location.href;
+							var bookmarkTitle = document.title;
+							var triggerDefault = false;
+							if (window.sidebar && window.sidebar.addPanel) {
+								// Firefox version < 23
+								window.sidebar.addPanel(bookmarkTitle,
+										bookmarkURL, '');
+							} else if ((window.sidebar && (navigator.userAgent
+									.toLowerCase().indexOf('firefox') > -1))
+									|| (window.opera && window.print)) {
+								// Firefox version >= 23 and Opera Hotlist
+								var $this = $(this);
+								$this.attr('href', bookmarkURL);
+								$this.attr('title', bookmarkTitle);
+								$this.attr('rel', 'sidebar');
+								$this.off(e);
+								triggerDefault = true;
+							} else if (window.external
+									&& ('AddFavorite' in window.external)) {
+								// IE Favorite
+								window.external.AddFavorite(bookmarkURL,
+										bookmarkTitle);
+							} else {
+								// WebKit - Safari/Chrome
+								alert((navigator.userAgent.toLowerCase()
+										.indexOf('mac') != -1 ? 'Cmd' : 'Ctrl')
+										+ '+D 키를 눌러 즐겨찾기에 등록하실 수 있습니다.');
+							}
+							return triggerDefault;
+						});
+			});
+</script>
+
 <style type="text/css">
 #grade {
 	color: red;
@@ -66,18 +105,18 @@
 					<li><a href="${root}/res/list">RESLIST</a></li>
 					<li><a href="${root}/res/res_acc">승인 대기</a></li>
 				</c:if>
+				<li><a href="" id="favorite" title="즐겨찾기 등록">즐겨찾기</a></li>
 			</ul>
 		</nav>
 	</header>
 
 
 	<section id="banner">
-		<h2>Logo</h2>
 		<p>
 			${str} <br /> 메인 페이지
 		</p>
 		<ul class="actions">
-			<li><a href="#" class="button special big">Find Location</a></li>
+			<li><a href="" class="button big">방 검색</a></li>
 		</ul>
 	</section>
 </body>

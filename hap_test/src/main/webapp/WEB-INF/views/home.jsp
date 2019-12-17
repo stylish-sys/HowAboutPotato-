@@ -76,9 +76,15 @@
 				</div>
 			</div>
 			<ul class="actions">
-				<li><a
-					href="${pageContext.request.contextPath }/board_hap/list"
-					class="button special big">방 예약하러 가기</a></li>
+				<c:if test="${empty sessionScope.member_id }">
+					<li><a href="${pageContext.request.contextPath}/member_hap/login"
+						class="button special big"> 로그인</a></li>
+				</c:if>
+				<c:if test="${not empty sessionScope.member_id}">
+					<li><a
+						href="${pageContext.request.contextPath }/board_hap/list"
+						class="button special big">방 예약하러 가기</a></li>
+				</c:if>
 			</ul>
 		</div>
 	</section>

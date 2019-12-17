@@ -89,20 +89,22 @@
 				<li><a href="${root}/res/res_find">예약 검색</a></li>
 
 				<c:choose>
-					<c:when test="${empty sessionScope.member_id }">
+					<c:when	test="${empty sessionScope.member_id}">
 						<li><a href="${root}/member_hap/agree">Join</a></li>
 						<li><a href="${root}/member_hap/login">Sign-in</a></li>
 					</c:when>
 					<c:otherwise>
 						<li><a href="${root}/res/list">RESLIST</a></li>
-						<li><a href="${root}/member_hap/member_read">Profile</a></li>
+						<li><a href="${root}/member_hap/member_read">내정보</a></li>
 						<li><a href="${root}/member_hap/logout">Sign-out</a></li>
 					</c:otherwise>
 				</c:choose>
+				<c:if test="${not empty sessionScope.sessionId }">
+					<li><a href="https://www.naver.com">네이버 로그아웃</a>
+				</c:if>
 
 				<c:if
 					test="${not empty sessionScope.member_id && sessionScope.member_grade=='H'}">
-					<li><a href="${root}/res/list">RESLIST</a></li>
 					<li><a href="${root}/res/res_acc">승인 대기</a></li>
 				</c:if>
 				<li><a href="" id="favorite" title="즐겨찾기 등록">즐겨찾기</a></li>
@@ -114,7 +116,8 @@
 	<section id="banner">
 		<p>${str}</p>
 		<ul class="actions">
-			<li><a href="${pageContext.request.contextPath }/board_hap/list" class="button big">방 검색</a></li>
+			<li><a href="${pageContext.request.contextPath }/board_hap/list"
+				class="button big">방 검색</a></li>
 		</ul>
 	</section>
 </body>

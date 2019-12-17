@@ -128,7 +128,7 @@
 						placeholder="Enter 아이디" name="member_id">
 				</div>
 
-				<button type="button" class="btn btn-default col-sm-1.3"
+				<button type="button" class="btn col-sm-1.3"
 					onclick="idCheck(document.frm.member_id.value)">ID 중복확인</button>
 				<div id="idcheck"></div>
 
@@ -186,7 +186,7 @@
 					<input type="email" class="form-control" id="member_email"
 						placeholder="Enter E-mail" name="member_email">
 				</div>
-				<button type="button" class="btn btn-default col-sm-1.3"
+				<button type="button" class="btn col-sm-1.3"
 					onclick="emailCheck(document.frm.member_email.value)">E-mail 중복확인</button>
 				<div id="emailcheck"></div>
 			</div>

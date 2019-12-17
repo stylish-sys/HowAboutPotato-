@@ -35,6 +35,11 @@
         <put-attribute name="body" value="/WEB-INF/views/member_hap/login.jsp" /> 
     </definition>  
     
+    <definition name="/member_hap/callback" extends="main"> 
+        <put-attribute name="title" value="HAP 로그인 callback" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/member_hap/callback.jsp" /> 
+    </definition>  
+    
      
     <definition name="/member_hap/member_list" extends="main"> 
         <put-attribute name="title" value="회원 목록" ></put-attribute> 

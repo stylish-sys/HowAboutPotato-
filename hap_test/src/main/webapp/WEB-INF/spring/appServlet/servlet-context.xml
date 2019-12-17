@@ -19,7 +19,8 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/admin/**" /> <!-- /admin 이하 모든 폴더및 파일 대상으로 작동 -->
-			<beans:bean	class="spring.interceptor.webtest.AdminInterceptor" />
+			<beans:bean
+				class="spring.interceptor.webtest.AdminInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 
@@ -36,14 +37,20 @@
 		<beans:property name="order" value="2" />
 	</beans:bean>
 
-	<!-- <context:component-scan
-		base-package="spring.sts.webtest" />
-	<context:component-scan
+	<!-- <context:component-scan base-package="spring.sts.webtest" /> <context:component-scan 
 		base-package="spring.model.*" /> -->
-		
-	<context:component-scan base-package="spring.sts.webtest" use-default-filters="false">
-	<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-	<context:include-filter type="annotation" expression="org.springframework.stereotype.RestController"/>
+
+	<context:component-scan
+		base-package="spring.sts.webtest" use-default-filters="false">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.RestController" />
 	</context:component-scan>
+
+	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+	<beans:bean id="naverLoginBO"
+		class="com.test.tst.NaverLoginBO" />
+
 
 </beans:beans>

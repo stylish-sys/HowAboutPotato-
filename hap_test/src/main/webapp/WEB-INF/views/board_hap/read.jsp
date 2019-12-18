@@ -139,42 +139,55 @@ content {
 		<hr>
 
 		<div class="container">
-			<table cellpadding="0" cellspacing="0" width="462">
-				<tr>
-					지도
-					<td style="border: 1px solid #cecece;"><a
-						href="https://v4.map.naver.com/?searchCoord=0ab48c7e75af1855e33dd58e25a2303becc4d514bb23086638e4585ac93dc6e4&query=7IaU642w7Iqk7YGs&menu=location&tab=1&lng=4d3fff340ef578cacbc29f5d6390f980&__fromRestorer=true&mapMode=0&mpx=f440d166ab8fccf209a536f4e12561bb1e9e16be5c4c6d5dd75731d3a375716263bbce83afc37eae9852cae5f58a418b&lat=9fb7bb36e64d3551cc3d1e2b44cce92a&dlevel=12&enc=b64"
-						target="_blank"><img
-							src="http://prt.map.naver.com/mashupmap/print?key=p1574646517458_-69050510"
-							width="460" height="340" alt="지도 크게 보기" title="지도 크게 보기"
-							border="0" style="vertical-align: top;" /></a></td>
-				</tr>
-				<tr>
-					<td>
-						<table cellpadding="0" cellspacing="0" width="100%">
-							<tr>
-								<td height="30" bgcolor="#f9f9f9" align="left"
-									style="padding-left: 9px; border-left: 1px solid #cecece; border-bottom: 1px solid #cecece;">
-									<span
-									style="font-family: tahoma; font-size: 11px; color: #666;">2019.11.25</span>&nbsp;<span
-									style="font-size: 11px; color: #e5e5e5;">|</span>&nbsp;<a
-									style="font-family: dotum, sans-serif; font-size: 11px; color: #666; text-decoration: none; letter-spacing: -1px;"
-									href="https://v4.map.naver.com/?searchCoord=0ab48c7e75af1855e33dd58e25a2303becc4d514bb23086638e4585ac93dc6e4&query=7IaU642w7Iqk7YGs&menu=location&tab=1&lng=4d3fff340ef578cacbc29f5d6390f980&__fromRestorer=true&mapMode=0&mpx=f440d166ab8fccf209a536f4e12561bb1e9e16be5c4c6d5dd75731d3a375716263bbce83afc37eae9852cae5f58a418b&lat=9fb7bb36e64d3551cc3d1e2b44cce92a&dlevel=12&enc=b64"
-									target="_blank">지도 크게 보기</a>
-								</td>
-								<td width="98" bgcolor="#f9f9f9" align="right"
-									style="text-align: right; padding-right: 9px; border-right: 1px solid #cecece; border-bottom: 1px solid #cecece;">
-									<span style="float: right;"><span
-										style="font-size: 9px; font-family: Verdana, sans-serif; color: #444;">&copy;&nbsp;</span>&nbsp;<a
-										style="font-family: tahoma; font-size: 9px; font-weight: bold; color: #2db400; text-decoration: none;"
-										href="https://www.navercorp.com" target="_blank">NAVER
-											Corp.</a></span>
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</table>
+			<script type="text/javascript"
+				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a3cb1a887ea201052c452feb4c0f8edb&libraries=services,clusterer,drawing"></script>
+			<h1>숙소 약도</h1>
+			<p>주소 : ${dto.board_address1 } ${dto.board_address2 }
+			<div id="map" style="width: 100%; height: 350px;"></div>
+			<script>
+				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+				mapOption = {
+					center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+					level : 3
+				// 지도의 확대 레벨
+				};
+
+				// 지도를 생성합니다    
+				var map = new kakao.maps.Map(mapContainer, mapOption);
+
+				// 주소-좌표 변환 객체를 생성합니다
+				var geocoder = new kakao.maps.services.Geocoder();
+
+				// 주소로 좌표를 검색합니다
+				geocoder
+						.addressSearch(
+								'${dto.board_address1}',
+								function(result, status) {
+
+									// 정상적으로 검색이 완료됐으면 
+									if (status === kakao.maps.services.Status.OK) {
+
+										var coords = new kakao.maps.LatLng(
+												result[0].y, result[0].x);
+
+										// 결과값으로 받은 위치를 마커로 표시합니다
+										var marker = new kakao.maps.Marker({
+											map : map,
+											position : coords
+										});
+
+										// 인포윈도우로 장소에 대한 설명을 표시합니다
+										var infowindow = new kakao.maps.InfoWindow(
+												{
+													content : '<div style="width:150px;text-align:center;padding:6px 0;">${dto.board_name}</div>'
+												});
+										infowindow.open(map, marker);
+
+										// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+										map.setCenter(coords);
+									}
+								});
+			</script>
 
 			<div class='row'>
 				<div class="col-lg-12">
@@ -556,7 +569,7 @@ content {
 
 		<hr>
 		<section>
-			<h2>찾아 오시는 길</h2>
+			<h2>숙소 약도</h2>
 
 			<div id="map" style="width: 959px; height: 400px;"></div>
 

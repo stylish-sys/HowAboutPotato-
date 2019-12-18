@@ -9,6 +9,8 @@ public interface QnaMapper {
 
 	List<QnaDTO> list(Map map);
 	
+	List<QnaDTO> list_Y(Map map);
+	
 	int total(Map map);
 	
 	int create(QnaDTO dto);

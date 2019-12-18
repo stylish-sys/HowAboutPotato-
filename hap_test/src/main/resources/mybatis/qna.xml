@@ -5,7 +5,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="spring.model.mapper.QnaMapper">
 <!-- mapper를 root-context.xml에 지정을 해주면 경로를 바꿔줘야함  -->
-
+	<select id="list_Y" parameterType="Map" resultType="QnaDTO">
+		select qna_num, member_id, qna_title, qna_content, qna_viewcnt, to_char(qna_wdate, 'yyyy-mm-dd'),
+		qna_filename, qna_filesize, qna_ref, qna_ansnum, qna_indent, qna_noti
+		from qna_hap where qna_noti = 'Y' order by qna_ref desc, qna_num
+	</select>
+	
 	<select id="list" parameterType="Map" resultType="QnaDTO">
 		select qna_num, member_id, qna_title, qna_content, qna_viewcnt, to_char(qna_wdate, 'yyyy-mm-dd'), qna_filename, qna_filesize, qna_ref, qna_ansnum, qna_indent, r
 		from(
@@ -14,6 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				select qna_num, member_id, qna_title, qna_content, qna_viewcnt, qna_wdate, qna_filename, qna_filesize, qna_ref, qna_ansnum, qna_indent
 				from qna_hap
 				<where>
+					qna_noti='N'
 					<choose>
 						<when test="col=='member_id'">member_id like '%'||#{word}||'%'</when>
 						<when test="col=='title'">qna_title like '%'||#{word}||'%'</when>
@@ -41,8 +47,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="create" parameterType="QnaDTO" >
-		insert into qna_hap(qna_num, member_id, qna_title, qna_content, qna_viewcnt, qna_wdate, qna_passwd, qna_filename, qna_filesize, qna_ref)
-		values((select nvl(max(qna_num),0)+1 from qna_hap), #{member_id}, #{qna_title}, #{qna_content}, #{qna_viewcnt}, sysdate, #{qna_passwd}, #{qna_filename, jdbcType=VARCHAR}, #{qna_filesize, jdbcType=INTEGER}, (select nvl(max(qna_ref),0)+1 from qna_hap))
+		insert into qna_hap(qna_num, member_id, qna_title, qna_content, qna_viewcnt, qna_wdate, qna_passwd, qna_filename, qna_filesize, qna_ref, qna_noti)
+		values((select nvl(max(qna_num),0)+1 from qna_hap), #{member_id}, #{qna_title}, #{qna_content}, #{qna_viewcnt}, sysdate, #{qna_passwd}, #{qna_filename, jdbcType=VARCHAR}, #{qna_filesize, jdbcType=INTEGER}, (select nvl(max(qna_ref),0)+1 from qna_hap), #{qna_noti})
 	</insert>
 	
 	<select id="read" parameterType="int" resultType="QnaDTO">

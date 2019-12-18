@@ -62,6 +62,32 @@
 			</thead>
 			<tbody>
 				<c:choose>
+					<c:when test="${empty list_Y }">
+						<tr>
+							<td colspan="6">등록된 공지사항이 없음!!</td>
+						</tr>
+					</c:when>
+					<c:otherwise>
+						<c:forEach var="dto" items="${list_Y }">
+							<tr>
+								<td>${dto.qna_num}</td>
+								<td><c:forEach begin="1" end="${dto.qna_indent }">&nbsp&nbsp
+									</c:forEach> <c:if test="${dto.qna_indent>0 }">
+										<img src="${pageContext.request.contextPath }/images/re.jpg">
+									</c:if> <a href="javascript:read('${dto.qna_num}')"> <span
+										style="color: red; font-weight: bold">${dto.qna_title}</span></a>
+									<c:if test="${util:newImg(dto.qna_wdate) }">
+										<img src="${pageContext.request.contextPath }/images/new.gif">
+									</c:if></td>
+								<td>${dto.qna_viewcnt }</td>
+								<td>관리자<td>
+							</tr>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+			</tbody>
+			<tbody>
+				<c:choose>
 					<c:when test="${empty list }">
 						<tr>
 							<td colspan="6">등록된 글이 없음</td>

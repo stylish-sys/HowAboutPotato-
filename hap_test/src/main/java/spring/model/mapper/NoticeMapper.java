@@ -8,6 +8,7 @@ import spring.model.notice.NoticeDTO;
 public interface NoticeMapper {
 
 	List<NoticeDTO> list(Map map);
+	List<NoticeDTO> list_Y(Map map);
 	
 	int total(Map map);
 	

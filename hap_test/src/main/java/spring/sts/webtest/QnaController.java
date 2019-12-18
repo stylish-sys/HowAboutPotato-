@@ -57,11 +57,13 @@ public class QnaController {
 		map.put("eno", eno);
 		
 		List<QnaDTO> list = qna_mapper.list(map);
+		List<QnaDTO> list_Y = qna_mapper.list_Y(map);
 
 		int total = qna_mapper.total(map);
 		String paging = Utility.paging_qna(total, nowPage, recordPerPage, col, word);
 		
 		request.setAttribute("list", list);
+		request.setAttribute("list_Y", list_Y);
 		request.setAttribute("col", col);
 		request.setAttribute("word", word);
 		request.setAttribute("nowPage", nowPage);

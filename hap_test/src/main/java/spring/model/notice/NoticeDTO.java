@@ -13,7 +13,16 @@ public class NoticeDTO {
 	private String notice_wdate;//   date    not null,
 	private String notice_filename;// VARCHAR(50) NULL,
 	private int notice_filesize;
+	private String notice_noti;
 	
+	public String getNotice_noti() {
+		return notice_noti;
+	}
+
+	public void setNotice_noti(String notice_noti) {
+		this.notice_noti = notice_noti;
+	}
+
 	private MultipartFile notice_filenameMF;
 	
 	public NoticeDTO() {

@@ -16,8 +16,18 @@ public class QnaDTO {
     private int qna_indent;//  NUMBER(2) DEFAULT 0 NOT NULL,
     private int qna_ansnum;// NUMBER(5) DEFAULT 0 NOT NULL, 
     private int qna_refnum;//  NUMBER    DEFAULT 0,
+    private String qna_noti;
 	
-    private MultipartFile qna_filenameMF;
+    public String getQna_noti() {
+		return qna_noti;
+	}
+
+
+	public void setQna_noti(String qna_noti) {
+		this.qna_noti = qna_noti;
+	}
+
+	private MultipartFile qna_filenameMF;
     
 	public QnaDTO() {
 		super();

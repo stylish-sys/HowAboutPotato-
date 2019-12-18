@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -23,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.test.tst.NaverLoginBO;
@@ -48,6 +48,53 @@ public class Member_hapController {
 	@GetMapping("/member_hap/agree")
 	public String agree() {
 		return "/member_hap/agree";
+	}
+
+	@PostMapping("/member_hap/member_updatePw")
+	public String updatePw(String member_passwd, HttpSession session) {
+
+		Map map = new HashMap();
+		map.put("member_id", session.getAttribute("member_id"));
+		map.put("member_passwd", member_passwd);
+
+		int flag = mapper.updatePw(map);
+
+		if (flag == 1) {
+			return "redirect:./member_read";
+		} else {
+			return "error";
+		}
+	}
+
+	@GetMapping("/member_hap/member_updatePw")
+	public String updatePw() {
+
+		return "/member_hap/member_updatePw";
+	}
+
+	@PostMapping("/member_hap/member_updateFile")
+	public String updateFile(MultipartFile member_fname, String oldfile, HttpSession session, HttpServletRequest request) {
+		String basePath = request.getRealPath("/storage");
+		if (oldfile != null && !oldfile.equals("member.jpg")) {
+			Utility.deleteFile(basePath, oldfile);
+		}
+
+		Map map = new HashMap();
+		map.put("member_id", (String) session.getAttribute("member_id"));
+		map.put("member_fname", Utility.saveFileSpring(member_fname, basePath));
+
+		int flag = mapper.updateFile(map);
+		if (flag == 1) {
+			return "redirect:./member_read";
+		} else {
+			return "error";
+		}
+	}
+
+	@GetMapping("/member_hap/member_updateFile")
+	public String updateFile() {
+
+		return "/member_hap/member_updateFile";
 	}
 
 	@ResponseBody

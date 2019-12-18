@@ -13,7 +13,7 @@ public interface Member_hapMapper {
 
 	int duplicatedEmail(String member_email);
 	
-	//String getMember_fname(String member_id);
+	String getMember_fname(String member_id);
 	
 	int loginCheck(Map<String, String> map);
 
@@ -34,5 +34,10 @@ public interface Member_hapMapper {
 	int member_delete(String member_id);
 	
 	int member_update(Member_hapDTO dto);
+
+	int updateFile(Map map);
+
+	int updatePw(Map map);
+	
 
 }

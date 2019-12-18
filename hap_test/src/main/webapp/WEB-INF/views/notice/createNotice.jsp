@@ -20,21 +20,23 @@
 			enctype="multipart/form-data">
 			<input type="hidden" name="member_id" value="${member_id}">
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="member_id" >작성자</label>
+				<label class="control-label col-sm-2" for="member_id">작성자</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" id="" name="" value="${member_id }" disabled>
+					<input type="text" class="form-control" id="" name=""
+						value="${member_id }" disabled>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="notice_title">제목
-					 </label>
+				</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" name="notice_title" required>
+					<input type="text" class="form-control" name="notice_title"
+						required>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="notice_content">내용
-					 </label>
+				</label>
 				<div class="col-sm-6">
 					<!-- 		<input type="text" name="notice_content" class="form-control" row="100" col="20"> -->
 					<textarea rows="10" cols="10" id="notice_content"
@@ -53,10 +55,20 @@
 				<label class="control-label col-sm-2" for="notice_passwd">비밀번호
 				</label>
 				<div class="col-sm-6">
-					<input type="password" class="form-control" name="notice_passwd" required>
+					<input type="password" class="form-control" name="notice_passwd"
+						required>
 				</div>
 			</div>
-
+			<div class="from-group">
+				<label class="control-label col-sm-2" for="notice_noti">
+					게시물 상단</label>
+				<div class="col-sm-6">
+					<input type="checkbox" id="notice_noti" name="notice_noti"
+						value="Y"> <label for="notice_noti"> 등록</label>
+				</div>
+			</div>
+			<br>
+			<br>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type="submit" class="btn">등록</button>

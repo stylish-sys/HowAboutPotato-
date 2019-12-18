@@ -58,13 +58,25 @@
 						name="qna_filenameMF">
 				</div>
 			</div>
-				<div class="form-group">
-					<label class="control-label col-sm-2" for="qna_passwd">비밀번호
-					</label>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="qna_passwd">비밀번호
+				</label>
+				<div class="col-sm-6">
+					<input type="password" class="form-control" name="qna_passwd">
+				</div>
+			</div>
+			<c:if
+				test="${not empty sessionScope.member_id && sessionScope.member_grade=='H'}">
+				<div class="from-group">
+					<label class="control-label col-sm-2" for="qna_noti"> 게시물
+						상단</label>
 					<div class="col-sm-6">
-						<input type="password" class="form-control" name="qna_passwd">
+						<input type="checkbox" id="qna_noti" name="qna_noti" value="Y">
+						<label for="qna_noti"> 등록</label>
 					</div>
 				</div>
+			</c:if>
+			<br> <br>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type="submit" class="btn">등록</button>

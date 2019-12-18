@@ -34,13 +34,14 @@ table {
 <body>
 	<input type = "hidden" name = "word" value = "${param.word }">
 	<input type = "hidden" name = "col" value = "${param.col }">
+	<input type = "hidden" name = "nowPage" value = "${param.nowPage }">
 	<div class="container">
 		<br>
 		<form class="form-inline" method="post" action="list">
 			<div class="form-group">
 				<h2>실시간 빈 방 검색</h2>
 			</div>
-			<br>
+		<br>
 <div class = "form-group">
    		<select name = "col" class = "form-control">
    		<option value="지역"<c:if test="${col=='지역'}">selected</c:if>>지역을 선택하세요</option>
@@ -52,14 +53,14 @@ table {
 		<option value="충청"<c:if test="${col=='충청'}">selected</c:if>>충청</option>
 		<option value="경상"<c:if test="${col=='경상'}">selected</c:if>>경상</option>
    	</select>
+				<input type="text" class="form-control" name="word"
+					 value="${word }" placeholder = "상세주소">
+				<button class="btn">검색</button>
    </div>
 
 			<div class="form-inline">
-				<input type="text" class="form-control" name="word"
-					 value="${word }">
 			</div>
 
-			<button class="btn">검색</button>
 
 			<c:if
 				test="${not empty sessionScope.member_id &&sessionScope.member_grade =='H' }">

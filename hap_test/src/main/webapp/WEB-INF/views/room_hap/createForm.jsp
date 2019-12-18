@@ -7,6 +7,10 @@
 </head>
 <body>
 
+<input type = "hidden" name = "word" value = "${param.word }">
+	<input type = "hidden" name = "col" value = "${param.col }">
+	<input type = "hidden" name = "nowPage" value = "${param.nowPage }">
+
 	<div class="container">
 	<br>
 	<br>
@@ -60,7 +64,7 @@
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-8">
 					<button type="submit" class="btn">등록</button>
-					<button type="reset" class="btn">취소</button>
+					<button onclick = "history.back()" class="btn">취소</button>
 				</div>
 			</div>
 		</form>

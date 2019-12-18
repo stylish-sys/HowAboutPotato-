@@ -4,24 +4,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="spring.model.mapper.NoticeMapper">
-<!-- mapper를 root-context.xml에 지정을 해주면 경로를 바꿔줘야함  -->
+	<!-- mapper를 root-context.xml에 지정을 해주면 경로를 바꿔줘야함 -->
+	<select id="list_Y" parameterType="Map" resultType="NoticeDTO">
+		select
+		notice_num, member_id, notice_title, notice_content,
+		notice_viewcnt,
+		to_char(notice_wdate,'yyyy-mm-dd') notice_wdate
+		from notice_hap where
+		notice_noti = 'Y' order by notice_num desc
+	</select>
 
 	<select id="list" parameterType="Map" resultType="NoticeDTO">
-		select notice_num, member_id, notice_title, notice_content, notice_viewcnt, to_char(notice_wdate,'yyyy-mm-dd') notice_wdate, r from(
-			select notice_num, member_id, notice_title, notice_content, notice_viewcnt, notice_wdate, rownum r from(
-				select notice_num, member_id, notice_title, notice_content, notice_viewcnt, notice_wdate from notice_hap 
+		select notice_num, member_id, notice_title, notice_content,
+		notice_viewcnt, to_char(notice_wdate,'yyyy-mm-dd') notice_wdate,
+		notice_noti, r
+		from(
+		select notice_num, member_id, notice_title, notice_content, notice_viewcnt,
+		notice_wdate, notice_noti, rownum r
+		from(
+		select notice_num, member_id, notice_title, notice_content, notice_viewcnt,
+		notice_wdate, notice_noti from notice_hap
 		<where>
+			notice_noti='N'
 			<choose>
 				<when test="col=='member_id'">member_id like '%'||#{word}||'%'</when>
 				<when test="col=='title'">notice_title like '%'||#{word}||'%'</when>
-				<when test="col=='title_content'">notice_title like '%'||#{word}||'%' or notice_content like '%'||#{word}||'%'</when>
+				<when test="col=='title_content'">notice_title like '%'||#{word}||'%' or
+					notice_content like '%'||#{word}||'%'</when>
 				<when test="col=='notice_content'">notice_content like '%'||#{word}||'%'</when>
 			</choose>
 		</where>
-	
-		 order by notice_num desc))
+
+		order by notice_num desc))
 		
-		<![CDATA[where r>=#{sno} and r<=#{eno} ]]>	
+		<![CDATA[where r>=#{sno} and r<=#{eno} ]]>
 	</select>
 
 	<select id="total" parameterType="Map" resultType="int">
@@ -30,47 +46,65 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<choose>
 				<when test="col=='member_id'">member_id like '%'||#{word}||'%'</when>
 				<when test="col=='notice_title'">notice_title like '%'||#{word}||'%'</when>
-				<when test="col=='notice_title_content'">notice_title like '%'||#{word}||'%' or notice_content like '%'||#{word}||'%'</when>
+				<when test="col=='notice_title_content'">notice_title like '%'||#{word}||'%' or
+					notice_content like '%'||#{word}||'%'</when>
 				<when test="col=='notice_content'">notice_content like '%'||#{word}||'%'</when>
 			</choose>
 		</where>
 	</select>
-	
-	<insert id="create" parameterType="NoticeDTO" >
-		insert into notice_hap(notice_num, member_id, notice_title, notice_content,notice_filename, notice_filesize, notice_passwd, notice_wdate)
-		values((select nvl(max(notice_num),0) +1 from notice_hap), #{member_id},#{notice_title},#{notice_content},#{notice_filename, jdbcType=VARCHAR}, #{notice_filesize, jdbcType=INTEGER}, #{notice_passwd}, sysdate) 
-	
+
+	<insert id="create" parameterType="NoticeDTO">
+		insert into
+		notice_hap(notice_num, member_id, notice_title,
+		notice_content,notice_filename, notice_filesize, notice_passwd,
+		notice_wdate, notice_noti)
+		values((select nvl(max(notice_num),0) +1
+		from notice_hap),
+		#{member_id},#{notice_title},#{notice_content},#{notice_filename,
+		jdbcType=VARCHAR}, #{notice_filesize, jdbcType=INTEGER},
+		#{notice_passwd}, sysdate, #{notice_noti})
+
 	</insert>
-	
+
 	<select id="read" parameterType="int" resultType="NoticeDTO">
-		 select notice_num, member_id, notice_title, notice_content, notice_wdate, notice_viewcnt, notice_filename from notice_hap where notice_num=#{notice_num}
+		select
+		notice_num, member_id, notice_title, notice_content, notice_wdate,
+		notice_viewcnt, notice_filename from notice_hap where
+		notice_num=#{notice_num}
 	</select>
-	
+
 	<update id="upViewcnt" parameterType="int">
-		update notice_hap set notice_viewcnt=notice_viewcnt+1 where notice_num=#{notice_num}
+		update notice_hap set
+		notice_viewcnt=notice_viewcnt+1 where notice_num=#{notice_num}
 	</update>
-	
+
 	<update id="update" parameterType="NoticeDTO">
-		update notice_hap 
+		update notice_hap
 		<set>
-		member_id=#{member_id}, notice_title=#{notice_title}, notice_content=#{notice_content},
-		<if test="notice_filesize>0">
-			notice_filename=#{notice_filename}, notice_filesize=#{notice_filesize}
-		</if>
-		</set><!--  set 태그를 써서 ','를 때에따라 쓰고 없앰 -->
+			member_id=#{member_id}, notice_title=#{notice_title},
+			notice_content=#{notice_content},
+			<if test="notice_filesize>0">
+				notice_filename=#{notice_filename},
+				notice_filesize=#{notice_filesize}
+			</if>
+		</set><!-- set 태그를 써서 ','를 때에따라 쓰고 없앰 -->
 		where notice_num=#{notice_num}
 	</update>
-	
+
 	<select id="passCheck" parameterType="Map" resultType="int">
-		select count(notice_num) as cnt from notice_hap where notice_num=#{notice_num} and notice_passwd=#{notice_passwd}
+		select
+		count(notice_num) as cnt from notice_hap where
+		notice_num=#{notice_num} and notice_passwd=#{notice_passwd}
 	</select>
-	
+
 	<select id="checkRef" parameterType="int" resultType="int">
-		select count(*) from notice_hap where notice_refnum=#{notice_num}
+		select
+		count(*) from notice_hap where notice_refnum=#{notice_num}
 	</select>
-	
+
 	<delete id="delete" parameterType="int">
-		delete from notice_hap where notice_num=#{notice_num}
+		delete from notice_hap where
+		notice_num=#{notice_num}
 	</delete>
-		
+
 </mapper>

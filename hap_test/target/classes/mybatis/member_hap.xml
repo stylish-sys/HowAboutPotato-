@@ -6,6 +6,14 @@
 <mapper namespace="spring.model.mapper.Member_hapMapper">
   
 <!-- 	int create(Member_hapDTO dto); -->
+<insert id="member_kakao_create" parameterType="Member_hapDTO">
+	insert into member_hap(member_num, member_id, member_name, member_passwd, 
+                       member_phone, member_email, member_birth, member_fname, member_grade)
+            	values(
+            		   (SELECT NVL(MAX(member_num),0)+1 FROM member_hap), #{member_id}, #{member_name}, #{member_passwd}, 
+            		   #{member_phone}, #{member_email}, #{member_birth}, #{member_fname, jdbcType=VARCHAR}, 'A')        
+</insert>
+
 <insert id="member_create" parameterType="Member_hapDTO">
 	insert into member_hap(member_num, member_id, member_name, member_passwd, 
                        member_phone, member_email, member_birth, member_fname, member_grade)

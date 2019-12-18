@@ -25,6 +25,11 @@
         <put-attribute name="body" value="/WEB-INF/views/member_hap/member_create.jsp" /> 
     </definition>
     
+    <definition name="/member_hap/member_kakao_create" extends="main"> 
+        <put-attribute name="title" value="HAP회원가입 양식" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/member_hap/member_kakao_create.jsp" /> 
+    </definition>
+    
    <definition name="/member_hap/preProc" extends="main"> 
         <put-attribute name="title" value="에러메세지확인" ></put-attribute> 
         <put-attribute name="body" value="/WEB-INF/views/member_hap/preProc.jsp" /> 

@@ -28,6 +28,11 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script
 	src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=dnlcnqixxo"></script>
+<script type="text/javascript"
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=dnlcnqixxo&callback=CALLBACK_FUNCTION"></script>
+
 <style>
 star {
 	color: #FF0000;;
@@ -54,20 +59,29 @@ content {
 				<td colspan="2" style="text-align: center">
 					<div id="myCarousel" class="carousel slide" data-ride="carousel"
 						style="height: 100%; width: 100%;" align="center">
-						<!-- Wrapper for slides -->
+						<ol class="carousel-indicators">
+							<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+							<li data-target="#myCarousel" data-slide-to="1"></li>
+							<li data-target="#myCarousel" data-slide-to="2"></li>
+						</ol>
+
 
 						<div class="carousel-inner">
-							<c:forEach var="dto" items="${rlist}" varStatus="index">
-								<div class="item <c:if test="${index.first}">active</c:if>">
-									<img
-										src="${pageContext.request.contextPath}/storage/${dto.room_filename}"
-										class="img-rounded " width="800px" height="800px"
-										alt="image${index.count}">
-								</div>
-							</c:forEach>
+							<div class="item active">
+								<img src="${root }/images/motel1.jpg" alt="motel1" height="100%"
+									width="100%">
+							</div>
+
+							<div class="item">
+								<img src="${root }/images/motel2.jpg" alt="motel2">
+							</div>
+
+							<div class="item">
+								<img src="${root }/images/motel3.jpg" alt="motel3" height="100%"
+									width="100%">
+							</div>
 						</div>
 
-						<!-- Left and right controls -->
 						<a class="left carousel-control" href="#myCarousel"
 							data-slide="prev"> <span
 							class="glyphicon glyphicon-chevron-left"></span> <span
@@ -85,12 +99,10 @@ content {
 
 		</table>
 		<hr>
-		<c:if
-			test="${not empty sessionScope.member_id &&sessionScope.member_grade =='H' }">
-			<button class="btn"
-				onclick="location.href='../room_hap/create?board_num=${dto.board_num}'">방
-				등록</button>
-		</c:if>
+		<!-- admin만 -->
+		<button class="btn"
+			onclick="location.href='../room_hap/create?board_num=${dto.board_num}'">방
+			등록</button>
 		<table class="table table-bordered">
 			<c:forEach var="dto" items="${rlist }">
 				<th>방 사진</th>
@@ -98,11 +110,9 @@ content {
 				<th>방 가격</th>
 				<th>최대 숙박인원</th>
 				<th>방 정보</th>
-				<c:if
-					test="${not empty sessionScope.member_id &&sessionScope.member_grade =='H' }">
-					<th>수정/삭제</th>
-				</c:if>ㅋ
-				
+				<!-- admin만 -->
+				<th>수정/삭제</th>
+				<!-- admin만 -->
 				<tr>
 					<td><img
 						src="${pageContext.request.contextPath}/storage/${dto.room_filename}"
@@ -111,20 +121,16 @@ content {
 					<td>${dto.room_price }원</td>
 					<td>${dto.room_max }명</td>
 					<td>${dto.room_content }</td>
-					<c:if
-						test="${not empty sessionScope.member_id &&sessionScope.member_grade =='H' }">
-
-						<td>
-							<!-- admin만 -->
-							<button class="btn"
-								onclick="location.href='../room_hap/update?room_num=${dto.room_num}&board_num=${param.board_num }'">방정보수정</button>
-							<button class="btn"
-								onclick="location.href='../room_hap/updateFile?room_num=${dto.room_num}&board_num=${param.board_num }&oldfile=${dto.room_filename }'">방사진수정</button>
-							<button class="btn"
-								onclick="location.href='../room_hap/delete?room_num=${dto.room_num}&board_num=${param.board_num }'">방삭제</button>
-							<!-- admin만 -->
-						</td>
-					</c:if>
+					<td>
+						<!-- admin만 -->
+						<button class="btn"
+							onclick="location.href='../room_hap/update?room_num=${dto.room_num}&board_num=${param.board_num }'">방정보수정</button>
+						<button class="btn"
+							onclick="location.href='../room_hap/updateFile?room_num=${dto.room_num}&board_num=${param.board_num }&oldfile=${dto.room_filename }'">방사진수정</button>
+						<button class="btn"
+							onclick="location.href='../room_hap/delete?room_num=${dto.room_num}&board_num=${param.board_num }'">방삭제</button>
+						<!-- admin만 -->
+					</td>
 				</tr>
 
 			</c:forEach>
@@ -133,57 +139,42 @@ content {
 		<hr>
 
 		<div class="container">
-
-			<script type="text/javascript"
-				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a3cb1a887ea201052c452feb4c0f8edb&libraries=services,clusterer,drawing"></script>
-			<h1>숙소 약도</h1>
-			<p>주소 : ${dto.board_address1 } ${dto.board_address2 }
-			<div id="map" style="width: 100%; height: 350px;"></div>
-			<script>
-				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-				mapOption = {
-					center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-					level : 3
-				// 지도의 확대 레벨
-				};
-
-				// 지도를 생성합니다    
-				var map = new kakao.maps.Map(mapContainer, mapOption);
-
-				// 주소-좌표 변환 객체를 생성합니다
-				var geocoder = new kakao.maps.services.Geocoder();
-
-				// 주소로 좌표를 검색합니다
-				geocoder
-						.addressSearch(
-								'${dto.board_address1}',
-								function(result, status) {
-
-									// 정상적으로 검색이 완료됐으면 
-									if (status === kakao.maps.services.Status.OK) {
-
-										var coords = new kakao.maps.LatLng(
-												result[0].y, result[0].x);
-
-										// 결과값으로 받은 위치를 마커로 표시합니다
-										var marker = new kakao.maps.Marker({
-											map : map,
-											position : coords
-										});
-
-										// 인포윈도우로 장소에 대한 설명을 표시합니다
-										var infowindow = new kakao.maps.InfoWindow(
-												{
-													content : '<div style="width:150px;text-align:center;padding:6px 0;">${dto.board_name}</div>'
-												});
-										infowindow.open(map, marker);
-
-										// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-										map.setCenter(coords);
-									}
-								});
-			</script>
-			<hr>
+			<table cellpadding="0" cellspacing="0" width="462">
+				<tr>
+					지도
+					<td style="border: 1px solid #cecece;"><a
+						href="https://v4.map.naver.com/?searchCoord=0ab48c7e75af1855e33dd58e25a2303becc4d514bb23086638e4585ac93dc6e4&query=7IaU642w7Iqk7YGs&menu=location&tab=1&lng=4d3fff340ef578cacbc29f5d6390f980&__fromRestorer=true&mapMode=0&mpx=f440d166ab8fccf209a536f4e12561bb1e9e16be5c4c6d5dd75731d3a375716263bbce83afc37eae9852cae5f58a418b&lat=9fb7bb36e64d3551cc3d1e2b44cce92a&dlevel=12&enc=b64"
+						target="_blank"><img
+							src="http://prt.map.naver.com/mashupmap/print?key=p1574646517458_-69050510"
+							width="460" height="340" alt="지도 크게 보기" title="지도 크게 보기"
+							border="0" style="vertical-align: top;" /></a></td>
+				</tr>
+				<tr>
+					<td>
+						<table cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td height="30" bgcolor="#f9f9f9" align="left"
+									style="padding-left: 9px; border-left: 1px solid #cecece; border-bottom: 1px solid #cecece;">
+									<span
+									style="font-family: tahoma; font-size: 11px; color: #666;">2019.11.25</span>&nbsp;<span
+									style="font-size: 11px; color: #e5e5e5;">|</span>&nbsp;<a
+									style="font-family: dotum, sans-serif; font-size: 11px; color: #666; text-decoration: none; letter-spacing: -1px;"
+									href="https://v4.map.naver.com/?searchCoord=0ab48c7e75af1855e33dd58e25a2303becc4d514bb23086638e4585ac93dc6e4&query=7IaU642w7Iqk7YGs&menu=location&tab=1&lng=4d3fff340ef578cacbc29f5d6390f980&__fromRestorer=true&mapMode=0&mpx=f440d166ab8fccf209a536f4e12561bb1e9e16be5c4c6d5dd75731d3a375716263bbce83afc37eae9852cae5f58a418b&lat=9fb7bb36e64d3551cc3d1e2b44cce92a&dlevel=12&enc=b64"
+									target="_blank">지도 크게 보기</a>
+								</td>
+								<td width="98" bgcolor="#f9f9f9" align="right"
+									style="text-align: right; padding-right: 9px; border-right: 1px solid #cecece; border-bottom: 1px solid #cecece;">
+									<span style="float: right;"><span
+										style="font-size: 9px; font-family: Verdana, sans-serif; color: #444;">&copy;&nbsp;</span>&nbsp;<a
+										style="font-family: tahoma; font-size: 9px; font-weight: bold; color: #2db400; text-decoration: none;"
+										href="https://www.navercorp.com" target="_blank">NAVER
+											Corp.</a></span>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
 
 			<div class='row'>
 				<div class="col-lg-12">
@@ -195,7 +186,8 @@ content {
 							<button id='addReplyBtn'
 								class='btn btn-primary btn-xs pull-right'>New Reply</button>
 
-							<br> <br>
+							<br>
+							<br>
 						</div>
 
 
@@ -205,7 +197,7 @@ content {
 								<li class="left clearfix" data-rno="12">
 									<div>
 										<div class="header">
-											<div class="image rounded">
+											<div>
 												<img src="${root }/images/pic04.jpg" alt="이미지의 묘사 내용"
 													height="100px" width="100px" />
 											</div>
@@ -274,7 +266,7 @@ content {
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- /.modal -->
-	</div>
+
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath }/js/breply.js"></script>
 	<script>
@@ -304,10 +296,18 @@ content {
 														return;
 													}
 													for (var i = 0, len = list.length || 0; i < len; i++) {
+
 														str += "<li class='list-group-item' data-rw_num='"+list[i].rw_num+"'>";
-														str += "<div><div class='header'><div><img src=\"${root}/storage/"+ list[i].member_fname+"\" alt=\"신호 없음\" height=\"100px\" width=\"100px\"/></div><strong class='primary-font'><nickname>"
-																+ list[i].member_id
-																+ "</nickname></strong>";
+														if (list[i].member_fname
+																.includes("http")) {
+															str += "<div><div class='header'><div><img src=\""+ list[i].member_fname+"\" alt=\"신호 없음\" height=\"100px\" width=\"100px\"/></div><strong class='primary-font'><nickname>"
+																	+ list[i].member_id
+																	+ "</nickname></strong>";
+														} else {
+															str += "<div><div class='header'><div><img src=\"${root}/storage/"+ list[i].member_fname+"\" alt=\"신호 없음\" height=\"100px\" width=\"100px\"/></div><strong class='primary-font'><nickname>"
+																	+ list[i].member_id
+																	+ "</nickname></strong>";
+														}
 														str += "<small class='pull-right text-muted'>"
 																+ list[i].rw_date
 																+ "</small></div><br><content>";
@@ -537,14 +537,14 @@ content {
 		<section>
 			<h2>이용 안내</h2>
 			<img src="../images/motel4.png">
+			<h2>공지사항</h2>
 			<ul type="disc">
-				<h1>공지사항</h1>
 				<li>리치웰 호텔 파티룸 오픈파티 가능한 객실을 준비해 두었습니다</li>
 				<li>객실당 차량 1대 가능</li>
 			</ul>
 
+			<h2>기본규정</h2>
 			<ul type="disc">
-				<h1>기본규정</h1>
 				<li>객실은 부티크 호텔 특성상 이미지와 다른 객실이 배정될 수 있습니다</li>
 				<li>객실 지정은 불가 합니다(체크인시 랜덤 배정)</li>
 				<li>전 객실 2인기준 (인원추가 1인당 2만원)</li>
@@ -555,15 +555,27 @@ content {
 		</section>
 
 		<hr>
+		<section>
+			<h2>찾아 오시는 길</h2>
+
+			<div id="map" style="width: 959px; height: 400px;"></div>
+
+		</section>
+
+		<!-- 	<div id="map" style="width:100%;height:400px;"></div> -->
+
+		<!-- 	<script> -->
+		<!-- // 		var mapOptions = { -->
+		<!-- // 	    center: new naver.maps.LatLng(37.3595704, 127.105399), -->
+		<!-- // 	    zoom: 10 -->
+		<!-- // 					}; -->
+
+		<!-- // 		var map = new naver.maps.Map('map', mapOptions); -->
+		<!-- 	</script> -->
+
 		<div style="text-align: center">
-			<c:if test="${not empty sessionScope.member_id}">
-				<button type="submit" class="btn"
-					onclick="location.href='../res/create?board_num=${dto.board_num}'">예약하기</button>
-			</c:if>
-			<c:if test="${empty sessionScope.member_id }">
-				<button type="submit" class="btn"
-					onclick="location.href='../member_hap/login'">로그인 후 예약</button>
-			</c:if>
+			<button type="submit" class="btn"
+				onclick="location.href='../res/create?board_num=${dto.board_num}'">결제하기</button>
 		</div>
 
 	</div>

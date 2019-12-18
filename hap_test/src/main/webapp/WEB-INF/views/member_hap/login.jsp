@@ -109,6 +109,56 @@
 					<br>
 						<a href="${url}"> <img
 							src="../images/naver_create.png" /></a>
+					<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<a id="kakao-login-btn"></a>
+<a href="http://developers.kakao.com/logout"></a>
+<!-- Kakao Login -->
+<script type="text/javascript">
+      // 사용할 앱의 JavaScript 키를 설정해 주세요.
+      Kakao.init('40c7acb685fb1a07ba5cb37a10f4029e');
+      // 카카오 로그인 버튼을 생성합니다.
+      Kakao.Auth.createLoginButton({
+        container: '#kakao-login-btn',
+        success: function(authObj) {
+          // 로그인 성공시, API를 호출합니다.
+          Kakao.API.request({
+            url: '/v1/user/me',
+            success: function(res) {
+              console.log(JSON.stringify(res.kaccount_email));
+              console.log(JSON.stringify(res.id));
+              console.log(JSON.stringify(res.properties.profile_image));
+              console.log(JSON.stringify(res.properties.nickname));
+              function sendPost(action, params) {
+            		var form = document.createElement('form');
+            		form.setAttribute('method', 'post');
+            		form.setAttribute('action', action);
+            		document.charset = "utf-8";
+            		for ( var key in params) {
+            			var hiddenField = document.createElement('input');
+            			hiddenField.setAttribute('type', 'hidden');
+            			hiddenField.setAttribute('name', key);
+            			hiddenField.setAttribute('value', params[key]);
+            			form.appendChild(hiddenField);
+            		}
+            		document.body.appendChild(form);
+            		form.submit();
+            	}
+              sendPost('member_kakao_create',{
+            	  'name': res.properties.nickname,
+            	  'email' : res.kaccount_email,
+            	  'id' : res.id,
+            	  'fname': res.properties.profile_image})
+            },
+            fail: function(error) {
+              alert(JSON.stringify(error));
+            }
+          });
+        },
+        fail: function(err) {
+          alert(JSON.stringify(err));
+        }
+      });
+</script>
 					</div>
 				</div>
 			</div>

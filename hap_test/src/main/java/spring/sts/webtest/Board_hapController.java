@@ -65,8 +65,8 @@ public class Board_hapController {
 	}
 
 	@PostMapping("/board_hap/update")
-	public String update(Board_hapDTO dto, String oldfile, HttpSession session,
-			HttpServletRequest request, Model model) {
+	public String update(Board_hapDTO dto, String oldfile, HttpSession session, HttpServletRequest request,
+			Model model) {
 
 		if (bmapper.update(dto) == 1) {
 			return "redirect:/board_hap/list";
@@ -112,18 +112,44 @@ public class Board_hapController {
 	}
 
 	@GetMapping("/board_hap/read")
-	public String read(int board_num, HttpSession session, Model model, HttpServletRequest request) {
+	public String read(int board_num, HttpSession session, Model model, HttpServletRequest request, int nowPage,
+			String col, String word) {
 
 		if (board_num == 0) {
 			board_num = (Integer) session.getAttribute("board_num");
 		}
+
 		Board_hapDTO dto = bmapper.read(board_num);
 		model.addAttribute("dto", dto);
-		
-		bmapper.upcnt(board_num);
+		model.addAttribute("board_num", board_num);
+		request.setAttribute("board_num", board_num);
+
 		List<Room_hapDTO> rlist = rmapper.list(board_num);
 
 		request.setAttribute("rlist", rlist);
+		/* 댓글 관련 시작 */
+		int nPage = 1; // 시작 페이지 번호는 1부터
+
+		if (request.getParameter("nPage") != null) {
+			nPage = Integer.parseInt(request.getParameter("nPage"));
+		}
+		int recordPerPage = 5; // 한페이지당 출력할 레코드 갯수
+
+		int sno = ((nPage - 1) * recordPerPage) + 1; //
+		int eno = nPage * recordPerPage;
+
+		Map map = new HashMap();
+		map.put("sno", sno);
+		map.put("eno", eno);
+		map.put("board_num", board_num);
+		map.put("nPage", nPage);
+		map.put("nowPage", nowPage);
+		map.put("col", col);
+		map.put("word", word);
+
+		model.addAllAttributes(map);
+
+		/* 댓글 관련 끝 */
 
 		return "/board_hap/read";
 	}

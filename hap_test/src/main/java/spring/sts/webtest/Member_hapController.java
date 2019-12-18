@@ -99,17 +99,22 @@ public class Member_hapController {
 
 			String basePath = request.getRealPath("/storage");
 
-			int size = (int) dto.getMember_fnameMF().getSize();
-
-			if (size > 0) {
-				dto.setMember_fname(Utility.saveFileSpring(dto.getMember_fnameMF(), basePath));
-			} else {
-				dto.setMember_fname("member.jpg");
-			}
-
 			int flag = mapper.member_create(dto);
+			if (dto.getMember_fnameMF() != null) {
+				int size = (int) dto.getMember_fnameMF().getSize();
 
-			if (flag == 1) {
+				if (size > 0) {
+					dto.setMember_fname(Utility.saveFileSpring(dto.getMember_fnameMF(), basePath));
+				} else {
+					dto.setMember_fname("member.jpg");
+				}
+
+				if (flag == 1) {
+					return "redirect:/";
+				} else {
+					model.addAttribute("str", "알 수 없는 이유로 회원가입에 실패하였습니다.");
+				}
+			} else if (flag == 1) {
 				return "redirect:/";
 			} else {
 				model.addAttribute("str", "알 수 없는 이유로 회원가입에 실패하였습니다.");
@@ -216,8 +221,8 @@ public class Member_hapController {
 	}
 
 	@RequestMapping(value = "/member_hap/callback", method = { RequestMethod.GET, RequestMethod.POST })
-	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session, HttpServletRequest request)
-			throws IOException, ParseException {
+	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session,
+			HttpServletRequest request) throws IOException, ParseException {
 		OAuth2AccessToken oauthToken;
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
 //1. 로그인 사용자 정보를 읽어온다.
@@ -242,31 +247,30 @@ public class Member_hapController {
 			Member_hapDTO dto = new Member_hapDTO();
 
 			JSONObject create1 = response_obj;
-			
+
 			Member_hapDTO flag = mapper.member_pread(nickname);
-			
-			if(flag != null) {
+
+			if (flag != null) {
 				request.setAttribute("str", "이미 네이버로 회원가입 되어있습니다.");
-				
+
 				return "/member_hap/preProc";
-			}
-			else {
+			} else {
 
-			Object member_email = create1.get("email");
-			Object member_birth = create1.get("birthday");
-			Object member_name = create1.get("name");
+				Object member_email = create1.get("email");
+				Object member_birth = create1.get("birthday");
+				Object member_name = create1.get("name");
 
-			dto.setMember_id(nickname);
-			dto.setMember_name((String) member_name);
-			dto.setMember_email((String) member_email);
-			dto.setMember_birth("1999-" + (String) member_birth);
-			dto.setMember_fname("member.jpg");
-			dto.setMember_phone("010-0000-0000");
-			dto.setMember_passwd("1234");
+				dto.setMember_id(nickname);
+				dto.setMember_name((String) member_name);
+				dto.setMember_email((String) member_email);
+				dto.setMember_birth("1999-" + (String) member_birth);
+				dto.setMember_fname("member.jpg");
+				dto.setMember_phone("010-0000-0000");
+				dto.setMember_passwd("1234");
 
-			mapper.member_create(dto);
+				mapper.member_create(dto);
 
-			model.addAttribute("dto", dto);
+				model.addAttribute("dto", dto);
 			}
 		}
 

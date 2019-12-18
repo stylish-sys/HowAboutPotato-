@@ -58,16 +58,36 @@ FROM(
         
         <where>
          <choose>
-            <when test="word=='경기'">
-               board_address1 like '%'||'경기'||'%'
+         	<when test="col=='지역'">
+               board_address1 like '%'||''||'%' and board_address1 like '%'||#{word}||'%'
+            </when>
+         
+            <when test="col=='강원'">
+               board_address1 like '%'||'강원'||'%' and board_address1 like '%'||#{word}||'%'
             </when>
             
-            <when test="word=='강원'">
-               board_address1 like '%'||'강원'||'%'
+            <when test="col=='경기'">
+               board_address1 like '%'||'경기'||'%' and board_address1 like '%'||#{word}||'%'
             </when>
             
-            <when test="word=='제주'">
-               board_address1 like '%'||'제주'||'%'
+            <when test="col=='서울'">
+               board_address1 like '%'||'서울'||'%' and board_address1 like '%'||#{word}||'%'
+            </when>
+            
+            <when test="col=='제주'">
+               board_address1 like '%'||'제주'||'%' and board_address1 like '%'||#{word}||'%'
+            </when>
+            
+            <when test="col=='전라'">
+               board_address1 like '%'||'전라'||'%' and board_address1 like '%'||#{word}||'%'
+            </when>
+            
+            <when test="col=='충청'">
+               board_address1 like '%'||'충청'||'%' and board_address1 like '%'||#{word}||'%'
+            </when>
+            
+            <when test="col=='경상'">
+               board_address1 like '%'||'경상'||'%'
             </when>
             
          </choose>

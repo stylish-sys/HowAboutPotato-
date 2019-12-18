@@ -32,6 +32,8 @@ table {
 
 </head>
 <body>
+	<input type = "hidden" name = "word" value = "${param.word }">
+	<input type = "hidden" name = "col" value = "${param.col }">
 	<div class="container">
 		<br>
 		<form class="form-inline" method="post" action="list">
@@ -39,21 +41,22 @@ table {
 				<h2>실시간 빈 방 검색</h2>
 			</div>
 			<br>
-			<div class="form-group">
-				<select name="word" class="form-control" name="word"
-					required="required" style="width: 200px; ">
-					<option value="경기"
-						<c:if test="${word==board_address1}">selected</c:if>>경기</option>
-					<option value="강원"
-						<c:if test="${word==board_address1}">selected</c:if>>강원</option>
-					<option value="제주"
-						<c:if test="${word==board_address1}">selected</c:if>>제주</option>
-				</select>
-			</div>
+<div class = "form-group">
+   		<select name = "col" class = "form-control">
+   		<option value="지역"<c:if test="${col=='지역'}">selected</c:if>>-지역을 선택하세요-</option>
+   		<option value="강원"<c:if test="${col=='강원'}">selected</c:if>>-----강원-----</option>
+		<option value="경기"<c:if test="${col=='경기'}">selected</c:if>>-----경기-----</option>
+		<option value="서울"<c:if test="${col=='서울'}">selected</c:if>>-----서울-----</option>
+		<option value="제주"<c:if test="${col=='제주'}">selected</c:if>>-----제주-----</option>
+		<option value="전라"<c:if test="${col=='전라'}">selected</c:if>>-----전라-----</option>
+		<option value="충청"<c:if test="${col=='충청'}">selected</c:if>>-----충청-----</option>
+		<option value="경상"<c:if test="${col=='경상'}">selected</c:if>>-----경상-----</option>
+   	</select>
+   </div>
 
-			<div class="form-group">
-				<input type="hidden" class="form-control" name="word"
-					required="required" value="${word }">
+			<div class="form-inline">
+				<input type="text" class="form-control" name="word"
+					 value="${word }">
 			</div>
 
 			<button class="btn">검색</button>
@@ -63,8 +66,6 @@ table {
 				<button class="btn" type="button"
 					onclick="location.href='${pageContext.request.contextPath}/board_hap/create'">업소등록</button>
 			</c:if>
-
-
 
 		</form>
 

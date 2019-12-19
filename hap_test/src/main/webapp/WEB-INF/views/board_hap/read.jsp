@@ -67,19 +67,12 @@ content {
 
 
 						<div class="carousel-inner">
-							<div class="item active">
-								<img src="${root }/images/motel1.jpg" alt="motel1" height="100%"
-									width="100%">
+						<c:forEach var="dto" items="${rlist}" varStatus="index">
+							<div class="item <c:if test="${index.first}">active</c:if>">
+								<img src="${pageContext.request.contextPath}/storage/${dto.room_filename}"
+						class="img-rounded " width="800px" height="800px" alt="image${index.count}">
 							</div>
-
-							<div class="item">
-								<img src="${root }/images/motel2.jpg" alt="motel2">
-							</div>
-
-							<div class="item">
-								<img src="${root }/images/motel3.jpg" alt="motel3" height="100%"
-									width="100%">
-							</div>
+						</c:forEach>
 						</div>
 
 						<a class="left carousel-control" href="#myCarousel"

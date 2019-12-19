@@ -11,7 +11,9 @@
 }
 </style>
 
+<!-- <script src="https://www.google.com/recaptcha/api.js?render=6LfMesgUAAAAAHB205x3VG_Np3xConOO2pvDiQAs"></script> -->
 <script type="text/javascript">
+var check =0;
 	function idCheck(member_id) {
 		if (member_id == '') {
 			alert("아이디를 입력하세요");
@@ -84,6 +86,11 @@
 		if (f.member_email.value.length == 0) {
 			alert("E-mail을 입력하세요.");
 			f.member_email.focus();
+			return false;
+		}
+
+		if (check == 0) {
+			alert("로봇이 아닙니다 옆 버튼을 클릭후 '리캡챠 확인' 버튼을 꼭 클릭하세요.");
 			return false;
 		}
 
@@ -190,6 +197,65 @@
 					onclick="emailCheck(document.frm.member_email.value)">E-mail 중복확인</button>
 				<div id="emailcheck"></div>
 			</div>
+			
+			<div class = "form-group">
+			
+			  <input type="hidden" id="g-recaptcha" name="g-recaptcha">
+			
+			</div>
+			 <div class="g-recaptcha" data-sitekey="6Lc5e8gUAAAAANV1E1ZA6jRcwD-RZryn7Mvlyvz_"></div>
+			 <button type = "button" id="test_btn" class="btn">리캡챠 확인</button>
+			<div>
+			
+			</div>
+			
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+			 <script src='https://www.google.com/recaptcha/api.js'></script>
+
+			
+			<script>
+			
+        	$(document).ready(function() {
+        		
+            $("#test_btn").click(function() {
+            	
+                $.ajax({
+                    url: '/webtest/VerifyRecaptcha',
+                    type: 'post',
+                    data: {
+                        recaptcha: $("#g-recaptcha-response").val()
+                    },
+                    success: function(data) {
+                    	
+                    	var result = data.getElementsByTagName('Integer')[0].childNodes[0].nodeValue;
+                        switch (parseInt(result)) {
+                            case 0:
+                                alert("자동 가입 방지 봇 통과");
+                                check = 1;
+                                break;
+ 
+                            case 1:
+                                alert("자동 가입 방지 봇을 확인 한뒤 진행 해 주세요.");
+
+                                break;
+ 
+                            default:
+                                alert("자동 가입 방지 봇을 실행 하던 중 오류가 발생 했습니다. [Error bot Code : " + Number(data) + "]");
+
+                            	break;
+                        }
+                    }
+                });
+            });
+        });
+ 
+    </script>
+
+
+
+
+			
+
 				
 			<br>
 			<br>

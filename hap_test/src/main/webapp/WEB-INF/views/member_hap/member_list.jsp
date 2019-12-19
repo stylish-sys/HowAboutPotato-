@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<c:set var="userImg" value="${dto.member_fname}" />
 
 <!DOCTYPE html>
 <html>
@@ -54,9 +56,25 @@
 
 			<table class="table table-bordered">
 				<tr>
-					<td rowspan="5" class="col-sm-2"><img
-						src="${pageContext.request.contextPath}/storage/${dto.member_fname}"
-						class="img-rounded" width="200px" height="200px"></td>
+					<c:choose>
+
+						<c:when test="${fn:contains(userImg, 'http')}">
+							<tr>
+								<td colspan="2" style="text-align: center"><img
+									src="${dto.member_fname }" width="250px" height="250px"
+									class="img-rounded"></td>
+							</tr>
+						</c:when>
+
+						<c:otherwise>
+							<tr>
+								<td colspan="2" style="text-align: center"><img
+									src="${pageContext.request.contextPath }/storage/${dto.member_fname}"
+									width="250px" height="250px" class="img-rounded"></td>
+							</tr>
+
+						</c:otherwise>
+					</c:choose>
 					<th class="col-sm-2">ID:</th>
 					<td class="col-sm-8"><a
 						href="javascript:read('${dto.member_id}')">${dto.member_id}</a></td>
@@ -91,6 +109,6 @@
 
 	</div>
 
-	 ${paging}
+	${paging}
 </body>
 </html>

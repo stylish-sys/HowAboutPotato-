@@ -416,7 +416,7 @@ public class Member_hapController {
 		List<Member_hapDTO> member_list = mapper.member_list(map);
 
 		int total = mapper.member_total(map);
-		String paging = Utility.paging(total, nowPage, recordPerPage, col, word);
+		String paging = Utility.paging_l(total, nowPage, recordPerPage, col, word);
 
 		request.setAttribute("member_list", member_list);
 		request.setAttribute("paging", paging);

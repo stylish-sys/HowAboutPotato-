@@ -15,18 +15,18 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
     HttpSession session = request.getSession(true);
-    System.out.println("session.getAttribute(\"grade\"): " + session.getAttribute("grade"));
+    System.out.println("session.getAttribute(\"member_grade\"): " + session.getAttribute("member_grade"));
     System.out.println("preHandle executed.");
     System.out.println("URL: " + request.getContextPath());
     
     // 관리자 로그인시 "grade" 세션 변수 생성
-    String grade = Utility.checkNull((String)session.getAttribute("grade"));
+    String member_grade = Utility.checkNull((String)session.getAttribute("member_grade"));
     
-    if (grade.equals("A") == true ){ // 접근 가능, 요청 페이지 처리
+    if (member_grade.equals("H") == true ){ // 접근 가능, 요청 페이지 처리
       return true; // 요청 페이지로 계속 진행
     } else{
       // 에러 출력또는 로그인 페이지로 이동
-      response.sendRedirect(request.getContextPath() + "/member/login");
+      response.sendRedirect(request.getContextPath() + "/member_hap/login");
       return false;
     }
   }

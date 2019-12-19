@@ -2,11 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>로그인</title>
 <meta charset="utf-8">
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript"
 	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
 	charset="utf-8"></script>
@@ -38,6 +40,10 @@
 	/* 설정정보를 초기화하고 연동을 준비 */
 	naverLogin.init();
 	</script>
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -106,13 +112,12 @@
 					<button type="button" class="btn" onclick="passwdFind()">비밀번호
 						찾기</button>
 					<div id="naver_id_login">
-					<br>
-						<a href="${url}"> <img
-							src="../images/naver_create.png" /></a>
-					<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<a id="kakao-login-btn"></a>
-<a href="http://developers.kakao.com/logout"></a>
-<!-- Kakao Login -->
+						<br> <a href="${url}"> <img src="../images/네이버로 회원가입.png" /></a>
+						<a id="kakao-login-btn"><img src="../images/카카오로 회원가입.png"></a>
+						<a href="http://developers.kakao.com/logout"></a>
+
+
+						<!-- Kakao Login -->
 <script type="text/javascript">
       // 사용할 앱의 JavaScript 키를 설정해 주세요.
       Kakao.init('40c7acb685fb1a07ba5cb37a10f4029e');

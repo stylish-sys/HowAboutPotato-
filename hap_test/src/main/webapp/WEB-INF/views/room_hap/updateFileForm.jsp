@@ -11,9 +11,12 @@
 <h1 class = "col-sm-offset-2 col-sm-10">사진수정</h1>
   <form class="form-horizontal" action="updateFile" method = "post" enctype = "multipart/form-data">
   
-   <input type = "hidden" name = "oldfile" value = "${param.oldfile }">
-   <input type = "hidden" name = "room_num" value = "${param.room_num }">
-   <input type = "hidden" name = "board_num" value = "${param.board_num }">
+    <input type = "hidden" name = "oldfile" value = "${param.oldfile }">
+    <input type = "hidden" name = "room_num" value = "${param.room_num }">
+    <input type = "hidden" name = "board_num" value = "${param.board_num }">
+    <input type="hidden" name="col" value="${param.col }">
+	<input type="hidden" name="word" value="${param.word }">
+	<input type="hidden" name="nowPage" value="${param.nowPage }">
   
     <div class="form-group">
       <label class="control-label col-sm-2" for="oldfile">원본파일</label>

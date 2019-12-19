@@ -15,6 +15,9 @@
 
 	<input type ="hidden" name="room_num" value="${param.room_num}">
 	<input type ="hidden" name="board_num" value="${param.board_num}">
+	<input type="hidden" name="col" value="${param.col }">
+	<input type="hidden" name="word" value="${param.word }">
+	<input type="hidden" name="nowPage" value="${param.nowPage }">
 
 <div class = "jumbotron">
 	<h3>삭제확인</h3>

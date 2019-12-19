@@ -7,17 +7,18 @@
 </head>
 <body>
 
-<input type = "hidden" name = "word" value = "${param.word }">
-	<input type = "hidden" name = "col" value = "${param.col }">
-	<input type = "hidden" name = "nowPage" value = "${param.nowPage }">
 
 	<div class="container">
 	<br>
 	<br>
 		<h1 class="col-sm-offset-2 col-sm-10">방 등록</h1>
 
-		<form class="form-horizontal" action="create" method="post" name='frm'
-			enctype="multipart/form-data">
+		<form class="form-horizontal" action="create" method="post" name='frm' enctype="multipart/form-data">
+		
+			<input type="hidden" name="col" value="${param.col }">
+			<input type="hidden" name="word" value="${param.word }">
+			<input type="hidden" name="nowPage" value="${param.nowPage }">
+			<input type="hidden" name="board_num" value=${param.board_num}>
 		
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="room_filename">방 사진</label>
@@ -59,7 +60,7 @@
 						placeholder="방 정보를 입력하세요" name="room_content">
 				</div>
 			</div>
-		<input type="hidden" name="board_num" value=${param.board_num}>
+		
 
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-8">

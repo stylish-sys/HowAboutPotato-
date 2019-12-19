@@ -13,9 +13,10 @@
 
 <form class = "form-horizontal" action = "delete" method = "post" >
 
-	<input type ="hidden" name="room_num" value="${param.room_num}">
-	<input type ="hidden" name="board_num" value="${param.board_num}">
+	<input type = "hidden" name="room_num" value="${param.room_num}">
+	<input type = "hidden" name="board_num" value="${param.board_num}">
 	<input type = "hidden" name = "oldfile" value = "${param.oldfile }">
+	<input type = "hidden" name = "nowPage" value = "${param.nowPage }">
 
 <div class = "jumbotron">
 	<h3>삭제확인</h3>

@@ -91,9 +91,10 @@ content {
 							class="glyphicon glyphicon-chevron-right"></span> <span
 							class="sr-only">Next</span>
 						</a>
-					</div> <input type="hidden" name="col" value="${param.col }"> <input
-					type="hidden" name="word" value="${param.word }"> <input
-					type="hidden" name="nowPage" value="${param.nowPage }">
+					</div>
+					<input type="hidden" name="col" value="${param.col }">
+					<input type="hidden" name="word" value="${param.word }">
+					<input type="hidden" name="nowPage" value="${param.nowPage }">
 				</td>
 			</tr>
 
@@ -101,7 +102,7 @@ content {
 		<hr>
 		<!-- admin만 -->
 		<button class="btn"
-			onclick="location.href='../room_hap/create?board_num=${dto.board_num}'">방
+			onclick="location.href='../room_hap/create?board_num=${dto.board_num}&col=${param.col }&word=${param.word }&nowPage=${param.nowPage }'">방
 			등록</button>
 		<table class="table table-bordered">
 			<c:forEach var="dto" items="${rlist }">
@@ -124,11 +125,11 @@ content {
 					<td>
 						<!-- admin만 -->
 						<button class="btn"
-							onclick="location.href='../room_hap/update?room_num=${dto.room_num}&board_num=${param.board_num }'">방정보수정</button>
+							onclick="location.href='../room_hap/update?room_num=${dto.room_num}&board_num=${param.board_num }&col=${param.col }&word=${param.word }&nowPage=${param.nowPage }'">방정보수정</button>
 						<button class="btn"
-							onclick="location.href='../room_hap/updateFile?room_num=${dto.room_num}&board_num=${param.board_num }&oldfile=${dto.room_filename }'">방사진수정</button>
+							onclick="location.href='../room_hap/updateFile?room_num=${dto.room_num}&board_num=${param.board_num }&oldfile=${dto.room_filename }&col=${param.col }&word=${param.word }&nowPage=${param.nowPage }'">방사진수정</button>
 						<button class="btn"
-							onclick="location.href='../room_hap/delete?room_num=${dto.room_num}&board_num=${param.board_num }'">방삭제</button>
+							onclick="location.href='../room_hap/delete?room_num=${dto.room_num}&board_num=${param.board_num }&col=${param.col }&word=${param.word }&nowPage=${param.nowPage }'">방삭제</button>
 						<!-- admin만 -->
 					</td>
 				</tr>

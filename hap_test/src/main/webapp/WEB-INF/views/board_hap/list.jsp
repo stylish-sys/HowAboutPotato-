@@ -44,17 +44,16 @@ table {
 		<br>
 <div class = "form-group">
    		<select name = "col" class = "form-control">
-   		<option value="지역"<c:if test="${col=='지역'}">selected</c:if>>지역을 선택하세요</option>
-   		<option value="강원"<c:if test="${col=='강원'}">selected</c:if>>강원</option>
-		<option value="경기"<c:if test="${col=='경기'}">selected</c:if>>경기</option>
-		<option value="서울"<c:if test="${col=='서울'}">selected</c:if>>서울</option>
-		<option value="제주"<c:if test="${col=='제주'}">selected</c:if>>제주</option>
-		<option value="전라"<c:if test="${col=='전라'}">selected</c:if>>전라</option>
-		<option value="충청"<c:if test="${col=='충청'}">selected</c:if>>충청</option>
-		<option value="경상"<c:if test="${col=='경상'}">selected</c:if>>경상</option>
-   	</select>
-				<input type="text" class="form-control" name="word"
-					 value="${word }" placeholder = "상세주소">
+   		 <option value="지역"<c:if test="${col=='지역'}">selected</c:if>>지역을 선택하세요</option>
+   		 <option value="강원"<c:if test="${col=='강원'}">selected</c:if>>강원</option>
+		 <option value="경기"<c:if test="${col=='경기'}">selected</c:if>>경기</option>
+		 <option value="서울"<c:if test="${col=='서울'}">selected</c:if>>서울</option>
+		 <option value="제주"<c:if test="${col=='제주'}">selected</c:if>>제주</option>
+		 <option value="전라"<c:if test="${col=='전라'}">selected</c:if>>전라</option>
+		 <option value="충청"<c:if test="${col=='충청'}">selected</c:if>>충청</option>
+		 <option value="경상"<c:if test="${col=='경상'}">selected</c:if>>경상</option>
+   		</select>
+		 <input type="text" class="form-control" name="word" value="${word }" placeholder = "상세주소">
 				<button class="btn">검색</button>
    </div>
 

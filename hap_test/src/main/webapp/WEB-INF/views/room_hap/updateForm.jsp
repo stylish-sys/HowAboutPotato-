@@ -8,6 +8,10 @@
 <body>
 	<div class="container">
 		<h1 class="col-sm-offset-2 col-sm-10">방 등록</h1>
+		
+		<input type="hidden" name="col" value="${param.col }">	
+		<input type="hidden" name="word" value="${param.word }">
+		<input type="hidden" name="nowPage" value="${param.nowPage }">
 
 		<form class="form-horizontal" action="update" method="post" name='frm'
 			enctype="multipart/form-data">

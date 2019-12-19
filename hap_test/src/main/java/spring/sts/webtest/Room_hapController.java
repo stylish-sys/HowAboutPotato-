@@ -27,9 +27,24 @@ public class Room_hapController {
 	
 	@PostMapping("/room_hap/updateFile")
 	public String updateFile(Room_hapDTO dto,String oldfile, MultipartFile room_filenameMF,  HttpSession session, HttpServletRequest request, Model model) {
+		
+		// 검색관련
+		String word = Utility.checkNull(request.getParameter("word"));
+		String col = Utility.checkNull(request.getParameter("col"));
+
+		if (col.equals("total")) {
+			word = "";
+			}
+
+		// 페이징관련
+		int nowPage = 1;
+
+		if (request.getParameter("nowPage") != null) {
+			nowPage = Integer.parseInt(request.getParameter("nowPage"));
+			}
 
 		String basePath = request.getRealPath("/storage");
-
+		
 		if (oldfile != null) {
 			Utility.deleteFile(basePath, oldfile);
 		}
@@ -41,7 +56,7 @@ public class Room_hapController {
 		int flag = rmapper.updateFile(map);
 		
 		if (flag==1) {
-			return "redirect:/board_hap/read?board_num=" + dto.getBoard_num();
+			return "redirect:/board_hap/read?board_num=" + dto.getBoard_num()  + "&col=" + col + "&word=" + word + "&nowPage=" + nowPage;
 
 		} else {
 			
@@ -59,12 +74,28 @@ public class Room_hapController {
 	@PostMapping("/room_hap/update")
 	public String update(Room_hapDTO dto, MultipartFile room_filename, String oldfile, HttpSession session,
 			HttpServletRequest request, Model model) {
+		
+		// 검색관련
+		String word = Utility.checkNull(request.getParameter("word"));
+		String col = Utility.checkNull(request.getParameter("col"));
+
+		if (col.equals("total")) {
+			word = "";
+		}
+
+		// 페이징관련
+
+		int nowPage = 1;
+
+		if (request.getParameter("nowPage") != null) {
+			nowPage = Integer.parseInt(request.getParameter("nowPage"));
+		}
 
 
 		int flag = rmapper.update(dto);
 
 		if (flag==1) {
-			return "redirect:/board_hap/read?board_num=" + dto.getBoard_num();
+			return "redirect:/board_hap/read?board_num=" + dto.getBoard_num()  + "&col=" + col + "&word=" + word + "&nowPage=" + nowPage;
 
 		} else {
 			
@@ -90,14 +121,30 @@ public class Room_hapController {
 	}
 
 	@PostMapping("/room_hap/delete") // se
-	public String delete(Room_hapDTO dto, int room_num, HttpSession session, HttpServletRequest requset, Model model) {
+	public String delete(Room_hapDTO dto, int room_num, HttpSession session, HttpServletRequest requset, Model model, HttpServletRequest request) {
+		
+				// 검색관련
+				String word = Utility.checkNull(request.getParameter("word"));
+				String col = Utility.checkNull(request.getParameter("col"));
+
+				if (col.equals("total")) {
+					word = "";
+				}
+
+				// 페이징관련
+
+				int nowPage = 1;
+
+				if (request.getParameter("nowPage") != null) {
+					nowPage = Integer.parseInt(request.getParameter("nowPage"));
+				}
 
 		int flag = rmapper.delete(room_num);
 
 		if (flag == 1) {
 //			url = "redirect:/board_hap/read";
 //			url += "?board_num=" + dto.getBoard_num();
-			return "redirect:/board_hap/read?board_num=" + dto.getBoard_num();
+			return "redirect:/board_hap/read?board_num=" + dto.getBoard_num() + "&col=" + col + "&word=" + word + "&nowPage=" + nowPage;
 		} else {
 			model.addAttribute("str", "방 정보 삭제실패입니다..");
 //			url = "/preProc";
@@ -108,10 +155,27 @@ public class Room_hapController {
 
 	@PostMapping("/room_hap/create") // room 정보등록(board안에서)
 	public String createProc_room(Room_hapDTO dto, Model model, HttpServletRequest request) {
+		
+		// 검색관련
+		String word = Utility.checkNull(request.getParameter("word"));
+		String col = Utility.checkNull(request.getParameter("col"));
+
+		if (col.equals("total")) {
+			word = "";
+		}
+
+		// 페이징관련
+
+		int nowPage = 1;
+
+		if (request.getParameter("nowPage") != null) {
+			nowPage = Integer.parseInt(request.getParameter("nowPage"));
+		}
 
 		String url = "/preProc";
 		String basePath = request.getRealPath("/storage");
 		int size = (int) dto.getRoom_filenameMF().getSize();
+		
 		if (size > 0) {
 			dto.setRoom_filename(Utility.saveFileSpring(dto.getRoom_filenameMF(), basePath));
 		} else {
@@ -120,6 +184,9 @@ public class Room_hapController {
 		if (rmapper.create(dto) == 1) {
 			url = "redirect:/board_hap/read";
 			url += "?board_num=" + dto.getBoard_num();
+			url += "&col=" + col;
+			url += "&word=" + word;
+			url += "&nowPage=" + nowPage;
 
 		} else {
 			model.addAttribute("str", "방 정보 입력실패입니다..");

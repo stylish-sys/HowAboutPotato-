@@ -190,8 +190,7 @@ content {
 								});
 			</script>
 
-			<div class='row'>
-				<div class="col-lg-12">
+				<div class="col-sm-12">
 					<div class="panel panel-default">
 
 
@@ -237,7 +236,6 @@ content {
 		<!-- container div-->
 
 
-	</div>
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">

@@ -22,7 +22,9 @@
 		display: block;
 	}
 
-	body {
+	
+
+ {
 		line-height: 1;
 	}
 
@@ -263,11 +265,9 @@
 	}
 
 	.row > * {
-		padding: 0 0 0 2em;
 	}
 
 	.row {
-		margin: 0 0 -1px -2em;
 	}
 
 	.row.uniform > * {
@@ -476,11 +476,9 @@
 	@media screen and (max-width: 1680px) {
 
 		.row > * {
-			padding: 0 0 0 2em;
 		}
 
 		.row {
-			margin: 0 0 -1px -2em;
 		}
 
 		.row.uniform > * {
@@ -1568,7 +1566,6 @@
 
 	body {
 		background: #fff;
-		padding-top: 6em;
 	}
 
 		body.landing {
@@ -1577,10 +1574,7 @@
 
 		@media screen and (max-width: 980px) {
 
-			body {
-				padding-top: 2em;
-			}
-
+			
 		}
 
 		body.is-loading *, body.is-loading *:before, body.is-loading *:after {
@@ -2159,7 +2153,8 @@
 	input[type="password"],
 	input[type="email"],
 	select {
-		height: 2.75em;
+		height: 6rem;
+    	font-size: 2rem;
 	}
 
 	textarea {
@@ -2735,7 +2730,7 @@
 
 		.wrapper.style3 {
 			background-attachment: fixed;
-			background-image: url("../../images/footer.png");
+			background-image: url("images/overlay.png"), url("../../images/banner.jpg");
 			background-position: center center;
 			background-size: cover;
 		}
@@ -3091,8 +3086,8 @@
 		background-attachment: fixed;
 		background-image: url("../../images/logo.png");
 		background-position: center top;
-		background-size: contain;
-		line-height: 1;
+		background-size: cover;
+		line-height: 1.75;
 		text-align: center;
 	}
 

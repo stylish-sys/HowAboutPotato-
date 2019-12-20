@@ -112,7 +112,7 @@
 					<button type="button" class="btn" onclick="passwdFind()">비밀번호
 						찾기</button>
 					<div id="naver_id_login">
-						<br> <a href="${url}"> <img src="../images/네이버로 회원가입.png" /></a>
+						<br> <a href="${url}"> <img src="../images/네이버로 회원가입.png" style="width:222px; height:49px;"/></a>
 						<a id="kakao-login-btn"><img src="../images/카카오로 회원가입.png"></a>
 						<a href="http://developers.kakao.com/logout"></a>
 

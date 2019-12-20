@@ -67,12 +67,14 @@ content {
 
 
 						<div class="carousel-inner">
-						<c:forEach var="dto" items="${rlist}" varStatus="index">
-							<div class="item <c:if test="${index.first}">active</c:if>">
-								<img src="${pageContext.request.contextPath}/storage/${dto.room_filename}"
-						class="img-rounded " width="800px" height="800px" alt="image${index.count}">
-							</div>
-						</c:forEach>
+							<c:forEach var="dto" items="${rlist}" varStatus="index">
+								<div class="item <c:if test="${index.first}">active</c:if>">
+									<img
+										src="${pageContext.request.contextPath}/storage/${dto.room_filename}"
+										class="img-rounded " width="800px" height="800px"
+										alt="image${index.count}">
+								</div>
+							</c:forEach>
 						</div>
 
 						<a class="left carousel-control" href="#myCarousel"
@@ -84,10 +86,9 @@ content {
 							class="glyphicon glyphicon-chevron-right"></span> <span
 							class="sr-only">Next</span>
 						</a>
-					</div>
-					<input type="hidden" name="col" value="${param.col }">
-					<input type="hidden" name="word" value="${param.word }">
-					<input type="hidden" name="nowPage" value="${param.nowPage }">
+					</div> <input type="hidden" name="col" value="${param.col }"> <input
+					type="hidden" name="word" value="${param.word }"> <input
+					type="hidden" name="nowPage" value="${param.nowPage }">
 				</td>
 			</tr>
 
@@ -105,7 +106,10 @@ content {
 				<th>최대 숙박인원</th>
 				<th>방 정보</th>
 				<!-- admin만 -->
-				<th>수정/삭제</th>
+				<c:if
+					test="${not empty sessionScope.member_id && sessionScope.member_grade=='H'}">
+					<th>수정/삭제</th>
+				</c:if>
 				<!-- admin만 -->
 				<tr>
 					<td><img
@@ -115,16 +119,19 @@ content {
 					<td>${dto.room_price }원</td>
 					<td>${dto.room_max }명</td>
 					<td>${dto.room_content }</td>
-					<td>
-						<!-- admin만 -->
-						<button class="btn"
-							onclick="location.href='../room_hap/update?room_num=${dto.room_num}&board_num=${param.board_num }&col=${param.col }&word=${param.word }&nowPage=${param.nowPage }'">방정보수정</button>
-						<button class="btn"
-							onclick="location.href='../room_hap/updateFile?room_num=${dto.room_num}&board_num=${param.board_num }&oldfile=${dto.room_filename }&col=${param.col }&word=${param.word }&nowPage=${param.nowPage }'">방사진수정</button>
-						<button class="btn"
-							onclick="location.href='../room_hap/delete?room_num=${dto.room_num}&board_num=${param.board_num }&col=${param.col }&word=${param.word }&nowPage=${param.nowPage }'">방삭제</button>
-						<!-- admin만 -->
-					</td>
+					<c:if
+						test="${not empty sessionScope.member_id && sessionScope.member_grade=='H'}">
+						<td>
+							<!-- admin만 -->
+							<button class="btn"
+								onclick="location.href='../room_hap/update?room_num=${dto.room_num}&board_num=${param.board_num }&col=${param.col }&word=${param.word }&nowPage=${param.nowPage }'">방정보수정</button>
+							<button class="btn"
+								onclick="location.href='../room_hap/updateFile?room_num=${dto.room_num}&board_num=${param.board_num }&oldfile=${dto.room_filename }&col=${param.col }&word=${param.word }&nowPage=${param.nowPage }'">방사진수정</button>
+							<button class="btn"
+								onclick="location.href='../room_hap/delete?room_num=${dto.room_num}&board_num=${param.board_num }&col=${param.col }&word=${param.word }&nowPage=${param.nowPage }'">방삭제</button>
+							<!-- admin만 -->
+						</td>
+					</c:if>
 				</tr>
 
 			</c:forEach>
@@ -193,8 +200,7 @@ content {
 							<button id='addReplyBtn'
 								class='btn btn-primary btn-xs pull-right'>New Reply</button>
 
-							<br>
-							<br>
+							<br> <br>
 						</div>
 
 
@@ -560,14 +566,7 @@ content {
 				<li>회원혜택은 제휴점 내규에 따라 적용됩니다</li>
 			</ul>
 		</section>
-
 		<hr>
-		<section>
-			<h2>숙소 약도</h2>
-
-			<div id="map" style="width: 959px; height: 400px;"></div>
-
-		</section>
 
 		<!-- 	<div id="map" style="width:100%;height:400px;"></div> -->
 

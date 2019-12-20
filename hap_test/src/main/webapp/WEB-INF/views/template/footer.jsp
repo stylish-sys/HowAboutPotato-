@@ -5,10 +5,10 @@
 		<div class="container">
 			<header class="major">
 				<h2>여행을 시작할까요</h2>
-				<p>Feugiat sed lorem ipsum magna</p>
+				<p>Shall we begin our journey?</p>
 			</header>
 			<ul class="actions">
-				<li><a href="#" class="button special big">지역 검색</a></li>
+				<li><a href="#" class="button big">지역 검색</a></li>
 				<!-- 위 버튼과 동일? -->
 			</ul>
 		</div>

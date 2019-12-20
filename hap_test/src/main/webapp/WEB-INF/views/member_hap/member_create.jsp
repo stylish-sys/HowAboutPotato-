@@ -13,14 +13,14 @@
 
 <!-- <script src="https://www.google.com/recaptcha/api.js?render=6LfMesgUAAAAAHB205x3VG_Np3xConOO2pvDiQAs"></script> -->
 <script type="text/javascript">
-var check =0;
+	var check = 0;
 	function idCheck(member_id) {
 		if (member_id == '') {
 			alert("아이디를 입력하세요");
 			document.frm.member_id.focus();
 		} else {
 			var url = "idcheck"
-			url+= "?member_id=" + member_id;
+			url += "?member_id=" + member_id;
 
 			$.get(url, function(data, textStatus) {
 				$("#idcheck").text(data.str);
@@ -105,11 +105,11 @@ var check =0;
 
 </head>
 <body>
-<br>
+	<br>
 	<div class="container">
 
 		<h2 class="col-sm-offset-2 col-sm-10">HAP 회원 가입 양식</h2>
-		<label class="col-sm-offset-2 col-sm-10">(<span id="need">*</span> 
+		<label class="col-sm-offset-2 col-sm-10">(<span id="need">*</span>
 			은 필수입력 항목입니다.)
 		</label>
 
@@ -121,8 +121,8 @@ var check =0;
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="member_fname">사진</label>
 				<div class="col-sm-4">
-					<input type="file" class="form-control" id="member_fname" name="member_fnameMF"
-						accept=".jpg, .png, .gif">
+					<input type="file" class="form-control" id="member_fname"
+						name="member_fnameMF" accept=".jpg, .png, .gif">
 				</div>
 			</div>
 
@@ -140,7 +140,7 @@ var check =0;
 				<div id="idcheck"></div>
 
 			</div>
-			
+
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="member_name"><span
 					id="need">*</span>이름</label>
@@ -176,7 +176,7 @@ var check =0;
 						placeholder="Enter 생년월일" name="member_birth">
 				</div>
 			</div>
-			
+
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="member_phone"><span
 					id="need">*</span>전화번호</label>
@@ -194,81 +194,91 @@ var check =0;
 						placeholder="Enter E-mail" name="member_email">
 				</div>
 				<button type="button" class="btn col-sm-1.3"
-					onclick="emailCheck(document.frm.member_email.value)">E-mail 중복확인</button>
+					onclick="emailCheck(document.frm.member_email.value)">E-mail
+					중복확인</button>
 				<div id="emailcheck"></div>
 			</div>
-			
-			<div class = "form-group">
-			
-			  <input type="hidden" id="g-recaptcha" name="g-recaptcha">
-			
-			</div>
-			 <div class="g-recaptcha" data-sitekey="6Lc5e8gUAAAAANV1E1ZA6jRcwD-RZryn7Mvlyvz_"></div>
-			 <button type = "button" id="test_btn" class="btn">리캡챠 확인</button>
-			<div>
-			
-			</div>
-			
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-			 <script src='https://www.google.com/recaptcha/api.js'></script>
 
-			
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="g-recaptcha"><span
+					id="g-recaptcha">*</span>로봇 확인</label>
+				<div class="col-sm-4">
+					<input type="hidden" id="g-recaptcha" name="g-recaptcha">
+					<div class="g-recaptcha"
+						data-sitekey="6Lc5e8gUAAAAANV1E1ZA6jRcwD-RZryn7Mvlyvz_"></div>
+				</div>
+				<button type="button" id="test_btn" class="btn">리캡챠 확인</button>
+				<div id="g-recaptcha"></div>
+			</div>
+
+
+			<script
+				src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+			<script src='https://www.google.com/recaptcha/api.js'></script>
+
+
 			<script>
-			
-        	$(document).ready(function() {
-        		
-            $("#test_btn").click(function() {
-            	
-                $.ajax({
-                    url: '/webtest/VerifyRecaptcha',
-                    type: 'post',
-                    data: {
-                        recaptcha: $("#g-recaptcha-response").val()
-                    },
-                    success: function(data) {
-                    	
-                    	var result = data.getElementsByTagName('Integer')[0].childNodes[0].nodeValue;
-                        switch (parseInt(result)) {
-                            case 0:
-                                alert("자동 가입 방지 봇 통과");
-                                check = 1;
-                                break;
- 
-                            case 1:
-                                alert("자동 가입 방지 봇을 확인 한뒤 진행 해 주세요.");
+				$(document)
+						.ready(
+								function() {
 
-                                break;
- 
-                            default:
-                                alert("자동 가입 방지 봇을 실행 하던 중 오류가 발생 했습니다. [Error bot Code : " + Number(data) + "]");
+									$("#test_btn")
+											.click(
+													function() {
 
-                            	break;
-                        }
-                    }
-                });
-            });
-        });
- 
-    </script>
+														$
+																.ajax({
+																	url : '/webtest/VerifyRecaptcha',
+																	type : 'post',
+																	data : {
+																		recaptcha : $(
+																				"#g-recaptcha-response")
+																				.val()
+																	},
+																	success : function(
+																			data) {
+
+																		var result = data
+																				.getElementsByTagName('Integer')[0].childNodes[0].nodeValue;
+																		switch (parseInt(result)) {
+																		case 0:
+																			alert("자동 가입 방지 봇 통과");
+																			check = 1;
+																			break;
+
+																		case 1:
+																			alert("자동 가입 방지 봇을 확인 한뒤 진행 해 주세요.");
+
+																			break;
+
+																		default:
+																			alert("자동 가입 방지 봇을 실행 하던 중 오류가 발생 했습니다. [Error bot Code : "
+																					+ Number(data)
+																					+ "]");
+
+																			break;
+																		}
+																	}
+																});
+													});
+								});
+			</script>
 
 
 
 
-			
 
-				
-			<br>
-			<br>
+
+
+			<br> <br>
 
 
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-5">
 					<button type="submit" class="btn">등록</button>
 					<button type="reset" class="btn">취소</button>
-				
-					<br>
-					<br>
-					<br>
+
+					<br> <br> <br>
 				</div>
 			</div>
 

@@ -73,6 +73,7 @@ table tbody tr:nth-child(2n + 1) {
     background-color: white;
     border-color: white;
 }
+
 input[type="text"], input[type="password"], input[type="email"], select {
     height: 3.5rem;
     font-size: 1.5rem;

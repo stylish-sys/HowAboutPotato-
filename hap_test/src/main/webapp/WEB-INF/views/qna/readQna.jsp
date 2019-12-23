@@ -6,6 +6,113 @@
 <head>
 <meta charset="UTF-8">
 <title>Notice read</title>
+<style>
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.read-notice-main {
+	width: 45%;
+	height: 60vh;
+	background-color: #A4A4A4;
+	box-shadow: -60px 0px 120px -90px #000000, 60px 0px 120px -90px #000000;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	flex-direction: column;
+	border-radius: 1%;
+	margin: 5%;
+}
+
+.read-notice-title {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+	height: 5rem;
+	font-size: 3rem;
+	/* border-top: 1px solid black; */
+	/* border-bottom: 1px solid black; */
+	background-color: #E6E6E6;
+}
+
+.read-notice-title-writer {
+	display: flex;
+	justify-content: flex-start;
+	width: 40%;
+	align-items: center;
+	background-color: none;
+}
+
+.read-notice-title-content {
+	display: flex;
+	justify-content: flex-start;
+	width: 60%;
+	background-color: none;
+	font: bold;
+}
+
+.container {
+	flex-direction: column;
+}
+
+.read-notice-count {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	width: 90%;
+	height: 6%;
+	flex-direction: flex-end;
+	background-color: white;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+.read-notice-count div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 25%;
+	height: 6%;
+	flex-direction: flex-end;
+	background-color: white;
+}
+
+.read-notice-content {
+	height: 88%;
+	width: 100%;
+	background-color: white;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	flex-direction: column;
+}
+
+.read-notice-content-file {
+	height: 6%;
+	width: 100%;
+	background-color: white;
+	display: flex;
+	justify-content: flex-end;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+.read-notice-content-content {
+	height: 80%;
+	width: 80%;
+	background-color: white;
+}
+
+.read-notice-etc {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	width: 80%;
+}
+</style>
 <script type="text/javascript">
 	function listQna() {
 		var url = "listQna";
@@ -44,43 +151,44 @@
 </head>
 <body>
 	<div class="container">
-		<h2>조회</h2>
+		<div class="read-notice-main">
+			<div class="read-notice-title">
+				<div class="read-notice-title-content">${dto.qna_title }</div>
+			</div>
+			<div class="read-notice-content">
+				<div class="read-notice-etc">
+					<div class="read-notice-title-writer">
+						<i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;${dto.member_id}
+					</div>
+					<div class="read-notice-title-writer">
+						<i class="fas fa-calendar-week"></i>&nbsp;${dto.qna_wdate}
+					</div>
+					<div>
+						<div class="read-notice-title-writer">
+							<i class="fas fa-eye"></i>&nbsp; ${dto.qna_viewcnt }
+						</div>
+					</div>
+				</div>
+				<div class="read-notice-content-content">${dto.qna_content }</div>
+			</div>
+		</div>
+		<div align="center">
 
-		<div class="panel panel-default">
-			<div class="panel-heading">작성자</div>
-			<div class="panel-body">${dto.member_id}</div>
-
-			<div class="panel-heading">제목</div>
-			<div class="panel-body">${dto.qna_title}</div>
-
-			<div class="panel-heading">내용</div>
-			<div class="panel-body">${dto.qna_content}</div>
-
-			<div class="panel-heading">조회수</div>
-			<div class="panel-body">${dto.qna_viewcnt}</div>
-
-			<div class="panel-heading">파일명</div>
-			<div class="panel-body">${dto.qna_filename}</div>
-
-			<div class="panel-heading">등록일</div>
-			<div class="panel-body">${dto.qna_wdate}</div>
+			<c:if
+				test="${dto.member_id == sessionScope.member_id || sessionScope.member_grade=='H' }">
+				<button class="btn" onclick="location.href='./createQna'">등록</button>
+				<button class="btn" onclick="updateQna()">수정</button>
+				<button class="btn" onclick="deleteQna()">삭제</button>
+				<button class="btn" onclick="replqQna()">답변</button>
+			</c:if>
+			<c:if test="${empty sessionScope.member_id }">
+				<button class="btn" onclick="location.href='./createQna'">등록</button>
+				<button class="btn" onclick="updateQna()">수정</button>
+				<button class="btn" onclick="deleteQna()">삭제</button>
+			</c:if>
+			<button class="btn" onclick="listQna()">목록</button>
 
 		</div>
-		<c:if
-			test="${dto.member_id == sessionScope.member_id || sessionScope.member_grade=='H' }">
-			<button class="btn" onclick="location.href='./createQna'">등록</button>
-			<button class="btn" onclick="updateQna()">수정</button>
-			<button class="btn" onclick="deleteQna()">삭제</button>
-			<button class="btn" onclick="replqQna()">답변</button>
-		</c:if>
-		<c:if test="${empty sessionScope.member_id }">
-			<button class="btn" onclick="location.href='./createQna'">등록</button>
-			<button class="btn" onclick="updateQna()">수정</button>
-			<button class="btn" onclick="deleteQna()">삭제</button>
-		</c:if>
-		<button class="btn" onclick="listQna()">목록</button>
-
-
 	</div>
 	<!-- container -->
 </body>

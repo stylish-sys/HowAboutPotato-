@@ -237,14 +237,13 @@ background: rgba(0,0,0,.5);
 	
 					<c:if
 						test="${not empty sessionScope.member_id && sessionScope.member_grade=='H'}">
-						<li><a href="${root}/res/list">RESLIST</a></li>
 						<li><a href="${root}/res/res_acc">승인 대기</a></li>
 					</c:if>
 			      </ul>
 			    </div><!-- /.navbar-collapse -->
 			  </div><!-- /.container-fluid -->
 			</nav>
-			
+			</div>
 		</header><!-- header role="banner" -->
 </body>
 </html>

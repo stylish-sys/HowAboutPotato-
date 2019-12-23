@@ -8,6 +8,92 @@
 #need {
 	color: red;
 }
+#notice_select {width =50px;
+	
+}
+
+#notice_input {width =200px;
+	
+}
+
+head {
+	color: #FF0000;
+}
+
+#noticeThead {
+	background-color: #ebe7f1;
+	border-radius: 2%
+}
+
+.tabel-striped {
+	background-color: #ebe7f1;
+}
+
+tr {
+	background-color: white;
+}
+
+.container-notice {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.btn {
+	height: 3.5rem;
+}
+
+.login-main {
+	width: 80%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: -60px 0px 120px -90px #000000, 60px 0px 120px -90px #000000;
+	background-color: white;
+}
+
+.table {
+	width: 150%;
+	max-width: 100%;
+	margin-bottom: 20px;
+	box-shadow: -60px 0px 120px -90px #000000, 60px 0px 120px -90px #000000;
+	background-color: white;
+}
+
+table tbody tr:nth-child(2n + 1) {
+	background-color: white;
+}
+
+.first-notice-tbody tr {
+	background-color: gray;
+}
+
+.first-notice-tbody td {
+	background-color: #f2fcf6;
+}
+
+#noticeThead tr {
+	background-color: #e6e6f2;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
+	.pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
+	{
+	z-index: 3;
+	color: black;
+	cursor: default;
+	background-color: white;
+	border-color: white;
+}
+
+input[type="text"], input[type="password"], input[type="email"], select
+	{
+	height: 3.5rem;
+	font-size: 1.5rem;
+}
 </style>
 <meta charset="UTF-8">
 <title>예약 접수</title>
@@ -136,7 +222,7 @@
 					</div>
 				</div>
 
-				<div class="form-group">
+				<div class="container-notice">
 								<p>예약정보입력</p>
 								<div>
 									<table>
@@ -222,7 +308,7 @@
 											</tr>
 										</tbody>
 									</table>
-									<div class="form-group">
+									<div class="form-group" align="center">
 										<div class="col-sm-offset-2 col-sm-8">
 											<button type="submit" class="btn">상담 접수</button>
 											<button type="reset" class="btn">다시 작성</button>

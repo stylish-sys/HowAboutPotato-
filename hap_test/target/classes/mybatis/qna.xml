@@ -52,7 +52,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="read" parameterType="int" resultType="QnaDTO">
-		 select qna_num, member_id, qna_title, qna_content, qna_wdate, qna_viewcnt, qna_filename from qna_hap where qna_num=#{qna_num}
+		 select qna_num, member_id, qna_title, qna_content, to_char(qna_wdate, 'yyyy-mm-dd') qna_wdate, qna_viewcnt, qna_filename from qna_hap where qna_num=#{qna_num}
 	</select>
 	
 	<update id="upViewcnt" parameterType="int">

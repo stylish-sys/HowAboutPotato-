@@ -16,6 +16,9 @@
 	z-index: 100;
 }
 
+.row{
+	border-bottom: 0;
+}
 .row .col-md-4 {
 	text-align: center;
 	display: flex;
@@ -109,16 +112,24 @@
 	</div>
 	<div class="row">
 		<div class="col-md-content">Mountain</div>
-		<div class="col-md-8" id="main-content-third"></div>
+		<div class="col-md-8" id="main-content-third">
+			<img src="${pageContext.request.contextPath }/images/banner.jpg">
+		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-4" id="main-content-fourth"></div>
-		<div class="col-md-4" id="main-content-fifth"></div>
-		<div class="col-md-content"></div>
+		<div class="col-md-4" id="main-content-fourth">
+			<img src="${pageContext.request.contextPath }/images/수영장.jpg">
+		</div>
+		<div class="col-md-4" id="main-content-fifth">
+			<img src="${pageContext.request.contextPath }/images/헬스장.jpg">
+		</div>
+		<div class="col-md-content">Leisure</div>
 	</div>
 	<div class="row">
-		<div class="col-md-content"></div>
-		<div class="col-md-8" id="main-content-sixth"></div>
+		<div class="col-md-content">Healing</div>
+		<div class="col-md-8" id="main-content-sixth">
+			<img src="${pageContext.request.contextPath }/images/침실.jpg">
+		</div>
 	</div>
 
 </body>

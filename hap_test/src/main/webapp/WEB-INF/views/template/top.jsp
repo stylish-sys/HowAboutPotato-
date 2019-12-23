@@ -46,21 +46,38 @@
 	display: flex;
 	justify-content: flex-start;
 	flex-direction: column;
-	width: 100vw;
+	width: 80vw;
 	z-index: 9999;
 	position: relative;
 	height: 13vh;
-	
-}
-
-.main-banner {
-	display: flex;
 	align-items: center;
-	justify-content: center;
+	opacity: 1;
+    transition: visibility 0s, opacity 0.09s linear;
+}
+.main-header-down {
+	display: flex;
+	justify-content: flex-start;
 	flex-direction: column;
 	width: 80vw;
 	z-index: 9999;
 	position: relative;
+	height: 13vh;
+	align-items: center;
+	opacity: 0;
+    transition: visibility 0s, opacity 0.09s linear;
+}
+
+.main-banner {
+	display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 83vw;
+    z-index: 9999;
+    position: relative;
+    background-color: white;
+    height: 13vh;
+    opacity: 1;
 }
 
 .main-background {
@@ -146,6 +163,10 @@ background: #000;
 background: rgba(0,0,0,.5);
 }
 
+.main-banner-fade-out {
+	opacity: 1;
+}
+
 
 </style>
 
@@ -164,16 +185,25 @@ background: rgba(0,0,0,.5);
 	    			}
 	    	});
 	    });
+    </script>
+    
+    <script>
+    	jQuery(window).scroll(function(){
+    	    $('#main-header').attr('class','main-header-down');
+    	    setTimeout(function() {         
+    	    	$('#main-header').attr('class','main-header');     
+        	    }, 900);
 
+    	});
 
     </script>
 </head>
 
 <body>
-	<header role="banner" class= "main-header">
-		</div>
+	<header id="main-header" role="banner" class= "main-header">
+		
 		<div class= "main-banner">
-		<img id="logo-main" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/32877/logo-thing.png" width="200" alt="Logo Thing main logo">
+		<img id="logo-main" src="${pageContext.request.contextPath }/images/로고2.png" width="200" alt="Logo Thing main logo">
 			<nav id="navbar-primary" class="navbar navbar-default" role="navigation">
 			  <div class="container-fluid">
 			    <!-- Brand and toggle get grouped for better mobile display -->

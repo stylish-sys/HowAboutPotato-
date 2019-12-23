@@ -9,6 +9,7 @@
 <meta charset="utf-8">
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="https://kit.fontawesome.com/4c89f26522.js" crossorigin="anonymous"></script>
 <script type='text/javascript'>
   //<![CDATA[
     // 사용할 앱의 JavaScript 키를 설정해 주세요.
@@ -107,13 +108,15 @@
 }
 
 .login-main {
-	width: 40%;
+	width: 30%;
 	height: 80%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	background-color: #F2F2F2;
+	box-shadow: -60px 0px 120px -90px #000000,
+        60px 0px 120px -90px #000000;
+    background-color: white;
 }
 
 .login-logo {
@@ -188,7 +191,7 @@
 
 .btn-kakao {
 	width: 100%;
-	background-color: #E7E600;
+	background-color: rgba(255,232,0);
 }
 
 .btn-naver {
@@ -241,7 +244,10 @@
 			<div class="login-btn">
 				<div id="kakao_id_login">
 					<button id="custom-login-btn" type="button" class="btn-kakao"
-						onclick="loginWithKakao()">카카오계정으로 로그인</button>
+						onclick="loginWithKakao()">
+							<i class="fas fa-comment"></i>
+							카카오계정으로 로그인
+						</button>
 				</div>
 			</div>
 
@@ -250,7 +256,10 @@
 				<div id="naverIdLogin"></div>
 				<div id="naver_id_login">
 					<button onclick="location.href='${url }'" type="button"
-						class="btn-naver">네이버로 로그인</button>
+						class="btn-naver">
+							N
+							네이버로 로그인
+						</button>
 				</div>
 			</div>
 			<div class="login-else">

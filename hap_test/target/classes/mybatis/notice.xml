@@ -68,7 +68,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="read" parameterType="int" resultType="NoticeDTO">
 		select
-		notice_num, member_id, notice_title, notice_content, notice_wdate,
+		notice_num, member_id, notice_title, notice_content, to_char(notice_wdate,'yyyy-mm-dd') notice_wdate,
 		notice_viewcnt, notice_filename from notice_hap where
 		notice_num=#{notice_num}
 	</select>

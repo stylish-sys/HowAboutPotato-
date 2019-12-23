@@ -15,6 +15,75 @@
 #notice_input {width =200px;
 	
 }
+
+head {
+	color: #FF0000;
+}
+
+#noticeThead {
+	background-color: #ebe7f1;
+	border-radius: 2%
+}
+
+.tabel-striped {
+	background-color: #ebe7f1;
+}
+
+tr {
+	background-color: white;
+}
+
+.container-notice {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.btn {
+	height: 3.5rem;
+}
+
+.table {
+	width: 60%;
+	max-width: 100%;
+	margin-bottom: 20px;
+	box-shadow: -60px 0px 120px -90px #000000, 60px 0px 120px -90px #000000;
+	background-color: white;
+}
+
+table tbody tr:nth-child(2n + 1) {
+	background-color: white;
+}
+
+.first-notice-tbody tr {
+	background-color: gray;
+}
+
+.first-notice-tbody td {
+	background-color: #f2fcf6;
+}
+
+#noticeThead tr {
+	background-color: #e6e6f2;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
+	.pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
+	{
+	z-index: 3;
+	color: black;
+	cursor: default;
+	background-color: white;
+	border-color: white;
+}
+
+input[type="text"], input[type="password"], input[type="email"], select
+	{
+	height: 3.5rem;
+	font-size: 1.5rem;
+}
 </style>
 <script type="text/javascript">
 	function read(qna_num) {
@@ -28,31 +97,9 @@
 </script>
 </head>
 <body>
-	<div class="container">
-		<form class="form-inline" action="./listQna">
-			<div class="form-group">
-				<select class="form-control" name="col" id="qna_select">
-					<option value="member_id"
-						<c:if test="${col=='member_id' }">selected</c:if>>성명</option>
-					<option value="title"
-						<c:if test="${col=='qna_title' }">selected</c:if>>제목</option>
-					<option value="content"
-						<c:if test="${col=='qna_content' }">selected</c:if>>내용</option>
-					<option value="title_content"
-						<c:if test="${col=='qna_title_content' }">selected</c:if>>제목+내용</option>
-					<option value="total" <c:if test="${col=='total' }">selected</c:if>>전체검색</option>
-				</select>
-			</div>
-			<div class="form-group">
-				<input type="text" class="form-control" placeholder="검색어 입력"
-					name="word" value="${word}" id="qna_input">
-			</div>
-			<button type="submit" class="btn">검색</button>
-			<button type="button" class="btn"
-				onclick="location.href='./createQna'">등록</button>
-		</form>
-		<table class="table table-striped">
-			<thead>
+	<div class="container-notice">
+		<table class="table">
+			<thead id="noticeThead">
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
@@ -60,7 +107,7 @@
 					<th>작성자</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody class="first-notice-tbody">
 				<c:choose>
 					<c:when test="${empty list_Y }">
 						<tr>
@@ -112,42 +159,36 @@
 				</c:choose>
 			</tbody>
 		</table>
-
-		<!-- 		<div class="notice"> -->
-		<!-- 			<div class="tab" style="display:inline;min-width:1200px;"> -->
-		<!-- 				<span style="display:inline;float:left;width:600px">공지사항</span> -->
-		<!-- 				<span style="display:inline;float:light;width:600px">Q n A</span> -->
-		<!-- 			</div> -->
-		<!-- 			<div class="tab_each"> -->
-		<!-- 				<ul id="notices" class="show_list open_list"> -->
-		<%-- 				<c:forEach var="dto" items="${list }"> --%>
-		<!-- 					<li> -->
-		<!-- 						<a href="javascript:readNotice(dto.notice_num)"> -->
-		<%-- 							<p>${dto.notice_title }</p> --%>
-		<%-- 							<span>${dto.notice_wdate }</span> --%>
-		<!-- 						</a> -->
-		<!-- 					</li> -->
-		<%-- 				</c:forEach> --%>
-		<!-- 				</ul> -->
-
-		<!-- 			</div> -->
-		<!-- 		</div> -->
-
-
-
 		<div>${paging }</div>
+		<br>
+		<br>
+		<br>
 
-
-		<!-- 		<form class="form-inline" method="get" > -->
-		<!-- 			<input type="hidden" name="page" value="1"> -->
-		<!-- 			<input type="text" class="form-control" placeholder="Enter 검색어" name="word" value=""> -->
-		<!-- 			<span class="mypage_search_date_middle">~</span> -->
-		<!-- 			<input type="text" class="form-control" id="end_date" class="mypage_search_date_input" value=""> -->
-
-		<!-- 			<input type="image" class="mypage_search_btn" src="/resource/img/order_result_search_btn_image.png"> -->
-
-		<!-- 			<input type="button" class="mypage_init_btn" id="order_search_init" value="검색 초기화"> -->
-		<!-- 		</form> -->
+		<form class="form-inline" action="./listQna">
+			<div align="center">
+				<div class="form-group">
+					<select class="form-control" name="col" id="qna_select">
+						<option value="member_id"
+							<c:if test="${col=='member_id' }">selected</c:if>>성명</option>
+						<option value="title"
+							<c:if test="${col=='qna_title' }">selected</c:if>>제목</option>
+						<option value="content"
+							<c:if test="${col=='qna_content' }">selected</c:if>>내용</option>
+						<option value="title_content"
+							<c:if test="${col=='qna_title_content' }">selected</c:if>>제목+내용</option>
+						<option value="total"
+							<c:if test="${col=='total' }">selected</c:if>>전체검색</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="검색어 입력"
+						name="word" value="${word}" id="qna_input">
+				</div>
+				<button type="submit" class="btn">검색</button>
+				<button type="button" class="btn"
+					onclick="location.href='./createQna'">등록</button>
+			</div>
+		</form>
 
 
 	</div>

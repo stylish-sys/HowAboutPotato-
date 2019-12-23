@@ -19,6 +19,64 @@
 head {
 	color: #FF0000;
 }
+
+	#noticeThead {
+		background-color: #ebe7f1;
+    	border-radius: 2%
+	}
+	
+	.tabel-striped {
+		background-color: #ebe7f1;
+		
+	}
+	tr{
+		background-color: white;
+	}
+.container-notice {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.btn {
+	height: 3.5rem;
+}
+.table {
+    width: 60%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    box-shadow: -60px 0px 120px -90px #000000,
+        60px 0px 120px -90px #000000;
+    background-color: white;
+}
+
+table tbody tr:nth-child(2n + 1) {
+    background-color: white;
+}
+
+.first-notice-tbody tr {
+	background-color: gray;
+}
+
+.first-notice-tbody td {
+	background-color: #f2fcf6;
+}
+
+#noticeThead tr {
+	background-color: #e6e6f2;
+}
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    z-index: 3;
+    color: black;
+    cursor: default;
+    background-color: white;
+    border-color: white;
+}
+input[type="text"], input[type="password"], input[type="email"], select {
+    height: 3.5rem;
+    font-size: 1.5rem;
+}
 </style>
 <script type="text/javascript">
 	function read(notice_num) {
@@ -29,12 +87,21 @@ head {
 		url += "&nowPage=${nowPage}";
 		location.href = url;
 	}
+
+    $(document).ready(function() {
+
+    	var menu = $( '.main-banner' ).offset();
+    		$( window ).scroll( function() {    			
+    				$( '.main-banner' ).removeClass( 'fixed' );	
+    	});
+    });
+    
 </script>
 </head>
 <body>
-	<div class="container">
-		<table class="table table-striped">
-			<thead>
+	<div class="container-notice">
+		<table class="table">
+			<thead id="noticeThead">
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
@@ -44,7 +111,7 @@ head {
 
 				</tr>
 			</thead>
-			<tbody>
+			<tbody class="first-notice-tbody">
 				<c:choose>
 					<c:when test="${empty list_Y }">
 						<tr>

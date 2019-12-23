@@ -63,8 +63,10 @@
 				<label class="control-label col-sm-2" for="notice_noti">
 					게시물 상단</label>
 				<div class="col-sm-6">
-					<input type="checkbox" id="notice_noti" name="notice_noti"
-						value="Y"> <label for="notice_noti"> 등록</label>
+					<input type="radio" id="notice_noti1" name="notice_noti"
+						value="Y"> <label for="notice_noti1">중요공지</label>
+					<input type="radio" id="notice_noti2" name= "notice_noti"
+					value="N" checked="checked"> <label for = "notice_noti2">일반공지</label>
 				</div>
 			</div>
 			<br>

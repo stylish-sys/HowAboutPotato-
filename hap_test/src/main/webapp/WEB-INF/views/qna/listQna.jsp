@@ -80,7 +80,7 @@
 										<img src="${pageContext.request.contextPath }/images/new.gif">
 									</c:if></td>
 								<td>${dto.qna_viewcnt }</td>
-								<td>관리자<td>
+								<td>관리자</td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>

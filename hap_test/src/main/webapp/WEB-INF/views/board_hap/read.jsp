@@ -190,50 +190,50 @@ content {
 								});
 			</script>
 
-				<div class="col-sm-12">
-					<div class="panel panel-default">
+			<div class="col-sm-12">
+				<div class="panel panel-default">
 
 
-						<div class="panel-heading">
-							<i class="fa fa-comments fa-fw"></i>리뷰
-							<button id='addReplyBtn'
-								class='btn btn-primary btn-xs pull-right'>New Reply</button>
+					<div class="panel-heading">
+						<i class="fa fa-comments fa-fw"></i>리뷰
+						<button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>New
+							Reply</button>
 
-							<br> <br>
-						</div>
-
-
-						<!-- panel-heading -->
-						<div class="panel-body">
-							<ul class="chat list-group">
-								<li class="left clearfix" data-rno="12">
-									<div>
-										<div class="header">
-											<div>
-												<img src="${root }/images/pic04.jpg" alt="이미지의 묘사 내용"
-													height="100px" width="100px" />
-											</div>
-											<strong class="primary-font">무플 방지 위원회</strong> <small
-												class="pull-right text-muted">20XX-XX-XX</small>
-										</div>
-										<p>ㅎㅇ</p>
-									</div>
-								</li>
-							</ul>
-							<!-- ./ end ul -->
-						</div>
-
-
-						<div class="panel-footer"></div>
+						<br> <br>
 					</div>
-					<!-- /.panel -->
-				</div>
-				<!-- col-lg-12 end -->
-			</div>
-			<!-- row end -->
 
+
+					<!-- panel-heading -->
+					<div class="panel-body">
+						<ul class="chat list-group">
+							<li class="left clearfix" data-rno="12">
+								<div>
+									<div class="header">
+										<div>
+											<img src="${root }/images/pic04.jpg" alt="이미지의 묘사 내용"
+												height="100px" width="100px" />
+										</div>
+										<strong class="primary-font">무플 방지 위원회</strong> <small
+											class="pull-right text-muted">20XX-XX-XX</small>
+									</div>
+									<p>ㅎㅇ</p>
+								</div>
+							</li>
+						</ul>
+						<!-- ./ end ul -->
+					</div>
+
+
+					<div class="panel-footer"></div>
+				</div>
+				<!-- /.panel -->
+			</div>
+			<!-- col-lg-12 end -->
 		</div>
-		<!-- container div-->
+		<!-- row end -->
+
+	</div>
+	<!-- container div-->
 
 
 	<!-- Modal -->
@@ -576,11 +576,19 @@ content {
 
 		<!-- // 		var map = new naver.maps.Map('map', mapOptions); -->
 		<!-- 	</script> -->
-
-		<div style="text-align: center">
-			<button type="submit" class="btn"
-				onclick="location.href='../res/create?board_num=${dto.board_num}'">결제하기</button>
-		</div>
+		<c:if test="${not empty sessionScope.member_id }">
+			<div style="text-align: center">
+				<button type="submit" class="btn"
+					onclick="location.href='../res/create?board_num=${dto.board_num}'">결제하기</button>
+			</div>
+		</c:if>
+		<c:if test="${empty sessionScope.member_id }">
+			<div style="text-align: center">
+				<button type="submit" class="btn"
+					onclick="location.href='../member_hap/login'">로그인하기</button>
+			</div>
+		</c:if>
+		<br>
 
 	</div>
 </body>

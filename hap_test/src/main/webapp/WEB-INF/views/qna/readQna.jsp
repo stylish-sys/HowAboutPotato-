@@ -148,6 +148,8 @@
 		location.href = url;
 	}
 </script>
+<script src="https://kit.fontawesome.com/4c89f26522.js"
+	crossorigin="anonymous"></script>
 </head>
 <body>
 	<div class="container">

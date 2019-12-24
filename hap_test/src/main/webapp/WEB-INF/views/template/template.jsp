@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title><tiles:getAsString name="title" /></title>
+<link rel="shortcut icon" href="${pageContext.request.contextPath }/images/myicon.ico" type="image/x-icon">
+<link rel="icon"  href="${pageContext.request.contextPath }/images/myicon.ico" type="image/x-icon">
 <style>
 	html {
     font-size: 10px;

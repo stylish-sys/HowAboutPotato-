@@ -16,9 +16,10 @@
 	z-index: 100;
 }
 
-.row{
+.row {
 	border-bottom: 0;
 }
+
 .row .col-md-4 {
 	text-align: center;
 	display: flex;
@@ -83,24 +84,45 @@
 </style>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
-     $(document).ready(function () 
-    		 {
-    		     $('.row .col-md-4').hover(function(){
-    		         $(this).addClass('hover-cover');
-    		     }, function() {
-    		         $(this).removeClass('hover-cover');
-    		     });
-    		     $('.row .col-md-8').hover(function(){
-    		         $(this).addClass('hover-cover-ver8');
-    		     }, function() {
-    		         $(this).removeClass('hover-cover-ver8');
-    		     });
-    		 });
-
-    </script>
+	$(document).ready(function() {
+		$('.row .col-md-4').hover(function() {
+			$(this).addClass('hover-cover');
+		}, function() {
+			$(this).removeClass('hover-cover');
+		});
+		$('.row .col-md-8').hover(function() {
+			$(this).addClass('hover-cover-ver8');
+		}, function() {
+			$(this).removeClass('hover-cover-ver8');
+		});
+	});
+</script>
 
 </head>
 <body>
+	<!-- Tocplus 15.1 -->
+	<script type="text/javascript">
+		tocplusTop = 1150;
+		tocplusLeft = 5;
+		tocplusMinimizedImage = 'http://kr03.tocplus007.com/img/minimized_ko.gif';
+		tocplusHAlign = 'right';
+		tocplusLocaleFixed = 'ko';
+		tocplusWidth = 180;
+		tocplusHeight = 220;
+		tocplusUserName = '손님은왕';
+		tocplusFrameColor = '#FFA500';
+		tocplusFloatingWindow = true;
+		var tocplusHost = (("https:" == document.location.protocol) ? "https://"
+				: "http://");
+		document
+				.write(unescape("%"
+						+ "3Cscript src='"
+						+ tocplusHost
+						+ "kr03.tocplus007.com/chatLoader.do?userId=jorney0' type='text/javascript'"
+						+ "%" + "3E" + "%" + "3C/script" + "%" + "3E"));
+	</script>
+	<!-- End of Tocplus -->
+
 	<div class="row">
 		<div class="col-md-4" id="main-content-first">
 			<img src="${pageContext.request.contextPath }/images/수영장.jpg">

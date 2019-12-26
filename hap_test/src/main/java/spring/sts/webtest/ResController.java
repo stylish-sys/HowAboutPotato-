@@ -247,8 +247,7 @@ public class ResController {
 			model.addAttribute("word", word);
 			model.addAttribute("nowPage", nowPage);
 			model.addAttribute("res_num",dto.getRes_num());
-			// redirect 로 갈시에는 정보가 안넘어가서
-			// model 로 넘겨줘야함
+			
 			return "redirect:/res/res_acc";
 		} else {
 			model.addAttribute("str", "에러");

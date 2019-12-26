@@ -246,7 +246,7 @@
 					<button id="custom-login-btn" type="button" class="btn-kakao"
 						onclick="loginWithKakao()">
 							<i class="fas fa-comment"></i>
-							카카오계정으로 로그인
+							카카오계정으로 회원가입
 						</button>
 				</div>
 			</div>
@@ -258,7 +258,7 @@
 					<button onclick="location.href='${url }'" type="button"
 						class="btn-naver">
 							N
-							네이버로 로그인
+							네이버로 회원가입
 						</button>
 				</div>
 			</div>

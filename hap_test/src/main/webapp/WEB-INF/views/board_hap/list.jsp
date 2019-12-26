@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>업소목록</title>
+
 <style type="text/css">
 @import
 	url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:700&display=swap')
@@ -270,10 +272,11 @@ table {
 
 .list-main-container1 {
 	display: flex;
-	flex-direction: column;
-	width: 40%;
-	align-items: center;
-	border-right: 1px solid #d3d3d3;
+    flex-direction: row;
+    justify-content: center;
+    width: 80%;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .list-main-container2 {
@@ -427,8 +430,6 @@ table {
 					<div class="list-content-content-price">42% -> 120,000</div>
 				</div>
 			</div>
-		</div>
-		<div class="list-main-container2">
 			<div class="list-content">
 				<div class="list-content-picture"></div>
 				<div class="list-content-content">

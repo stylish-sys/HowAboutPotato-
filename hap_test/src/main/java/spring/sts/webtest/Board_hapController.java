@@ -69,7 +69,7 @@ public class Board_hapController {
 			Model model) {
 
 		if (bmapper.update(dto) == 1) {
-			return "redirect:/board_hap/list";
+			return "redirect:/board_hap/";
 		} else {
 			model.addAttribute("str", "업소정보 수정 실패.");
 			return "/board_hap/preProc";

@@ -68,6 +68,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from res_hap
 		where res_num = #{res_num}
 	</select>
+	
+	<select id="read_id" parameterType="Map" resultType="Res_hapDTO">
+		select res_rannum, to_char(res_res1,'yyyy-mm-dd')res_res1, board_num
+		from res_hap
+		where member_id = #{member_id}
+	</select>
 
 	<select id="total" resultType="int" parameterType="Map">
 		select

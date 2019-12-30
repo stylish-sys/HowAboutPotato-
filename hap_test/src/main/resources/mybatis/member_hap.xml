@@ -9,35 +9,30 @@
 		update member_hap set member_passwd = #{member_passwd} where member_id = #{member_id}
 	</update>
 	
+	<update parameterType="Map" id="updateNick">
+		update member_hap set member_nickname = #{member_nickname} where member_id = #{member_id}
+	</update>
+	
 	<update parameterType="Map" id="updateFile">
 		update member_hap set member_fname = #{member_fname} where member_id = #{member_id}
 	</update>
 	
+	<update parameterType="Map" id="updatebFile">
+		update member_hap set member_backfile = #{member_backfile} where member_id = #{member_id}
+	</update>
+	
 	<!-- int create(Member_hapDTO dto); -->
-	<insert id="member_kakao_create" parameterType="Member_hapDTO">
-		insert into
-		member_hap(member_num, member_id, member_name, member_passwd,
-		member_phone, member_email, member_birth, member_fname, member_grade)
-		values(
-		(SELECT NVL(MAX(member_num),0)+1 FROM member_hap),
-		#{member_id},
-		#{member_name}, #{member_passwd},
-		#{member_phone},
-		#{member_email}, #{member_birth}, #{member_fname, jdbcType=VARCHAR},
-		'A')
-	</insert>
-
 	<insert id="member_create" parameterType="Member_hapDTO">
 		insert into
 		member_hap(member_num, member_id, member_name, member_passwd,
-		member_phone, member_email, member_birth, member_fname, member_grade)
+		member_phone, member_email, member_birth, member_fname, member_backfile, member_grade, member_nickname)
 		values(
 		(SELECT NVL(MAX(member_num),0)+1 FROM member_hap),
 		#{member_id},
 		#{member_name}, #{member_passwd},
 		#{member_phone},
-		#{member_email}, #{member_birth}, #{member_fname, jdbcType=VARCHAR},
-		'A')
+		#{member_email}, #{member_birth}, #{member_fname, jdbcType=VARCHAR}, #{member_backfile, jdbcType=VARCHAR},
+		'A', #{member_nickname})
 	</insert>
 
 	<!-- int duplicatedId(String member_id); -->
@@ -59,14 +54,6 @@
 	</select>
 
 
-	<!-- String getMember_fname(String member_id); -->
-	<!-- <select id="getMember_fname" parameterType="String" resultType="String"> -->
-	<!-- SELECT member_fname -->
-	<!-- FROM member_hap -->
-	<!-- where member_fname=#{member_fname} -->
-	<!-- </select> -->
-
-	<!-- String getMember_grade(String member_id); -->
 	<select id="getMember_grade" parameterType="String"
 		resultType="String">
 		SELECT member_grade
@@ -162,7 +149,7 @@
 		resultType="Member_hapDTO">
 		SELECT member_id, member_name, member_phone, member_email,
 		member_birth,
-		member_fname
+		member_fname, member_backfile, member_nickname
 		FROM member_hap
 		WHERE member_id=#{member_id}
 	</select>
@@ -189,6 +176,4 @@
 		where
 		member_id = #{member_id}
 	</update>
-
-
 </mapper>

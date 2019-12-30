@@ -40,7 +40,7 @@
                       document.body.appendChild(form);
                       form.submit();
                    }
-                  sendPost('member_kakao_create',{
+                  sendPost('member_create',{
                      'name': res.properties.nickname,
                      'email' : res.kaccount_email,
                      'id' : res.id,

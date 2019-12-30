@@ -65,7 +65,6 @@ table {
 		rgba(0, 0, 0, 0.1) inset;
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1)
 		inset;
-	flex-direction: row;
 }
 
 .list-content-picture {
@@ -179,8 +178,7 @@ table {
 	background-color: white;
 	color: black;
 	border-radius: 10%;
-	width: 13%;
-	opacity: 0.5;
+	width: 13%
 }
 
 .list-ad-container-ad2 {
@@ -227,11 +225,6 @@ table {
 	font-size: 2rem;
 	margin: 0.5%;
 	font-family: 'Noto Sans KR', sans-serif;
-	border-radius: 40%;
-	padding: 0;
-	border: none;
-	background: none;
-	outline: none;
 }
 
 .list-mini-container img {
@@ -279,11 +272,11 @@ table {
 
 .list-main-container1 {
 	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	width: 80%;
-	align-items: center;
-	flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    width: 80%;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .list-main-container2 {
@@ -291,10 +284,6 @@ table {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-}
-
-#text {
-	z-index: 3;
 }
 </style>
 
@@ -305,12 +294,6 @@ table {
 		url += "&col=${col}";
 		url += "&word=${word}";
 		url += "&nowPage=${nowPage}";
-		location.href = url;
-	}
-	
-	function list(col){
-		var url = "${pageContext.request.contextPath}/board_hap/list";
-		url += "?col=" + col
 		location.href = url;
 	}
 </script>
@@ -328,52 +311,41 @@ table {
 			</div>
 		<br>
 		<div class="list-mini-list">
-		<div class="list-mini-container" onclick="javascript:list('')">
-			<img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
-			<div class="list-mini-container" >전국</div>
+		<div class="list-mini-container">
+			<img
+				src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+			<div class="list-mini-container">호텔</div>
 		</div>
-		
-		<div class="list-mini-container" onclick="javascript:list('강원')">
-			<img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
-			<div class="list-mini-container" >강원</div>
+		<div class="list-mini-container">
+			<img
+				src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+			<div class="list-mini-container">호텔</div>
 		</div>
-		
-		<div class="list-mini-container" onclick="javascript:list('경기')">
-			<img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
-			<div class="list-mini-container" >경기</div>
+		<div class="list-mini-container">
+			<img
+				src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+			<div class="list-mini-container">호텔</div>
 		</div>
-		
-		<div class="list-mini-container" onclick="javascript:list('경상')">
-			<img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
-			<div class="list-mini-container" >경상</div>
+		<div class="list-mini-container">
+			<img
+				src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+			<div class="list-mini-container">호텔</div>
 		</div>
-		
-		<div class="list-mini-container" onclick="javascript:list('서울')">
-			<img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
-			<div class="list-mini-container" >서울</div>
+		<div class="list-mini-container">
+			<img
+				src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+			<div class="list-mini-container">호텔</div>
 		</div>
-		
-		<div class="list-mini-container" onclick="javascript:list('전라')">
-			<img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
-			<div class="list-mini-container" >전라</div>
+		<div class="list-mini-container">
+			<img
+				src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+			<div class="list-mini-container">호텔</div>
 		</div>
-		
-		<div class="list-mini-container" onclick="javascript:list('제주')">
-			<img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
-			<div class="list-mini-container" >제주</div>
-		</div>
-		
-		<div class="list-mini-container" onclick="javascript:list('충청')">
-			<img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
-			<div class="list-mini-container" >충청</div>
-		</div>
-
-		
-		
-		</div>
+	</div>
 	<div class="lsit-ad-list">
 		<div class="list-ad-container">
-			<img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+			<img
+				src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
 			<div class="list-ad-container-ad">
 				<div class="list-ad-container-ad1">강원</div>
 				<div class="list-ad-container-ad2">AD</div>
@@ -384,7 +356,8 @@ table {
 			</div>
 		</div>
 		<div class="list-ad-container">
-			<img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+			<img
+				src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
 			<div class="list-ad-container-ad">
 				<div class="list-ad-container-ad1">강원</div>
 				<div class="list-ad-container-ad2">AD</div>
@@ -395,7 +368,8 @@ table {
 			</div>
 		</div>
 		<div class="list-ad-container">
-			<img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+			<img
+				src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
 			<div class="list-ad-container-ad">
 				<div class="list-ad-container-ad1">강원</div>
 				<div class="list-ad-container-ad2">AD</div>
@@ -506,20 +480,20 @@ table {
 			</div>
 		</div>
 	</div>
-<!-- <div class = "list-mini-list"> -->
-<!--    		<select name = "col" class = "form-control"> -->
-<%--    		 <option value="지역"<c:if test="${col=='지역'}">selected</c:if>>지역을 선택하세요</option> --%>
-<%--    		 <option value="강원"<c:if test="${col=='강원'}">selected</c:if>>강원</option> --%>
-<%-- 		 <option value="경기"<c:if test="${col=='경기'}">selected</c:if>>경기</option> --%>
-<%-- 		 <option value="서울"<c:if test="${col=='서울'}">selected</c:if>>서울</option> --%>
-<%-- 		 <option value="제주"<c:if test="${col=='제주'}">selected</c:if>>제주</option> --%>
-<%-- 		 <option value="전라"<c:if test="${col=='전라'}">selected</c:if>>전라</option> --%>
-<%-- 		 <option value="충청"<c:if test="${col=='충청'}">selected</c:if>>충청</option> --%>
-<%-- 		 <option value="경상"<c:if test="${col=='경상'}">selected</c:if>>경상</option> --%>
-<!--    		</select> -->
-<%-- 		 <input type="text" class="form-control" name="word" value="${word }" placeholder = "상세주소"> --%>
-<!-- 				<button class="btn">검색</button> -->
-<!--    </div> -->
+<div class = "list-mini-list">
+   		<select name = "col" class = "form-control">
+   		 <option value="지역"<c:if test="${col=='지역'}">selected</c:if>>지역을 선택하세요</option>
+   		 <option value="강원"<c:if test="${col=='강원'}">selected</c:if>>강원</option>
+		 <option value="경기"<c:if test="${col=='경기'}">selected</c:if>>경기</option>
+		 <option value="서울"<c:if test="${col=='서울'}">selected</c:if>>서울</option>
+		 <option value="제주"<c:if test="${col=='제주'}">selected</c:if>>제주</option>
+		 <option value="전라"<c:if test="${col=='전라'}">selected</c:if>>전라</option>
+		 <option value="충청"<c:if test="${col=='충청'}">selected</c:if>>충청</option>
+		 <option value="경상"<c:if test="${col=='경상'}">selected</c:if>>경상</option>
+   		</select>
+		 <input type="text" class="form-control" name="word" value="${word }" placeholder = "상세주소">
+				<button class="btn">검색</button>
+   </div>
 
 			<div class="form-inline">
 			</div>

@@ -54,44 +54,44 @@ FROM(
     SELECT board_num, board_name, board_cnt, board_address1, board_address2, board_filename, rownum r 
     FROM ( 
         SELECT board_num, board_name, board_cnt, board_address1, board_address2, board_filename
-        FROM board_hap where board_address1 like '%'||#{col}||'%'
+        FROM board_hap 
         
-<!--         <where> -->
-<!--          <choose> -->
-<!--          	<when test="col=='지역'"> -->
-<!--                board_address1 like '%'||''||'%'  -->
-<!--             </when> -->
+        <where>
+         <choose>
+         	<when test="col=='지역'">
+               board_address1 like '%'||''||'%' and board_address1 like '%'||#{word}||'%'
+            </when>
          
-<!--             <when test="col=='강원'"> -->
-<!--                board_address1 like '%'||'강원'||'%'   -->
-<!--             </when> -->
+            <when test="col=='강원'">
+               board_address1 like '%'||'강원'||'%' and board_address1 like '%'||#{word}||'%'
+            </when>
             
-<!--             <when test="col=='경기'"> -->
-<!--                board_address1 like '%'||'경기'||'%'   -->
-<!--             </when> -->
+            <when test="col=='경기'">
+               board_address1 like '%'||'경기'||'%' and board_address1 like '%'||#{word}||'%'
+            </when>
             
-<!--             <when test="col=='서울'"> -->
-<!--                board_address1 like '%'||'서울'||'%'   -->
-<!--             </when> -->
+            <when test="col=='서울'">
+               board_address1 like '%'||'서울'||'%' and board_address1 like '%'||#{word}||'%'
+            </when>
             
-<!--             <when test="col=='제주'"> -->
-<!--                board_address1 like '%'||'제주'||'%'   -->
-<!--             </when> -->
+            <when test="col=='제주'">
+               board_address1 like '%'||'제주'||'%' and board_address1 like '%'||#{word}||'%'
+            </when>
             
-<!--             <when test="col=='전라'"> -->
-<!--                board_address1 like '%'||'전라'||'%'   -->
-<!--             </when> -->
+            <when test="col=='전라'">
+               board_address1 like '%'||'전라'||'%' and board_address1 like '%'||#{word}||'%'
+            </when>
             
-<!--             <when test="col=='충청'"> -->
-<!--                board_address1 like '%'||'충청'||'%'   -->
-<!--             </when> -->
+            <when test="col=='충청'">
+               board_address1 like '%'||'충청'||'%' and board_address1 like '%'||#{word}||'%'
+            </when>
             
-<!--             <when test="col=='경상'"> -->
-<!--                board_address1 like '%'||'경상'||'%' -->
-<!--             </when> -->
+            <when test="col=='경상'">
+               board_address1 like '%'||'경상'||'%'
+            </when>
             
-<!--          </choose> -->
-<!--       </where> -->
+         </choose>
+      </where>
         ORDER BY board_num DESC  
     						) 
 						) 
@@ -103,6 +103,25 @@ FROM(
 
 	<select id="total" parameterType="Map" resultType="int">
       select count(*) from board_hap
+      <where>
+         <choose>
+            <when test="col=='wname'">
+               wname like '%'||#{word}||'%'
+            </when>
+            <when test="col=='title'">
+               title like '%'||#{word}||'%'
+            </when>
+            <when test="col=='content'">
+               content like '%'||#{word}||'%'
+            </when>
+            <when test="col=='title_content'">
+               title like '%'||#{word}||'%'
+               or
+               content like
+               '%'||#{word}||'%'
+            </when>
+         </choose>
+      </where>
    </select>
    
    <insert id="create" parameterType="Board_hapDTO">

@@ -19,6 +19,7 @@ public interface ResMapper {
 	
 	Res_hapDTO list_m(String member_id);
 	Res_hapDTO read(int res_num);
+	List<Res_hapDTO> read_id (Map map);
 	Res_hapDTO res_find(int res_rannum);
 	int create(Res_hapDTO dto);
 	int create_acc(Res_hapDTO dto);

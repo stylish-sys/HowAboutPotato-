@@ -36,8 +36,12 @@ public interface Member_hapMapper {
 	int member_update(Member_hapDTO dto);
 
 	int updateFile(Map map);
+	
+	int updatebFile(Map map);
 
 	int updatePw(Map map);
+	
+	int updateNick(Map map);
 	
 
 }

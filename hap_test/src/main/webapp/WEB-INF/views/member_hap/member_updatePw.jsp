@@ -7,17 +7,17 @@
 <meta charset="utf-8">
 <script type="text/javascript">
 	function incheck(f) {
-		if (f.passwd.value == "") {
+		if (f.member_passwd.value == "") {
 			alert("비밀번호를 입력하세요");
 			f.passwd.focus();
 			return false;
 		}
-		if (f.repasswd.value == "") {
+		if (f.member_repasswd.value == "") {
 			alert("비밀번호 확인를 입력하세요");
 			f.repasswd.focus();
 			return false;
 		}
-		if (f.passwd.value != f.repasswd.value) {
+		if (f.member_passwd.value != f.member_repasswd.value) {
 			alert("비밀번호가 서로 다릅니다.");
 			f.repasswd.value = "";
 			f.repasswd.focus();
@@ -32,20 +32,20 @@
 
 	<div class="container">
 		<h2 class="col-sm-offset-2 col-sm-10">비밀번호 변경</h2>
-		<form class="form-horizontal" action="updatePw" method="post"
+		<form class="form-horizontal" action="member_updatePw" method="post"
 			onsubmit="return incheck(this)">
 
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="passwd">비밀번호</label>
+				<label class="control-label col-sm-2" for="member_passwd">비밀번호</label>
 				<div class="col-sm-5">
-					<input type="password" name="passwd" id="passwd"
+					<input type="password" name="member_passwd" id="member_passwd"
 						class="form-control">
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="repasswd">비밀번호 확인</label>
+				<label class="control-label col-sm-2" for="member_repasswd">비밀번호 확인</label>
 				<div class="col-sm-5">
-					<input type="password" name="repasswd" id="repasswd"
+					<input type="password" name="member_repasswd" id="member_repasswd"
 						class="form-control">
 				</div>
 			</div>

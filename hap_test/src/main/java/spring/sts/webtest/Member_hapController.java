@@ -14,6 +14,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,8 +28,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.test.tst.NaverLoginBO;
 
+import spring.model.board.Board_hapDTO;
+import spring.model.mapper.Board_hapMapper;
 import spring.model.mapper.Member_hapMapper;
+import spring.model.mapper.ResMapper;
 import spring.model.member_hap.Member_hapDTO;
+import spring.model.res.Res_hapDTO;
 import spring.utility.webtest.Utility;
 
 @Controller
@@ -36,6 +41,12 @@ public class Member_hapController {
 
 	@Autowired
 	private Member_hapMapper mapper;
+	
+	@Autowired
+	private ResMapper rmapper;
+	
+	@Autowired
+	private Board_hapMapper bmapper;
 
 	private NaverLoginBO naverLoginBO;
 	private String apiResult = null;
@@ -68,12 +79,36 @@ public class Member_hapController {
 
 	@GetMapping("/member_hap/member_updatePw")
 	public String updatePw() {
-
+		
 		return "/member_hap/member_updatePw";
 	}
 
+	@GetMapping("/member_hap/member_updateNick")
+	public String updateNick() {
+
+		return "/member_hap/member_updateNick";
+	}
+	
+	@PostMapping("/member_hap/member_updateNick")
+	public String updateNick(String member_nickname, HttpSession session) {
+		
+		Map map = new HashMap();
+		map.put("member_id", session.getAttribute("member_id"));
+		map.put("member_nickname", member_nickname);
+		
+		int flag = mapper.updateNick(map);
+		
+		if (flag == 1) {
+			return "redirect:./member_read";
+		} else {
+			return "error";
+		}
+	}
+	
+
 	@PostMapping("/member_hap/member_updateFile")
-	public String updateFile(MultipartFile member_fname, String oldfile, HttpSession session, HttpServletRequest request) {
+	public String updateFile(MultipartFile member_fname, String oldfile, HttpSession session,
+			HttpServletRequest request) {
 		String basePath = request.getRealPath("/storage");
 		if (oldfile != null && !oldfile.equals("member.jpg")) {
 			Utility.deleteFile(basePath, oldfile);
@@ -95,6 +130,32 @@ public class Member_hapController {
 	public String updateFile() {
 
 		return "/member_hap/member_updateFile";
+	}
+	
+	@PostMapping("/member_hap/member_updatebFile")
+	public String updatebFile(MultipartFile member_backfile, String oldfile, HttpSession session,
+			HttpServletRequest request) {
+		String basePath = request.getRealPath("/storage");
+		if (oldfile != null && !oldfile.equals("back.jpg")) {
+			Utility.deleteFile(basePath, oldfile);
+		}
+		
+		Map map = new HashMap();
+		map.put("member_id", (String) session.getAttribute("member_id"));
+		map.put("member_backfile", Utility.saveFileSpring(member_backfile, basePath));
+		
+		int flag = mapper.updatebFile(map);
+		if (flag == 1) {
+			return "redirect:./member_read";
+		} else {
+			return "error";
+		}
+	}
+	
+	@GetMapping("/member_hap/member_updatebFile")
+	public String updatebFile() {
+		
+		return "/member_hap/member_updatebFile";
 	}
 
 	@ResponseBody
@@ -129,8 +190,22 @@ public class Member_hapController {
 	}
 
 	@RequestMapping("/member_hap/member_create")
-	public String member_create() {
-		return "/member_hap/member_create";
+	public String member_create(HttpServletRequest request, Model model) {
+		if (request.getParameter("id") != null) {
+			String kakao_id = request.getParameter("id");
+			String kakao_email = request.getParameter("email");
+			String kakao_fname = request.getParameter("fname");
+			String kakao_name = request.getParameter("name");
+
+			model.addAttribute("kakao_id", kakao_id);
+			model.addAttribute("kakao_email", kakao_email);
+			model.addAttribute("kakao_fname", kakao_fname);
+			model.addAttribute("kakao_name", kakao_name);
+
+			return "/member_hap/member_create";
+		} else {
+			return "/member_hap/member_create";
+		}
 	}
 
 	@PostMapping("/member_hap/member_createProc")
@@ -145,24 +220,51 @@ public class Member_hapController {
 		} else {
 
 			String basePath = request.getRealPath("/storage");
+			String basePathF = request.getRealPath("/storage");
 
-			int flag = mapper.member_create(dto);
-			if (dto.getMember_fnameMF() != null) {
-				int size = (int) dto.getMember_fnameMF().getSize();
+//			System.out.println("member_fname_kakao " + request.getParameter("member_fname_kakao"));
+//
+//			String fname = request.getParameter("member_fname") == null ? "" : request.getParameter("member_fname");
 
-				if (size > 0) {
-					dto.setMember_fname(Utility.saveFileSpring(dto.getMember_fnameMF(), basePath));
+			if (request.getParameter("set").equals("Kakao")) {
+				int sizeF = (int) dto.getMember_backfileMF().getSize();
+
+				dto.setMember_fname(request.getParameter("member_fname"));
+				if (sizeF > 0) {
+					dto.setMember_backfile(Utility.saveFileSpring(dto.getMember_backfileMF(), basePathF));
 				} else {
-					dto.setMember_fname("member.jpg");
+					dto.setMember_backfile("back.jpg");
 				}
+				int flag = mapper.member_create(dto);
 
 				if (flag == 1) {
 					return "redirect:/";
 				} else {
 					model.addAttribute("str", "알 수 없는 이유로 회원가입에 실패하였습니다.");
 				}
-			} else if (flag == 1) {
-				return "redirect:/";
+
+			} else if (request.getParameter("set").equals("Normal")) {
+				int sizeF = (int) dto.getMember_backfileMF().getSize();
+				int size = (int) dto.getMember_fnameMF().getSize();
+
+				if (size > 0) {
+					dto.setMember_fname(Utility.saveFileSpring(dto.getMember_fnameMF(), basePathF));
+				} else {
+					dto.setMember_fname("member.jpg");
+				}
+
+				if (sizeF > 0) {
+					dto.setMember_backfile(Utility.saveFileSpring(dto.getMember_backfileMF(), basePathF));
+				} else {
+					dto.setMember_backfile("back.jpg");
+				}
+				int flag = mapper.member_create(dto);
+
+				if (flag == 1) {
+					return "redirect:/";
+				} else {
+					model.addAttribute("str", "알 수 없는 이유로 회원가입에 실패하였습니다.");
+				}
 			} else {
 				model.addAttribute("str", "알 수 없는 이유로 회원가입에 실패하였습니다.");
 			}
@@ -272,20 +374,20 @@ public class Member_hapController {
 			HttpServletRequest request) throws IOException, ParseException {
 		OAuth2AccessToken oauthToken;
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
-		
-		//1. 로그인 사용자 정보를 읽어온다.
+
+		// 1. 로그인 사용자 정보를 읽어온다.
 		apiResult = naverLoginBO.getUserProfile(oauthToken); // String형식의 json데이터
-		//2. String형식인 apiResult를 json형태로 바꿈
+		// 2. String형식인 apiResult를 json형태로 바꿈
 		JSONParser parser = new JSONParser();
 		Object obj = parser.parse(apiResult);
 		JSONObject jsonObj = (JSONObject) obj;
-		//3. 데이터 파싱
-		//Top레벨 단계 _response 파싱
+		// 3. 데이터 파싱
+		// Top레벨 단계 _response 파싱
 		JSONObject response_obj = (JSONObject) jsonObj.get("response");
-		//response의 nickname값 파싱
+		// response의 nickname값 파싱
 		String nickname = (String) response_obj.get("nickname");
 		System.out.println(nickname);
-		//4.파싱 닉네임 세션으로 저장
+		// 4.파싱 닉네임 세션으로 저장
 
 		if (apiResult != null) {
 			Member_hapDTO dto = new Member_hapDTO();
@@ -309,6 +411,7 @@ public class Member_hapController {
 				dto.setMember_email((String) member_email);
 				dto.setMember_birth("1999-" + (String) member_birth);
 				dto.setMember_fname("member.jpg");
+				dto.setMember_backfile("back.jpg");
 				dto.setMember_phone("010-0000-0000");
 				dto.setMember_passwd("1234");
 
@@ -426,15 +529,26 @@ public class Member_hapController {
 
 	@GetMapping("/member_hap/member_read")
 	public String read(String member_id, HttpSession session, Model model) {
-
 		if (member_id == null) {
 			member_id = (String) session.getAttribute("member_id");
 		}
-
 		Member_hapDTO dto = mapper.member_read(member_id);
+		Map map = new HashMap();
+
+		map.put("member_id",member_id);
+		
+		List<Res_hapDTO> dto_r = rmapper.read_id(map);
+		
+		
+		/*
+		 * Board_hapDTO dto_b = bmapper.read((int) map.get("board_num"));
+		 */ 	
 
 		model.addAttribute("dto", dto);
-
+		model.addAttribute("dto_r",dto_r);
+		/*
+		 * model.addAttribute("dto_b",dto_b);
+		 */
 		return "/member_hap/member_read";
 	}
 

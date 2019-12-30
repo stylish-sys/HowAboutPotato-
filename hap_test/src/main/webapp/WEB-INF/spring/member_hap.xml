@@ -25,11 +25,6 @@
         <put-attribute name="body" value="/WEB-INF/views/member_hap/member_create.jsp" /> 
     </definition>
     
-    <definition name="/member_hap/member_kakao_create" extends="main"> 
-        <put-attribute name="title" value="HAP회원가입 양식" ></put-attribute> 
-        <put-attribute name="body" value="/WEB-INF/views/member_hap/member_kakao_create.jsp" /> 
-    </definition>
-    
    <definition name="/member_hap/preProc" extends="main"> 
         <put-attribute name="title" value="에러메세지확인" ></put-attribute> 
         <put-attribute name="body" value="/WEB-INF/views/member_hap/preProc.jsp" /> 
@@ -67,14 +62,24 @@
         <put-attribute name="body" value="/WEB-INF/views/member_hap/member_update.jsp" /> 
     </definition>  
     
-         <definition name="/member_hap/member_updatePw" extends="main"> 
+    <definition name="/member_hap/member_updatePw" extends="main"> 
         <put-attribute name="title" value="비밀번호수정" ></put-attribute> 
         <put-attribute name="body" value="/WEB-INF/views/member_hap/member_updatePw.jsp" /> 
     </definition> 
     
-        <definition name="/member_hap/member_updateFile" extends="main"> 
-        <put-attribute name="title" value="회원사진수정" ></put-attribute> 
+    <definition name="/member_hap/member_updateFile" extends="main"> 
+        <put-attribute name="title" value="프로필사진수정" ></put-attribute> 
         <put-attribute name="body" value="/WEB-INF/views/member_hap/member_updateFile.jsp" /> 
+    </definition> 
+    
+    <definition name="/member_hap/member_updateNick" extends="main"> 
+        <put-attribute name="title" value="별명 수정" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/member_hap/member_updateNick.jsp" /> 
+    </definition> 
+    
+    <definition name="/member_hap/member_updatebFile" extends="main"> 
+        <put-attribute name="title" value="배경사진수정" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/member_hap/member_updatebFile.jsp" /> 
     </definition> 
     
    

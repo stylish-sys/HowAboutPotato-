@@ -14,7 +14,34 @@ public class Member_hapDTO {
 	private String member_fname  ;
 	private MultipartFile member_fnameMF;
 	private char member_grade  ;
+	private String member_backfile ;
+	private MultipartFile member_backfileMF;
+	private String member_nickname;
 	
+	public String getMember_nickname() {
+		return member_nickname;
+	}
+
+	public void setMember_nickname(String member_nickname) {
+		this.member_nickname = member_nickname;
+	}
+
+	public String getMember_backfile() {
+		return member_backfile;
+	}
+
+	public void setMember_backfile(String member_backfile) {
+		this.member_backfile = member_backfile;
+	}
+
+	public MultipartFile getMember_backfileMF() {
+		return member_backfileMF;
+	}
+
+	public void setMember_backfileMF(MultipartFile member_backfileMF) {
+		this.member_backfileMF = member_backfileMF;
+	}
+
 	public Member_hapDTO() {
 		super();
 		// TODO Auto-generated constructor stub

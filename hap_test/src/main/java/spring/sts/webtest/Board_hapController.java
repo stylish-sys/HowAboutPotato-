@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import spring.model.board.Board_hapDTO;
@@ -31,6 +32,24 @@ public class Board_hapController {
 	private Room_hapMapper rmapper;
 	@Autowired
 	private Board_hapService service;
+	
+	@ResponseBody
+	@GetMapping(value = "/board_hap/board_namecheck", produces = "application/json; charset=utf-8")
+	public Map<String, Object> board_namecheck(String board_name){
+		
+		int flag = bmapper.duplicatedBoard_name(board_name);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		if(flag ==1) {
+			map.put("str", board_name + "은(는) 이미 있는 숙소이름입니다. 다른 숙소이름을  입력해주세요");
+		} else {
+			map.put("str", board_name + "은(는) 사용 가능한 숙소이름 입니다.");
+		}
+		
+		return map;
+		
+	}
 
 	@PostMapping("/board_hap/updateFile")
 	public String updateFile(Board_hapDTO dto, String oldfile, MultipartFile board_filenameMF, HttpSession session,

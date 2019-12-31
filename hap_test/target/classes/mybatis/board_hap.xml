@@ -5,6 +5,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="spring.model.mapper.Board_hapMapper">
 
+	<select id="duplicatedBoard_name" parameterType="String" resultType="int">
+	select count(board_name) from board_hap where board_name = #{board_name}
+	</select>
+
 	<update id="upcnt" parameterType="int">
 	
 		update board_hap set board_cnt = board_cnt + 1 where board_num = #{board_num}

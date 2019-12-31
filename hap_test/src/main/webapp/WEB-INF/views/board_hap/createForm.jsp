@@ -67,10 +67,10 @@
 			alert("숙소이름을 입력하세요")
 			document.frm.board_name.focus();
 		} else {
-			var url = "board_namecheck"; //idcheck - > board_namecheck
-			var param = "board_name=" + board_name;
+			var url = "board_namecheck"; //board_namecheck
+			url += "?board_name=" + board_name;
 
-			$.get(url, param, function(data, textStatus) {
+			$.get(url, function(data, textStatus) {
 				$("#board_namecheck").text(data.str);
 			})
 
@@ -94,6 +94,12 @@
 
 	}
 </script>
+<style>
+#board_namecheck  {
+	color: red;
+}
+</style>
+
 </head>
 <body>
 	<div class="container">
@@ -119,7 +125,7 @@
 					<!-- id->board_name -->
 				</div>
 				<button type="button" class="btn col-sm-2" onclick="board_nameCheck(document.frm.board_name.value)">중복체크</button>
-				<div id="idcheck"></div>
+				<div id="board_namecheck"></div>
 			</div>
 			
 			<div class="form-group">

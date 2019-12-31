@@ -16,5 +16,6 @@ public interface Board_hapMapper {
 	int update(Board_hapDTO dto);
 	int updateFile(Map map);
 	int upcnt(int board_num);
+	int duplicatedBoard_name(String board_name);
 	
 }

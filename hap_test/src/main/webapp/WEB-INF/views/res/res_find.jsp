@@ -8,6 +8,7 @@
 #need {
 	color: red;
 }
+
 #notice_select {width =50px;
 	
 }
@@ -34,13 +35,20 @@ tr {
 }
 
 .container-notice {
-	height: 100vh;
+	height: 40vh;
 	display: flex;
+	width: 30vw;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
 }
-
+.container-notice1 {
+height: 50vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 .btn {
 	height: 3.5rem;
 }
@@ -87,7 +95,7 @@ input[type="text"], input[type="password"], input[type="email"], select
 </style>
 </head>
 <body>
-	<div class="container-notice">
+	<div class="container-notice1">
 		<br>
 		<form class="container-notice" action="res_find" method="post">
 			<div align="center">
@@ -97,7 +105,6 @@ input[type="text"], input[type="password"], input[type="email"], select
 					<input type="text" name="res_rannum" id="res_rannum"
 						required="required">
 				</div>
-				<button type="button" onclick="location.href='../'">홈</button>
 				<button type="submit">검색</button>
 			</div>
 		</form>

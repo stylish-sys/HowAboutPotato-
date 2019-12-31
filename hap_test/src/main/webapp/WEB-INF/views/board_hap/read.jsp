@@ -34,6 +34,25 @@
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=dnlcnqixxo&callback=CALLBACK_FUNCTION"></script>
 
 <style>
+
+.modal{
+	text-align: center;
+}
+
+@media screen and (min-width: 768px){
+	.modal:before{
+		display: inline-block;
+		vertical-align: middle;
+		content: " ";
+		height: 100%;
+	}
+}
+
+.modal-dialog {
+	display:inline-block;
+	text-align: left;
+	vertical-align: middle;
+}
 star {
 	color: #FF0000;;
 }
@@ -45,24 +64,6 @@ nickname {
 content {
 	colot: #6E6E6E;
 }
-.modal {
-        text-align: center;
-}
- 
-@media screen and (min-width: 768px) { 
-        .modal:before {
-                display: inline-block;
-                vertical-align: middle;
-                content: " ";
-                height: 100%;
-        }
-}
- 
- .modal-dialog { 
-         display: inline-block;
-         text-align: left; 
-         vertical-align: middle; 
- } 
 </style>
 
 </head>
@@ -88,7 +89,7 @@ content {
 							<c:forEach var="dto" items="${rlist}" varStatus="index">
 								<div class="item <c:if test="${index.first}">active</c:if>">
 									<img
-										src="${pageContext.request.contextPath}/images/${dto.room_filename}"
+										src="${pageContext.request.contextPath}/storage/${dto.room_filename}"
 										class="img-rounded " width="800px" height="800px"
 										alt="image${index.count}">
 								</div>
@@ -131,7 +132,7 @@ content {
 				<!-- admin만 -->
 				<tr>
 					<td><img
-						src="${pageContext.request.contextPath}/images/${dto.room_filename}"
+						src="${pageContext.request.contextPath}/storage/${dto.room_filename}"
 						class="img-rounded " width="200px" height="200px"></td>
 					<td>${dto.room_name }</td>
 					<td>${dto.room_price }원</td>
@@ -208,50 +209,50 @@ content {
 								});
 			</script>
 
-			<div class="col-sm-12">
-				<div class="panel panel-default">
+				<div class="col-sm-12">
+					<div class="panel panel-default">
 
 
-					<div class="panel-heading">
-						<i class="fa fa-comments fa-fw"></i>리뷰
-						<button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>New
-							Reply</button>
+						<div class="panel-heading">
+							<i class="fa fa-comments fa-fw"></i>리뷰
+							<button id='addReplyBtn'
+								class='btn btn-primary btn-xs pull-right'>New Reply</button>
 
-						<br> <br>
-					</div>
+							<br> <br>
+						</div>
 
 
-					<!-- panel-heading -->
-					<div class="panel-body">
-						<ul class="chat list-group">
-							<li class="left clearfix" data-rno="12">
-								<div>
-									<div class="header">
-										<div>
-											<img src="${root }/images/pic04.jpg" alt="이미지의 묘사 내용"
-												height="100px" width="100px" />
+						<!-- panel-heading -->
+						<div class="panel-body">
+							<ul class="chat list-group">
+								<li class="left clearfix" data-rno="12">
+									<div>
+										<div class="header">
+											<div>
+												<img src="${root }/images/pic04.jpg" alt="이미지의 묘사 내용"
+													height="100px" width="100px" />
+											</div>
+											<strong class="primary-font">무플 방지 위원회</strong> <small
+												class="pull-right text-muted">20XX-XX-XX</small>
 										</div>
-										<strong class="primary-font">무플 방지 위원회</strong> <small
-											class="pull-right text-muted">20XX-XX-XX</small>
+										<p>ㅎㅇ</p>
 									</div>
-									<p>ㅎㅇ</p>
-								</div>
-							</li>
-						</ul>
-						<!-- ./ end ul -->
+								</li>
+							</ul>
+							<!-- ./ end ul -->
+						</div>
+
+
+						<div class="panel-footer"></div>
 					</div>
-
-
-					<div class="panel-footer"></div>
+					<!-- /.panel -->
 				</div>
-				<!-- /.panel -->
+				<!-- col-lg-12 end -->
 			</div>
-			<!-- col-lg-12 end -->
-		</div>
-		<!-- row end -->
+			<!-- row end -->
 
-	</div>
-	<!-- container div-->
+		</div>
+		<!-- container div-->
 
 
 	<!-- Modal -->
@@ -594,19 +595,11 @@ content {
 
 		<!-- // 		var map = new naver.maps.Map('map', mapOptions); -->
 		<!-- 	</script> -->
-		<c:if test="${not empty sessionScope.member_id }">
-			<div style="text-align: center">
-				<button type="submit" class="btn"
-					onclick="location.href='../res/create?board_num=${dto.board_num}'">결제하기</button>
-			</div>
-		</c:if>
-		<c:if test="${empty sessionScope.member_id }">
-			<div style="text-align: center">
-				<button type="submit" class="btn"
-					onclick="location.href='../member_hap/login'">로그인하기</button>
-			</div>
-		</c:if>
-		<br>
+
+		<div style="text-align: center">
+			<button type="submit" class="btn"
+				onclick="location.href='../res/create?board_num=${dto.board_num}'">결제하기</button>
+		</div>
 
 	</div>
 </body>

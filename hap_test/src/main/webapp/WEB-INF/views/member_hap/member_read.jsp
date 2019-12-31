@@ -27,28 +27,15 @@
 	}
 
 	function updateFile() {
-		var url = "member_updateFile";
+		var url = "updateFile";
 
 		url += "?oldfile=${dto.member_fname}";
 		location.href = url;
 	}
 
-	function updatebFile() {
-		var url = "member_updatebFile";
-
-		url += "?oldfile=${dto.member_backfile}";
-		location.href = url;
-	}
-
 	function updatePW() {
-		var url = "member_updatePw";
+		var url = "updatePw";
 
-		location.href = url;
-	}
-
-	function updateNick() {
-		var url = "member_updateNick";
-		url += "?member_nickname=${dto.member_nickname}";
 		location.href = url;
 	}
 </script>
@@ -64,6 +51,7 @@
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	
 }
 
 .profile-container1 {
@@ -77,6 +65,7 @@
 	align-items: center;
 	display: flex;
 	width: 80%;
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3)
 }
 
 .profile-container2 {
@@ -99,6 +88,7 @@
 	justify-content: space-around;
 	align-items: center;
 	z-index: 40;
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3)
 }
 
 .profile-container {
@@ -106,7 +96,8 @@
 }
 
 .profile-container1 {
-	background-image:url(/webtest/storage/${dto.member_backfile});
+	background-image:
+		url(http://www.cashadvance6online.com/data/archive/img/1667785797.jpeg);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -134,10 +125,11 @@
 
 .col-md-5 {
 	background-color: #7CABB3;
-	height: 100%;
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3)
 }
 
 .col-md-2 {
@@ -244,7 +236,6 @@ a {
 	align-items: center;
 	color: gray;
 }
-
 .profile-info-content-content {
 	font-size: 2rem;
 	width: 50%;
@@ -254,33 +245,28 @@ a {
 	align-items: center;
 	color: gray;
 }
-
 .social-content {
 	font-size: 6rem;
 	color: white;
 }
-
-.profile-social {
+.profile-social{
 	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 80%;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
 }
-
-.profile-social-content {
+.profile-social-content{
 	margin: 10%
 }
-
 .profile-id {
-	color: white;
-	font-size: 3rem;
-	height: 80%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	    color: white;
+    font-size: 3rem;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
-.profile-change {
+.profile-change{
 	
 }
 </style>
@@ -288,8 +274,8 @@ a {
 </head>
 <body>
 	<div class="profile-container">
-		<div class="profile-container1" onclick="location.href='javascript:updatebFile()'">
-		</div>
+		<div class="profile-container1"
+			onclick="location.href='javascript:updatebFile()'"></div>
 		<div class="profile-container2">
 			<div class="col-md-5">
 				<div class="profile-id">${dto.member_id}님!환영합니다.</div>
@@ -306,15 +292,18 @@ a {
 			<div class="col-md-5">
 				<div class="profile-social">
 					<div class="profile-social-content">
-						<a href="https://www.instagram.com/"> <i class="fab fa-instagram social-content"></i>
+						<a href="https://www.instagram.com/"> <i
+							class="fab fa-instagram social-content"></i>
 						</a>
 					</div>
 					<div class="profile-social-content">
-						<a href="https://www.facebook.com/profile.php"> <i class="fab fa-facebook-square social-content"></i>
+						<a href="https://www.facebook.com/profile.php"> <i
+							class="fab fa-facebook-square social-content"></i>
 						</a>
 					</div>
 					<div class="profile-social-content">
-						<a href="https://www.blogger.com/"> <i class="fas fa-blog social-content"></i>
+						<a href="https://www.blogger.com/"> <i
+							class="fas fa-blog social-content"></i>
 						</a>
 					</div>
 
@@ -363,11 +352,11 @@ a {
 						</div>
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="dto_r" items="${dto_r}">
+						<c:forEach var="dto_r" items="${dto_r}" end="2" >
 							<div class="profile-activity-res">
 								<i class="fas fa-home"></i>
 								<div class="profile-activity-res-container">
-									<div class="profile-activity-res-content"></div>
+										<div class="profile-activity-res-content"></div>
 									<div class="profile-activity-res-detail">예약번호 :
 										${dto_r.res_rannum } 일시 : ${dto_r.res_res1 }</div>
 								</div>
@@ -376,7 +365,8 @@ a {
 					</c:otherwise>
 				</c:choose>
 				<div class="profile-activity-link">
-					<a href="${pageContext.request.contextPath }/res/list">전체 내역 보기 ></a>
+					<a href="${pageContext.request.contextPath }/res/list">전체 내역 보기
+						></a>
 				</div>
 			</div>
 		</div>

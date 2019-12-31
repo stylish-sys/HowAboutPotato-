@@ -82,6 +82,7 @@ tr {
 	margin-bottom: 20px;
 	box-shadow: -60px 0px 120px -90px #000000, 60px 0px 120px -90px #000000;
 	background-color: white;
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3)
 }
 
 table tbody tr:nth-child(2n + 1) {
@@ -115,6 +116,9 @@ input[type="text"], input[type="password"], input[type="email"], select
 	height: 3.5rem;
 	font-size: 1.5rem;
 }
+.table {
+	width: 50%;
+}
 </style>
 </head>
 <body>
@@ -146,8 +150,9 @@ input[type="text"], input[type="password"], input[type="email"], select
 									<a href="javascript:read('${dto.res_num}')">[예약정보 상세보기]</a>
 								</p>
 							</td>
-							<td><a href="javascript:deletem('${dto.res_num}')">예약 취소
-									요청</a></td>
+							<td>
+									<button href="javascript:deletem('${dto.res_num}')">예약 취소 요청</button>
+									</td>
 							<td><a href="javascript:update('${dto.res_num}')">예약
 									수정하기</a></td>
 							<td><c:if test="${dto.res_acc == 'Y' }">예약 승인	</c:if> <c:if

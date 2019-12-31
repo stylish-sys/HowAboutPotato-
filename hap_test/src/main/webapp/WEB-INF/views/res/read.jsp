@@ -42,7 +42,7 @@ tr {
 }
 
 .container-notice {
-	height: 100vh;
+	height: 110vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -91,6 +91,14 @@ input[type="text"], input[type="password"], input[type="email"], select
 	{
 	height: 3.5rem;
 	font-size: 1.5rem;
+}
+.table {
+    width: 50%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    /* box-shadow: -60px 0px 120px -90px #000000, 60px 0px 120px -90px #000000; */
+    background-color: white;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
 }
 </style>
 </head>

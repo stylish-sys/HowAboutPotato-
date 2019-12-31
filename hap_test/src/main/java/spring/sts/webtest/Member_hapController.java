@@ -1,6 +1,7 @@
 package spring.sts.webtest;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,10 +41,10 @@ public class Member_hapController {
 
 	@Autowired
 	private Member_hapMapper mapper;
-	
+
 	@Autowired
 	private ResMapper rmapper;
-	
+
 	@Autowired
 	private Board_hapMapper bmapper;
 
@@ -79,7 +79,7 @@ public class Member_hapController {
 
 	@GetMapping("/member_hap/member_updatePw")
 	public String updatePw() {
-		
+
 		return "/member_hap/member_updatePw";
 	}
 
@@ -88,23 +88,22 @@ public class Member_hapController {
 
 		return "/member_hap/member_updateNick";
 	}
-	
+
 	@PostMapping("/member_hap/member_updateNick")
 	public String updateNick(String member_nickname, HttpSession session) {
-		
+
 		Map map = new HashMap();
 		map.put("member_id", session.getAttribute("member_id"));
 		map.put("member_nickname", member_nickname);
-		
+
 		int flag = mapper.updateNick(map);
-		
+
 		if (flag == 1) {
 			return "redirect:./member_read";
 		} else {
 			return "error";
 		}
 	}
-	
 
 	@PostMapping("/member_hap/member_updateFile")
 	public String updateFile(MultipartFile member_fname, String oldfile, HttpSession session,
@@ -131,7 +130,7 @@ public class Member_hapController {
 
 		return "/member_hap/member_updateFile";
 	}
-	
+
 	@PostMapping("/member_hap/member_updatebFile")
 	public String updatebFile(MultipartFile member_backfile, String oldfile, HttpSession session,
 			HttpServletRequest request) {
@@ -139,11 +138,11 @@ public class Member_hapController {
 		if (oldfile != null && !oldfile.equals("back.jpg")) {
 			Utility.deleteFile(basePath, oldfile);
 		}
-		
+
 		Map map = new HashMap();
 		map.put("member_id", (String) session.getAttribute("member_id"));
 		map.put("member_backfile", Utility.saveFileSpring(member_backfile, basePath));
-		
+
 		int flag = mapper.updatebFile(map);
 		if (flag == 1) {
 			return "redirect:./member_read";
@@ -151,10 +150,10 @@ public class Member_hapController {
 			return "error";
 		}
 	}
-	
+
 	@GetMapping("/member_hap/member_updatebFile")
 	public String updatebFile() {
-		
+
 		return "/member_hap/member_updatebFile";
 	}
 
@@ -535,20 +534,13 @@ public class Member_hapController {
 		Member_hapDTO dto = mapper.member_read(member_id);
 		Map map = new HashMap();
 
-		map.put("member_id",member_id);
-		
+		map.put("member_id", member_id);
+
 		List<Res_hapDTO> dto_r = rmapper.read_id(map);
-		
-		
-		/*
-		 * Board_hapDTO dto_b = bmapper.read((int) map.get("board_num"));
-		 */ 	
 
 		model.addAttribute("dto", dto);
-		model.addAttribute("dto_r",dto_r);
-		/*
-		 * model.addAttribute("dto_b",dto_b);
-		 */
+		model.addAttribute("dto_r", dto_r);
+
 		return "/member_hap/member_read";
 	}
 

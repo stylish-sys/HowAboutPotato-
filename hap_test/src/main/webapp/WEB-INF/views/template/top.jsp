@@ -189,38 +189,38 @@
 
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
-	$(document).ready(function() {
-
-		var menu = $('.main-banner').offset();
-		var limit = $('.login-container').offset();
-		$(window).scroll(function() {
-			if ($(document).scrollTop() > menu.top) {
-				$('.main-banner').addClass('fixed');
-			} else {
-				$('.main-banner').removeClass('fixed');
-			}
-		});
-	});
-</script>
+	    $(document).ready(function() {
+	
+	    	var menu = $( '.main-banner' ).offset();
+	    	var limit = $( '.login-container' ).offset();
+	    		$( window ).scroll( function() {
+	    			if ( $( document ).scrollTop() > menu.top ) {
+	    				$( '.main-banner' ).addClass( 'fixed' );
+	    			}
+	            	 else {
+	    				$( '.main-banner' ).removeClass( 'fixed' );
+	    			}
+	    	});
+	    });
+    </script>
 
 <script>
-	jQuery(window).scroll(function() {
-		$('#main-header').attr('class', 'main-header-down');
-		setTimeout(function() {
-			$('#main-header').attr('class', 'main-header');
-		}, 900);
+    	jQuery(window).scroll(function(){
+    	    $('#main-header').attr('class','main-header-down');
+    	    setTimeout(function() {         
+    	    	$('#main-header').attr('class','main-header');     
+        	    }, 900);
 
-	});
-</script>
+    	});
 
+    </script>
 </head>
-
 
 <body>
 	<header id="main-header" role="banner" class="main-header">
 
 		<div class="main-banner">
-			<a href="${root }"> <img id="logo-main"
+			<a href="${root}"> <img id="logo-main"
 				src="${pageContext.request.contextPath }/images/로고2.png" width="200"
 				alt="Logo Thing main logo">
 			</a>
@@ -259,6 +259,7 @@
 
 							<c:if
 								test="${not empty sessionScope.member_id && sessionScope.member_grade=='H'}">
+								<li><a href="${root}/res/list">RESLIST</a></li>
 								<li><a href="${root}/res/res_acc">승인 대기</a></li>
 							</c:if>
 						</ul>
@@ -267,7 +268,6 @@
 				</div>
 				<!-- /.container-fluid -->
 			</nav>
-		</div>
 	</header>
 	<!-- header role="banner" -->
 </body>

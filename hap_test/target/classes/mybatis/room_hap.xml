@@ -5,12 +5,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="spring.model.mapper.Room_hapMapper">
 
-	<delete id="bdelete" parameterType="int">
-	
-	delete from room_hap where board_num = #{board_num}
-	
-	</delete>
-
 	<update id="updateFile" parameterType="Map">
 		update room_hap set room_filename = #{room_filename} where room_num = #{room_num}
 	</update>

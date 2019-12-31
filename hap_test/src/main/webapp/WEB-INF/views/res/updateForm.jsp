@@ -7,9 +7,55 @@
 <meta charset="utf-8">
 <script type="text/javascript">
 </script>
+<style>
+.table {
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: 20px;
+	box-shadow: -60px 0px 120px -90px #000000, 60px 0px 120px -90px #000000;
+	background-color: white;
+}
+
+table tbody tr:nth-child(2n + 1) {
+	background-color: white;
+}
+
+.first-notice-tbody tr {
+	background-color: gray;
+}
+
+.first-notice-tbody td {
+	background-color: #f2fcf6;
+}
+
+#noticeThead tr {
+	background-color: #e6e6f2;
+}
+form {
+    margin: 0 0 2em 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+    width: 70%;
+}
+.container1 {
+	width: 100%;
+	
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150vh;
+}
+input[type="text"], input[type="password"], input[type="email"], select {
+    height: 3.5rem;
+    font-size: 1.5rem;
+}
+</style>
 </head>
 <body>
-	<div class="container" style="padding-bottom: 60px;">
+	<div class="container1" style="padding-bottom: 60px;">
 		<br> <br> <br>
 		<form class="form-horizontal" action="update" method="post">
 			<input type="hidden" name="res_num" value="${param.res_num}">

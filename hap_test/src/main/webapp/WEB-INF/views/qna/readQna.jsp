@@ -16,8 +16,8 @@
 .read-notice-main {
 	width: 45%;
 	height: 60vh;
-	background-color: #A4A4A4;
-	box-shadow: -60px 0px 120px -90px #000000, 60px 0px 120px -90px #000000;
+	background-color: #ebe7f1;
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
@@ -35,13 +35,13 @@
 	font-size: 3rem;
 	/* border-top: 1px solid black; */
 	/* border-bottom: 1px solid black; */
-	background-color: #E6E6E6;
+	background-color: #f2fcf6;
 }
 
 .read-notice-title-writer {
 	display: flex;
 	justify-content: flex-start;
-	width: 40%;
+	width: 20%;
 	align-items: center;
 	background-color: none;
 }
@@ -53,9 +53,8 @@
 	background-color: none;
 	font: bold;
 }
-
 .container {
-	flex-direction: column;
+	    flex-direction: column;
 }
 
 .read-notice-count {
@@ -112,6 +111,7 @@
 	justify-content: flex-end;
 	width: 80%;
 }
+
 </style>
 <script type="text/javascript">
 	function listQna() {

@@ -46,8 +46,7 @@ head {
     width: 60%;
     max-width: 100%;
     margin-bottom: 20px;
-    box-shadow: -60px 0px 120px -90px #000000,
-        60px 0px 120px -90px #000000;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
     background-color: white;
 }
 
@@ -73,7 +72,6 @@ table tbody tr:nth-child(2n + 1) {
     background-color: white;
     border-color: white;
 }
-
 input[type="text"], input[type="password"], input[type="email"], select {
     height: 3.5rem;
     font-size: 1.5rem;

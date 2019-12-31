@@ -13,12 +13,14 @@
 	};
 </script>
 </head>
+
 <body>
 	<div class="container">
 		<h3 class="col-sm-offset-2 col-sm-10">공지사항 등록</h3>
 		<form class="form-horizontal" action="create" method="post"
 			enctype="multipart/form-data">
 			<input type="hidden" name="member_id" value="${member_id}">
+			<input type="hidden" name="notice_noti" value="N">
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="member_id">작성자</label>
 				<div class="col-sm-6">
@@ -63,10 +65,8 @@
 				<label class="control-label col-sm-2" for="notice_noti">
 					게시물 상단</label>
 				<div class="col-sm-6">
-					<input type="radio" id="notice_noti1" name="notice_noti"
-						value="Y"> <label for="notice_noti1">중요공지</label>
-					<input type="radio" id="notice_noti2" name= "notice_noti"
-					value="N" checked="checked"> <label for = "notice_noti2">일반공지</label>
+					<input type="checkbox" id="notice_noti" name="notice_noti"
+						value="Y"> <label for="notice_noti"> 등록</label>
 				</div>
 			</div>
 			<br>

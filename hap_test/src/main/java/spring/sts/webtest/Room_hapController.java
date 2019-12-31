@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,14 +17,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import spring.model.mapper.Room_hapMapper;
 import spring.model.room.Room_hapDTO;
-import spring.model.room.Room_hapService;
 import spring.utility.webtest.Utility;
 
 @Controller
 public class Room_hapController {
-	
-	@Autowired
-	private Room_hapService service;
 
 	@Autowired
 	private Room_hapMapper rmapper;
@@ -144,16 +139,18 @@ public class Room_hapController {
 					nowPage = Integer.parseInt(request.getParameter("nowPage"));
 				}
 
-				try{
-					service.delete(room_num);
-					return "redirect:/board_hap/read?board_num=" + dto.getBoard_num() + "&col=" + col + "&word=" + word + "&nowPage=" + nowPage;
-				} catch(Exception e) {
-					model.addAttribute("str", "방 정보 삭제실패입니다..");
-					return "error";
-					
-				}
-					
-				
+		int flag = rmapper.delete(room_num);
+
+		if (flag == 1) {
+//			url = "redirect:/board_hap/read";
+//			url += "?board_num=" + dto.getBoard_num();
+			return "redirect:/board_hap/read?board_num=" + dto.getBoard_num() + "&col=" + col + "&word=" + word + "&nowPage=" + nowPage;
+		} else {
+			model.addAttribute("str", "방 정보 삭제실패입니다..");
+//			url = "/preProc";
+			return "error";
+		}
+
 	}
 
 	@PostMapping("/room_hap/create") // room 정보등록(board안에서)
@@ -176,7 +173,7 @@ public class Room_hapController {
 		}
 
 		String url = "/preProc";
-		String basePath = request.getRealPath("/images");
+		String basePath = request.getRealPath("/storage");
 		int size = (int) dto.getRoom_filenameMF().getSize();
 		
 		if (size > 0) {

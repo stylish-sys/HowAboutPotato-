@@ -40,7 +40,7 @@
                       document.body.appendChild(form);
                       form.submit();
                    }
-                  sendPost('member_create',{
+                  sendPost('member_kakao_create',{
                      'name': res.properties.nickname,
                      'email' : res.kaccount_email,
                      'id' : res.id,
@@ -114,8 +114,7 @@
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	box-shadow: -60px 0px 120px -90px #000000,
-        60px 0px 120px -90px #000000;
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
     background-color: white;
 }
 
@@ -246,7 +245,7 @@
 					<button id="custom-login-btn" type="button" class="btn-kakao"
 						onclick="loginWithKakao()">
 							<i class="fas fa-comment"></i>
-							카카오계정으로 회원가입
+							카카오계정으로 로그인
 						</button>
 				</div>
 			</div>
@@ -258,7 +257,7 @@
 					<button onclick="location.href='${url }'" type="button"
 						class="btn-naver">
 							N
-							네이버로 회원가입
+							네이버로 로그인
 						</button>
 				</div>
 			</div>

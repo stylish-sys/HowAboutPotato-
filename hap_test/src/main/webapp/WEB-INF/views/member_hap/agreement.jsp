@@ -5,29 +5,73 @@
 <head>
 <title>회원약관</title>
 <meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:700&display=swap');
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+form {
+    /* margin: 0 0 2em 0; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 70vh;
+    flex-direction: column;
+}
+
+.sign-up-title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 10vh;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 4rem;
+}
+.form-horizontal .form-group {
+    margin-right: -15px;
+    margin-left: -15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sign-up-check {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.btn {
+	margin-right: 1%;
+}
+</style>
 <script type="text/javascript">
-  function send(){
-    if(document.frm.agree.checked == false){   // 체크되어있지 않으면 안넘어감
-      alert('회원 약관에 동의해야 회원 가입이 가능합니다.'); 
-      return false; // 서브밋 중지 
-    }
-    
-  }
-  
-  </script>
+	function send() {
+		if (document.frm.agree.checked == false) { // 체크되어있지 않으면 안넘어감
+			alert('회원 약관에 동의해야 회원 가입이 가능합니다.');
+			return false; // 서브밋 중지 
+		}
+
+	}
+</script>
 
 </head>
 <body>
 	<div class="container">
-	<br>
-		<h2 class="col-sm-offset-1 col-sm-11">HAP 회원가입 약관동의</h2>
+		<div class="sign-up-title">
+			HAP 회원가입 약관동의
+		</div>
 		<form class="form-horizontal" action="member_create" method="post"
 			onsubmit="return send()" name="frm">
 
 
 			<div class="form-group">
 				<label class="control-label col-sm-1" for="content"></label>
-				<div class="col-sm-8">
+				<div class="agreement-content">
 					<textarea rows="20" cols="100" id="content" name="content"
 						class="form-control">Cummunity 서비스약관 (2005. 7. 18 부터 유효) 
  
@@ -265,12 +309,12 @@
 2. 2016년 2월 4일부터 시행되던 종전의 약관은 본 약관으로 대체합니다. </textarea>
 				</div>
 			</div>
-<br>
+			<br>
 			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-5">
+				<div class="sign-up-check">
 					<input id="agree" type="checkbox" name="agree" value="1"><label
 						for="agree"> 약관에 동의합니다 </label>
-					<button class="btn" >회원가입</button>
+					<button class="btn">회원가입</button>
 					<button type="button" class="btn" onclick="history.back()">취소</button>
 				</div>
 			</div>

@@ -46,16 +46,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	</select>
+	<select id = "listM" parameterType="Map" resultType="Board_hapDTO">
+		select board_name, board_num
+		from board_hap where board_num = #{board_num}
+	
+	</select>
 	
 	<select id="list" parameterType="Map" resultType="Board_hapDTO">
 
 	SELECT board_num, board_name, board_cnt, board_address1, board_address2, board_filename, r 
-FROM( 
-    SELECT board_num, board_name, board_cnt, board_address1, board_address2, board_filename, rownum r 
-    FROM ( 
-        SELECT board_num, board_name, board_cnt, board_address1, board_address2, board_filename
-        FROM board_hap 
-        
+	FROM( 
+	    SELECT board_num, board_name, board_cnt, board_address1, board_address2, board_filename, rownum r 
+	    FROM ( 
+	        SELECT board_num, board_name, board_cnt, board_address1, board_address2, board_filename
+	        FROM board_hap 
         <where>
          <choose>
          	<when test="col=='지역'">

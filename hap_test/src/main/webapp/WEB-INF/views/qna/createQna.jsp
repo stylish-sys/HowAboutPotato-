@@ -71,15 +71,11 @@
 					<label class="control-label col-sm-2" for="qna_noti"> 게시물
 						상단</label>
 					<div class="col-sm-6">
-						<input type="radio" id="qna_noti" name="qna_noti" value="Y">
-						<label for="qna_noti"> 중요 공지</label>
+						<input type="checkbox" id="qna_noti" name="qna_noti" value="Y">
+						<label for="qna_noti"> 등록</label>
 					</div>
 				</div>
 			</c:if>
-			<c:if test="${empty sessionScope.member_id }">
-				<input type="hidden" id="qna_noti" name="qna_noti" value="N">
-			</c:if>
-			
 			<br> <br>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">

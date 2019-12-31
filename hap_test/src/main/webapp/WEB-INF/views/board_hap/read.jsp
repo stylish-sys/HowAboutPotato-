@@ -88,7 +88,7 @@ content {
 							<c:forEach var="dto" items="${rlist}" varStatus="index">
 								<div class="item <c:if test="${index.first}">active</c:if>">
 									<img
-										src="${pageContext.request.contextPath}/storage/${dto.room_filename}"
+										src="${pageContext.request.contextPath}/images/${dto.room_filename}"
 										class="img-rounded " width="800px" height="800px"
 										alt="image${index.count}">
 								</div>
@@ -131,7 +131,7 @@ content {
 				<!-- admin만 -->
 				<tr>
 					<td><img
-						src="${pageContext.request.contextPath}/storage/${dto.room_filename}"
+						src="${pageContext.request.contextPath}/images/${dto.room_filename}"
 						class="img-rounded " width="200px" height="200px"></td>
 					<td>${dto.room_name }</td>
 					<td>${dto.room_price }원</td>

@@ -13,5 +13,6 @@ public interface Room_hapMapper {
 	Room_hapDTO read(int room_num);
 	int update(Room_hapDTO dto);
 	int updateFile(Map map);
+	int bdelete(int board_num);
 
 }

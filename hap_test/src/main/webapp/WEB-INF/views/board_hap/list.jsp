@@ -65,6 +65,7 @@ table {
 		rgba(0, 0, 0, 0.1) inset;
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1)
 		inset;
+	flex-direction: row;
 }
 
 .list-content-picture {
@@ -178,7 +179,8 @@ table {
 	background-color: white;
 	color: black;
 	border-radius: 10%;
-	width: 13%
+	width: 13%;
+	opacity: 0.5;
 }
 
 .list-ad-container-ad2 {
@@ -225,6 +227,11 @@ table {
 	font-size: 2rem;
 	margin: 0.5%;
 	font-family: 'Noto Sans KR', sans-serif;
+	border-radius: 40%;
+	padding: 0;
+	border: none;
+	background: none;
+	outline: none;
 }
 
 .list-mini-container img {
@@ -272,11 +279,11 @@ table {
 
 .list-main-container1 {
 	display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 80%;
-    align-items: center;
-    flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: center;
+	width: 80%;
+	align-items: center;
+	flex-wrap: wrap;
 }
 
 .list-main-container2 {
@@ -284,6 +291,10 @@ table {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
+}
+
+#text {
+	z-index: 3;
 }
 </style>
 
@@ -294,6 +305,12 @@ table {
 		url += "&col=${col}";
 		url += "&word=${word}";
 		url += "&nowPage=${nowPage}";
+		location.href = url;
+	}
+	
+	function list(col){
+		var url = "${pageContext.request.contextPath}/board_hap/list";
+		url += "?col=" + col
 		location.href = url;
 	}
 </script>
@@ -311,190 +328,180 @@ table {
 			</div>
 		<br>
 		<div class="list-mini-list">
-		<div class="list-mini-container">
-			<img
-				src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
-			<div class="list-mini-container">호텔</div>
+		<div class="list-mini-container" onclick="javascript:list('')">
+			<img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+			<div class="list-mini-container" >전국</div>
 		</div>
-		<div class="list-mini-container">
-			<img
-				src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
-			<div class="list-mini-container">호텔</div>
+		
+		<div class="list-mini-container" onclick="javascript:list('강원')">
+			<img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+			<div class="list-mini-container" >강원</div>
 		</div>
-		<div class="list-mini-container">
-			<img
-				src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
-			<div class="list-mini-container">호텔</div>
+		
+		<div class="list-mini-container" onclick="javascript:list('경기')">
+			<img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+			<div class="list-mini-container" >경기</div>
 		</div>
-		<div class="list-mini-container">
-			<img
-				src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
-			<div class="list-mini-container">호텔</div>
+		
+		<div class="list-mini-container" onclick="javascript:list('경상')">
+			<img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+			<div class="list-mini-container" >경상</div>
 		</div>
-		<div class="list-mini-container">
-			<img
-				src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
-			<div class="list-mini-container">호텔</div>
+		
+		<div class="list-mini-container" onclick="javascript:list('서울')">
+			<img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+			<div class="list-mini-container" >서울</div>
 		</div>
-		<div class="list-mini-container">
-			<img
-				src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
-			<div class="list-mini-container">호텔</div>
+		
+		<div class="list-mini-container" onclick="javascript:list('전라')">
+			<img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+			<div class="list-mini-container" >전라</div>
 		</div>
-	</div>
+		
+		<div class="list-mini-container" onclick="javascript:list('제주')">
+			<img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+			<div class="list-mini-container" >제주</div>
+		</div>
+		
+		<div class="list-mini-container" onclick="javascript:list('충청')">
+			<img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+			<div class="list-mini-container" >충청</div>
+		</div>
+
+		
+		
+		</div>
 	<div class="lsit-ad-list">
 		<div class="list-ad-container">
-			<img
-				src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+			<img src="${pageContext.request.contextPath}/images/motel1.jpg"
+							class="img-rounded " width="100px" height="100px"
+							onclick="javascript:read(1)">
 			<div class="list-ad-container-ad">
-				<div class="list-ad-container-ad1">강원</div>
+				<div class="list-ad-container-ad1">서울</div>
 				<div class="list-ad-container-ad2">AD</div>
 			</div>
-			<div class="list-ad-container-content">
-				<div class="list-ad-container-content1">강원 한라 호텔</div>
-				<div class="list-ad-container-content2">바로 예약하기 ></div>
+				<div class="list-ad-container-content">
+					<div class="list-ad-container-content1">이재근모텔</div>
+						<c:if test="${not empty sessionScope.member_id }">
+							<div class="list-ad-container-content2" onclick="location.href='../res/create?board_num=1'">
+							결제하기</div>
+						</c:if>
+				
+					<c:if test="${empty sessionScope.member_id }">
+						<div class="list-ad-container-content2" onclick="location.href='../member_hap/login'">
+						로그인하고 결제하기
+						</div>
+					</c:if>
 			</div>
 		</div>
-		<div class="list-ad-container">
-			<img
-				src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+		
+				<div class="list-ad-container">
+			<img src="${pageContext.request.contextPath}/images/motel2.jpg"
+							class="img-rounded " width="100px" height="100px"
+							onclick="javascript:read(2)">
 			<div class="list-ad-container-ad">
 				<div class="list-ad-container-ad1">강원</div>
 				<div class="list-ad-container-ad2">AD</div>
 			</div>
-			<div class="list-ad-container-content">
-				<div class="list-ad-container-content1">강원 한라 호텔</div>
-				<div class="list-ad-container-content2">바로 예약하기 ></div>
+				<div class="list-ad-container-content">
+					<div class="list-ad-container-content1">이선용호텔</div>
+						<c:if test="${not empty sessionScope.member_id }">
+							<div class="list-ad-container-content2" onclick="location.href='../res/create?board_num=2'">
+							결제하기</div>
+						</c:if>
+				
+					<c:if test="${empty sessionScope.member_id }">
+						<div class="list-ad-container-content2" onclick="location.href='../member_hap/login'">
+						로그인하고 결제
+						</div>
+					</c:if>
 			</div>
 		</div>
-		<div class="list-ad-container">
-			<img
-				src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+		
+				<div class="list-ad-container">
+			<img src="${pageContext.request.contextPath}/images/motel3.jpg"
+							class="img-rounded " width="100px" height="100px"
+							onclick="javascript:read(3)">
 			<div class="list-ad-container-ad">
 				<div class="list-ad-container-ad1">강원</div>
 				<div class="list-ad-container-ad2">AD</div>
 			</div>
-			<div class="list-ad-container-content">
-				<div class="list-ad-container-content1">강원 한라 호텔</div>
-				<div class="list-ad-container-content2">바로 예약하기 ></div>
+				<div class="list-ad-container-content">
+					<div class="list-ad-container-content1">김명인민박</div>
+						<c:if test="${not empty sessionScope.member_id }">
+							<div class="list-ad-container-content2" onclick="location.href='../res/create?board_num=3'">
+							결제하기</div>
+						</c:if>
+				
+					<c:if test="${empty sessionScope.member_id }">
+						<div class="list-ad-container-content2" onclick="location.href='../member_hap/login'">
+						로그인하고 결제
+						</div>
+					</c:if>
+			</div>
+		</div>
+		
+				<div class="list-ad-container">
+			<img src="${pageContext.request.contextPath}/images/motel4.png"
+							class="img-rounded " width="100px" height="100px"
+							onclick="javascript:read(4)">
+			<div class="list-ad-container-ad">
+				<div class="list-ad-container-ad1">강원</div>
+				<div class="list-ad-container-ad2">AD</div>
+			</div>
+				<div class="list-ad-container-content">
+					<div class="list-ad-container-content1">이재근모텔</div>
+						<c:if test="${not empty sessionScope.member_id }">
+							<div class="list-ad-container-content2" onclick="location.href='../res/create?board_num=4'">
+							결제하기</div>
+						</c:if>
+				
+					<c:if test="${empty sessionScope.member_id }">
+						<div class="list-ad-container-content2" onclick="location.href='../member_hap/login'">
+						로그인하고 결제
+						</div>
+					</c:if>
 			</div>
 		</div>
 	</div>
 	<div class="list-main-container">
 		<div class="list-main-container1">
+		
+			<c:forEach var="dto" items="${list }">
 			<div class="list-content">
-				<div class="list-content-picture"></div>
+				<div class="list-content-picture" onclick="javascript:read('${dto.board_num}')"></div>
 				<div class="list-content-content">
-					<div class="list-content-content-title">강릉 마젤란펜션
-						(주문진해수욕장,MD추천)</div>
+					<div class="list-content-content-title">${dto.board_name }</div>
 					<div class="list-content-content-review">후기 n개</div>
 					<div class="list-content-content-sale">
 						<div class="list-content-content-sale-content1">선착순</div>
 						<div class="list-content-content-sale-content2">5개</div>
 					</div>
 					<div class="list-content-content-delete">
-						<del>250,000</del>
+						<del>120000</del>
 					</div>
-					<div class="list-content-content-price">42% -> 120,000</div>
+					<div class="list-content-content-price">42% -> 00000</div>
 				</div>
 			</div>
-			<div class="list-content">
-				<div class="list-content-picture"></div>
-				<div class="list-content-content">
-					<div class="list-content-content-title">강릉 마젤란펜션
-						(주문진해수욕장,MD추천)</div>
-					<div class="list-content-content-review">후기 n개</div>
-					<div class="list-content-content-sale">
-						<div class="list-content-content-sale-content1">선착순</div>
-						<div class="list-content-content-sale-content2">5개</div>
-					</div>
-					<div class="list-content-content-delete">
-						<del>250,000</del>
-					</div>
-					<div class="list-content-content-price">42% -> 120,000</div>
-				</div>
-			</div>
-			<div class="list-content">
-				<div class="list-content-picture"></div>
-				<div class="list-content-content">
-					<div class="list-content-content-title">강릉 마젤란펜션
-						(주문진해수욕장,MD추천)</div>
-					<div class="list-content-content-review">후기 n개</div>
-					<div class="list-content-content-sale">
-						<div class="list-content-content-sale-content1">선착순</div>
-						<div class="list-content-content-sale-content2">5개</div>
-					</div>
-					<div class="list-content-content-delete">
-						<del>250,000</del>
-					</div>
-					<div class="list-content-content-price">42% -> 120,000</div>
-				</div>
-			</div>
-			<div class="list-content">
-				<div class="list-content-picture"></div>
-				<div class="list-content-content">
-					<div class="list-content-content-title">강릉 마젤란펜션
-						(주문진해수욕장,MD추천)</div>
-					<div class="list-content-content-review">후기 n개</div>
-					<div class="list-content-content-sale">
-						<div class="list-content-content-sale-content1">선착순</div>
-						<div class="list-content-content-sale-content2">5개</div>
-					</div>
-					<div class="list-content-content-delete">
-						<del>250,000</del>
-					</div>
-					<div class="list-content-content-price">42% -> 120,000</div>
-				</div>
-			</div>
-			<div class="list-content">
-				<div class="list-content-picture"></div>
-				<div class="list-content-content">
-					<div class="list-content-content-title">강릉 마젤란펜션
-						(주문진해수욕장,MD추천)</div>
-					<div class="list-content-content-review">후기 n개</div>
-					<div class="list-content-content-sale">
-						<div class="list-content-content-sale-content1">선착순</div>
-						<div class="list-content-content-sale-content2">5개</div>
-					</div>
-					<div class="list-content-content-delete">
-						<del>250,000</del>
-					</div>
-					<div class="list-content-content-price">42% -> 120,000</div>
-				</div>
-			</div>
-			<div class="list-content">
-				<div class="list-content-picture"></div>
-				<div class="list-content-content">
-					<div class="list-content-content-title">강릉 마젤란펜션
-						(주문진해수욕장,MD추천)</div>
-					<div class="list-content-content-review">후기 n개</div>
-					<div class="list-content-content-sale">
-						<div class="list-content-content-sale-content1">선착순</div>
-						<div class="list-content-content-sale-content2">5개</div>
-					</div>
-					<div class="list-content-content-delete">
-						<del>250,000</del>
-					</div>
-					<div class="list-content-content-price">42% -> 120,000</div>
-				</div>
-			</div>
+			<c:if
+ 					test="${not empty sessionScope.member_id &&sessionScope.member_grade =='H' }">  
+					<div 
+				onclick="location.href='${pageContext.request.contextPath}/board_hap/delete?board_num=${dto.board_num }'">업소  
+					삭제</div> 
+				<div  
+				onclick="location.href='${pageContext.request.contextPath}/board_hap/update?board_num=${dto.board_num }'">업소  
+					정보수정</div> 
+				<div onclick="location.href='${pageContext.request.contextPath}/board_hap/updateFile?board_num=${dto.board_num }&oldfile=${dto.board_filename }'">업소  
+					사진수정</div> 
+				<br> 
+ 				</c:if>
+			
+		</c:forEach>
+			
+			
+
 		</div>
 	</div>
-<div class = "list-mini-list">
-   		<select name = "col" class = "form-control">
-   		 <option value="지역"<c:if test="${col=='지역'}">selected</c:if>>지역을 선택하세요</option>
-   		 <option value="강원"<c:if test="${col=='강원'}">selected</c:if>>강원</option>
-		 <option value="경기"<c:if test="${col=='경기'}">selected</c:if>>경기</option>
-		 <option value="서울"<c:if test="${col=='서울'}">selected</c:if>>서울</option>
-		 <option value="제주"<c:if test="${col=='제주'}">selected</c:if>>제주</option>
-		 <option value="전라"<c:if test="${col=='전라'}">selected</c:if>>전라</option>
-		 <option value="충청"<c:if test="${col=='충청'}">selected</c:if>>충청</option>
-		 <option value="경상"<c:if test="${col=='경상'}">selected</c:if>>경상</option>
-   		</select>
-		 <input type="text" class="form-control" name="word" value="${word }" placeholder = "상세주소">
-				<button class="btn">검색</button>
-   </div>
-
 			<div class="form-inline">
 			</div>
 
@@ -508,42 +515,30 @@ table {
 		</form>
 
 
-		<c:forEach var="dto" items="${list }">
+<%-- 		<c:forEach var="dto" items="${list }"> --%>
 
-			<table>
-				<thead>
-					<tr>
-						<th>사진</th>
-						<th>숙박명</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><img
-							src="${pageContext.request.contextPath}/storage/${dto.board_filename}"
-							class="img-rounded " width="100px" height="100px"
-							onclick="javascript:read('${dto.board_num}')"></td>
-						<td>${dto.board_name}</td><br>
-					</tr>
-				</tbody>
+<!-- 			<table> -->
+<!-- 				<thead> -->
+<!-- 					<tr> -->
+<!-- 						<th>사진</th> -->
+<!-- 						<th>숙박명</th> -->
+<!-- 					</tr> -->
+<!-- 				</thead> -->
+<!-- 				<tbody> -->
+<!-- 					<tr> -->
+<!-- 						<td><img -->
+<%-- 							src="${pageContext.request.contextPath}/storage/${dto.board_filename}" --%>
+<!-- 							class="img-rounded " width="100px" height="100px" -->
+<%-- 							onclick="javascript:read('${dto.board_num}')"></td> --%>
+<%-- 						<td>${dto.board_name}</td><br> --%>
+<!-- 					</tr> -->
+<!-- 				</tbody> -->
 
-				<c:if
-					test="${not empty sessionScope.member_id &&sessionScope.member_grade =='H' }">
-					<button class="btn"
-						onclick="location.href='${pageContext.request.contextPath}/board_hap/delete?board_num=${dto.board_num }'">업소
-						삭제</button>
-					<button class="btn"
-						onclick="location.href='${pageContext.request.contextPath}/board_hap/update?board_num=${dto.board_num }'">업소
-						정보수정</button>
-					<button class="btn"
-						onclick="location.href='${pageContext.request.contextPath}/board_hap/updateFile?board_num=${dto.board_num }&oldfile=${dto.board_filename }'">업소
-						사진수정</button>
-					<br>
-				</c:if>
+				 
 
-			</table>
+<!--   			</table>  -->
 
-		</c:forEach>
+<%-- 		</c:forEach> --%>
 
 		${paging }
 	</div>

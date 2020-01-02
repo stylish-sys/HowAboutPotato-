@@ -55,7 +55,7 @@ public class Board_hapController {
 	public String updateFile(Board_hapDTO dto, String oldfile, MultipartFile board_filenameMF, HttpSession session,
 			HttpServletRequest request, Model model) {
 
-		String basePath = request.getRealPath("/storage");
+		String basePath = request.getRealPath("/images");
 
 		if (oldfile != null) {
 			Utility.deleteFile(basePath, oldfile);
@@ -108,7 +108,7 @@ public class Board_hapController {
 	public String delete(int board_num, String oldfile, HttpSession session, HttpServletRequest requset, Model model) {
 
 		String url = "/preProc";
-		String basePath = requset.getRealPath("/storage");
+		String basePath = requset.getRealPath("/images");
 
 		try {
 			service.delete(board_num);
@@ -178,7 +178,7 @@ public class Board_hapController {
 
 		String url = "/board_hap/preProc";
 
-		String basePath = request.getRealPath("/storage");
+		String basePath = request.getRealPath("/images");
 
 		int fsize = (int) dto.getBoard_filenameMF().getSize();
 		String content = dto.getBoard_content().replaceAll("\r\n", "<br>");

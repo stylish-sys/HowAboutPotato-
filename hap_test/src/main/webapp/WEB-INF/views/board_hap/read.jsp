@@ -318,8 +318,7 @@ content {
 												{
 													board_num : board_num,
 													sno : sno,
-													eno : eno
-												},
+													eno : eno												},
 												function(list) {
 													var str = "";
 
@@ -452,8 +451,7 @@ content {
 
 																	alert(result);
 
-																	modal
-																			.find(
+																	modal.find(
 																					"input")
 																			.val(
 																					"");

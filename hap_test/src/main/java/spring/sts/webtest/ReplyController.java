@@ -116,7 +116,7 @@ public class ReplyController {
 
       String url = "read";
 
-      int recordPerPage = 5; // 한페이지당 출력할 레코드 갯수
+      int recordPerPage = 3; // 한페이지당 출력할 레코드 갯수
 
       String paging = Utility.rpaging(total, nowPage, recordPerPage, col, word, url, nPage, board_num);
       return new ResponseEntity<String>(paging, HttpStatus.OK);

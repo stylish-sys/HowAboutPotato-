@@ -355,42 +355,42 @@ a:hover{
          </div>
       <br>
       <div class="list-mini-list">
-      <div class="list-mini-container" onclick="javascript:list('')">
+      <div style ="cursor:pointer;" class="list-mini-container" onclick="javascript:list('')">
          <img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
          <div class="list-mini-container" >전국</div>
       </div>
       
-      <div class="list-mini-container" onclick="javascript:list('강원')">
+      <div style ="cursor:pointer;" class="list-mini-container" onclick="javascript:list('강원')">
          <img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
          <div class="list-mini-container" >강원</div>
       </div>
       
-      <div class="list-mini-container" onclick="javascript:list('경기')">
+      <div style ="cursor:pointer;" class="list-mini-container" onclick="javascript:list('경기')">
          <img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
          <div class="list-mini-container" >경기</div>
       </div>
       
-      <div class="list-mini-container" onclick="javascript:list('경상')">
+      <div style ="cursor:pointer;" class="list-mini-container" onclick="javascript:list('경상')">
          <img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
          <div class="list-mini-container" >경상</div>
       </div>
       
-      <div class="list-mini-container" onclick="javascript:list('서울')">
+      <div style ="cursor:pointer;" class="list-mini-container" onclick="javascript:list('서울')">
          <img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
          <div class="list-mini-container" >서울</div>
       </div>
       
-      <div class="list-mini-container" onclick="javascript:list('전라')">
+      <div style ="cursor:pointer;" class="list-mini-container" onclick="javascript:list('전라')">
          <img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
          <div class="list-mini-container" >전라</div>
       </div>
       
-      <div class="list-mini-container" onclick="javascript:list('제주')">
+      <div style ="cursor:pointer;" class="list-mini-container" onclick="javascript:list('제주')">
          <img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
          <div class="list-mini-container" >제주</div>
       </div>
       
-      <div class="list-mini-container" onclick="javascript:list('충청')">
+      <div style ="cursor:pointer;" class="list-mini-container" onclick="javascript:list('충청')">
          <img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
          <div class="list-mini-container" >충청</div>
       </div>
@@ -480,7 +480,9 @@ a:hover{
       
          <c:forEach var="dto" items="${list }">
          <div class="list-content">
-            <div class="list-content-picture" onclick="javascript:read('${dto.board_num}')"></div>
+            <div class="list-content-picture" style = "cursor:pointer; "onclick="javascript:read('${dto.board_num}')">
+            <img src = "${pageContext.request.contextPath}/images/${dto.board_filename }" class="img-rounded " width="100px" >
+            </div>
             <div class="list-content-content">
                <div class="list-content-content-title">${dto.board_name }</div>
                <div class="list-content-content-review">후기 n개</div>
@@ -495,9 +497,9 @@ a:hover{
             </div>
          </div>
          <c:if test="${not empty sessionScope.member_id &&sessionScope.member_grade =='H' }">  
-            <button onclick="location.href='${pageContext.request.contextPath}/board_hap/delete?board_num=${dto.board_num }'">업소삭제</button><br> 
-            <button onclick="location.href='${pageContext.request.contextPath}/board_hap/update?board_num=${dto.board_num }'">업소정보수정</button><br> 
-            <button onclick="location.href='${pageContext.request.contextPath}/board_hap/updateFile?board_num=${dto.board_num }&oldfile=${dto.board_filename }'">업소사진수정</button> 
+            <div style ="cursor:pointer;" onclick="location.href='${pageContext.request.contextPath}/board_hap/delete?board_num=${dto.board_num }'">업소삭제</div> 
+            <div style ="cursor:pointer;" onclick="location.href='${pageContext.request.contextPath}/board_hap/update?board_num=${dto.board_num }'">업소정보수정</div> 
+            <div style ="cursor:pointer;" onclick="location.href='${pageContext.request.contextPath}/board_hap/updateFile?board_num=${dto.board_num }&oldfile=${dto.board_filename }'">업소사진수정</div> 
             <br> 
              </c:if>
          

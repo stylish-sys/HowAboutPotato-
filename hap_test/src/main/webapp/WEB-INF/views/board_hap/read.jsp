@@ -89,7 +89,7 @@ content {
 							<c:forEach var="dto" items="${rlist}" varStatus="index">
 								<div class="item <c:if test="${index.first}">active</c:if>">
 									<img
-										src="${pageContext.request.contextPath}/storage/${dto.room_filename}"
+										src="${pageContext.request.contextPath}/images/${dto.room_filename}"
 										class="img-rounded " width="800px" height="800px"
 										alt="image${index.count}">
 								</div>
@@ -113,10 +113,12 @@ content {
 
 		</table>
 		<hr>
+		<c:if test="${not empty sessionScope.member_id && sessionScope.member_grade=='H'}">
 		<!-- admin만 -->
 		<button class="btn"
 			onclick="location.href='../room_hap/create?board_num=${dto.board_num}&col=${param.col }&word=${param.word }&nowPage=${param.nowPage }'">방
 			등록</button>
+		</c:if>
 		<table class="table table-bordered">
 			<c:forEach var="dto" items="${rlist }">
 				<th>방 사진</th>
@@ -132,7 +134,7 @@ content {
 				<!-- admin만 -->
 				<tr>
 					<td><img
-						src="${pageContext.request.contextPath}/storage/${dto.room_filename}"
+						src="${pageContext.request.contextPath}/images/${dto.room_filename}"
 						class="img-rounded " width="200px" height="200px"></td>
 					<td>${dto.room_name }</td>
 					<td>${dto.room_price }원</td>

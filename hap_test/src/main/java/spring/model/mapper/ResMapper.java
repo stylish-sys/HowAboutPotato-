@@ -26,4 +26,7 @@ public interface ResMapper {
 	int update(Res_hapDTO dto);
 	int delete(int res_num);
 	int delete_acc(Res_hapDTO dto);
+	
+	int bdelete(int board_num);
+	int rdelete(int room_num);
 }

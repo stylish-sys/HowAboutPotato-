@@ -5,6 +5,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="spring.model.mapper.ResMapper">
 
+	<delete id="rdelete" parameterType="int">
+		delete from res_hap
+		where
+		room_num = #{room_num}
+	</delete>
+
+	<delete id="bdelete" parameterType="int">
+		delete from res_hap
+		where
+		board_num = #{board_num}
+	</delete>
+
 	<delete id="delete" parameterType="int">
 		delete from res_hap
 		where

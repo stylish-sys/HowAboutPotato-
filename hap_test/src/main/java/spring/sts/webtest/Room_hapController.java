@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import spring.model.mapper.Room_hapMapper;
 import spring.model.room.Room_hapDTO;
+import spring.model.room.Room_hapService;
 import spring.utility.webtest.Utility;
 
 @Controller
@@ -24,6 +25,9 @@ public class Room_hapController {
 
 	@Autowired
 	private Room_hapMapper rmapper;
+	
+	@Autowired
+	private Room_hapService service;
 	
 	@PostMapping("/room_hap/updateFile")
 	public String updateFile(Room_hapDTO dto,String oldfile, MultipartFile room_filenameMF,  HttpSession session, HttpServletRequest request, Model model) {
@@ -139,18 +143,14 @@ public class Room_hapController {
 					nowPage = Integer.parseInt(request.getParameter("nowPage"));
 				}
 
-		int flag = rmapper.delete(room_num);
-
-		if (flag == 1) {
-//			url = "redirect:/board_hap/read";
-//			url += "?board_num=" + dto.getBoard_num();
+		try{
+			service.delete(room_num);
 			return "redirect:/board_hap/read?board_num=" + dto.getBoard_num() + "&col=" + col + "&word=" + word + "&nowPage=" + nowPage;
-		} else {
+		} catch(Exception e) {
 			model.addAttribute("str", "방 정보 삭제실패입니다..");
-//			url = "/preProc";
 			return "error";
-		}
 
+		}
 	}
 
 	@PostMapping("/room_hap/create") // room 정보등록(board안에서)
@@ -173,7 +173,7 @@ public class Room_hapController {
 		}
 
 		String url = "/preProc";
-		String basePath = request.getRealPath("/storage");
+		String basePath = request.getRealPath("/images");
 		int size = (int) dto.getRoom_filenameMF().getSize();
 		
 		if (size > 0) {

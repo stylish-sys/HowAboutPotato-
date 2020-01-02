@@ -129,8 +129,8 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="sample6_address">주소:</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" id="board_address1" placeholder="주소" name="board_address1">
-					<input type="text" class="form-control" id="board_address2" placeholder="상세주소" name="board_address2">
+					<input type="text" class="form-control" id="board_address1" name="board_address1"  value = "${dto.board_address1 }">
+					<input type="text" class="form-control" id="board_address2"  name="board_address2" value = "${dto.board_address2 }">
 				</div>
 			</div>
 

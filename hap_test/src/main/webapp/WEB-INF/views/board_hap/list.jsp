@@ -334,6 +334,12 @@ a:hover{
 		url += "&nowPage=${nowPage}";
 		location.href = url;
 	}
+	
+	function list(col){
+		var url = "${pageContext.request.contextPath}/board_hap/list";
+		url += "?col=" + col
+		location.href = url;
+	}
 </script>
 
 </head>
@@ -488,16 +494,10 @@ a:hover{
                <div class="list-content-content-price">42% -> 00000</div>
             </div>
          </div>
-         <c:if
-                test="${not empty sessionScope.member_id &&sessionScope.member_grade =='H' }">  
-               <div 
-            onclick="location.href='${pageContext.request.contextPath}/board_hap/delete?board_num=${dto.board_num }'">업소  
-               삭제</div> 
-            <div  
-            onclick="location.href='${pageContext.request.contextPath}/board_hap/update?board_num=${dto.board_num }'">업소  
-               정보수정</div> 
-            <div onclick="location.href='${pageContext.request.contextPath}/board_hap/updateFile?board_num=${dto.board_num }&oldfile=${dto.board_filename }'">업소  
-               사진수정</div> 
+         <c:if test="${not empty sessionScope.member_id &&sessionScope.member_grade =='H' }">  
+            <button onclick="location.href='${pageContext.request.contextPath}/board_hap/delete?board_num=${dto.board_num }'">업소삭제</button><br> 
+            <button onclick="location.href='${pageContext.request.contextPath}/board_hap/update?board_num=${dto.board_num }'">업소정보수정</button><br> 
+            <button onclick="location.href='${pageContext.request.contextPath}/board_hap/updateFile?board_num=${dto.board_num }&oldfile=${dto.board_filename }'">업소사진수정</button> 
             <br> 
              </c:if>
          
@@ -538,8 +538,6 @@ a:hover{
 <%--                   <td>${dto.board_name}</td><br> --%>
 <!--                </tr> -->
 <!--             </tbody> -->
-
-             
 
 <!--            </table>  -->
 

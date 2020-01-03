@@ -110,12 +110,14 @@
 		</div>
 		<div class="col-md-content">Ocean</div>
 	</div>
+	
 	<div class="row">
 		<div class="col-md-content">Mountain</div>
 		<div class="col-md-8" id="main-content-third">
 			<img src="${pageContext.request.contextPath }/images/banner.jpg">
 		</div>
 	</div>
+	
 	<div class="row">
 		<div class="col-md-4" id="main-content-fourth">
 			<img src="${pageContext.request.contextPath }/images/수영장.jpg">
@@ -125,6 +127,7 @@
 		</div>
 		<div class="col-md-content">Leisure</div>
 	</div>
+	
 	<div class="row">
 		<div class="col-md-content">Healing</div>
 		<div class="col-md-8" id="main-content-sixth">

@@ -121,7 +121,7 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="sample6_postcode">우편번호:</label>
 				<div class="col-sm-3">
-					<input type="text" class="form-control" name="board_zipcode" id="board_zipcode" placeholder="우편번호">
+					<input type="text" class="form-control" name="board_zipcode" id="board_zipcode" value = "${dto.board_zipcode}">
 				</div>
 				<button type="button" class="btn col-sm-2" onclick="sample6_execDaumPostcode()">주소검색</button>
 			</div>

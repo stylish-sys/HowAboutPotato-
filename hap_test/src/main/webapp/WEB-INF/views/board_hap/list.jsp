@@ -395,8 +395,7 @@ a:hover{
          <div class="list-mini-container" >충청</div>
       </div>
 
-      
-      
+
       </div>
    <div class="lsit-ad-list">
       <div class="list-ad-container">
@@ -410,15 +409,12 @@ a:hover{
             <div class="list-ad-container-content">
                <div class="list-ad-container-content1">이재근모텔</div>
                   <c:if test="${not empty sessionScope.member_id }">
-                     <div class="list-ad-container-content2" onclick="location.href='../res/create?board_num=1'">
-                     결제하기</div>
+                     <div class="list-ad-container-content2" onclick="location.href='../res/create?board_num=1'">결제하기</div>
                   </c:if>
-            
-               <c:if test="${empty sessionScope.member_id }">
-                  <div class="list-ad-container-content2" onclick="location.href='../member_hap/login'">
-                  로그인하고 결제하기
-                  </div>
-               </c:if>
+                  
+                  <c:if test="${empty sessionScope.member_id }">
+                  <div class="list-ad-container-content2" onclick="location.href='../member_hap/login'">로그인하고 결제하기</div>
+                  </c:if>
          </div>
       </div>
       
@@ -520,10 +516,7 @@ a:hover{
          </c:if>
 
       </form>
-
-
 <%--       <c:forEach var="dto" items="${list }"> --%>
-
 <!--          <table> -->
 <!--             <thead> -->
 <!--                <tr> -->
@@ -544,7 +537,6 @@ a:hover{
 <!--            </table>  -->
 
 <%--       </c:forEach> --%>
-
       ${paging }
    </div>
 

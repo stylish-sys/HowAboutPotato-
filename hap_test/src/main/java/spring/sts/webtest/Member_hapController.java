@@ -221,10 +221,6 @@ public class Member_hapController {
 			String basePath = request.getRealPath("/storage");
 			String basePathF = request.getRealPath("/storage");
 
-//			System.out.println("member_fname_kakao " + request.getParameter("member_fname_kakao"));
-//
-//			String fname = request.getParameter("member_fname") == null ? "" : request.getParameter("member_fname");
-
 			if (request.getParameter("set").equals("Kakao")) {
 				int sizeF = (int) dto.getMember_backfileMF().getSize();
 
@@ -292,8 +288,6 @@ public class Member_hapController {
 		}
 
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-		// https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
-		// redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
 		System.out.println("네이버:" + naverAuthUrl);
 		// 네이버
 		model.addAttribute("url", naverAuthUrl);
@@ -311,8 +305,6 @@ public class Member_hapController {
 		int flag = mapper.loginCheck(map); // 여기면 flag 가 true
 
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-		// https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
-		// redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
 		System.out.println("네이버:" + naverAuthUrl);
 		// 네이버
 		model.addAttribute("url", naverAuthUrl);
@@ -336,7 +328,7 @@ public class Member_hapController {
 				cookie.setMaxAge(60 * 60);
 				response.addCookie(cookie);
 
-			} else { // check를 푼 경우, 기존 쿠키의 유지값을 0으로 바꿔서 없애는 것
+			} else {
 				cookie = new Cookie("c_member_id", "");
 				cookie.setMaxAge(0);
 				response.addCookie(cookie);
@@ -374,19 +366,13 @@ public class Member_hapController {
 		OAuth2AccessToken oauthToken;
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
 
-		// 1. 로그인 사용자 정보를 읽어온다.
 		apiResult = naverLoginBO.getUserProfile(oauthToken); // String형식의 json데이터
-		// 2. String형식인 apiResult를 json형태로 바꿈
 		JSONParser parser = new JSONParser();
 		Object obj = parser.parse(apiResult);
 		JSONObject jsonObj = (JSONObject) obj;
-		// 3. 데이터 파싱
-		// Top레벨 단계 _response 파싱
 		JSONObject response_obj = (JSONObject) jsonObj.get("response");
-		// response의 nickname값 파싱
 		String nickname = (String) response_obj.get("nickname");
 		System.out.println(nickname);
-		// 4.파싱 닉네임 세션으로 저장
 
 		if (apiResult != null) {
 			Member_hapDTO dto = new Member_hapDTO();

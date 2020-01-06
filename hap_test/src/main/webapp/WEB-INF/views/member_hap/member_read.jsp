@@ -27,16 +27,29 @@
 	}
 
 	function updateFile() {
-		var url = "updateFile";
+		var url = "member_updateFile";
 
 		url += "?oldfile=${dto.member_fname}";
 		location.href = url;
 	}
+	function updatebFile() {
+		var url = "member_updatebFile";
+
+		url += "?oldfile=${dto.member_backfile}";
+		location.href = url;
+	}
 
 	function updatePW() {
-		var url = "updatePw";
+		var url = "member_updatePw";
 
 		location.href = url;
+	}
+	function updateNick(){
+		var url= "member_updateNick";
+		url += "?member_id=${dto.member_id}";
+		url += "&member_nickname=${dto.member_nickname}";
+		
+		location.href=url;
 	}
 </script>
 <style>
@@ -51,7 +64,6 @@
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	
 }
 
 .profile-container1 {
@@ -97,7 +109,7 @@
 
 .profile-container1 {
 	background-image:
-		url(http://www.cashadvance6online.com/data/archive/img/1667785797.jpeg);
+		url(${pageContext.request.contextPath}/images/back.jpg);
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -125,11 +137,11 @@
 
 .col-md-5 {
 	background-color: #7CABB3;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3)
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3)
 }
 
 .col-md-2 {
@@ -236,6 +248,7 @@ a {
 	align-items: center;
 	color: gray;
 }
+
 .profile-info-content-content {
 	font-size: 2rem;
 	width: 50%;
@@ -245,28 +258,33 @@ a {
 	align-items: center;
 	color: gray;
 }
+
 .social-content {
 	font-size: 6rem;
 	color: white;
 }
-.profile-social{
+
+.profile-social {
 	display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 80%;
+	align-items: center;
+	justify-content: center;
+	height: 80%;
 }
-.profile-social-content{
+
+.profile-social-content {
 	margin: 10%
 }
+
 .profile-id {
-	    color: white;
-    font-size: 3rem;
-    height: 80%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	color: white;
+	font-size: 3rem;
+	height: 80%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
-.profile-change{
+
+.profile-change {
 	
 }
 </style>
@@ -352,11 +370,11 @@ a {
 						</div>
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="dto_r" items="${dto_r}" end="2" >
+						<c:forEach var="dto_r" items="${dto_r}" end="2">
 							<div class="profile-activity-res">
 								<i class="fas fa-home"></i>
 								<div class="profile-activity-res-container">
-										<div class="profile-activity-res-content"></div>
+									<div class="profile-activity-res-content"></div>
 									<div class="profile-activity-res-detail">예약번호 :
 										${dto_r.res_rannum } 일시 : ${dto_r.res_res1 }</div>
 								</div>
@@ -378,7 +396,7 @@ a {
 							<img src="${dto.member_fname }" width="250px" height="250px"
 								class="img-rounded">
 						</c:when>
-						
+
 						<c:otherwise>
 							<img
 								src="${pageContext.request.contextPath }/storage/${dto.member_fname}"

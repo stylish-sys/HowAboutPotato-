@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="root" value="${pageContext.request.contextPath }"></c:set>
 
 <!DOCTYPE html>
 <html>
@@ -117,22 +120,47 @@
 		<form class="form-horizontal" action="member_createProc" method="post"
 			name="frm" enctype="multipart/form-data"
 			onsubmit="return inCheck(this)">
-
+			<c:if test="${empty kakao_fname}">
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="member_fname">프로필사진</label>
+					<div class="col-sm-4">
+						<input type="hidden" name="set" value="Normal"> <input
+							type="file" class="form-control" id="member_fname"
+							name="member_fnameMF" accept=".jpg, .png, .gif">
+					</div>
+				</div>
+			</c:if>
+			<c:if test="${not empty kakao_fname }">
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="member_fname">프로필사진</label>
+					<div class="col-sm-4">
+						<input type="hidden" name="set" value="Kakao"> <input
+							type="text" class="form-control" id="member_fname"
+							name="member_fname" readonly value="${kakao_fname }">
+					</div>
+				</div>
+			</c:if>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="member_fname">사진</label>
+				<label class="control-label col-sm-2" for="member_backfile">배경사진</label>
 				<div class="col-sm-4">
-					<input type="file" class="form-control" id="member_fname"
-						name="member_fnameMF" accept=".jpg, .png, .gif">
+					<input type="hidden" name="set" value="normal"> <input
+						type="file" class="form-control" id="member_backfile"
+						name="member_backfileMF" accept=".jpg, .png, .gif">
 				</div>
 			</div>
-
-
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="member_id"><span
 					id="need">*</span>아이디</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="member_id"
-						placeholder="Enter 아이디" name="member_id">
+					<c:if test="${not empty kakao_fname }">
+						<input type="text" class="form-control" id="member_id"
+							placeholder="Enter 아이디" name="member_id"
+							value="${fn:split(kakao_email,'@')[0]}" readonly>
+					</c:if>
+					<c:if test="${empty kakao_fname }">
+						<input type="text" class="form-control" id="member_id"
+							placeholder="Enter 아이디" name="member_id">
+					</c:if>
 				</div>
 
 				<button type="button" class="btn col-sm-1.3"
@@ -145,8 +173,23 @@
 				<label class="control-label col-sm-2" for="member_name"><span
 					id="need">*</span>이름</label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="member_name"
-						placeholder="Enter 이름" name="member_name">
+					<c:if test="${not empty kakao_name }">
+						<input type="text" class="form-control" id="member_name"
+							placeholder="Enter 이름" value="${kakao_name}" name="member_name"
+							readonly>
+					</c:if>
+					<c:if test="${empty kakao_name }">
+						<input type="text" class="form-control" id="member_name"
+							placeholder="Enter 이름" name="member_name">
+					</c:if>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="member_nickname"><span
+					id="need">*</span>별명</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="member_nickname"
+						placeholder="Enter 별명" name="member_nickname">
 				</div>
 			</div>
 
@@ -190,8 +233,15 @@
 				<label class="control-label col-sm-2" for="member_email"><span
 					id="need">*</span>E-mail</label>
 				<div class="col-sm-4">
-					<input type="email" class="form-control" id="member_email"
-						placeholder="Enter E-mail" name="member_email">
+					<c:if test="${not empty kakao_email }">
+						<input type="email" class="form-control" id="member_email"
+							placeholder="Enter E-mail" name="member_email"
+							value="${kakao_email}">
+					</c:if>
+					<c:if test="${empty kakao_email }">
+						<input type="email" class="form-control" id="member_email"
+							placeholder="Enter E-mail" name="member_email">
+					</c:if>
 				</div>
 				<button type="button" class="btn col-sm-1.3"
 					onclick="emailCheck(document.frm.member_email.value)">E-mail

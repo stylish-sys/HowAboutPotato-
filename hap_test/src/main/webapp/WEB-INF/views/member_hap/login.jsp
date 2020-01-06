@@ -12,10 +12,8 @@
 <script src="https://kit.fontawesome.com/4c89f26522.js" crossorigin="anonymous"></script>
 <script type='text/javascript'>
   //<![CDATA[
-    // 사용할 앱의 JavaScript 키를 설정해 주세요.
     Kakao.init('40c7acb685fb1a07ba5cb37a10f4029e');
     function loginWithKakao() {
-      // 로그인 창을 띄웁니다.
       Kakao.Auth.login({
         success: function(authObj) {
              Kakao.API.request({
@@ -33,21 +31,20 @@
                       for ( var key in params) {
                          var hiddenField = document.createElement('input');
                          hiddenField.setAttribute('type', 'hidden');
-                         hiddenField.setAttribute('name', key);
+                         hiddenField.setAttribute('name', key);-
                          hiddenField.setAttribute('value', params[key]);
                          form.appendChild(hiddenField);
                       }
                       document.body.appendChild(form);
                       form.submit();
                    }
-                  sendPost('member_kakao_create',{
+                  sendPost('member_create',{
                      'name': res.properties.nickname,
                      'email' : res.kaccount_email,
                      'id' : res.id,
                      'fname': res.properties.profile_image})
                   }
              });
-/*           alert(JSON.stringify(authObj)); */
         },
         fail: function(err) {
           alert(JSON.stringify(err));
@@ -89,12 +86,10 @@
 		{
 			clientId: "BXMDz85NBcpraqKToWuU",
 			callbackUrl: "http://localhost:8000/webtest/member_hap/callback",
-			isPopup: false, /* 팝업을 통한 연동처리 여부 */
-			loginButton: {color: "green", type: 3, height: 60} /* 로그인 버튼의 타입을 지정 */
+			isPopup: false,
+			loginButton: {color: "green", type: 3, height: 60} 
 		}
 	);
-	
-	/* 설정정보를 초기화하고 연동을 준비 */
 	naverLogin.init();
 	</script>
 <style>

@@ -99,8 +99,8 @@ input[type="text"], input[type="password"], input[type="email"], select
 		<br>
 		<form class="container-notice" action="res_find" method="post">
 			<div align="center">
-				<h3>예매 확인</h3>
-				<p>예매 시 받은 예약 번호를 정확하게 입력하세요</p>
+				<h3>예약 확인</h3>
+				<p>예약 시 받은 예약 번호를 정확하게 입력하세요</p>
 				<div class="form-group">
 					<input type="text" name="res_rannum" id="res_rannum"
 						required="required">

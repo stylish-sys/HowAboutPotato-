@@ -280,8 +280,7 @@ content {
 
 					<div class="panel-heading">
 						<i class="fa fa-comments fa-fw"></i>리뷰
-						<button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>New
-							Reply</button>
+						<button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>리뷰 쓰기</button>
 
 						<br> <br>
 					</div>
@@ -381,7 +380,7 @@ content {
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">답변 모달</h4>
+					<h4 class="modal-title" id="myModalLabel">리뷰 내용</h4>
 				</div>
 				<div class="modal-body">
 					<div class="form-group">

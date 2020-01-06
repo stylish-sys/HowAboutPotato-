@@ -16,9 +16,11 @@
 	z-index: 100;
 }
 
-.row{
+.row {
 	border-bottom: 0;
+	width: 60vw;
 }
+
 .row .col-md-4 {
 	text-align: center;
 	display: flex;
@@ -80,58 +82,73 @@
 	font-family: 'Lobster', cursive;
 	font-size: 8rem;
 }
+
+.body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.main-container-row {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
 </style>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
-     $(document).ready(function () 
-    		 {
-    		     $('.row .col-md-4').hover(function(){
-    		         $(this).addClass('hover-cover');
-    		     }, function() {
-    		         $(this).removeClass('hover-cover');
-    		     });
-    		     $('.row .col-md-8').hover(function(){
-    		         $(this).addClass('hover-cover-ver8');
-    		     }, function() {
-    		         $(this).removeClass('hover-cover-ver8');
-    		     });
-    		 });
-
-    </script>
+	$(document).ready(function() {
+		$('.row .col-md-4').hover(function() {
+			$(this).addClass('hover-cover');
+		}, function() {
+			$(this).removeClass('hover-cover');
+		});
+		$('.row .col-md-8').hover(function() {
+			$(this).addClass('hover-cover-ver8');
+		}, function() {
+			$(this).removeClass('hover-cover-ver8');
+		});
+	});
+</script>
 
 </head>
 <body>
-	<div class="row">
-		<div class="col-md-4" id="main-content-first">
-			<img src="${pageContext.request.contextPath }/images/수영장.jpg">
+	<div class="main-container-row">
+		<div class="row">
+			<div class="col-md-4" id="main-content-first">
+				<a
+					href="${pageContext.request.contextPath }/board_hap/read?board_num=3&col=&word=&nowPage=1">
+					<img src="${pageContext.request.contextPath }/images/수영장.jpg">
+				</a>
+			</div>
+			<div class="col-md-4" id="main-content-second">
+				<img src="${pageContext.request.contextPath }/images/1번 호텔.jpg">
+			</div>
+			<div class="col-md-content">Ocean</div>
 		</div>
-		<div class="col-md-4" id="main-content-second">
-			<img src="${pageContext.request.contextPath }/images/1번 호텔.jpg">
+
+		<div class="row">
+			<div class="col-md-content">Mountain</div>
+			<div class="col-md-8" id="main-content-third">
+				<img src="${pageContext.request.contextPath }/images/banner.jpg">
+			</div>
 		</div>
-		<div class="col-md-content">Ocean</div>
-	</div>
-	
-	<div class="row">
-		<div class="col-md-content">Mountain</div>
-		<div class="col-md-8" id="main-content-third">
-			<img src="${pageContext.request.contextPath }/images/banner.jpg">
+
+		<div class="row">
+			<div class="col-md-4" id="main-content-fourth">
+				<img src="${pageContext.request.contextPath }/images/수영장.jpg">
+			</div>
+			<div class="col-md-4" id="main-content-fifth">
+				<img src="${pageContext.request.contextPath }/images/헬스장.jpg">
+			</div>
+			<div class="col-md-content">Leisure</div>
 		</div>
-	</div>
-	
-	<div class="row">
-		<div class="col-md-4" id="main-content-fourth">
-			<img src="${pageContext.request.contextPath }/images/수영장.jpg">
-		</div>
-		<div class="col-md-4" id="main-content-fifth">
-			<img src="${pageContext.request.contextPath }/images/헬스장.jpg">
-		</div>
-		<div class="col-md-content">Leisure</div>
-	</div>
-	
-	<div class="row">
-		<div class="col-md-content">Healing</div>
-		<div class="col-md-8" id="main-content-sixth">
-			<img src="${pageContext.request.contextPath }/images/침실.jpg">
+
+		<div class="row">
+			<div class="col-md-content">Healing</div>
+			<div class="col-md-8" id="main-content-sixth">
+				<img src="${pageContext.request.contextPath }/images/침실.jpg">
+			</div>
 		</div>
 	</div>
 

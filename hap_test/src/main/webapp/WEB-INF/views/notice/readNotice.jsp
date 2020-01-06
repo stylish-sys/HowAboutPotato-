@@ -1,23 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Notice read</title>
-<script src="https://kit.fontawesome.com/4c89f26522.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/4c89f26522.js"
+	crossorigin="anonymous"></script>
 <script type="text/javascript">
-function listNotice(){
-	var url="listNotice";
-	url+="?col=${param.col}";
-	url+="&word=${param.word}";
-	url+="&nowPage=${param.nowPage}";
-	location.href=url;
-}
-function updateNotice(){
-	var url="updateNotice";
-	url += "?notice_num=${dto.notice_num}";
+	function listNotice() {
+		var url = "listNotice";
+		url += "?col=${param.col}";
+		url += "&word=${param.word}";
+		url += "&nowPage=${param.nowPage}";
+		location.href = url;
+	}
+	function updateNotice() {
+		var url = "updateNotice";
+		url += "?notice_num=${dto.notice_num}";
 		url += "&col=${param.col}";
 		url += "&word=${param.word}";
 		url += "&nowPage=${param.nowPage}";
@@ -89,8 +90,9 @@ function updateNotice(){
 	background-color: none;
 	font: bold;
 }
+
 .container {
-	    flex-direction: column;
+	flex-direction: column;
 }
 
 .read-notice-count {
@@ -147,43 +149,44 @@ function updateNotice(){
 	justify-content: flex-end;
 	width: 80%;
 }
-
 </style>
 </head>
 <body>
-<div class="container">
-	<div class="read-notice-main">
-		<div class="read-notice-title">
-			<div class="read-notice-title-content">
-				제목
+	<div class="container">
+		<div class="read-notice-main">
+			<div class="read-notice-title">
+				<div class="read-notice-title-content">${dto.notice_title }</div>
+			</div>
+			<div class="read-notice-content">
+
+				<div class="read-notice-etc">
+					<div class="read-notice-title-writer">
+						<i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;관리자
+					</div>
+					<div class="read-notice-title-writer">
+						<i class="fas fa-calendar-week"></i>&nbsp;&nbsp;${dto.notice_wdate }
+					</div>
+					<div>
+						<div class="read-notice-title-writer">
+							<i class="fas fa-eye"></i>&nbsp;&nbsp;${dto.notice_viewcnt }
+						</div>
+					</div>
+				</div>
+				<div class="read-notice-content-content">${dto.notice_content }
+				</div>
+			</div>
+			<div align="center">
+				<c:if
+					test="${dto.member_id == sessionScope.member_id || sessionScope.member_grade=='H' }">
+					<button class="btn" onclick="location.href='./createNotice'">등록</button>
+					<button class="btn" onclick="updateNotice()">수정</button>
+					<button class="btn" onclick="deleteNotice()">삭제</button>
+				</c:if>
+				<button class="btn" onclick="history.back()">목록</button>
 			</div>
 		</div>
-		<div class="read-notice-content">
-		
-			<div class="read-notice-etc">
-				<div class="read-notice-title-writer">
-					<i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;이름
-				</div>
-				<div class="read-notice-title-writer">
-					<i class="fas fa-calendar-week"></i>&nbsp;&nbsp;등록일
-				</div>
-				<div>
-				<div class="read-notice-title-writer">
-					<i class="fas fa-eye"></i>&nbsp;&nbsp;0
-				</div>
-			</div>
-			</div>
-			<div class="read-notice-content-content">
-				내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-				내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-				내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-				내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-				내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-				
-			</div>
-		</div>
+
 	</div>
-	
-</div><!-- container -->
+	<!-- container -->
 </body>
 </html>

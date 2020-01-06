@@ -152,7 +152,7 @@ public class Board_hapController {
 		if (request.getParameter("nPage") != null) {
 			nPage = Integer.parseInt(request.getParameter("nPage"));
 		}
-		int recordPerPage = 5; // 한페이지당 출력할 레코드 갯수
+		int recordPerPage = 3; // 한페이지당 출력할 레코드 갯수
 
 		int sno = ((nPage - 1) * recordPerPage) + 1; //
 		int eno = nPage * recordPerPage;
@@ -224,7 +224,7 @@ public class Board_hapController {
 			nowPage = Integer.parseInt(request.getParameter("nowPage"));
 		}
 
-		int recordPerPage = 5; // 한 페이지당 보여줄 레코드갯수
+		int recordPerPage = 6; // 한 페이지당 보여줄 레코드갯수
 
 		int sno = ((nowPage - 1) * recordPerPage) + 1; // 1~5 6~10 11~15
 		int eno = nowPage * recordPerPage;

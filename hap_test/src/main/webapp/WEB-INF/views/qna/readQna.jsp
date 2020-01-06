@@ -173,7 +173,6 @@
 				</div>
 				<div class="read-notice-content-content">${dto.qna_content }</div>
 			</div>
-		</div>
 		<div align="center">
 
 			<c:if
@@ -189,6 +188,7 @@
 				<button class="btn" onclick="deleteQna()">삭제</button>
 			</c:if>
 			<button class="btn" onclick="listQna()">목록</button>
+		</div>
 
 		</div>
 	</div>

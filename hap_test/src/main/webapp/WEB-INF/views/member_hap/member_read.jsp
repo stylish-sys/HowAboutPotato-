@@ -378,6 +378,7 @@ a {
 							<img src="${dto.member_fname }" width="250px" height="250px"
 								class="img-rounded">
 						</c:when>
+						
 						<c:otherwise>
 							<img
 								src="${pageContext.request.contextPath }/storage/${dto.member_fname}"

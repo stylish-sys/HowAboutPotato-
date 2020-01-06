@@ -189,31 +189,29 @@
 
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
-	    $(document).ready(function() {
-	
-	    	var menu = $( '.main-banner' ).offset();
-	    	var limit = $( '.login-container' ).offset();
-	    		$( window ).scroll( function() {
-	    			if ( $( document ).scrollTop() > menu.top ) {
-	    				$( '.main-banner' ).addClass( 'fixed' );
-	    			}
-	            	 else {
-	    				$( '.main-banner' ).removeClass( 'fixed' );
-	    			}
-	    	});
-	    });
-    </script>
+	$(document).ready(function() {
+
+		var menu = $('.main-banner').offset();
+		var limit = $('.login-container').offset();
+		$(window).scroll(function() {
+			if ($(document).scrollTop() > menu.top) {
+				$('.main-banner').addClass('fixed');
+			} else {
+				$('.main-banner').removeClass('fixed');
+			}
+		});
+	});
+</script>
 
 <script>
-    	jQuery(window).scroll(function(){
-    	    $('#main-header').attr('class','main-header-down');
-    	    setTimeout(function() {         
-    	    	$('#main-header').attr('class','main-header');     
-        	    }, 900);
+	jQuery(window).scroll(function() {
+		$('#main-header').attr('class', 'main-header-down');
+		setTimeout(function() {
+			$('#main-header').attr('class', 'main-header');
+		}, 900);
 
-    	});
-
-    </script>
+	});
+</script>
 </head>
 
 <body>
@@ -239,27 +237,28 @@
 					<div class="collapse navbar-collapse" id="navbar-primary-collapse">
 						<ul class="nav navbar-nav">
 							<li><a href="${root}">Home</a></li>
-							<li><a href="${root}/notice/listNotice#move-to-container"
-								class="js-scroll-trigger">Notice</a></li>
-							<li><a href="${root}/qna/listQna">QnA</a></li>
-							<li><a href="${root}/board_hap/list">방</a></li>
-							<li><a href="${root}/res/res_find">예약 검색</a></li>
-
 							<c:choose>
 								<c:when test="${empty sessionScope.member_id }">
+									<li><a href="${root}/notice/listNotice#move-to-container"
+										class="js-scroll-trigger">Notice</a></li>
+									<li><a href="${root}/qna/listQna">QnA</a></li>
+									<li><a href="${root}/board_hap/list">방</a></li>
+									<li><a href="${root}/res/res_find">예약 검색</a></li>
 									<li><a href="${root}/member_hap/agree">Join</a></li>
 									<li><a href="${root}/member_hap/login">Sign-in</a></li>
 								</c:when>
 								<c:otherwise>
-									<li><a href="${root}/res/list">RESLIST</a></li>
+									<li><a href="${root}/notice/listNotice#move-to-container"
+										class="js-scroll-trigger">Notice</a></li>
+									<li><a href="${root}/qna/listQna">QnA</a></li>
+									<li><a href="${root}/board_hap/list">방</a></li>
+									<li><a href="${root}/res/list">예약 내역</a></li>
 									<li><a href="${root}/member_hap/member_read">Profile</a></li>
 									<li><a href="${root}/member_hap/logout">Sign-out</a></li>
 								</c:otherwise>
 							</c:choose>
-
 							<c:if
 								test="${not empty sessionScope.member_id && sessionScope.member_grade=='H'}">
-								<li><a href="${root}/res/list">RESLIST</a></li>
 								<li><a href="${root}/res/res_acc">승인 대기</a></li>
 							</c:if>
 						</ul>

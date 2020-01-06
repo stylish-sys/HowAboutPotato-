@@ -15,9 +15,11 @@
 	;
 
 @import url('https://fonts.googleapis.com/css?family=Jua&display=swap');
-.font-jua{
+
+.font-jua {
 	font-family: 'Jua', sans-serif;
 }
+
 .btn {
 	height: 3.5rem;
 }
@@ -301,7 +303,7 @@ table {
 }
 
 .list-main-label {
-	width: 64%;
+	width: 84.5%;
 	height: 7vh;
 	display: flex;
 	justify-content: center;
@@ -309,10 +311,12 @@ table {
 	background-color: #FFF2E6;
 	font-size: 3.5rem;
 }
-.list-main-label div{
+
+.list-main-label div {
 	color: red;
 	font-size: 3.5rem;
 }
+
 .list-main-label-container {
 	width: 100%;
 	display: flex;
@@ -320,7 +324,8 @@ table {
 	justify-content: center;
 	height: 8vh;
 }
-a:hover{
+
+a:hover {
 	text-decoration: none;
 }
 </style>
@@ -334,8 +339,8 @@ a:hover{
 		url += "&nowPage=${nowPage}";
 		location.href = url;
 	}
-	
-	function list(col){
+
+	function list(col) {
 		var url = "${pageContext.request.contextPath}/board_hap/list";
 		url += "?col=" + col
 		location.href = url;
@@ -344,201 +349,227 @@ a:hover{
 
 </head>
 <body>
-   <input type = "hidden" name = "word" value = "${param.word }">
-   <input type = "hidden" name = "col" value = "${param.col }">
-   <input type = "hidden" name = "nowPage" value = "${param.nowPage }">
-   <div class="container">
-      <br>
-      <form class="form-inline" method="post" action="list">
-         <div class="form-group">
-            <h2>실시간 빈 방 검색</h2>
-         </div>
-      <br>
-      <div class="list-mini-list">
-      <div style ="cursor:pointer;" class="list-mini-container" onclick="javascript:list('')">
-         <img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
-         <div class="list-mini-container" >전국</div>
-      </div>
-      
-      <div style ="cursor:pointer;" class="list-mini-container" onclick="javascript:list('강원')">
-         <img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
-         <div class="list-mini-container" >강원</div>
-      </div>
-      
-      <div style ="cursor:pointer;" class="list-mini-container" onclick="javascript:list('경기')">
-         <img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
-         <div class="list-mini-container" >경기</div>
-      </div>
-      
-      <div style ="cursor:pointer;" class="list-mini-container" onclick="javascript:list('경상')">
-         <img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
-         <div class="list-mini-container" >경상</div>
-      </div>
-      
-      <div style ="cursor:pointer;" class="list-mini-container" onclick="javascript:list('서울')">
-         <img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
-         <div class="list-mini-container" >서울</div>
-      </div>
-      
-      <div style ="cursor:pointer;" class="list-mini-container" onclick="javascript:list('전라')">
-         <img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
-         <div class="list-mini-container" >전라</div>
-      </div>
-      
-      <div style ="cursor:pointer;" class="list-mini-container" onclick="javascript:list('제주')">
-         <img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
-         <div class="list-mini-container" >제주</div>
-      </div>
-      
-      <div style ="cursor:pointer;" class="list-mini-container" onclick="javascript:list('충청')">
-         <img src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
-         <div class="list-mini-container" >충청</div>
-      </div>
+	<input type="hidden" name="word" value="${param.word }">
+	<input type="hidden" name="col" value="${param.col }">
+	<input type="hidden" name="nowPage" value="${param.nowPage }">
+	<div class="container">
+		<br>
+		<form class="form-inline" method="post" action="list">
+			<div class="form-group">
+				<h2>실시간 빈 방 검색</h2>
+			</div>
+			<br>
+			<div class="list-mini-list">
+				<div style="cursor: pointer;" class="list-mini-container"
+					onclick="javascript:list('')">
+					<img
+						src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+					<div class="list-mini-container">전국</div>
+				</div>
+
+				<div style="cursor: pointer;" class="list-mini-container"
+					onclick="javascript:list('강원')">
+					<img
+						src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+					<div class="list-mini-container">강원</div>
+				</div>
+
+				<div style="cursor: pointer;" class="list-mini-container"
+					onclick="javascript:list('경기')">
+					<img
+						src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+					<div class="list-mini-container">경기</div>
+				</div>
+
+				<div style="cursor: pointer;" class="list-mini-container"
+					onclick="javascript:list('경상')">
+					<img
+						src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+					<div class="list-mini-container">경상</div>
+				</div>
+
+				<div style="cursor: pointer;" class="list-mini-container"
+					onclick="javascript:list('서울')">
+					<img
+						src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+					<div class="list-mini-container">서울</div>
+				</div>
+
+				<div style="cursor: pointer;" class="list-mini-container"
+					onclick="javascript:list('전라')">
+					<img
+						src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+					<div class="list-mini-container">전라</div>
+				</div>
+
+				<div style="cursor: pointer;" class="list-mini-container"
+					onclick="javascript:list('제주')">
+					<img
+						src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+					<div class="list-mini-container">제주</div>
+				</div>
+
+				<div style="cursor: pointer;" class="list-mini-container"
+					onclick="javascript:list('충청')">
+					<img
+						src="http://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3" />
+					<div class="list-mini-container">충청</div>
+				</div>
 
 
-      </div>
-   <div class="lsit-ad-list">
-      <div class="list-ad-container">
-         <img src="${pageContext.request.contextPath}/images/motel1.jpg"
-                     class="img-rounded " width="100px" height="100px"
-                     onclick="javascript:read(1)">
-         <div class="list-ad-container-ad">
-            <div class="list-ad-container-ad1">서울</div>
-            <div class="list-ad-container-ad2">AD</div>
-         </div>
-            <div class="list-ad-container-content">
-               <div class="list-ad-container-content1">이재근모텔</div>
-                  <c:if test="${not empty sessionScope.member_id }">
-                     <div class="list-ad-container-content2" onclick="location.href='../res/create?board_num=1'">결제하기</div>
-                  </c:if>
-                  
-                  <c:if test="${empty sessionScope.member_id }">
-                  <div class="list-ad-container-content2" onclick="location.href='../member_hap/login'">로그인하고 결제하기</div>
-                  </c:if>
-         </div>
-      </div>
-      
-      
-            <div class="list-ad-container">
-         <img src="${pageContext.request.contextPath}/images/motel2.jpg"
-                     class="img-rounded " width="100px" height="100px"
-                     onclick="javascript:read(2)">
-         <div class="list-ad-container-ad">
-            <div class="list-ad-container-ad1">강원</div>
-            <div class="list-ad-container-ad2">AD</div>
-         </div>
-            <div class="list-ad-container-content">
-               <div class="list-ad-container-content1">이선용호텔</div>
-                  <c:if test="${not empty sessionScope.member_id }">
-                     <div class="list-ad-container-content2" onclick="location.href='../res/create?board_num=2'">
-                     결제하기</div>
-                  </c:if>
-            
-               <c:if test="${empty sessionScope.member_id }">
-                  <div class="list-ad-container-content2" onclick="location.href='../member_hap/login'">
-                  로그인하고 결제
-                  </div>
-               </c:if>
-         </div>
-      </div>
-      
-            <div class="list-ad-container">
-         <img src="${pageContext.request.contextPath}/images/motel3.jpg"
-                     class="img-rounded " width="100px" height="100px"
-                     onclick="javascript:read(3)">
-         <div class="list-ad-container-ad">
-            <div class="list-ad-container-ad1">강원</div>
-            <div class="list-ad-container-ad2">AD</div>
-         </div>
-            <div class="list-ad-container-content">
-               <div class="list-ad-container-content1">김명인민박</div>
-                  <c:if test="${not empty sessionScope.member_id }">
-                     <div class="list-ad-container-content2" onclick="location.href='../res/create?board_num=3'">
-                     결제하기</div>
-                  </c:if>
-            
-               <c:if test="${empty sessionScope.member_id }">
-                  <div class="list-ad-container-content2" onclick="location.href='../member_hap/login'">
-                  로그인하고 결제
-                  </div>
-               </c:if>
-         </div>
-      </div>
-      
-            
-   </div>
-   <div class="list-main-label-container">
-			<div class="list-main-label font-jua" onclick="location.href='../member_hap/login'"><div>How About Potato&nbsp; </div> 바로 참여하기</div>
-		
+			</div>
+			<div class="lsit-ad-list">
+				<div class="list-ad-container">
+					<img src="${pageContext.request.contextPath}/images/motel1.jpg"
+						class="img-rounded " width="100px" height="100px"
+						onclick="javascript:read(1)">
+					<div class="list-ad-container-ad">
+						<div class="list-ad-container-ad1">서울</div>
+						<div class="list-ad-container-ad2">AD</div>
+					</div>
+					<div class="list-ad-container-content">
+						<div class="list-ad-container-content1">이재근모텔</div>
+						<c:if test="${not empty sessionScope.member_id }">
+							<div class="list-ad-container-content2"
+								onclick="location.href='../res/create?board_num=1'">결제하기</div>
+						</c:if>
+
+						<c:if test="${empty sessionScope.member_id }">
+							<div class="list-ad-container-content2"
+								onclick="location.href='../member_hap/login'">로그인하고 결제하기</div>
+						</c:if>
+					</div>
+				</div>
+
+
+				<div class="list-ad-container">
+					<img src="${pageContext.request.contextPath}/images/motel2.jpg"
+						class="img-rounded " width="100px" height="100px"
+						onclick="javascript:read(2)">
+					<div class="list-ad-container-ad">
+						<div class="list-ad-container-ad1">강원</div>
+						<div class="list-ad-container-ad2">AD</div>
+					</div>
+					<div class="list-ad-container-content">
+						<div class="list-ad-container-content1">이선용호텔</div>
+						<c:if test="${not empty sessionScope.member_id }">
+							<div class="list-ad-container-content2"
+								onclick="location.href='../res/create?board_num=2'">결제하기</div>
+						</c:if>
+
+						<c:if test="${empty sessionScope.member_id }">
+							<div class="list-ad-container-content2"
+								onclick="location.href='../member_hap/login'">로그인하고 결제</div>
+						</c:if>
+					</div>
+				</div>
+
+				<div class="list-ad-container">
+					<img src="${pageContext.request.contextPath}/images/motel3.jpg"
+						class="img-rounded " width="100px" height="100px"
+						onclick="javascript:read(3)">
+					<div class="list-ad-container-ad">
+						<div class="list-ad-container-ad1">강원</div>
+						<div class="list-ad-container-ad2">AD</div>
+					</div>
+					<div class="list-ad-container-content">
+						<div class="list-ad-container-content1">김명인민박</div>
+						<c:if test="${not empty sessionScope.member_id }">
+							<div class="list-ad-container-content2"
+								onclick="location.href='../res/create?board_num=3'">결제하기</div>
+						</c:if>
+
+						<c:if test="${empty sessionScope.member_id }">
+							<div class="list-ad-container-content2"
+								onclick="location.href='../member_hap/login'">로그인하고 결제</div>
+						</c:if>
+					</div>
+				</div>
+
+
+			</div>
+			<div class="list-main-label-container">
+				<div class="list-main-label font-jua"
+					onclick="location.href='../member_hap/login'">
+					<div>How About Potato&nbsp;</div>
+					바로 참여하기
+				</div>
+
+			</div>
+			<div class="list-main-container">
+				<div class="list-main-container1">
+
+					<c:forEach var="dto" items="${list }">
+						<div class="list-content">
+							<div class="list-content-picture" style="cursor: pointer;"
+								onclick="javascript:read('${dto.board_num}')">
+								<img
+									src="${pageContext.request.contextPath}/images/${dto.board_filename }"
+									class="img-rounded " width="100px">
+							</div>
+							<div class="list-content-content">
+								<div class="list-content-content-title">${dto.board_name }</div>
+								<div class="list-content-content-review">후기 n개</div>
+								<div class="list-content-content-sale">
+									<div class="list-content-content-sale-content1">선착순</div>
+									<div class="list-content-content-sale-content2">5개</div>
+								</div>
+								<div class="list-content-content-delete">
+									<del>120000</del>
+								</div>
+								<div class="list-content-content-price">42% -> 00000</div>
+							</div>
+							<c:if
+								test="${not empty sessionScope.member_id &&sessionScope.member_grade =='H' }">
+								<div style="cursor: pointer;"
+									onclick="location.href='${pageContext.request.contextPath}/board_hap/delete?board_num=${dto.board_num }'">업소삭제</div>
+								<div style="cursor: pointer;"
+									onclick="location.href='${pageContext.request.contextPath}/board_hap/update?board_num=${dto.board_num }'">업소정보수정</div>
+								<div style="cursor: pointer;"
+									onclick="location.href='${pageContext.request.contextPath}/board_hap/updateFile?board_num=${dto.board_num }&oldfile=${dto.board_filename }'">업소사진수정</div>
+								<br>
+							</c:if>
+						</div>
+
+					</c:forEach>
+
+
+
+				</div>
+			</div>
+			<div class="form-inline"></div>
+
+
+			<c:if
+				test="${not empty sessionScope.member_id &&sessionScope.member_grade =='H' }">
+				<button class="btn" type="button"
+					onclick="location.href='${pageContext.request.contextPath}/board_hap/create'">업소등록</button>
+			</c:if>
+
+		</form>
+		<%--       <c:forEach var="dto" items="${list }"> --%>
+		<!--          <table> -->
+		<!--             <thead> -->
+		<!--                <tr> -->
+		<!--                   <th>사진</th> -->
+		<!--                   <th>숙박명</th> -->
+		<!--                </tr> -->
+		<!--             </thead> -->
+		<!--             <tbody> -->
+		<!--                <tr> -->
+		<!--                   <td><img -->
+		<%--                      src="${pageContext.request.contextPath}/storage/${dto.board_filename}" --%>
+		<!--                      class="img-rounded " width="100px" height="100px" -->
+		<%--                      onclick="javascript:read('${dto.board_num}')"></td> --%>
+		<%--                   <td>${dto.board_name}</td><br> --%>
+		<!--                </tr> -->
+		<!--             </tbody> -->
+
+		<!--            </table>  -->
+
+		<%--       </c:forEach> --%>
+		${paging }
 	</div>
-   <div class="list-main-container">
-      <div class="list-main-container1">
-      
-         <c:forEach var="dto" items="${list }">
-         <div class="list-content">
-            <div class="list-content-picture" style = "cursor:pointer; "onclick="javascript:read('${dto.board_num}')">
-            <img src = "${pageContext.request.contextPath}/images/${dto.board_filename }" class="img-rounded " width="100px" >
-            </div>
-            <div class="list-content-content">
-               <div class="list-content-content-title">${dto.board_name }</div>
-               <div class="list-content-content-review">후기 n개</div>
-               <div class="list-content-content-sale">
-                  <div class="list-content-content-sale-content1">선착순</div>
-                  <div class="list-content-content-sale-content2">5개</div>
-               </div>
-               <div class="list-content-content-delete">
-                  <del>120000</del>
-               </div>
-               <div class="list-content-content-price">42% -> 00000</div>
-            </div>
-         </div>
-         <c:if test="${not empty sessionScope.member_id &&sessionScope.member_grade =='H' }">  
-            <div style ="cursor:pointer;" onclick="location.href='${pageContext.request.contextPath}/board_hap/delete?board_num=${dto.board_num }'">업소삭제</div> 
-            <div style ="cursor:pointer;" onclick="location.href='${pageContext.request.contextPath}/board_hap/update?board_num=${dto.board_num }'">업소정보수정</div> 
-            <div style ="cursor:pointer;" onclick="location.href='${pageContext.request.contextPath}/board_hap/updateFile?board_num=${dto.board_num }&oldfile=${dto.board_filename }'">업소사진수정</div> 
-            <br> 
-             </c:if>
-         
-      </c:forEach>
-         
-         
-
-      </div>
-   </div>
-         <div class="form-inline">
-         </div>
-
-
-         <c:if
-            test="${not empty sessionScope.member_id &&sessionScope.member_grade =='H' }">
-            <button class="btn" type="button"
-               onclick="location.href='${pageContext.request.contextPath}/board_hap/create'">업소등록</button>
-         </c:if>
-
-      </form>
-<%--       <c:forEach var="dto" items="${list }"> --%>
-<!--          <table> -->
-<!--             <thead> -->
-<!--                <tr> -->
-<!--                   <th>사진</th> -->
-<!--                   <th>숙박명</th> -->
-<!--                </tr> -->
-<!--             </thead> -->
-<!--             <tbody> -->
-<!--                <tr> -->
-<!--                   <td><img -->
-<%--                      src="${pageContext.request.contextPath}/storage/${dto.board_filename}" --%>
-<!--                      class="img-rounded " width="100px" height="100px" -->
-<%--                      onclick="javascript:read('${dto.board_num}')"></td> --%>
-<%--                   <td>${dto.board_name}</td><br> --%>
-<!--                </tr> -->
-<!--             </tbody> -->
-
-<!--            </table>  -->
-
-<%--       </c:forEach> --%>
-      ${paging }
-   </div>
 
 </body>
 </html>

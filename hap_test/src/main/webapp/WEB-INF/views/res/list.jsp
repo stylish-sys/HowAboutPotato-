@@ -151,7 +151,7 @@ input[type="text"], input[type="password"], input[type="email"], select
 								</p>
 							</td>
 							<td>
-									<button href="javascript:deletem('${dto.res_num}')">예약 취소 요청</button>
+									<a href="javascript:deletem('${dto.res_num}')">예약 취소 요청</a>
 									</td>
 							<td><a href="javascript:update('${dto.res_num}')">예약
 									수정하기</a></td>

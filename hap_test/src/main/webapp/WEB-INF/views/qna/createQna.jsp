@@ -64,26 +64,28 @@
 				<div class="col-sm-6">
 					<input type="password" class="form-control" name="qna_passwd">
 				</div>
-			</div>
-			<c:if
-				test="${not empty sessionScope.member_id && sessionScope.member_grade=='H'}">
+				</div>
 				<div class="from-group">
-					<label class="control-label col-sm-2" for="qna_noti"> 게시물
-						상단</label>
+					<label class="control-label col-sm-2" for="notice_noti">
+						게시물 상단</label>
 					<div class="col-sm-6">
-						<input type="checkbox" id="qna_noti" name="qna_noti" value="Y">
-						<label for="qna_noti"> 등록</label>
+						<c:if
+							test="${not empty sessionScope.member_id && sessionScope.member_grade=='H'}">
+							<input type="radio" name="qna_noti" id="qna_noti1" value="Y">
+							<label for="qna_noti1">상단 등록</label>
+						</c:if>
+						<input type="radio" name="qna_noti" id="qna_noti2" value="N"
+							checked="checked"><label for="notice_noti2">글 작성
+							동의</label>
 					</div>
 				</div>
-			</c:if>
-			<br> <br>
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn">등록</button>
-					<button type="reset" class="btn" onclick="history.back()">취소</button>
+				<br> <br>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn">등록</button>
+						<button type="reset" class="btn" onclick="history.back()">취소</button>
+					</div>
 				</div>
-			</div>
-
 		</form>
 
 	</div>

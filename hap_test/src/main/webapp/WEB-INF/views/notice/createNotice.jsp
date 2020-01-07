@@ -20,7 +20,6 @@
 		<form class="form-horizontal" action="create" method="post"
 			enctype="multipart/form-data">
 			<input type="hidden" name="member_id" value="${member_id}">
-			<input type="hidden" name="notice_noti" value="N">
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="member_id">작성자</label>
 				<div class="col-sm-6">
@@ -65,8 +64,8 @@
 				<label class="control-label col-sm-2" for="notice_noti">
 					게시물 상단</label>
 				<div class="col-sm-6">
-					<input type="checkbox" id="notice_noti" name="notice_noti"
-						value="Y"> <label for="notice_noti"> 등록</label>
+					<input type="radio" name="notice_noti" id="notice_noti1" value="Y"> <label for="notice_noti1">상단 등록</label>
+					<input type="radio" name="notice_noti" id = "notice_noti2"  value="N" checked="checked"><label for="notice_noti2">일반 등록</label>
 				</div>
 			</div>
 			<br>

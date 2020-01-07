@@ -7,7 +7,15 @@
     version="2.0">
     <description>EL에서 함수실행</description> 
     <tlib-version>1.0</tlib-version> 
-    <uri>/ELFunctions</uri> 
+    <uri>/ELFunctions</uri>
+    
+    <function>
+    	<description>방최소금액</description>
+    	<name>price</name>
+    	<function-class>spring.utility.webtest.Utility</function-class>
+    	<function-signature>int price(int, spring.model.mapper.Board_hapMapper)</function-signature>
+    </function>
+     
     <function>
     	<description>직업 이름 출력</description>
     	<name>jobName</name>

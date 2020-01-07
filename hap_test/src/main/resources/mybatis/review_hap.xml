@@ -4,17 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="spring.model.mapper.ReplyMapper">
-
-	<!-- <delete id="rdelete" parameterType="int"> -->
-	<!-- delete from review_hap -->
-	<!-- where board_num=#{board_num} -->
-	<!-- </delete> -->
-
-	<!-- <select id="rcount" parameterType="int" resultType="int"> -->
-	<!-- select count(*) from review_hap -->
-	<!-- where board_num = #{board_num} -->
-	<!-- </select> -->
-
+	
 
 	<update id="update" parameterType="review_hapDTO">
 		update review_hap
@@ -49,15 +39,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="list" parameterType="Map" resultType="review_hapDTO">
 		select rw_num, rw_content, rw_date, board_num, member_id,rw_star, member_fname, r
-		from(
-		select rw_num, rw_content, rw_date, board_num, member_id,rw_star,
-		member_fname, rownum r
-		from(
-		select rw_num, rw_content, rw_date, board_num, b.member_id, rw_star, member_fname
-		from review_hap a, member_hap b
-		where board_num=#{board_num} and a.member_id = b.member_id
-		order by
-		rw_num desc
+			from(	
+				select rw_num, rw_content, rw_date, board_num, member_id,rw_star,
+				member_fname, rownum r
+				from(
+					select rw_num, rw_content, rw_date, board_num, b.member_id, rw_star, member_fname
+					from review_hap a, member_hap b
+					where board_num=#{board_num} and a.member_id = b.member_id
+					order by rw_num desc
 		)
 	<![CDATA[
 	 )where r >= #{sno} and r <= #{eno} 

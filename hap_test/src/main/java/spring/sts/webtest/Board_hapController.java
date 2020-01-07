@@ -228,21 +228,23 @@ public class Board_hapController {
 
 		int sno = ((nowPage - 1) * recordPerPage) + 1; // 1~5 6~10 11~15
 		int eno = nowPage * recordPerPage;
+		
 
 		Map map = new HashMap();
-
+		
 		map.put("col", col);
 		map.put("word", word);
 		map.put("sno", sno);
 		map.put("eno", eno);
-
+		
 		List<Board_hapDTO> list = bmapper.list(map);
-
+				
 		int total = bmapper.total(map);
 
 		String paging = Utility.paging(total, nowPage, recordPerPage, col, word);
 
 		request.setAttribute("list", list);
+		request.setAttribute("mapper", bmapper);
 		request.setAttribute("paging", paging);
 		request.setAttribute("col", col);
 		request.setAttribute("word", word);

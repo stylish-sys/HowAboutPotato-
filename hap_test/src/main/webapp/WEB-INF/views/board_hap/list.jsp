@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="util" uri="/ELFunctions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -508,12 +509,13 @@ a:hover {
 								
 							</div>
 							<div class="list-content-content">
-								<div class="list-content-content-title">${dto.board_name }</div>
+								<div class="list-content-content-title">${dto.board_name}</div>
 								
 								<div class="list-content-content-delete">
-									<del>120000</del>
+									<del>100000</del>
 								</div>
-								<div class="list-content-content-price">42% -> 00000</div>
+								<div class="list-content-content-price">42% -> ${util:price(dto.board_num, mapper)}</div>
+								
 							</div>
 							<c:if
 								test="${not empty sessionScope.member_id &&sessionScope.member_grade =='H' }">
@@ -524,7 +526,7 @@ a:hover {
 								<div style="cursor: pointer;"
 									onclick="location.href='${pageContext.request.contextPath}/board_hap/updateFile?board_num=${dto.board_num }&oldfile=${dto.board_filename }'">업소사진수정</div>
 								<br>
-							</c:if>
+							</c:if> 
 						</div>
 
 					</c:forEach>

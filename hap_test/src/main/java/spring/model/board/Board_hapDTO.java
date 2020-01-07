@@ -17,6 +17,15 @@ public class Board_hapDTO {
     private MultipartFile board_mapMF;
     private MultipartFile board_filenameMF;
     
+    private int room_price;
+	public int getRoom_price() {
+		return room_price;
+	}
+
+	public void setRoom_price(int room_price) {
+		this.room_price = room_price;
+	}
+
 	public MultipartFile getBoard_filenameMF() {
 		return board_filenameMF;
 	}
@@ -109,7 +118,7 @@ public class Board_hapDTO {
 
 	public Board_hapDTO(int board_num, String board_name, String board_address1, String board_address2,
 			String board_zipcode, String board_map, String board_filename, String board_account, String board_content,
-			int board_cnt, MultipartFile board_mapMF) {
+			int board_cnt, MultipartFile board_mapMF, int room_price) {
 		super();
 		this.board_num = board_num;
 		this.board_name = board_name;
@@ -122,6 +131,7 @@ public class Board_hapDTO {
 		this.board_content = board_content;
 		this.board_cnt = board_cnt;
 		this.board_mapMF = board_mapMF;
+		this.room_price = room_price;
 	}
 
 	@Override
@@ -129,7 +139,7 @@ public class Board_hapDTO {
 		return "Board_hapDTO [board_num=" + board_num + ", board_name=" + board_name + ", board_address1="
 				+ board_address1 + ", board_address2=" + board_address2 + ", board_zipcode=" + board_zipcode
 				+ ", board_map=" + board_map + ", board_filename=" + board_filename + ", board_account=" + board_account
-				+ ", board_content=" + board_content + ", board_cnt=" + board_cnt + ", board_mapMF=" + board_mapMF
+				+ ", board_content=" + board_content + ", board_cnt=" + board_cnt + ", board_mapMF=" + board_mapMF + ", room_price=" + room_price
 				+ "]";
 	}
 

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import spring.model.board.Board_hapDTO;
 import spring.model.mapper.Room_hapMapper;
 import spring.model.room.Room_hapDTO;
 import spring.model.room.Room_hapService;
@@ -212,5 +213,5 @@ public class Room_hapController {
 
 		return "/room_hap/list";
 	}
-
+	
 }

@@ -5,6 +5,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="spring.model.mapper.Board_hapMapper">
 
+	<select id = "price" parameterType="int" resultType="int">
+		select coalesce(min(room_price),0) as room_price from room_hap where board_num = #{board_num}
+	</select>
+
 	<select id="duplicatedBoard_name" parameterType="String" resultType="int">
 	select count(board_name) from board_hap where board_name = #{board_name}
 	</select>
@@ -60,10 +64,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	SELECT board_num, board_name, board_cnt, board_address1, board_address2, board_filename, r 
 	FROM( 
-	    SELECT board_num, board_name, board_cnt, board_address1, board_address2, board_filename, rownum r 
+	    SELECT board_num, board_name, board_cnt, board_address1, board_address2, board_filename,rownum r 
 	    FROM ( 
 	        SELECT board_num, board_name, board_cnt, board_address1, board_address2, board_filename
-	        FROM board_hap 
+			from board_hap 	        
+            
         <where>
          <choose>
          	<when test="col=='지역'">

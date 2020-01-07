@@ -12,6 +12,8 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import spring.model.mapper.Board_hapMapper;
+
 
 public class Utility {
 
@@ -408,5 +410,9 @@ public class Utility {
 				file.delete();
 			}
 		}
+	}
+	
+	public static int price(int board_num, Board_hapMapper mapper) {
+		return mapper.price(board_num);
 	}
 }

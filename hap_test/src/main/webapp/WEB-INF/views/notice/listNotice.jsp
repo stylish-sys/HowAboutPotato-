@@ -8,6 +8,9 @@
 <title>Notice List</title>
 <meta charset="utf-8">
 <style type="text/css">
+
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
 #notice_select {width =50px;
 	
 }
@@ -75,6 +78,9 @@ table tbody tr:nth-child(2n + 1) {
 input[type="text"], input[type="password"], input[type="email"], select {
     height: 3.5rem;
     font-size: 1.5rem;
+}
+td a {
+	font-family: 'Noto Sans KR', sans-serif;
 }
 </style>
 <script type="text/javascript">

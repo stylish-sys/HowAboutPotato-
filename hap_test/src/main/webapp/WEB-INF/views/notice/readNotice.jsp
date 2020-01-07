@@ -44,6 +44,10 @@
 	});
 </script>
 <style>
+@import
+	url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap')
+	;
+
 .container {
 	display: flex;
 	justify-content: center;
@@ -61,6 +65,7 @@
 	flex-direction: column;
 	border-radius: 1%;
 	margin: 5%;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 .read-notice-title {
@@ -78,7 +83,7 @@
 .read-notice-title-writer {
 	display: flex;
 	justify-content: flex-start;
-	width: 20%;
+	width: 30%;
 	align-items: center;
 	background-color: none;
 }
@@ -149,36 +154,72 @@
 	justify-content: flex-end;
 	width: 80%;
 }
+
+.read-notice-title-eye {
+	width: 19%;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.read-notice-title-writer {
+	display: flex;
+	justify-content: flex-end;
+	width: 30%;
+	align-items: center;
+	background-color: none;
+}
+
+.read-notice-etc {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	width: 80%;
+}
+
+.read-notice-content-content {
+	height: 80%;
+	width: 70%;
+	background-color: white;
+	font-size: 1.7rem;
+}
+
+.read-notice-etc {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	width: 80%;
+	height: 7%;
+	border-radius: 2%;
+}
 </style>
 </head>
 <body>
 	<div class="container">
 		<div class="read-notice-main">
+			<div class="read-notice-etc">
+				<div class="read-notice-title-writer">
+					<i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;관리자
+				</div>
+				<div class="read-notice-title-writer">
+					<i class="fas fa-calendar-week"></i>&nbsp;&nbsp;${dto.notice_wdate }
+				</div>
+				<div class="read-notice-title-eye">
+					<div class="read-notice-title-writer">
+						<i class="fas fa-eye"></i>&nbsp;&nbsp;${dto.notice_viewcnt }
+					</div>
+				</div>
+			</div>
 			<div class="read-notice-title">
 				<div class="read-notice-title-content">${dto.notice_title }</div>
 			</div>
 			<div class="read-notice-content">
 
-				<div class="read-notice-etc">
-					<div class="read-notice-title-writer">
-						<i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;관리자
-					</div>
-					<div class="read-notice-title-writer">
-						<i class="fas fa-calendar-week"></i>&nbsp;&nbsp;${dto.notice_wdate }
-					</div>
-					<div>
-						<div class="read-notice-title-writer">
-							<i class="fas fa-eye"></i>&nbsp;&nbsp;${dto.notice_viewcnt }
-						</div>
-					</div>
-				</div>
 				<div class="read-notice-content-content">${dto.notice_content }
 				</div>
 			</div>
 			<div align="center">
 				<c:if
 					test="${dto.member_id == sessionScope.member_id || sessionScope.member_grade=='H' }">
-					<button class="btn" onclick="location.href='./createNotice'">등록</button>
 					<button class="btn" onclick="updateNotice()">수정</button>
 					<button class="btn" onclick="deleteNotice()">삭제</button>
 				</c:if>

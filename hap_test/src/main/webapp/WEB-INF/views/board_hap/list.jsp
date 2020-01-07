@@ -84,7 +84,7 @@ table {
 	width: 30vw;
 	height: 20vh;
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: space-around;
 	align-items: flex-end;
 	flex-direction: column;
 }
@@ -137,7 +137,7 @@ table {
 .list-content-content-delete {
 	width: 100%;
 	text-align: end;
-	height: 15%;
+	height: 0%;
 	color: #d3d3d3;
 	font-size: 2rem;
 }
@@ -286,7 +286,7 @@ table {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	width: 80%;
+	width: 90%;
 	align-items: center;
 	flex-wrap: wrap;
 }
@@ -356,7 +356,6 @@ a:hover {
 		<br>
 		<form class="form-inline" method="post" action="list">
 			<div class="form-group">
-				<h2>실시간 빈 방 검색</h2>
 			</div>
 			<br>
 			<div class="list-mini-list">
@@ -498,22 +497,19 @@ a:hover {
 			</div>
 			<div class="list-main-container">
 				<div class="list-main-container1">
-
 					<c:forEach var="dto" items="${list }">
 						<div class="list-content">
-							<div class="list-content-picture" style="cursor: pointer;"
+							<div class="list-content-picture" style="cursor: pointer;
+								background-position: center center;
+    							background-repeat: no-repeat;
+    							background-size: cover;
+    							background-image: url(${pageContext.request.contextPath}/images/${dto.board_filename });"
 								onclick="javascript:read('${dto.board_num}')">
-								<img
-									src="${pageContext.request.contextPath}/images/${dto.board_filename }"
-									class="img-rounded " width="100px">
+								
 							</div>
 							<div class="list-content-content">
 								<div class="list-content-content-title">${dto.board_name }</div>
-								<div class="list-content-content-review">후기 n개</div>
-								<div class="list-content-content-sale">
-									<div class="list-content-content-sale-content1">선착순</div>
-									<div class="list-content-content-sale-content2">5개</div>
-								</div>
+								
 								<div class="list-content-content-delete">
 									<del>120000</del>
 								</div>

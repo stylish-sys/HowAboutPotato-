@@ -56,10 +56,10 @@
 star {
 	color: #FF0000;;
 }
+
 .navbar-default {
-     background-color: white; 
-     border-color: white
-     ;
+	background-color: white;
+	border-color: white;
 }
 
 nickname {
@@ -83,17 +83,18 @@ content {
 }
 
 .read-reple {
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: auto;
-    margin-bottom: 3%;
-    width: 60vw;
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: auto;
+	margin-bottom: 3%;
+	width: 60vw;
 }
+
 .panel-default {
-    border-color: #ddd;
-    margin-top: 2%;
+	border-color: #ddd;
+	margin-top: 2%;
 }
 
 .container {
@@ -106,11 +107,11 @@ content {
 
 .read-content {
 	width: 60vw;
-    display: flex;
-    flex-direction: column;
-    height: 90vh;
-    align-items: start;
-    margin-bottom: 3%;
+	display: flex;
+	flex-direction: column;
+	height: 90vh;
+	align-items: start;
+	margin-bottom: 3%;
 }
 
 .read-container {
@@ -123,8 +124,22 @@ content {
 
 .read-submit {
 	width: 60vw;
+	display: flex;
+	justify-content: center;
+}
+.carousel-container{
+	width: 100%;
     display: flex;
+    align-items: center;
     justify-content: center;
+}
+.table {
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+    width: 60vw;
+    margin-bottom: 20px;
+}
+.font{
+	font-family: 'Jua', sans-serif;
 }
 </style>
 
@@ -133,11 +148,12 @@ content {
 
 
 	<div class="container">
-		<h2 class="col-sm-offset-2 col-sm-10">${dto.board_name }</h2>
+		<h2 class="col-sm-offset-2 col-sm-10 font">${dto.board_name }</h2>
 
 		<table class="table table-bordered">
 			<tr>
 				<td colspan="2" style="text-align: center">
+				<div class="carousel-container">
 					<div id="myCarousel" class="carousel slide" data-ride="carousel"
 						style="height: 100%; width: 100%;" align="center">
 						<ol class="carousel-indicators">
@@ -167,7 +183,9 @@ content {
 							class="glyphicon glyphicon-chevron-right"></span> <span
 							class="sr-only">Next</span>
 						</a>
-					</div> <input type="hidden" name="col" value="${param.col }"> <input
+					</div>
+					</div>
+					 <input type="hidden" name="col" value="${param.col }"> <input
 					type="hidden" name="word" value="${param.word }"> <input
 					type="hidden" name="nowPage" value="${param.nowPage }">
 				</td>
@@ -176,9 +194,14 @@ content {
 		</table>
 		<hr>
 		<!-- admin만 -->
-		<button class="btn"
-			onclick="location.href='../room_hap/create?board_num=${dto.board_num}&col=${param.col }&word=${param.word }&nowPage=${param.nowPage }'">방
-			등록</button>
+
+		<c:if
+			test="${not empty sessionScope.member_id && sessionScope.member_grade=='H'}">
+			<!-- admin만 -->
+			<button class="btn"
+				onclick="location.href='../room_hap/create?board_num=${dto.board_num}&col=${param.col }&word=${param.word }&nowPage=${param.nowPage }'">방
+				등록</button>
+		</c:if>
 		<table class="table table-bordered">
 			<c:forEach var="dto" items="${rlist }">
 				<th>방 사진</th>
@@ -226,53 +249,53 @@ content {
 			<div class="read-map">
 				<h1>숙소 약도</h1>
 				<p>주소 : ${dto.board_address1 } ${dto.board_address2 }
-				<div class="read-map" id="map" style="width: 100%; height: 350px;">
-				</div>
-				<script>
-					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-					mapOption = {
-						center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-						level : 3
-					// 지도의 확대 레벨
-					};
+				            <div class="read-map" id="map" style="width: 100%; height: 350px;">
+            </div>
+            <script>
+               var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+               mapOption = {
+                  center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                  level : 3
+               // 지도의 확대 레벨
+               };
 
-					// 지도를 생성합니다    
-					var map = new kakao.maps.Map(mapContainer, mapOption);
+               // 지도를 생성합니다    
+               var map = new kakao.maps.Map(mapContainer, mapOption);
 
-					// 주소-좌표 변환 객체를 생성합니다
-					var geocoder = new kakao.maps.services.Geocoder();
+               // 주소-좌표 변환 객체를 생성합니다
+               var geocoder = new kakao.maps.services.Geocoder();
 
-					// 주소로 좌표를 검색합니다
-					geocoder
-							.addressSearch(
-									'${dto.board_address1}',
-									function(result, status) {
+               // 주소로 좌표를 검색합니다
+               geocoder
+                     .addressSearch(
+                           '${dto.board_address1}',
+                           function(result, status) {
 
-										// 정상적으로 검색이 완료됐으면 
-										if (status === kakao.maps.services.Status.OK) {
+                              // 정상적으로 검색이 완료됐으면 
+                              if (status === kakao.maps.services.Status.OK) {
 
-											var coords = new kakao.maps.LatLng(
-													result[0].y, result[0].x);
+                                 var coords = new kakao.maps.LatLng(
+                                       result[0].y, result[0].x);
 
-											// 결과값으로 받은 위치를 마커로 표시합니다
-											var marker = new kakao.maps.Marker(
-													{
-														map : map,
-														position : coords
-													});
+                                 // 결과값으로 받은 위치를 마커로 표시합니다
+                                 var marker = new kakao.maps.Marker(
+                                       {
+                                          map : map,
+                                          position : coords
+                                       });
 
-											// 인포윈도우로 장소에 대한 설명을 표시합니다
-											var infowindow = new kakao.maps.InfoWindow(
-													{
-														content : '<div style="width:150px;text-align:center;padding:6px 0;">${dto.board_name}</div>'
-													});
-											infowindow.open(map, marker);
+                                 // 인포윈도우로 장소에 대한 설명을 표시합니다
+                                 var infowindow = new kakao.maps.InfoWindow(
+                                       {
+                                          content : '<div style="width:150px;text-align:center;padding:6px 0;">${dto.board_name}</div>'
+                                       });
+                                 infowindow.open(map, marker);
 
-											// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-											map.setCenter(coords);
-										}
-									});
-				</script>
+                                 // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                                 map.setCenter(coords);
+                              }
+                           });
+            </script>
 			</div>
 			<div class="col-sm-12 read-reple">
 				<div class="panel panel-default">
@@ -280,7 +303,8 @@ content {
 
 					<div class="panel-heading">
 						<i class="fa fa-comments fa-fw"></i>리뷰
-						<button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>리뷰 쓰기</button>
+						<button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>New
+							Reply</button>
 
 						<br> <br>
 					</div>
@@ -312,58 +336,58 @@ content {
 				<!-- /.panel -->
 			</div>
 			<div class="read-content">
-			<section>
-				<h2>편의 시설</h2>
-				<img src="../images/motel4.png">
-				<ul type="disc">
-					<li>1일 생수 2병, 웰컴 드링크2병(웰치스,립튼) 무료제공, 투숙객 무료주차, 객실 내 무선인터넷 가능</li>
-					<li>Guest Lounge, 카페테리아, 비지니스센터, 레스토랑(2F), 고객주차장</li>
-					<li>개인PC, 무료 와이파이, 커피포트</li>
-				</ul>
-			</section>
-			<hr>
+				<section>
+					<h2>편의 시설</h2>
+					<img src="../images/motel4.png">
+					<ul type="disc">
+						<li>1일 생수 2병, 웰컴 드링크2병(웰치스,립튼) 무료제공, 투숙객 무료주차, 객실 내 무선인터넷 가능</li>
+						<li>Guest Lounge, 카페테리아, 비지니스센터, 레스토랑(2F), 고객주차장</li>
+						<li>개인PC, 무료 와이파이, 커피포트</li>
+					</ul>
+				</section>
+				<hr>
 
-			<%-- 			<div>${dto.board_content }</div> --%>
+				<%-- 			<div>${dto.board_content }</div> --%>
 
 
 
-			<section>
-				<h2>이용 안내</h2>
-				<img src="../images/motel4.png">
-				<h2>공지사항</h2>
-				<ul type="disc">
-					<li>리치웰 호텔 파티룸 오픈파티 가능한 객실을 준비해 두었습니다</li>
-					<li>객실당 차량 1대 가능</li>
-				</ul>
+				<section>
+					<h2>이용 안내</h2>
+					<img src="../images/motel4.png">
+					<h2>공지사항</h2>
+					<ul type="disc">
+						<li>리치웰 호텔 파티룸 오픈파티 가능한 객실을 준비해 두었습니다</li>
+						<li>객실당 차량 1대 가능</li>
+					</ul>
 
-				<h2>기본규정</h2>
-				<ul type="disc">
-					<li>객실은 부티크 호텔 특성상 이미지와 다른 객실이 배정될 수 있습니다</li>
-					<li>객실 지정은 불가 합니다(체크인시 랜덤 배정)</li>
-					<li>전 객실 2인기준 (인원추가 1인당 2만원)</li>
-					<li>연박 불가(연박시 추가요금 발생)</li>
-					<li>자세한 문의는 프런트 부탁드리겠습니다</li>
-					<li>회원혜택은 제휴점 내규에 따라 적용됩니다</li>
-				</ul>
-			</section>
-			<hr>
+					<h2>기본규정</h2>
+					<ul type="disc">
+						<li>객실은 부티크 호텔 특성상 이미지와 다른 객실이 배정될 수 있습니다</li>
+						<li>객실 지정은 불가 합니다(체크인시 랜덤 배정)</li>
+						<li>전 객실 2인기준 (인원추가 1인당 2만원)</li>
+						<li>연박 불가(연박시 추가요금 발생)</li>
+						<li>자세한 문의는 프런트 부탁드리겠습니다</li>
+						<li>회원혜택은 제휴점 내규에 따라 적용됩니다</li>
+					</ul>
+				</section>
+				<hr>
 
-			<!-- 	<div id="map" style="width:100%;height:400px;"></div> -->
+				<!-- 	<div id="map" style="width:100%;height:400px;"></div> -->
 
-			<!-- 	<script> -->
-			<!-- // 		var mapOptions = { -->
-			<!-- // 	    center: new naver.maps.LatLng(37.3595704, 127.105399), -->
-			<!-- // 	    zoom: 10 -->
-			<!-- // 					}; -->
+				<!-- 	<script> -->
+				<!-- // 		var mapOptions = { -->
+				<!-- // 	    center: new naver.maps.LatLng(37.3595704, 127.105399), -->
+				<!-- // 	    zoom: 10 -->
+				<!-- // 					}; -->
 
-			<!-- // 		var map = new naver.maps.Map('map', mapOptions); -->
-			<!-- 	</script> -->
+				<!-- // 		var map = new naver.maps.Map('map', mapOptions); -->
+				<!-- 	</script> -->
 
-			<div class="read-submit">
-				<button type="submit" class="btn"
-					onclick="location.href='../res/create?board_num=${dto.board_num}'">결제하기</button>
+				<div class="read-submit">
+					<button type="submit" class="btn"
+						onclick="location.href='../res/create?board_num=${dto.board_num}'">결제하기</button>
+				</div>
 			</div>
-		</div>
 			<!-- col-lg-12 end -->
 		</div>
 		<!-- row end -->
@@ -380,7 +404,7 @@ content {
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">리뷰 내용</h4>
+					<h4 class="modal-title" id="myModalLabel">답변 모달</h4>
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
@@ -454,7 +478,7 @@ content {
 															str += "<div><div class='header'><div><img src=\"${root}/images/"+ list[i].member_fname+"\" alt=\"신호 없음\" height=\"100px\" width=\"100px\"/></div><strong class='primary-font'><nickname>"
 																	+ list[i].member_id
 																	+ "</nickname></strong>";
-														}
+														}등록
 														str += "<small class='pull-right text-muted'>"
 																+ list[i].rw_date
 																+ "</small></div><br><content>";
@@ -664,6 +688,6 @@ content {
 
 						}); //end $(document).ready
 	</script>
-	
+
 </body>
 </html>

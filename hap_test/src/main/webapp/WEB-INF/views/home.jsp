@@ -113,13 +113,31 @@
 
 </head>
 <body>
+	<script type="text/javascript">
+		tocplusTop = 1150;
+		tocplusLeft = 5;
+		tocplusMinimizedImage = 'http://kr03.tocplus007.com/img/minimized_ko.gif';
+		tocplusHAlign = 'right';
+		tocplusLocaleFixed = 'ko';
+		tocplusWidth = 180;
+		tocplusHeight = 220;
+		tocplusUserName = '손님은왕';
+		tocplusFrameColor = '#FFA500';
+		tocplusFloatingWindow = true;
+		var tocplusHost = (("https:" == document.location.protocol) ? "https://"
+				: "http://");
+		document
+				.write(unescape("%"
+						+ "3Cscript src='"
+						+ tocplusHost
+						+ "kr03.tocplus007.com/chatLoader.do?userId=jorney0' type='text/javascript'"
+						+ "%" + "3E" + "%" + "3C/script" + "%" + "3E"));
+	</script>
 	<div class="main-container-row">
 		<div class="row">
 			<div class="col-md-4" id="main-content-first">
-				<a
-					href="${pageContext.request.contextPath }/board_hap/read?board_num=3&col=&word=&nowPage=1">
 					<img src="${pageContext.request.contextPath }/images/수영장.jpg">
-				</a>
+			
 			</div>
 			<div class="col-md-4" id="main-content-second">
 				<img src="${pageContext.request.contextPath }/images/1번 호텔.jpg">

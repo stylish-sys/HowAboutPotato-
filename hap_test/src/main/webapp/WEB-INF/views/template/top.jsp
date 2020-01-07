@@ -33,6 +33,11 @@
 <script type="text/javascript" src="${root }/js/ajaxError.js"></script>
 <script type="text/javascript" src="${root }/js/useAnimation.js"></script>
 <style type="text/css">
+@import
+	url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:700&display=swap');
+@import
+	url('https://fonts.googleapis.com/css?family=Nanum+Gothic:700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Jua&display=swap');
 #grade {
 	color: red;
 }
@@ -185,6 +190,13 @@
 .main-banner-fade-out {
 	opacity: 1;
 }
+a{
+	font-family: 'Jua', sans-serif;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #777;
+    font-size: 2.5rem;
+}
 </style>
 
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -208,7 +220,7 @@
 		$('#main-header').attr('class', 'main-header-down');
 		setTimeout(function() {
 			$('#main-header').attr('class', 'main-header');
-		}, 900);
+		}, 1100);
 
 	});
 </script>
@@ -240,21 +252,21 @@
 							<c:choose>
 								<c:when test="${empty sessionScope.member_id }">
 									<li><a href="${root}/notice/listNotice#move-to-container"
-										class="js-scroll-trigger">Notice</a></li>
-									<li><a href="${root}/qna/listQna">QnA</a></li>
+										class="js-scroll-trigger">공지사항</a></li>
+									<li><a href="${root}/qna/listQna">질문과 답변</a></li>
 									<li><a href="${root}/board_hap/list">방</a></li>
 									<li><a href="${root}/res/res_find">예약 검색</a></li>
-									<li><a href="${root}/member_hap/agree">Join</a></li>
-									<li><a href="${root}/member_hap/login">Sign-in</a></li>
+									<li><a href="${root}/member_hap/agree">회원가입</a></li>
+									<li><a href="${root}/member_hap/login">로그인</a></li>
 								</c:when>
 								<c:otherwise>
 									<li><a href="${root}/notice/listNotice#move-to-container"
-										class="js-scroll-trigger">Notice</a></li>
-									<li><a href="${root}/qna/listQna">QnA</a></li>
+										class="js-scroll-trigger">공지사항</a></li>
+									<li><a href="${root}/qna/listQna">질문과 답변</a></li>
 									<li><a href="${root}/board_hap/list">방</a></li>
 									<li><a href="${root}/res/list">예약 내역</a></li>
-									<li><a href="${root}/member_hap/member_read">Profile</a></li>
-									<li><a href="${root}/member_hap/logout">Sign-out</a></li>
+									<li><a href="${root}/member_hap/member_read">내 프로필</a></li>
+									<li><a href="${root}/member_hap/logout">로그아웃</a></li>
 								</c:otherwise>
 							</c:choose>
 							<c:if

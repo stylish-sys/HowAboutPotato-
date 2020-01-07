@@ -12,8 +12,10 @@
 <script src="https://kit.fontawesome.com/4c89f26522.js" crossorigin="anonymous"></script>
 <script type='text/javascript'>
   //<![CDATA[
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
     Kakao.init('40c7acb685fb1a07ba5cb37a10f4029e');
     function loginWithKakao() {
+      // 로그인 창을 띄웁니다.
       Kakao.Auth.login({
         success: function(authObj) {
              Kakao.API.request({
@@ -31,20 +33,21 @@
                       for ( var key in params) {
                          var hiddenField = document.createElement('input');
                          hiddenField.setAttribute('type', 'hidden');
-                         hiddenField.setAttribute('name', key);-
+                         hiddenField.setAttribute('name', key);
                          hiddenField.setAttribute('value', params[key]);
                          form.appendChild(hiddenField);
                       }
                       document.body.appendChild(form);
                       form.submit();
                    }
-                  sendPost('member_create',{
+                  sendPost('member_kakao_create',{
                      'name': res.properties.nickname,
                      'email' : res.kaccount_email,
                      'id' : res.id,
                      'fname': res.properties.profile_image})
                   }
              });
+/*           alert(JSON.stringify(authObj)); */
         },
         fail: function(err) {
           alert(JSON.stringify(err));
@@ -86,13 +89,20 @@
 		{
 			clientId: "BXMDz85NBcpraqKToWuU",
 			callbackUrl: "http://localhost:8000/webtest/member_hap/callback",
-			isPopup: false,
-			loginButton: {color: "green", type: 3, height: 60} 
+			isPopup: false, /* 팝업을 통한 연동처리 여부 */
+			loginButton: {color: "green", type: 3, height: 60} /* 로그인 버튼의 타입을 지정 */
 		}
 	);
+	
+	/* 설정정보를 초기화하고 연동을 준비 */
 	naverLogin.init();
 	</script>
 <style>
+@import
+	url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:700&display=swap');
+@import
+	url('https://fonts.googleapis.com/css?family=Nanum+Gothic:700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Jua&display=swap');
 .login-container {
 	width: 100%;
 	height: 70vh;
@@ -103,23 +113,24 @@
 }
 
 .login-main {
-	width: 30%;
-	height: 80%;
+	width: 34%;
+	height: 95%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
     background-color: white;
+    font-family: 'Jua', sans-serif;
 }
 
 .login-logo {
-	width: 80%;
+	width: 90%;
 	height: 25%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 6rem;
+	font-size: 5.7rem;
 }
 
 .login-form {
@@ -209,6 +220,13 @@
 	color: gray;
 	text-decoration: none;
 }
+input[type="text"], input[type="password"], input[type="email"], select {
+    height: 6rem;
+    font-size: 2.5rem;
+}
+.main-header{
+	opacity: 0;
+}
 </style>
 </head>
 <body>
@@ -223,7 +241,7 @@
 			<input type="hidden" name="nPage" value="${param.nPage }"> <input
 				type="hidden" name="col" value="${param.col }"> <input
 				type="hidden" name="word" value="${param.word }">
-			<div class="login-logo">Sign In</div>
+			<div class="login-logo">How About Potato</div>
 			<div class="login-form">
 				<input class="login-input" type="text" placeholder="아이디"
 					id="member_id" name="member_id" required="required">

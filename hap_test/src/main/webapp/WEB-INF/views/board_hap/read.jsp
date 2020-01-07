@@ -127,18 +127,21 @@ content {
 	display: flex;
 	justify-content: center;
 }
-.carousel-container{
+
+.carousel-container {
 	width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
+
 .table {
 	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
-    width: 60vw;
-    margin-bottom: 20px;
+	width: 60vw;
+	margin-bottom: 20px;
 }
-.font{
+
+.font {
 	font-family: 'Jua', sans-serif;
 }
 </style>
@@ -153,39 +156,38 @@ content {
 		<table class="table table-bordered">
 			<tr>
 				<td colspan="2" style="text-align: center">
-				<div class="carousel-container">
-					<div id="myCarousel" class="carousel slide" data-ride="carousel"
-						style="height: 100%; width: 100%;" align="center">
-						<ol class="carousel-indicators">
-							<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-							<li data-target="#myCarousel" data-slide-to="1"></li>
-							<li data-target="#myCarousel" data-slide-to="2"></li>
-						</ol>
+					<div class="carousel-container">
+						<div id="myCarousel" class="carousel slide" data-ride="carousel"
+							style="height: 100%; width: 100%;" align="center">
+							<ol class="carousel-indicators">
+								<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+								<li data-target="#myCarousel" data-slide-to="1"></li>
+								<li data-target="#myCarousel" data-slide-to="2"></li>
+							</ol>
 
 
-						<div class="carousel-inner">
-							<c:forEach var="dto" items="${rlist}" varStatus="index">
-								<div class="item <c:if test="${index.first}">active</c:if>">
-									<img
-										src="${pageContext.request.contextPath}/images/${dto.room_filename}"
-										class="img-rounded " width="800px" height="800px"
-										alt="image${index.count}">
-								</div>
-							</c:forEach>
+							<div class="carousel-inner">
+								<c:forEach var="dto" items="${rlist}" varStatus="index">
+									<div class="item <c:if test="${index.first}">active</c:if>">
+										<img
+											src="${pageContext.request.contextPath}/images/${dto.room_filename}"
+											class="img-rounded " width="800px" height="800px"
+											alt="image${index.count}">
+									</div>
+								</c:forEach>
+							</div>
+
+							<a class="left carousel-control" href="#myCarousel"
+								data-slide="prev"> <span
+								class="glyphicon glyphicon-chevron-left"></span> <span
+								class="sr-only">Previous</span>
+							</a> <a class="right carousel-control" href="#myCarousel"
+								data-slide="next"> <span
+								class="glyphicon glyphicon-chevron-right"></span> <span
+								class="sr-only">Next</span>
+							</a>
 						</div>
-
-						<a class="left carousel-control" href="#myCarousel"
-							data-slide="prev"> <span
-							class="glyphicon glyphicon-chevron-left"></span> <span
-							class="sr-only">Previous</span>
-						</a> <a class="right carousel-control" href="#myCarousel"
-							data-slide="next"> <span
-							class="glyphicon glyphicon-chevron-right"></span> <span
-							class="sr-only">Next</span>
-						</a>
-					</div>
-					</div>
-					 <input type="hidden" name="col" value="${param.col }"> <input
+					</div> <input type="hidden" name="col" value="${param.col }"> <input
 					type="hidden" name="word" value="${param.word }"> <input
 					type="hidden" name="nowPage" value="${param.nowPage }">
 				</td>
@@ -249,53 +251,53 @@ content {
 			<div class="read-map">
 				<h1>숙소 약도</h1>
 				<p>주소 : ${dto.board_address1 } ${dto.board_address2 }
-				            <div class="read-map" id="map" style="width: 100%; height: 350px;">
-            </div>
-            <script>
-               var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-               mapOption = {
-                  center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-                  level : 3
-               // 지도의 확대 레벨
-               };
+				<div class="read-map" id="map" style="width: 100%; height: 350px;">
+				</div>
+				<script>
+					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+					mapOption = {
+						center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+						level : 3
+					// 지도의 확대 레벨
+					};
 
-               // 지도를 생성합니다    
-               var map = new kakao.maps.Map(mapContainer, mapOption);
+					// 지도를 생성합니다    
+					var map = new kakao.maps.Map(mapContainer, mapOption);
 
-               // 주소-좌표 변환 객체를 생성합니다
-               var geocoder = new kakao.maps.services.Geocoder();
+					// 주소-좌표 변환 객체를 생성합니다
+					var geocoder = new kakao.maps.services.Geocoder();
 
-               // 주소로 좌표를 검색합니다
-               geocoder
-                     .addressSearch(
-                           '${dto.board_address1}',
-                           function(result, status) {
+					// 주소로 좌표를 검색합니다
+					geocoder
+							.addressSearch(
+									'${dto.board_address1}',
+									function(result, status) {
 
-                              // 정상적으로 검색이 완료됐으면 
-                              if (status === kakao.maps.services.Status.OK) {
+										// 정상적으로 검색이 완료됐으면 
+										if (status === kakao.maps.services.Status.OK) {
 
-                                 var coords = new kakao.maps.LatLng(
-                                       result[0].y, result[0].x);
+											var coords = new kakao.maps.LatLng(
+													result[0].y, result[0].x);
 
-                                 // 결과값으로 받은 위치를 마커로 표시합니다
-                                 var marker = new kakao.maps.Marker(
-                                       {
-                                          map : map,
-                                          position : coords
-                                       });
+											// 결과값으로 받은 위치를 마커로 표시합니다
+											var marker = new kakao.maps.Marker(
+													{
+														map : map,
+														position : coords
+													});
 
-                                 // 인포윈도우로 장소에 대한 설명을 표시합니다
-                                 var infowindow = new kakao.maps.InfoWindow(
-                                       {
-                                          content : '<div style="width:150px;text-align:center;padding:6px 0;">${dto.board_name}</div>'
-                                       });
-                                 infowindow.open(map, marker);
+											// 인포윈도우로 장소에 대한 설명을 표시합니다
+											var infowindow = new kakao.maps.InfoWindow(
+													{
+														content : '<div style="width:150px;text-align:center;padding:6px 0;">${dto.board_name}</div>'
+													});
+											infowindow.open(map, marker);
 
-                                 // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-                                 map.setCenter(coords);
-                              }
-                           });
-            </script>
+											// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+											map.setCenter(coords);
+										}
+									});
+				</script>
 			</div>
 			<div class="col-sm-12 read-reple">
 				<div class="panel panel-default">
@@ -384,8 +386,16 @@ content {
 				<!-- 	</script> -->
 
 				<div class="read-submit">
-					<button type="submit" class="btn"
-						onclick="location.href='../res/create?board_num=${dto.board_num}'">결제하기</button>
+					<c:choose>
+						<c:when test="${not empty sessionScope.member_id }">
+							<button type="submit" class="btn"
+								onclick="location.href='../res/create?board_num=${dto.board_num}'">결제하기</button>
+						</c:when>
+						<c:otherwise>
+							<button type="submit" class="btn"
+								onclick="location.href='../member_hap/login'">로그인</button>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 			<!-- col-lg-12 end -->
@@ -478,7 +488,8 @@ content {
 															str += "<div><div class='header'><div><img src=\"${root}/images/"+ list[i].member_fname+"\" alt=\"신호 없음\" height=\"100px\" width=\"100px\"/></div><strong class='primary-font'><nickname>"
 																	+ list[i].member_id
 																	+ "</nickname></strong>";
-														}등록
+														}
+														등록
 														str += "<small class='pull-right text-muted'>"
 																+ list[i].rw_date
 																+ "</small></div><br><content>";

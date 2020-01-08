@@ -48,5 +48,5 @@
 - MunginKim
 
 ## PDF FILE
-- 
+- https://github.com/stylish-sys/HowAboutPotato-/blob/master/How%20about%20potato.pdf
 

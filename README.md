@@ -15,6 +15,7 @@
 
 ## Role sharing
 <br>
+
 #### Sunyong Lee (leader)
 - member & notice & qna list, create, read, update, delete etc.. Back end (Top Registration)
 - reservation create, read, update, delete etc.. Back end

@@ -18,7 +18,7 @@
     <div class="form-group">
       <label class="control-label col-sm-2" for="oldfile">원본파일</label>
       <div class="col-sm-6">
-       <img src = "${pageContext.request.contextPath }/storage/${param.oldfile}" class = "img-rounded" width = "400px" height = "400px">
+       <img src = "${pageContext.request.contextPath }/images/${param.oldfile}" class = "img-rounded" width = "400px" height = "400px">
       </div>
     </div>
     <div class="form-group">

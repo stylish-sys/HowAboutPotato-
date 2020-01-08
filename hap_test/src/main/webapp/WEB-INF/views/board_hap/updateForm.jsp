@@ -8,6 +8,10 @@
 #need {
 	color: red;
 }
+
+#board_nameCheck{
+	color : red;
+}
 </style>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -67,10 +71,10 @@
 			alert("숙소이름을 입력하세요")
 			document.frm.board_name.focus();
 		} else {
-			var url = "board_namecheck"; //idcheck - > board_namecheck
-			var param = "board_name=" + board_name;
+			var url = "board_namecheck"; //board_namecheck
+			url += "?board_name=" + board_name;
 
-			$.get(url, param, function(data, textStatus) {
+			$.get(url, function(data, textStatus) {
 				$("#board_namecheck").text(data.str);
 			})
 
@@ -83,12 +87,6 @@
 		if (f.board_name.value.length == 0) {
 			alert("숙소이름을 입력하세요.");
 			f.board_name.focus();
-			return false;
-		}
-
-		if (f.board_map.value.length == 0) {
-			alert("약도를 입력하세요.");
-			f.board_map.focus();
 			return false;
 		}
 
@@ -107,15 +105,14 @@
 
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="board_name"><span
-					id="need">*</span>숙소 이름</label>
+					id="need">*</span>업소 이름</label>
 				<div class="col-sm-3">
 					<input type="text" class="form-control" id="board_name"
-						placeholder="${dto.board_name }" name="board_name" >
-					<!-- id->board_name -->
+						placeholder="숙소 이름을 입력하세요" name="board_name">
 				</div>
 				<button type="button" class="btn col-sm-2"
 					onclick="board_nameCheck(document.frm.board_name.value)">중복체크</button>
-				<div id="idcheck"></div>
+				<div id="board_namecheck"></div>
 			</div>
 
 			<div class="form-group">
@@ -153,7 +150,7 @@
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-8">
 					<button type="submit" class="btn">수정</button>
-					<button type="reset" class="btn">취소</button>
+					<button type="reset" class="btn" onclick = "history.back()">취소</button>
 				</div>
 			</div>
 		</form>

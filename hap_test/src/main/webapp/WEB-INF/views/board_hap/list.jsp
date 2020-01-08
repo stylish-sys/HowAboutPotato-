@@ -504,7 +504,7 @@ a:hover {
 								background-position: center center;
     							background-repeat: no-repeat;
     							background-size: cover;
-    							background-image: url(${pageContext.request.contextPath}/images/${dto.board_filename });"
+    							background-image: url(${pageContext.request.contextPath}/images/${dto.board_filename});"
 								onclick="javascript:read('${dto.board_num}')">
 								
 							</div>
@@ -514,7 +514,7 @@ a:hover {
 								<div class="list-content-content-delete">
 									<del>100000</del>
 								</div>
-								<div class="list-content-content-price">42% -> ${util:price(dto.board_num, mapper)}</div>
+								<div class="list-content-content-price">40 % -> ${util:price(dto.board_num, mapper)}</div>
 								
 							</div>
 							<c:if

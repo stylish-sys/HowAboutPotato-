@@ -1,5 +1,5 @@
-# How About Potato
-https://img.shields.io/badge/Spring-3.9.10-green
+# How About Potato ![spring version](https://img.shields.io/badge/Spring-3.9.10-green) ![oracle version](https://img.shields.io/badge/oracle-11-lightgrey)
+
 
 
 ## Installation
